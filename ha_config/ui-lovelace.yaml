@@ -13,7 +13,7 @@ views:
             title: FFT Farm Command Center
             content: |
               ## Live Agent Operations
-              Core overview with readable telemetry and active control states.
+              High-level situational view with live controls and telemetry.
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -62,92 +62,47 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Soil Moisture (Last 3h)
+              title: Farm Pulse (Last 4h)
               show_states: true
-            graph_span: 3h
+            graph_span: 4h
             apex_config:
               stroke:
                 curve: smooth
-              yaxis:
-                decimalsInFloat: 1
             yaxis:
-              - min: 0
+              - id: moisture
+                min: 0
                 max: 100
+              - id: water
+                opposite: true
+                min: 60000
+                max: 120000
             series:
               - entity: sensor.soil_moisture_north
-                name: North
-                color: '#32d296'
+                name: North Moisture
+                yaxis_id: moisture
+                type: area
+                color: '#36d399'
                 group_by:
                   func: avg
                   duration: 10min
               - entity: sensor.soil_moisture_south
-                name: South
-                color: '#00b8ff'
+                name: South Moisture
+                yaxis_id: moisture
+                type: area
+                color: '#60a5fa'
                 group_by:
                   func: avg
                   duration: 10min
-              - entity: sensor.soil_moisture_west_pasture
-                name: West
-                color: '#ffd166'
+              - entity: sensor.water_tank_total
+                name: Total Water
+                yaxis_id: water
+                type: line
+                color: '#f59e0b'
                 group_by:
                   func: avg
                   duration: 10min
       - type: grid
         cards:
-          - type: custom:apexcharts-card
-            header:
-              show: true
-              title: Total Water (Last 3h)
-              show_states: true
-            graph_span: 3h
-            apex_config:
-              stroke:
-                curve: smooth
-            yaxis:
-              - min: 60000
-                max: 120000
-            series:
-              - entity: sensor.water_tank_total
-                name: Water Total
-                color: '#2dd4bf'
-                group_by:
-                  func: avg
-                  duration: 10min
-          - type: custom:apexcharts-card
-            header:
-              show: true
-              title: Energy Rail (Last 3h)
-              show_states: true
-            graph_span: 3h
-            apex_config:
-              stroke:
-                curve: smooth
-            yaxis:
-              - min: 0
-                max: 200
-              - opposite: true
-                min: 0
-                max: 100
-            series:
-              - entity: sensor.solar_power
-                name: Solar
-                color: '#ffd166'
-                group_by:
-                  func: avg
-                  duration: 10min
-              - entity: sensor.power_consumption
-                name: Consumption
-                color: '#ef476f'
-                group_by:
-                  func: avg
-                  duration: 10min
-              - entity: sensor.battery_level
-                name: Battery %
-                yaxis_id: 2
-                color: '#06d6a0'
-                group_by:
-                  func: avg
-                  duration: 10min
           - type: entity-filter
             title: Active Operations
             show_empty: false
@@ -168,6 +123,22 @@ views:
               - switch.greenhouse_vent_a
               - switch.security_lights
               - switch.perimeter_alarm
+          - type: entity-filter
+            title: Critical Alerts
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.high_wind_alert
+              - binary_sensor.storm_alert
+              - binary_sensor.low_water_storage
+              - binary_sensor.greenhouse_too_hot
+              - binary_sensor.greenhouse_too_cold
+              - binary_sensor.barn_too_cold
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
           - type: logbook
             title: Agent Action Timeline (Last 2h)
             hours_to_show: 2
@@ -180,6 +151,9 @@ views:
     sections:
       - type: grid
         cards:
+          - type: custom:mushroom-title-card
+            title: Irrigation Command Deck
+            subtitle: Zone control, moisture analytics, and pump orchestration
           - type: grid
             columns: 3
             square: false
@@ -199,26 +173,70 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Zone Moisture Comparator (Last 6h)
+              title: Multi-Line Moisture Curves (6h)
             graph_span: 6h
+            apex_config:
+              stroke:
+                curve: smooth
             yaxis:
               - min: 0
                 max: 100
             series:
               - entity: sensor.soil_moisture_north
                 name: North
+                color: '#00d1ff'
               - entity: sensor.soil_moisture_south
                 name: South
+                color: '#4dff88'
               - entity: sensor.soil_moisture_west_pasture
                 name: West
+                color: '#ffc857'
               - entity: sensor.soil_moisture_east_orchard
                 name: East
+                color: '#ff6b6b'
               - entity: sensor.soil_moisture_vegetable
                 name: Vegetable
+                color: '#d66efd'
               - entity: sensor.soil_moisture_nursery
                 name: Nursery
+                color: '#5eead4'
       - type: grid
         cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Multi-Bar Moisture Snapshot
+            graph_span: 30min
+            update_interval: 30s
+            apex_config:
+              chart:
+                type: bar
+              plotOptions:
+                bar:
+                  borderRadius: 4
+                  columnWidth: 50%
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.soil_moisture_north
+                name: North
+                type: column
+              - entity: sensor.soil_moisture_south
+                name: South
+                type: column
+              - entity: sensor.soil_moisture_west_pasture
+                name: West
+                type: column
+              - entity: sensor.soil_moisture_east_orchard
+                name: East
+                type: column
+              - entity: sensor.soil_moisture_vegetable
+                name: Vegetable
+                type: column
+              - entity: sensor.soil_moisture_nursery
+                name: Nursery
+                type: column
           - type: entities
             title: Pump Controls
             entities:
@@ -240,11 +258,6 @@ views:
             name: Secondary Tank
             min: 0
             max: 50000
-          - type: gauge
-            entity: sensor.water_tank_nursery
-            name: Nursery Tank
-            min: 0
-            max: 5000
 
   - title: Energy
     path: energy
@@ -254,39 +267,64 @@ views:
     sections:
       - type: grid
         cards:
+          - type: custom:mushroom-title-card
+            title: Energy Intelligence
+            subtitle: Generation, load, battery behavior, and grid dependence
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Solar vs Consumption (12h)
+              title: Mixed Area/Line Energy Model (12h)
               show_states: true
             graph_span: 12h
-            series:
-              - entity: sensor.solar_power
-                name: Solar
-                color: '#ffd166'
-              - entity: sensor.power_consumption
-                name: Consumption
-                color: '#ef476f'
-          - type: custom:apexcharts-card
-            header:
-              show: true
-              title: Battery and Grid (12h)
-              show_states: true
-            graph_span: 12h
+            apex_config:
+              stroke:
+                curve: smooth
             yaxis:
-              - min: 0
-                max: 120
-              - opposite: true
+              - id: power
+                min: 0
+                max: 250
+              - id: battery
+                opposite: true
                 min: 0
                 max: 100
             series:
-              - entity: input_number.grid_power_consumption
-                name: Grid
-                color: '#60a5fa'
+              - entity: sensor.solar_power
+                name: Solar
+                yaxis_id: power
+                type: area
+                color: '#fbbf24'
+              - entity: sensor.power_consumption
+                name: Consumption
+                yaxis_id: power
+                type: line
+                color: '#fb7185'
               - entity: sensor.battery_level
                 name: Battery %
-                yaxis_id: 2
+                yaxis_id: battery
+                type: line
                 color: '#34d399'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Multi-Bar Energy Snapshot
+            graph_span: 1h
+            apex_config:
+              chart:
+                type: bar
+              plotOptions:
+                bar:
+                  horizontal: false
+                  columnWidth: 45%
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                type: column
+              - entity: sensor.power_consumption
+                name: Use
+                type: column
+              - entity: input_number.grid_power_consumption
+                name: Grid
+                type: column
       - type: grid
         cards:
           - type: entities
@@ -296,6 +334,18 @@ views:
               - input_number.grid_power_consumption
               - input_number.battery_storage_pct
               - input_number.generator_fuel_level
+          - type: statistics-graph
+            title: 24h Statistical Envelope
+            days_to_show: 1
+            chart_type: bar
+            stat_types:
+              - min
+              - mean
+              - max
+            entities:
+              - sensor.solar_power
+              - sensor.power_consumption
+              - sensor.battery_level
           - type: entity-filter
             title: Power Alerts
             show_empty: false
@@ -313,6 +363,9 @@ views:
     sections:
       - type: grid
         cards:
+          - type: custom:mushroom-title-card
+            title: Security and Perimeter
+            subtitle: Live defense posture and event stream
           - type: entities
             title: Security Controls
             entities:
@@ -330,9 +383,134 @@ views:
               - binary_sensor.motion_detected_barn
               - binary_sensor.motion_detected_equipment
               - binary_sensor.storm_alert
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Security Signal Timeline (8h)
+            graph_span: 8h
+            series:
+              - entity: binary_sensor.motion_detected_barn
+                name: Barn Motion
+                type: area
+                color: '#fb923c'
+              - entity: binary_sensor.motion_detected_equipment
+                name: Equipment Motion
+                type: area
+                color: '#f87171'
+              - entity: binary_sensor.storm_alert
+                name: Storm Alert
+                type: line
+                color: '#a78bfa'
+      - type: grid
+        cards:
           - type: logbook
             title: Security Timeline (Last 6h)
             hours_to_show: 6
+          - type: entities
+            title: Fleet and Availability
+            entities:
+              - binary_sensor.tractor_available
+              - binary_sensor.harvester_available
+              - input_number.tractor_fuel
+              - input_number.harvester_fuel
+              - input_number.truck_fuel_1
+              - input_number.truck_fuel_2
+
+  - title: Climate
+    path: climate
+    icon: mdi:greenhouse
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: Climate Analytics
+            subtitle: Greenhouse and barn conditions with robust trend views
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Multi-Line Greenhouse Temperature (12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              stroke:
+                curve: smooth
+            series:
+              - entity: sensor.greenhouse_temp_a
+                name: Greenhouse A
+                color: '#f97316'
+              - entity: sensor.greenhouse_temp_b
+                name: Greenhouse B
+                color: '#14b8a6'
+              - entity: sensor.greenhouse_temp_c
+                name: Greenhouse C
+                color: '#ef4444'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Multi-Area Humidity + Barn Temp (12h)
+            graph_span: 12h
+            yaxis:
+              - id: humidity
+                min: 0
+                max: 100
+              - id: temp
+                opposite: true
+                min: 30
+                max: 110
+            series:
+              - entity: input_number.greenhouse_humidity_a
+                name: GH Humidity A
+                yaxis_id: humidity
+                type: area
+                color: '#06b6d4'
+              - entity: input_number.greenhouse_humidity_b
+                name: GH Humidity B
+                yaxis_id: humidity
+                type: area
+                color: '#3b82f6'
+              - entity: sensor.barn_temperature
+                name: Barn Temp
+                yaxis_id: temp
+                type: line
+                color: '#f59e0b'
+          - type: entity-filter
+            title: Climate Warnings
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.high_wind_alert
+              - binary_sensor.greenhouse_too_hot
+              - binary_sensor.greenhouse_too_cold
+              - binary_sensor.barn_too_cold
+      - type: grid
+        cards:
+          - type: entities
+            title: Climate Controls
+            entities:
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
+              - input_boolean.greenhouse_heater_b
+              - input_boolean.greenhouse_cooling_b
+              - input_boolean.greenhouse_vent_b
+              - input_boolean.greenhouse_heater_c
+              - input_boolean.greenhouse_cooling_c
+              - input_boolean.greenhouse_vent_c
+          - type: entities
+            title: Livestock Controls
+            entities:
+              - switch.barn_heater
+              - switch.barn_fan
+              - input_boolean.chicken_coop_heater
+              - input_boolean.chicken_coop_fan
+              - input_boolean.automatic_feeder_1
+              - input_boolean.automatic_feeder_2
+              - input_boolean.livestock_water_heater
 
   - title: Agents
     path: agents
@@ -345,17 +523,46 @@ views:
           - type: markdown
             title: Agent Observatory
             content: |
-              ### Live Action Feed
-              Use this view to watch agent actions and their impact in real time.
+              ### Action and Outcome Correlation
+              Drill into the event timeline and verify that control actions produce expected telemetry shifts.
           - type: logbook
-            title: Full Agent + Device Timeline (Last 6h)
-            hours_to_show: 6
+            title: Full Agent + Device Timeline (Last 8h)
+            hours_to_show: 8
           - type: history-graph
-            title: Key Outcome Signals
-            hours_to_show: 6
+            title: Outcome Signals
+            hours_to_show: 8
             entities:
               - binary_sensor.irrigation_active
               - binary_sensor.pumps_running
               - sensor.soil_moisture_north
               - sensor.soil_moisture_south
               - sensor.water_tank_total
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Operations Impact Overlay
+            graph_span: 8h
+            yaxis:
+              - id: moisture
+                min: 0
+                max: 100
+              - id: water
+                opposite: true
+                min: 60000
+                max: 120000
+            series:
+              - entity: sensor.soil_moisture_north
+                name: North Moisture
+                yaxis_id: moisture
+                type: line
+                color: '#22c55e'
+              - entity: sensor.soil_moisture_south
+                name: South Moisture
+                yaxis_id: moisture
+                type: line
+                color: '#0ea5e9'
+              - entity: sensor.water_tank_total
+                name: Water Total
+                yaxis_id: water
+                type: area
+                color: '#f59e0b'
