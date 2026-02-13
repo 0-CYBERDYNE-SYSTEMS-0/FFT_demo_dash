@@ -2,16 +2,6 @@
 # FFT Farm Ops - Condition-Reactive Theme Collection
 # Themes can be applied based on time of day, weather conditions, or season
 
----
-base:
-  primary-color: "#5294E2"
-  secondary-color: "#00A0A0"
-  text-primary-color: "#FFFFFF"
-  text-secondary-color: "#5294E2"
-  card-background-color: "#1C1C1C"
-  lobby-card-background-color: "#1C1C1C"
-
-# Default farm operations theater theme
 farm_ops_theater:
   modes:
     dark:
