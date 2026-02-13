@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Option B - Executive Clean</title>
+<style>
+:root{--bg:#0b0f16;--p:#101722;--line:#26354d;--t:#eaf1ff;--m:#9eb2d5;--c1:#4cc9f0;--c2:#80ed99;--c3:#ffb703}
+*{box-sizing:border-box}body{margin:0;font-family:ui-sans-serif,system-ui;background:var(--bg);color:var(--t)}
+.main{max-width:1500px;margin:0 auto;padding:24px;display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.card{background:var(--p);border:1px solid #243449;border-radius:16px;padding:16px}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mini{background:#0d1420;border:1px solid #27374f;border-radius:12px;padding:12px}
+.h{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--m)} .v{font-size:28px;font-weight:700}
+svg{width:100%;height:280px}.grid{stroke:var(--line)}.l1{stroke:var(--c1);fill:none;stroke-width:2.5}.l2{stroke:var(--c2);fill:none;stroke-width:2.5}.a{fill:rgba(255,183,3,.22)}
+</style></head><body><div class="main">
+<div class="card"><div class="h">Executive Overview</div><div class="row"><div class="mini"><div class="h">Water</div><div class="v">76.8k</div></div><div class="mini"><div class="h">Solar</div><div class="v">92.3</div></div><div class="mini"><div class="h">Battery</div><div class="v">98%</div></div></div><div class="h" style="margin-top:14px">Multi-Line + Area Forecast Style</div><svg id="s1" viewBox="0 0 900 280"></svg></div>
+<div class="card"><div class="h">Status</div><ul style="margin:8px 0 0;padding-left:16px;color:#c8d7ef;line-height:1.9"><li>Irrigation Active: 4 Zones</li><li>Pumps Running: 2</li><li>Alerts: 1 warning</li><li>Agents: 3 online</li></ul><div class="h" style="margin-top:20px">Bar Compare</div><svg id="s2" viewBox="0 0 430 280"></svg></div>
+</div>
+<script>
+const n=36; const d=[...Array(n)].map((_,i)=>52+Math.sin(i/4)*11+Math.random()*3); const e=[...Array(n)].map((_,i)=>57+Math.cos(i/5)*9+Math.random()*3); const f=[...Array(n)].map((_,i)=>78+Math.sin(i/7)*5);
+const sc=(v,a,b,y0,y1)=>y1-(v-a)*(y1-y0)/(b-a); const p=(ar,x,y,w,h,min,max)=>ar.map((v,i)=>`${i?'L':'M'}${x+i*(w/(ar.length-1))},${sc(v,min,max,y,y+h)}`).join(' ');
+const s1=document.getElementById('s1'); let g=''; for(let i=0;i<=5;i++){const y=20+i*48; g+=`<line class="grid" x1="40" y1="${y}" x2="860" y2="${y}"/>`;} const aPath=`${p(f,40,20,820,240,60,100)} L860,260 L40,260 Z`; s1.innerHTML=g+`<path class='a' d='${aPath}'/><path class='l1' d='${p(d,40,20,820,240,20,90)}'/><path class='l2' d='${p(e,40,20,820,240,20,90)}'/>`;
+const s2=document.getElementById('s2'); const vals=[44,56,48,62,72,68]; let h=''; for(let i=0;i<vals.length;i++){const x=28+i*63; const bh=220*(vals[i]/100); h+=`<rect x='${x}' y='${248-bh}' width='44' height='${bh}' rx='6' fill='${i%2?'#80ed99':'#4cc9f0'}'/>`; } s2.innerHTML=h;
+</script></body></html>

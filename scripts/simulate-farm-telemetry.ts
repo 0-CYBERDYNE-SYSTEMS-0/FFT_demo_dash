@@ -16,7 +16,21 @@ const TANK_INCREASE_RATE = 30;
 const TEMP_VARIATION = 0.2;
 const HUMIDITY_VARIATION = 0.5;
 const WIND_VARIATION = 1;
-const TICK_INTERVAL_MS = 5000;
+const DEFAULT_TICK_INTERVAL_MS = 15000;
+const MIN_TICK_INTERVAL_MS = 1000;
+const MAX_TICK_INTERVAL_MS = 300000;
+
+function getTickIntervalMs(): number {
+  const raw = process.env.SIM_TICK_MS;
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed)) return DEFAULT_TICK_INTERVAL_MS;
+
+  const normalized = Math.floor(parsed);
+  if (normalized < MIN_TICK_INTERVAL_MS || normalized > MAX_TICK_INTERVAL_MS) {
+    return DEFAULT_TICK_INTERVAL_MS;
+  }
+  return normalized;
+}
 
 const SWITCH_ACTION_TARGETS = [
   'switch.irrigation_north',
@@ -142,7 +156,7 @@ async function runAgentActions(ha: ReturnType<typeof createHomeAssistantAdapter>
 
   const updates: Array<Promise<unknown>> = [];
 
-  if (Math.random() < 0.65) {
+  if (Math.random() < 0.35) {
     const target = SWITCH_ACTION_TARGETS[Math.floor(Math.random() * SWITCH_ACTION_TARGETS.length)];
     const currentOn = getState(target) === 'on';
     const nextOn = Math.random() < 0.55 ? !currentOn : currentOn;
@@ -152,7 +166,7 @@ async function runAgentActions(ha: ReturnType<typeof createHomeAssistantAdapter>
     }
   }
 
-  if (Math.random() < 0.45) {
+  if (Math.random() < 0.2) {
     const target = BOOLEAN_ACTION_TARGETS[Math.floor(Math.random() * BOOLEAN_ACTION_TARGETS.length)];
     const currentOn = getState(target) === 'on';
     const nextOn = Math.random() < 0.5 ? !currentOn : currentOn;
@@ -309,9 +323,10 @@ async function updateState(ha: ReturnType<typeof createHomeAssistantAdapter>, st
 
 async function runSimulation() {
   loadDotEnv();
+  const tickIntervalMs = getTickIntervalMs();
 
   console.log('🌾 Starting Full-Scale Farm Telemetry + Agent Action Simulation...');
-  console.log(`   Tick interval: ${TICK_INTERVAL_MS}ms`);
+  console.log(`   Tick interval: ${tickIntervalMs}ms`);
   console.log('');
 
   let ha: ReturnType<typeof createHomeAssistantAdapter>;
@@ -346,7 +361,7 @@ async function runSimulation() {
     }
   };
 
-  setInterval(tick, TICK_INTERVAL_MS);
+  setInterval(tick, tickIntervalMs);
   tick();
 }
 

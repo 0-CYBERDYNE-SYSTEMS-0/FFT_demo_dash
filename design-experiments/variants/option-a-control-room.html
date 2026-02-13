@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Option A - Control Room Dense</title>
+<style>
+:root { --bg:#06080d; --panel:#101622; --line:#1f2b3d; --text:#e8f0ff; --muted:#95a8c8; --good:#21d18f; --warn:#ffba49; --bad:#ff5f6d; --info:#5cb3ff; }
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(1000px 700px at 10% -10%,#11203a 0%,var(--bg) 42%);font-family:ui-sans-serif,system-ui;color:var(--text)}
+.wrap{max-width:1600px;margin:0 auto;padding:20px;display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
+.card{background:linear-gradient(180deg,#121b2a,#0d1320);border:1px solid #223046;border-radius:14px;padding:14px;min-height:120px;box-shadow:0 8px 26px rgba(0,0,0,.35)}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi .tile{background:#0b1320;border:1px solid #27344a;border-radius:10px;padding:8px}
+.h{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.v{font-size:22px;font-weight:700}
+svg{width:100%;height:100%}.grid{stroke:#213149;stroke-width:1}.axis{fill:#8ca0c2;font-size:10px}.l1{stroke:var(--good);fill:none;stroke-width:2}.l2{stroke:var(--info);fill:none;stroke-width:2}.l3{stroke:var(--warn);fill:none;stroke-width:2}.a1{fill:rgba(33,209,143,.15)} .a2{fill:rgba(92,179,255,.15)}
+.bar1{fill:#3dc6ff}.bar2{fill:#7af2b8}.bar3{fill:#ffc76b}
+.list li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #223147;color:#b8c8e4}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" style="grid-column:span 8">
+    <div class="h">Farm Pulse</div>
+    <div class="kpi">
+      <div class="tile"><div class="h">Water Total</div><div class="v" id="w"></div></div>
+      <div class="tile"><div class="h">Solar</div><div class="v" id="s"></div></div>
+      <div class="tile"><div class="h">Load</div><div class="v" id="l"></div></div>
+      <div class="tile"><div class="h">Battery</div><div class="v" id="b"></div></div>
+    </div>
+  </div>
+  <div class="card" style="grid-column:span 4"><div class="h">Active Operations</div><ul class="list" id="ops"></ul></div>
+  <div class="card" style="grid-column:span 6"><div class="h">Multi-Line Area: Moisture + Water</div><svg id="lineArea" viewBox="0 0 640 260"></svg></div>
+  <div class="card" style="grid-column:span 6"><div class="h">Multi-Bar Snapshot: Zone Moisture</div><svg id="bars" viewBox="0 0 640 260"></svg></div>
+  <div class="card" style="grid-column:span 12"><div class="h">Technical Trend Matrix: Solar vs Consumption vs Battery</div><svg id="trend" viewBox="0 0 1320 260"></svg></div>
+</div>
+<script>
+const N=48; const r=(a,b)=>a+Math.random()*(b-a);
+const moistureA=[...Array(N)].map((_,i)=>Math.max(15,Math.min(95,45+Math.sin(i/5)*18+r(-4,4))));
+const moistureB=[...Array(N)].map((_,i)=>Math.max(15,Math.min(95,55+Math.cos(i/6)*14+r(-4,4))));
+const water=[...Array(N)].map((_,i)=>76000+Math.sin(i/8)*4200+r(-600,600));
+const solar=[...Array(N)].map((_,i)=>Math.max(0,90+Math.sin(i/6)*40+r(-6,6)));
+const load=[...Array(N)].map((_,i)=>Math.max(20,65+Math.cos(i/7)*12+r(-5,5)));
+const batt=[...Array(N)].map((_,i)=>Math.max(30,Math.min(100,78+Math.sin(i/9)*8+r(-2,2))));
+const zones=[['North',moistureA.at(-1)],['South',moistureB.at(-1)],['West',r(35,70)],['East',r(30,72)],['Vegetable',r(45,82)],['Nursery',r(52,88)]];
+const scale=(v,a,b,y0,y1)=>y1-(v-a)*(y1-y0)/(b-a);
+function path(data,x0,y0,w,h,min,max){return data.map((d,i)=>`${i?'L':'M'}${x0+i*(w/(data.length-1))},${scale(d,min,max,y0,y0+h)}`).join(' ')}
+function area(data,x0,y0,w,h,min,max){const p=path(data,x0,y0,w,h,min,max);return `${p} L ${x0+w},${y0+h} L ${x0},${y0+h} Z`;}
+function drawGrid(svg,w,h,x0=40,y0=20){let g='';for(let i=0;i<=5;i++){const y=y0+i*(h/5);g+=`<line class="grid" x1="${x0}" y1="${y}" x2="${x0+w}" y2="${y}"/>`}return g}
+const la=document.getElementById('lineArea'); la.innerHTML=`${drawGrid(la,560,200)}<path class="a1" d="${area(moistureA,40,20,560,200,0,100)}"/><path class="a2" d="${area(moistureB,40,20,560,200,0,100)}"/><path class="l1" d="${path(moistureA,40,20,560,200,0,100)}"/><path class="l2" d="${path(moistureB,40,20,560,200,0,100)}"/>`;
+const bars=document.getElementById('bars'); const bw=70; let bg=drawGrid(bars,560,200); let bs=''; zones.forEach((z,i)=>{const h=200*(z[1]/100); const x=60+i*88; const y=220-h; bs+=`<rect class="bar${(i%3)+1}" x="${x}" y="${y}" width="${bw}" height="${h}" rx="6"/><text class="axis" x="${x+8}" y="242">${z[0]}</text><text class="axis" x="${x+18}" y="${y-6}">${z[1].toFixed(0)}%</text>`}); bars.innerHTML=bg+bs;
+const tr=document.getElementById('trend'); tr.innerHTML=`${drawGrid(tr,1240,200,40,20)}<path class="l1" d="${path(solar,40,20,1240,200,0,180)}"/><path class="l3" d="${path(load,40,20,1240,200,0,180)}"/><path class="l2" d="${path(batt,40,20,1240,200,0,100)}"/>`;
+document.getElementById('w').textContent = `${water.at(-1).toFixed(0)} gal`;
+document.getElementById('s').textContent = `${solar.at(-1).toFixed(1)} kW`;
+document.getElementById('l').textContent = `${load.at(-1).toFixed(1)} kW`;
+document.getElementById('b').textContent = `${batt.at(-1).toFixed(0)}%`;
+document.getElementById('ops').innerHTML=['irrigation_north','pump_main','greenhouse_cooling_a','security_lights'].map(x=>`<li><span>${x}</span><span style="color:#2ad58b">ON</span></li>`).join('');
+</script>
+</body>
+</html>

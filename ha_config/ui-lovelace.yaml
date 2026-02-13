@@ -5,7 +5,8 @@ views:
     path: command-center
     icon: mdi:radar
     type: sections
-    max_columns: 4
+    max_columns: 3
+    dense_section_placement: true
     sections:
       - type: grid
         cards:
@@ -62,12 +63,37 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Farm Pulse (Last 4h)
+              title: Farm Pulse (Last 3h)
               show_states: true
-            graph_span: 4h
+            graph_span: 3h
             apex_config:
+              chart:
+                height: 260
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
               stroke:
                 curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
             yaxis:
               - id: moisture
                 min: 0
@@ -142,12 +168,44 @@ views:
           - type: logbook
             title: Agent Action Timeline (Last 2h)
             hours_to_show: 2
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Energy Snapshot Bars
+            graph_span: 2h
+            apex_config:
+              chart:
+                type: bar
+                height: 260
+                animations:
+                  enabled: false
+              plotOptions:
+                bar:
+                  columnWidth: 55%
+                  borderRadius: 4
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                type: column
+              - entity: sensor.power_consumption
+                name: Use
+                type: column
+              - entity: sensor.battery_level
+                name: Battery %
+                type: column
 
   - title: Irrigation
     path: irrigation
     icon: mdi:sprinkler
     type: sections
-    max_columns: 4
+    max_columns: 3
+    dense_section_placement: true
     sections:
       - type: grid
         cards:
@@ -173,11 +231,36 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Multi-Line Moisture Curves (6h)
-            graph_span: 6h
+              title: Multi-Line Moisture Curves (4h)
+            graph_span: 4h
             apex_config:
+              chart:
+                height: 260
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
               stroke:
                 curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
             yaxis:
               - min: 0
                 max: 100
@@ -207,14 +290,28 @@ views:
               show: true
               title: Multi-Bar Moisture Snapshot
             graph_span: 30min
-            update_interval: 30s
+            update_interval: 60s
             apex_config:
               chart:
                 type: bar
+                height: 260
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
               plotOptions:
                 bar:
                   borderRadius: 4
-                  columnWidth: 50%
+                  columnWidth: 55%
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
             yaxis:
               - min: 0
                 max: 100
@@ -258,12 +355,18 @@ views:
             name: Secondary Tank
             min: 0
             max: 50000
+          - type: gauge
+            entity: sensor.water_tank_nursery
+            name: Nursery Tank
+            min: 0
+            max: 5000
 
   - title: Energy
     path: energy
     icon: mdi:solar-power
     type: sections
-    max_columns: 4
+    max_columns: 3
+    dense_section_placement: true
     sections:
       - type: grid
         cards:
@@ -273,12 +376,37 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Mixed Area/Line Energy Model (12h)
+              title: Mixed Area/Line Energy Model (6h)
               show_states: true
-            graph_span: 12h
+            graph_span: 6h
             apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
               stroke:
                 curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
             yaxis:
               - id: power
                 min: 0
@@ -311,10 +439,25 @@ views:
             apex_config:
               chart:
                 type: bar
+                height: 260
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
               plotOptions:
                 bar:
                   horizontal: false
-                  columnWidth: 45%
+                  columnWidth: 55%
+                  borderRadius: 4
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
             series:
               - entity: sensor.solar_power
                 name: Solar
@@ -354,12 +497,41 @@ views:
             entities:
               - binary_sensor.low_water_storage
               - binary_sensor.storm_alert
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Generator and Fuel (6h)
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 260
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: input_number.generator_fuel_level
+                name: Fuel %
+                color: '#f59e0b'
+              - entity: input_number.battery_storage_pct
+                name: Battery %
+                color: '#34d399'
 
   - title: Security
     path: security
     icon: mdi:shield-check
     type: sections
-    max_columns: 4
+    max_columns: 3
+    dense_section_placement: true
     sections:
       - type: grid
         cards:
@@ -386,8 +558,27 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Security Signal Timeline (8h)
-            graph_span: 8h
+              title: Security Signal Timeline (4h)
+            graph_span: 4h
+            apex_config:
+              chart:
+                height: 260
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
             series:
               - entity: binary_sensor.motion_detected_barn
                 name: Barn Motion
@@ -415,12 +606,53 @@ views:
               - input_number.harvester_fuel
               - input_number.truck_fuel_1
               - input_number.truck_fuel_2
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Fleet Fuel Bars
+            graph_span: 2h
+            apex_config:
+              chart:
+                type: bar
+                height: 300
+              plotOptions:
+                bar:
+                  columnWidth: 55%
+                  borderRadius: 4
+              grid:
+                borderColor: '#22324a'
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: input_number.tractor_fuel
+                name: Tractor
+                type: column
+              - entity: input_number.harvester_fuel
+                name: Harvester
+                type: column
+              - entity: input_number.truck_fuel_1
+                name: Truck 1
+                type: column
+              - entity: input_number.truck_fuel_2
+                name: Truck 2
+                type: column
+          - type: entity-filter
+            title: Security Health
+            show_empty: true
+            state_filter:
+              - 'off'
+            entities:
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
+              - binary_sensor.storm_alert
 
   - title: Climate
     path: climate
     icon: mdi:greenhouse
     type: sections
-    max_columns: 4
+    max_columns: 3
+    dense_section_placement: true
     sections:
       - type: grid
         cards:
@@ -430,12 +662,28 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Multi-Line Greenhouse Temperature (12h)
+              title: Multi-Line Greenhouse Temperature (6h)
               show_states: true
-            graph_span: 12h
+            graph_span: 6h
             apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
               stroke:
                 curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
             series:
               - entity: sensor.greenhouse_temp_a
                 name: Greenhouse A
@@ -449,8 +697,32 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Multi-Area Humidity + Barn Temp (12h)
-            graph_span: 12h
+              title: Multi-Area Humidity + Barn Temp (6h)
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
             yaxis:
               - id: humidity
                 min: 0
@@ -511,12 +783,51 @@ views:
               - input_boolean.automatic_feeder_1
               - input_boolean.automatic_feeder_2
               - input_boolean.livestock_water_heater
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Livestock Environment (6h)
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 260
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+            yaxis:
+              - id: temp
+                min: 30
+                max: 110
+              - id: humidity
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.barn_temperature
+                name: Barn Temp
+                yaxis_id: temp
+                color: '#f59e0b'
+              - entity: input_number.barn_humidity
+                name: Barn Humidity
+                yaxis_id: humidity
+                color: '#06b6d4'
+          - type: logbook
+            title: Climate Activity (Last 4h)
+            hours_to_show: 4
 
   - title: Agents
     path: agents
     icon: mdi:robot
     type: sections
-    max_columns: 4
+    max_columns: 3
+    dense_section_placement: true
     sections:
       - type: grid
         cards:
@@ -541,7 +852,26 @@ views:
             header:
               show: true
               title: Operations Impact Overlay
-            graph_span: 8h
+            graph_span: 4h
+            apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
             yaxis:
               - id: moisture
                 min: 0
