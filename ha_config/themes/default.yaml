@@ -1,4 +1,4 @@
-# Default Theme
+# Home Assistant Themes
 ---
 base:
   primary-color: "#5294E2"
@@ -7,3 +7,32 @@ base:
   text-secondary-color: "#5294E2"
   card-background-color: "#1C1C1C"
   lobby-card-background-color: "#1C1C1C"
+
+farm_ops_theater:
+  modes:
+    dark:
+      primary-color: "#20c997"
+      accent-color: "#ff8a00"
+      primary-background-color: "#06080d"
+      secondary-background-color: "#0b0f18"
+      card-background-color: "#111723"
+      ha-card-background: "#111723"
+      primary-text-color: "#ecf2ff"
+      secondary-text-color: "#9fb4d1"
+      disabled-text-color: "#536178"
+      divider-color: "rgba(142, 164, 201, 0.22)"
+      state-icon-color: "#70c7ff"
+      state-icon-active-color: "#20c997"
+      warning-color: "#ffb020"
+      error-color: "#ff5d5d"
+      success-color: "#2ad58b"
+      info-color: "#4aa8ff"
+      paper-listbox-background-color: "#111723"
+      paper-card-background-color: "#111723"
+      paper-item-icon-color: "#70c7ff"
+      app-header-background-color: "#0b0f18"
+      app-header-text-color: "#ecf2ff"
+      sidebar-background-color: "#090d14"
+      sidebar-text-color: "#b9c8e0"
+      sidebar-selected-background-color: "rgba(32, 201, 151, 0.22)"
+      sidebar-selected-text-color: "#20c997"

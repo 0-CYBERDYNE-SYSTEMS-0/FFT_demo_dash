@@ -1150,3 +1150,8 @@ http:
 
 lovelace:
   mode: yaml
+  resources:
+    - url: /local/community/mushroom.js
+      type: module
+    - url: /local/community/apexcharts-card/apexcharts-card.js
+      type: module

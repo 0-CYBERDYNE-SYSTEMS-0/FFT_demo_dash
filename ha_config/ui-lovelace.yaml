@@ -1,7 +1,8 @@
-title: FFT Farm Agent Ops Theater
+title: FFT Farm Ops Theater
+theme: farm_ops_theater
 views:
-  - title: Mission Control
-    path: mission-control
+  - title: Command Center
+    path: command-center
     icon: mdi:radar
     type: sections
     max_columns: 4
@@ -9,31 +10,144 @@ views:
       - type: grid
         cards:
           - type: markdown
-            title: Farm Operations Theater
+            title: FFT Farm Command Center
             content: |
-              ## Live Agent-Controlled Farm Simulation
-              **Irrigation Active:** `{{ states('binary_sensor.irrigation_active') }}`  
-              **Pumps Running:** `{{ states('binary_sensor.pumps_running') }}`  
-              **Water Storage Alert:** `{{ states('binary_sensor.low_water_storage') }}`  
-              **Updated:** `{{ now().strftime('%Y-%m-%d %H:%M:%S') }}`
-          - type: glance
-            title: Core KPIs
+              ## Live Agent Operations
+              Core overview with readable telemetry and active control states.
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: binary_sensor.irrigation_active
+                icon: mdi:sprinkler-variant
+              - type: entity
+                entity: binary_sensor.pumps_running
+                icon: mdi:pump
+              - type: entity
+                entity: binary_sensor.low_water_storage
+                icon: mdi:water-alert
+              - type: entity
+                entity: binary_sensor.storm_alert
+                icon: mdi:weather-lightning
+              - type: entity
+                entity: sensor.battery_level
+                icon: mdi:battery
+          - type: grid
             columns: 4
-            entities:
-              - sensor.outdoor_temp_avg
-              - sensor.wind_speed_mph
-              - sensor.solar_power
-              - sensor.power_consumption
-              - sensor.battery_level
-              - sensor.water_tank_total
-              - sensor.cattle_count
-              - sensor.chicken_count
-              - sensor.grain_yield
-              - sensor.barn_temperature
-              - sensor.greenhouse_humidity_avg
-              - sensor.soil_moisture_north
+            square: false
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.outdoor_temp_avg
+                name: Outdoor Temp
+              - type: custom:mushroom-entity-card
+                entity: sensor.wind_speed_mph
+                name: Wind
+              - type: custom:mushroom-entity-card
+                entity: sensor.water_tank_total
+                name: Total Water
+              - type: custom:mushroom-entity-card
+                entity: sensor.solar_power
+                name: Solar
+              - type: custom:mushroom-entity-card
+                entity: sensor.power_consumption
+                name: Power Use
+              - type: custom:mushroom-entity-card
+                entity: sensor.battery_level
+                name: Battery
+              - type: custom:mushroom-entity-card
+                entity: sensor.cattle_count
+                name: Cattle
+              - type: custom:mushroom-entity-card
+                entity: sensor.chicken_count
+                name: Chickens
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Soil Moisture (Last 3h)
+              show_states: true
+            graph_span: 3h
+            apex_config:
+              stroke:
+                curve: smooth
+              yaxis:
+                decimalsInFloat: 1
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.soil_moisture_north
+                name: North
+                color: '#32d296'
+                group_by:
+                  func: avg
+                  duration: 10min
+              - entity: sensor.soil_moisture_south
+                name: South
+                color: '#00b8ff'
+                group_by:
+                  func: avg
+                  duration: 10min
+              - entity: sensor.soil_moisture_west_pasture
+                name: West
+                color: '#ffd166'
+                group_by:
+                  func: avg
+                  duration: 10min
       - type: grid
         cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Total Water (Last 3h)
+              show_states: true
+            graph_span: 3h
+            apex_config:
+              stroke:
+                curve: smooth
+            yaxis:
+              - min: 60000
+                max: 120000
+            series:
+              - entity: sensor.water_tank_total
+                name: Water Total
+                color: '#2dd4bf'
+                group_by:
+                  func: avg
+                  duration: 10min
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Energy Rail (Last 3h)
+              show_states: true
+            graph_span: 3h
+            apex_config:
+              stroke:
+                curve: smooth
+            yaxis:
+              - min: 0
+                max: 200
+              - opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                color: '#ffd166'
+                group_by:
+                  func: avg
+                  duration: 10min
+              - entity: sensor.power_consumption
+                name: Consumption
+                color: '#ef476f'
+                group_by:
+                  func: avg
+                  duration: 10min
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: 2
+                color: '#06d6a0'
+                group_by:
+                  func: avg
+                  duration: 10min
           - type: entity-filter
             title: Active Operations
             show_empty: false
@@ -54,131 +168,68 @@ views:
               - switch.greenhouse_vent_a
               - switch.security_lights
               - switch.perimeter_alarm
-              - input_boolean.irrigation_drip_main
-              - input_boolean.irrigation_misting_system
-          - type: entity-filter
-            title: Alert Feed
-            show_empty: false
-            state_filter:
-              - 'on'
-            entities:
-              - binary_sensor.frost_risk
-              - binary_sensor.heat_warning
-              - binary_sensor.high_wind_alert
-              - binary_sensor.storm_alert
-              - binary_sensor.low_water_storage
-              - binary_sensor.greenhouse_too_hot
-              - binary_sensor.greenhouse_too_cold
-              - binary_sensor.barn_too_cold
-              - binary_sensor.motion_detected_barn
-              - binary_sensor.motion_detected_equipment
           - type: logbook
-            title: Agent Activity Feed (Last 90 Minutes)
-            hours_to_show: 1.5
+            title: Agent Action Timeline (Last 2h)
+            hours_to_show: 2
 
-  - title: Telemetry Lab
-    path: telemetry-lab
-    icon: mdi:chart-timeline-variant
+  - title: Irrigation
+    path: irrigation
+    icon: mdi:sprinkler
     type: sections
     max_columns: 4
     sections:
       - type: grid
         cards:
-          - type: history-graph
-            title: Moisture Trends
-            hours_to_show: 6
-            entities:
-              - sensor.soil_moisture_north
-              - sensor.soil_moisture_south
-              - sensor.soil_moisture_west_pasture
-              - sensor.soil_moisture_east_orchard
-              - sensor.soil_moisture_vegetable
-              - sensor.soil_moisture_nursery
-          - type: statistics-graph
-            title: Power Envelope (24h)
-            days_to_show: 1
-            chart_type: line
-            stat_types:
-              - mean
-              - min
-              - max
-            entities:
-              - sensor.solar_power
-              - sensor.power_consumption
-              - sensor.battery_level
-          - type: statistics-graph
-            title: Water Storage (24h)
-            days_to_show: 1
-            chart_type: line
-            stat_types:
-              - mean
-              - min
-              - max
-            entities:
-              - sensor.water_tank_main
-              - sensor.water_tank_secondary
-              - sensor.water_tank_nursery
-              - sensor.water_tank_total
-      - type: grid
-        cards:
-          - type: entities
-            title: Telemetry Inputs
-            entities:
-              - input_number.wind_speed
-              - input_number.wind_direction
-              - input_number.barometric_pressure
-              - input_number.rainfall_today
-              - input_number.solar_generation_kw
-              - input_number.grid_power_consumption
-              - input_number.battery_storage_pct
-          - type: entities
-            title: Soil Chemistry
-            entities:
-              - input_number.soil_ph_north
-              - input_number.soil_ph_south
-              - input_number.soil_ph_vegetable
-              - input_number.soil_ph_orchard
-              - input_number.nitrogen_level_north
-              - input_number.nitrogen_level_south
-              - input_number.phosphorus_level
-              - input_number.potassium_level
-
-  - title: Field Operations
-    path: field-operations
-    icon: mdi:sprinkler-variant
-    type: sections
-    max_columns: 4
-    sections:
-      - type: grid
-        cards:
-          - type: glance
-            title: Irrigation Zones
+          - type: grid
             columns: 3
-            entities:
-              - sensor.soil_moisture_north
-              - sensor.soil_moisture_south
-              - sensor.soil_moisture_west_pasture
-              - sensor.soil_moisture_east_orchard
-              - sensor.soil_moisture_vegetable
-              - sensor.soil_moisture_nursery
-          - type: entities
-            title: Primary Irrigation Control
-            entities:
-              - switch.irrigation_north
-              - switch.irrigation_south
-              - switch.irrigation_west_pasture
-              - switch.irrigation_east_orchard
-              - switch.irrigation_vegetable
-              - switch.irrigation_nursery
-          - type: entities
-            title: Secondary Watering Programs
-            entities:
-              - input_boolean.irrigation_drip_main
-              - input_boolean.irrigation_misting_system
-              - input_boolean.irrigation_grain_silo_a
-              - input_boolean.irrigation_grain_silo_b
+            square: false
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_north
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_south
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_west_pasture
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_east_orchard
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_vegetable
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_nursery
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Zone Moisture Comparator (Last 6h)
+            graph_span: 6h
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.soil_moisture_north
+                name: North
+              - entity: sensor.soil_moisture_south
+                name: South
+              - entity: sensor.soil_moisture_west_pasture
+                name: West
+              - entity: sensor.soil_moisture_east_orchard
+                name: East
+              - entity: sensor.soil_moisture_vegetable
+                name: Vegetable
+              - entity: sensor.soil_moisture_nursery
+                name: Nursery
       - type: grid
         cards:
+          - type: entities
+            title: Pump Controls
+            entities:
+              - switch.pump_well_1
+              - switch.pump_well_2
+              - switch.pump_main
+              - input_boolean.pump_main_reservoir
+              - input_boolean.pump_secondary_tank
+              - input_boolean.pump_pond_circulation
+              - input_boolean.pump_rainwater
+              - input_boolean.pump_fertilizer_injection
           - type: gauge
             entity: sensor.water_tank_main
             name: Main Tank
@@ -194,87 +245,68 @@ views:
             name: Nursery Tank
             min: 0
             max: 5000
-          - type: entities
-            title: Pump Controls
-            entities:
-              - switch.pump_well_1
-              - switch.pump_well_2
-              - switch.pump_main
-              - input_boolean.pump_main_reservoir
-              - input_boolean.pump_secondary_tank
-              - input_boolean.pump_pond_circulation
-              - input_boolean.pump_rainwater
 
-  - title: Climate and Livestock
-    path: climate-livestock
-    icon: mdi:greenhouse
+  - title: Energy
+    path: energy
+    icon: mdi:solar-power
     type: sections
     max_columns: 4
     sections:
       - type: grid
         cards:
-          - type: history-graph
-            title: Greenhouse Temperature
-            hours_to_show: 6
-            entities:
-              - sensor.greenhouse_temp_a
-              - sensor.greenhouse_temp_b
-              - sensor.greenhouse_temp_c
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Solar vs Consumption (12h)
+              show_states: true
+            graph_span: 12h
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                color: '#ffd166'
+              - entity: sensor.power_consumption
+                name: Consumption
+                color: '#ef476f'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Battery and Grid (12h)
+              show_states: true
+            graph_span: 12h
+            yaxis:
+              - min: 0
+                max: 120
+              - opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: input_number.grid_power_consumption
+                name: Grid
+                color: '#60a5fa'
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: 2
+                color: '#34d399'
+      - type: grid
+        cards:
           - type: entities
-            title: Greenhouse Controls A/B
+            title: Energy Inputs
             entities:
-              - switch.greenhouse_heater_a
-              - switch.greenhouse_cooling_a
-              - switch.greenhouse_vent_a
-              - input_boolean.greenhouse_heater_b
-              - input_boolean.greenhouse_cooling_b
-              - input_boolean.greenhouse_vent_b
-              - input_boolean.greenhouse_shade_b
-              - input_boolean.greenhouse_humidifier_b
-          - type: entities
-            title: Greenhouse Controls C
-            entities:
-              - input_boolean.greenhouse_heater_c
-              - input_boolean.greenhouse_cooling_c
-              - input_boolean.greenhouse_vent_c
-              - input_boolean.greenhouse_shade_c
-              - input_boolean.greenhouse_fog_system
+              - input_number.solar_generation_kw
+              - input_number.grid_power_consumption
+              - input_number.battery_storage_pct
+              - input_number.generator_fuel_level
           - type: entity-filter
-            title: Climate Alerts
+            title: Power Alerts
             show_empty: false
             state_filter:
               - 'on'
             entities:
-              - binary_sensor.frost_risk
-              - binary_sensor.heat_warning
-              - binary_sensor.high_wind_alert
-              - binary_sensor.greenhouse_too_hot
-              - binary_sensor.greenhouse_too_cold
-      - type: grid
-        cards:
-          - type: glance
-            title: Livestock Metrics
-            entities:
-              - sensor.cattle_count
-              - sensor.chicken_count
-              - sensor.barn_temperature
-              - input_number.barn_humidity
-              - input_number.feed_silo_level
-              - input_number.eggs_today
-              - input_number.milk_today
-          - type: entities
-            title: Livestock Controls
-            entities:
-              - switch.barn_heater
-              - switch.barn_fan
-              - input_boolean.chicken_coop_heater
-              - input_boolean.chicken_coop_fan
-              - input_boolean.automatic_feeder_1
-              - input_boolean.automatic_feeder_2
-              - input_boolean.livestock_water_heater
+              - binary_sensor.low_water_storage
+              - binary_sensor.storm_alert
 
-  - title: Security and Reliability
-    path: security-reliability
+  - title: Security
+    path: security
     icon: mdi:shield-check
     type: sections
     max_columns: 4
@@ -282,7 +314,7 @@ views:
       - type: grid
         cards:
           - type: entities
-            title: Security Control Surface
+            title: Security Controls
             entities:
               - switch.perimeter_alarm
               - switch.security_lights
@@ -290,7 +322,7 @@ views:
               - input_boolean.gate_lock_main
               - input_boolean.gate_lock_secondary
           - type: entity-filter
-            title: Security/Threat Alerts
+            title: Active Security Events
             show_empty: false
             state_filter:
               - 'on'
@@ -298,15 +330,32 @@ views:
               - binary_sensor.motion_detected_barn
               - binary_sensor.motion_detected_equipment
               - binary_sensor.storm_alert
-          - type: glance
-            title: Equipment Availability
-            entities:
-              - binary_sensor.tractor_available
-              - binary_sensor.harvester_available
-              - input_number.tractor_fuel
-              - input_number.harvester_fuel
-              - input_number.truck_fuel_1
-              - input_number.truck_fuel_2
           - type: logbook
-            title: Reliability Timeline (Last 2 Hours)
-            hours_to_show: 2
+            title: Security Timeline (Last 6h)
+            hours_to_show: 6
+
+  - title: Agents
+    path: agents
+    icon: mdi:robot
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: Agent Observatory
+            content: |
+              ### Live Action Feed
+              Use this view to watch agent actions and their impact in real time.
+          - type: logbook
+            title: Full Agent + Device Timeline (Last 6h)
+            hours_to_show: 6
+          - type: history-graph
+            title: Key Outcome Signals
+            hours_to_show: 6
+            entities:
+              - binary_sensor.irrigation_active
+              - binary_sensor.pumps_running
+              - sensor.soil_moisture_north
+              - sensor.soil_moisture_south
+              - sensor.water_tank_total
