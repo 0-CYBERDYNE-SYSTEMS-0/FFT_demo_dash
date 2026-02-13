@@ -1,0 +1,128 @@
+# Security View Template
+# Live defense posture and event stream
+#
+# Customization points:
+# - Add/remove security sensors and cameras
+# - Configure motion detection entities
+# - Adjust alert thresholds for your perimeter
+
+title: Security
+path: security
+icon: mdi:shield-check
+type: sections
+max_columns: 3
+dense_section_placement: true
+sections:
+  - type: grid
+    cards:
+      - type: custom:mushroom-title-card
+        title: Security and Perimeter
+        subtitle: Live defense posture and event stream
+      - type: entities
+        title: Security Controls
+        entities:
+          - switch.perimeter_alarm
+          - switch.security_lights
+          - switch.rain_sensors
+          - input_boolean.gate_lock_main
+          - input_boolean.gate_lock_secondary
+      - type: entity-filter
+        title: Active Security Events
+        show_empty: false
+        state_filter:
+          - 'on'
+        entities:
+          - binary_sensor.motion_detected_barn
+          - binary_sensor.motion_detected_equipment
+          - binary_sensor.storm_alert
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Security Signal Timeline (4h)
+        graph_span: 4h
+        apex_config:
+          chart:
+            height: 260
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+          stroke:
+            curve: smooth
+            width: 2
+          dataLabels:
+            enabled: false
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+            strokeDashArray: 3
+        series:
+          - entity: binary_sensor.motion_detected_barn
+            name: Barn Motion
+            type: area
+            color: '#fb923c'
+          - entity: binary_sensor.motion_detected_equipment
+            name: Equipment Motion
+            type: area
+            color: '#f87171'
+          - entity: binary_sensor.storm_alert
+            name: Storm Alert
+            type: line
+            color: '#a78bfa'
+  - type: grid
+    cards:
+      - type: logbook
+        title: Security Timeline (Last 6h)
+        hours_to_show: 6
+      - type: entities
+        title: Fleet and Availability
+        entities:
+          - binary_sensor.tractor_available
+          - binary_sensor.harvester_available
+          - input_number.tractor_fuel
+          - input_number.harvester_fuel
+          - input_number.truck_fuel_1
+          - input_number.truck_fuel_2
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Fleet Fuel Bars
+        graph_span: 2h
+        apex_config:
+          chart:
+            type: bar
+            height: 300
+          plotOptions:
+            bar:
+              columnWidth: 55%
+              borderRadius: 4
+          grid:
+            borderColor: '#22324a'
+        yaxis:
+          - min: 0
+            max: 100
+        series:
+          - entity: input_number.tractor_fuel
+            name: Tractor
+            type: column
+          - entity: input_number.harvester_fuel
+            name: Harvester
+            type: column
+          - entity: input_number.truck_fuel_1
+            name: Truck 1
+            type: column
+          - entity: input_number.truck_fuel_2
+            name: Truck 2
+            type: column
+      - type: entity-filter
+        title: Security Health
+        show_empty: true
+        state_filter:
+          - 'off'
+        entities:
+          - binary_sensor.motion_detected_barn
+          - binary_sensor.motion_detected_equipment
+          - binary_sensor.storm_alert

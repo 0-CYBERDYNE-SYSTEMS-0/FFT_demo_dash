@@ -1,0 +1,37 @@
+# Harvest Theme
+# Season: late summer/fall harvest season
+# Rich gold/brown palette, yield-forward layout
+# Apply when context.season === 'fall' or during harvest operations
+
+harvest:
+  modes:
+    dark:
+      primary-color: "#d97706"
+      accent-color: "#b45309"
+      primary-background-color: "#1c1410"
+      secondary-background-color: "#2d2014"
+      card-background-color: "#3d2a14"
+      ha-card-background: "#3d2a14"
+      primary-text-color: "#fef3c7"
+      secondary-text-color: "#d97706"
+      disabled-text-color: "#92400e"
+      divider-color: "rgba(217, 119, 6, 0.22)"
+      state-icon-color: "#f59e0b"
+      state-icon-active-color: "#d97706"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#84cc16"
+      info-color: "#60a5fa"
+      paper-listbox-background-color: "#3d2a14"
+      paper-card-background-color: "#3d2a14"
+      paper-item-icon-color: "#f59e0b"
+      app-header-background-color: "#2d2014"
+      app-header-text-color: "#fef3c7"
+      sidebar-background-color: "#1c1410"
+      sidebar-text-color: "#d97706"
+      sidebar-selected-background-color: "rgba(217, 119, 6, 0.22)"
+      sidebar-selected-text-color: "#f59e0b"
+      label-badge-background-color: "#3d2a14"
+      label-badge-text-color: "#fef3c7"
+      table-row-background-color: "#2d2014"
+      table-row-alternative-background-color: "#3d2a14"

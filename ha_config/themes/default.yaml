@@ -1,4 +1,7 @@
 # Home Assistant Themes
+# FFT Farm Ops - Condition-Reactive Theme Collection
+# Themes can be applied based on time of day, weather conditions, or season
+
 ---
 base:
   primary-color: "#5294E2"
@@ -8,6 +11,7 @@ base:
   card-background-color: "#1C1C1C"
   lobby-card-background-color: "#1C1C1C"
 
+# Default farm operations theater theme
 farm_ops_theater:
   modes:
     dark:
@@ -36,3 +40,248 @@ farm_ops_theater:
       sidebar-text-color: "#b9c8e0"
       sidebar-selected-background-color: "rgba(32, 201, 151, 0.22)"
       sidebar-selected-text-color: "#20c997"
+
+# Dawn Theme - Early morning (5:00-8:00)
+# Warm amber/gold palette for sunrise hours
+dawn:
+  modes:
+    dark:
+      primary-color: "#f59e0b"
+      accent-color: "#fbbf24"
+      primary-background-color: "#1c1410"
+      secondary-background-color: "#2a1f14"
+      card-background-color: "#352518"
+      ha-card-background: "#352518"
+      primary-text-color: "#fef3c7"
+      secondary-text-color: "#d4a574"
+      disabled-text-color: "#8b6914"
+      divider-color: "rgba(251, 191, 36, 0.22)"
+      state-icon-color: "#fbbf24"
+      state-icon-active-color: "#f59e0b"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#84cc16"
+      info-color: "#60a5fa"
+      paper-listbox-background-color: "#352518"
+      paper-card-background-color: "#352518"
+      paper-item-icon-color: "#fbbf24"
+      app-header-background-color: "#2a1f14"
+      app-header-text-color: "#fef3c7"
+      sidebar-background-color: "#1c1410"
+      sidebar-text-color: "#d4a574"
+      sidebar-selected-background-color: "rgba(245, 158, 11, 0.22)"
+      sidebar-selected-text-color: "#fbbf24"
+      label-badge-background-color: "#352518"
+      label-badge-text-color: "#fef3c7"
+      table-row-background-color: "#2a1f14"
+      table-row-alternative-background-color: "#352518"
+
+# Midday Theme - Daylight hours (8:00-16:00)
+# Bright, high-contrast palette for productive hours
+midday:
+  modes:
+    dark:
+      primary-color: "#3b82f6"
+      accent-color: "#06b6d4"
+      primary-background-color: "#0f172a"
+      secondary-background-color: "#1e293b"
+      card-background-color: "#1e3a5f"
+      ha-card-background: "#1e3a5f"
+      primary-text-color: "#f1f5f9"
+      secondary-text-color: "#94a3b8"
+      disabled-text-color: "#64748b"
+      divider-color: "rgba(148, 163, 184, 0.22)"
+      state-icon-color: "#60a5fa"
+      state-icon-active-color: "#3b82f6"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#22c55e"
+      info-color: "#06b6d4"
+      paper-listbox-background-color: "#1e3a5f"
+      paper-card-background-color: "#1e3a5f"
+      paper-item-icon-color: "#60a5fa"
+      app-header-background-color: "#1e293b"
+      app-header-text-color: "#f1f5f9"
+      sidebar-background-color: "#0f172a"
+      sidebar-text-color: "#94a3b8"
+      sidebar-selected-background-color: "rgba(59, 130, 246, 0.22)"
+      sidebar-selected-text-color: "#3b82f6"
+      label-badge-background-color: "#1e3a5f"
+      label-badge-text-color: "#f1f5f9"
+      table-row-background-color: "#1e293b"
+      table-row-alternative-background-color: "#1e3a5f"
+
+# Dusk Theme - Evening (16:00-20:00)
+# Deep orange/purple transitional palette
+dusk:
+  modes:
+    dark:
+      primary-color: "#a855f7"
+      accent-color: "#f97316"
+      primary-background-color: "#1a1025"
+      secondary-background-color: "#2d1f3d"
+      card-background-color: "#3d2555"
+      ha-card-background: "#3d2555"
+      primary-text-color: "#f5f3ff"
+      secondary-text-color: "#c4b5fd"
+      disabled-text-color: "#7c3aed"
+      divider-color: "rgba(168, 85, 247, 0.22)"
+      state-icon-color: "#c084fc"
+      state-icon-active-color: "#a855f7"
+      warning-color: "#fb923c"
+      error-color: "#f87171"
+      success-color: "#4ade80"
+      info-color: "#38bdf8"
+      paper-listbox-background-color: "#3d2555"
+      paper-card-background-color: "#3d2555"
+      paper-item-icon-color: "#c084fc"
+      app-header-background-color: "#2d1f3d"
+      app-header-text-color: "#f5f3ff"
+      sidebar-background-color: "#1a1025"
+      sidebar-text-color: "#c4b5fd"
+      sidebar-selected-background-color: "rgba(168, 85, 247, 0.22)"
+      sidebar-selected-text-color: "#a855f7"
+      label-badge-background-color: "#3d2555"
+      label-badge-text-color: "#f5f3ff"
+      table-row-background-color: "#2d1f3d"
+      table-row-alternative-background-color: "#3d2555"
+
+# Night Theme - Night hours (20:00-5:00)
+# Deep blue/dark low-strain palette
+night:
+  modes:
+    dark:
+      primary-color: "#6366f1"
+      accent-color: "#818cf8"
+      primary-background-color: "#030712"
+      secondary-background-color: "#0c1222"
+      card-background-color: "#111827"
+      ha-card-background: "#111827"
+      primary-text-color: "#e5e7eb"
+      secondary-text-color: "#9ca3af"
+      disabled-text-color: "#4b5563"
+      divider-color: "rgba(99, 102, 241, 0.22)"
+      state-icon-color: "#818cf8"
+      state-icon-active-color: "#6366f1"
+      warning-color: "#fcd34d"
+      error-color: "#f87171"
+      success-color: "#34d399"
+      info-color: "#60a5fa"
+      paper-listbox-background-color: "#111827"
+      paper-card-background-color: "#111827"
+      paper-item-icon-color: "#818cf8"
+      app-header-background-color: "#0c1222"
+      app-header-text-color: "#e5e7eb"
+      sidebar-background-color: "#030712"
+      sidebar-text-color: "#9ca3af"
+      sidebar-selected-background-color: "rgba(99, 102, 241, 0.22)"
+      sidebar-selected-text-color: "#6366f1"
+      label-badge-background-color: "#111827"
+      label-badge-text-color: "#e5e7eb"
+      table-row-background-color: "#0c1222"
+      table-row-alternative-background-color: "#111827"
+
+# Storm Theme - Storm alert condition
+# Grey base with lightning accent, alert-forward
+storm:
+  modes:
+    dark:
+      primary-color: "#6b7280"
+      accent-color: "#fbbf24"
+      primary-background-color: "#111827"
+      secondary-background-color: "#1f2937"
+      card-background-color: "#374151"
+      ha-card-background: "#374151"
+      primary-text-color: "#f9fafb"
+      secondary-text-color: "#d1d5db"
+      disabled-text-color: "#6b7280"
+      divider-color: "rgba(156, 163, 175, 0.22)"
+      state-icon-color: "#9ca3af"
+      state-icon-active-color: "#fbbf24"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#10b981"
+      info-color: "#3b82f6"
+      paper-listbox-background-color: "#374151"
+      paper-card-background-color: "#374151"
+      paper-item-icon-color: "#9ca3af"
+      app-header-background-color: "#1f2937"
+      app-header-text-color: "#f9fafb"
+      sidebar-background-color: "#111827"
+      sidebar-text-color: "#d1d5db"
+      sidebar-selected-background-color: "rgba(251, 191, 36, 0.33)"
+      sidebar-selected-text-color: "#fbbf24"
+      label-badge-background-color: "#374151"
+      label-badge-text-color: "#f9fafb"
+      table-row-background-color: "#1f2937"
+      table-row-alternative-background-color: "#374151"
+
+# Frost Theme - Frost warning condition
+# Ice blue palette with cold warning emphasis
+frost:
+  modes:
+    dark:
+      primary-color: "#06b6d4"
+      accent-color: "#22d3ee"
+      primary-background-color: "#083344"
+      secondary-background-color: "#0e4d5f"
+      card-background-color: "#155e75"
+      ha-card-background: "#155e75"
+      primary-text-color: "#ecfeff"
+      secondary-text-color: "#a5f3fc"
+      disabled-text-color: "#0891b2"
+      divider-color: "rgba(34, 211, 238, 0.22)"
+      state-icon-color: "#67e8f9"
+      state-icon-active-color: "#06b6d4"
+      warning-color: "#38bdf8"
+      error-color: "#f87171"
+      success-color: "#34d399"
+      info-color: "#818cf8"
+      paper-listbox-background-color: "#155e75"
+      paper-card-background-color: "#155e75"
+      paper-item-icon-color: "#67e8f9"
+      app-header-background-color: "#0e4d5f"
+      app-header-text-color: "#ecfeff"
+      sidebar-background-color: "#083344"
+      sidebar-text-color: "#a5f3fc"
+      sidebar-selected-background-color: "rgba(6, 182, 212, 0.22)"
+      sidebar-selected-text-color: "#22d3ee"
+      label-badge-background-color: "#155e75"
+      label-badge-text-color: "#ecfeff"
+      table-row-background-color: "#0e4d5f"
+      table-row-alternative-background-color: "#155e75"
+
+# Harvest Theme - Late summer/fall harvest season
+# Rich gold/brown palette, yield-forward
+harvest:
+  modes:
+    dark:
+      primary-color: "#d97706"
+      accent-color: "#b45309"
+      primary-background-color: "#1c1410"
+      secondary-background-color: "#2d2014"
+      card-background-color: "#3d2a14"
+      ha-card-background: "#3d2a14"
+      primary-text-color: "#fef3c7"
+      secondary-text-color: "#d97706"
+      disabled-text-color: "#92400e"
+      divider-color: "rgba(217, 119, 6, 0.22)"
+      state-icon-color: "#f59e0b"
+      state-icon-active-color: "#d97706"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#84cc16"
+      info-color: "#60a5fa"
+      paper-listbox-background-color: "#3d2a14"
+      paper-card-background-color: "#3d2a14"
+      paper-item-icon-color: "#f59e0b"
+      app-header-background-color: "#2d2014"
+      app-header-text-color: "#fef3c7"
+      sidebar-background-color: "#1c1410"
+      sidebar-text-color: "#d97706"
+      sidebar-selected-background-color: "rgba(217, 119, 6, 0.22)"
+      sidebar-selected-text-color: "#f59e0b"
+      label-badge-background-color: "#3d2a14"
+      label-badge-text-color: "#fef3c7"
+      table-row-background-color: "#2d2014"
+      table-row-alternative-background-color: "#3d2a14"

@@ -1,0 +1,168 @@
+# Irrigation View Template
+# Zone control, moisture analytics, and pump orchestration
+#
+# Customization points:
+# - Add/remove irrigation zones by modifying switch entities
+# - Adjust soil moisture thresholds for alerts
+# - Configure pump entities for your water system
+
+title: Irrigation
+path: irrigation
+icon: mdi:sprinkler
+type: sections
+max_columns: 3
+dense_section_placement: true
+sections:
+  - type: grid
+    cards:
+      - type: custom:mushroom-title-card
+        title: Irrigation Command Deck
+        subtitle: Zone control, moisture analytics, and pump orchestration
+      - type: grid
+        columns: 3
+        square: false
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: switch.irrigation_north
+          - type: custom:mushroom-entity-card
+            entity: switch.irrigation_south
+          - type: custom:mushroom-entity-card
+            entity: switch.irrigation_west_pasture
+          - type: custom:mushroom-entity-card
+            entity: switch.irrigation_east_orchard
+          - type: custom:mushroom-entity-card
+            entity: switch.irrigation_vegetable
+          - type: custom:mushroom-entity-card
+            entity: switch.irrigation_nursery
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Multi-Line Moisture Curves (4h)
+        graph_span: 4h
+        apex_config:
+          chart:
+            height: 260
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+          stroke:
+            curve: smooth
+            width: 2
+          dataLabels:
+            enabled: false
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+            strokeDashArray: 3
+          tooltip:
+            shared: true
+            intersect: false
+            x:
+              format: HH:mm
+        all_series_config:
+          group_by:
+            func: avg
+            duration: 10min
+        yaxis:
+          - min: 0
+            max: 100
+        series:
+          - entity: sensor.soil_moisture_north
+            name: North
+            color: '#00d1ff'
+          - entity: sensor.soil_moisture_south
+            name: South
+            color: '#4dff88'
+          - entity: sensor.soil_moisture_west_pasture
+            name: West
+            color: '#ffc857'
+          - entity: sensor.soil_moisture_east_orchard
+            name: East
+            color: '#ff6b6b'
+          - entity: sensor.soil_moisture_vegetable
+            name: Vegetable
+            color: '#d66efd'
+          - entity: sensor.soil_moisture_nursery
+            name: Nursery
+            color: '#5eead4'
+  - type: grid
+    cards:
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Multi-Bar Moisture Snapshot
+        graph_span: 30min
+        update_interval: 60s
+        apex_config:
+          chart:
+            type: bar
+            height: 260
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+          plotOptions:
+            bar:
+              borderRadius: 4
+              columnWidth: 55%
+          dataLabels:
+            enabled: false
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+            strokeDashArray: 3
+        yaxis:
+          - min: 0
+            max: 100
+        series:
+          - entity: sensor.soil_moisture_north
+            name: North
+            type: column
+          - entity: sensor.soil_moisture_south
+            name: South
+            type: column
+          - entity: sensor.soil_moisture_west_pasture
+            name: West
+            type: column
+          - entity: sensor.soil_moisture_east_orchard
+            name: East
+            type: column
+          - entity: sensor.soil_moisture_vegetable
+            name: Vegetable
+            type: column
+          - entity: sensor.soil_moisture_nursery
+            name: Nursery
+            type: column
+      - type: entities
+        title: Pump Controls
+        entities:
+          - switch.pump_well_1
+          - switch.pump_well_2
+          - switch.pump_main
+          - input_boolean.pump_main_reservoir
+          - input_boolean.pump_secondary_tank
+          - input_boolean.pump_pond_circulation
+          - input_boolean.pump_rainwater
+          - input_boolean.pump_fertilizer_injection
+      - type: gauge
+        entity: sensor.water_tank_main
+        name: Main Tank
+        min: 0
+        max: 100000
+      - type: gauge
+        entity: sensor.water_tank_secondary
+        name: Secondary Tank
+        min: 0
+        max: 50000
+      - type: gauge
+        entity: sensor.water_tank_nursery
+        name: Nursery Tank
+        min: 0
+        max: 5000

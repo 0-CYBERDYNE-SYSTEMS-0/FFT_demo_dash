@@ -1,0 +1,56 @@
+# Quick Actions Card Template
+# Grid of toggle buttons for common operations
+#
+# Usage: Place in command center or overview for rapid access
+# Customization: Modify entities for your most-used controls
+
+type: grid
+title: Quick Actions
+columns: 3
+square: false
+cards:
+  - type: custom:mushroom-entity-card
+    entity: switch.irrigation_north
+    name: North Irrigation
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.irrigation_south
+    name: South Irrigation
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.pump_main
+    name: Main Pump
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.greenhouse_heater_a
+    name: GH Heater A
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.greenhouse_vent_a
+    name: GH Vent A
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.security_lights
+    name: Security Lights
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.perimeter_alarm
+    name: Perimeter Alarm
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.barn_heater
+    name: Barn Heater
+    tap_action:
+      action: toggle
+  - type: custom:mushroom-entity-card
+    entity: switch.barn_fan
+    name: Barn Fan
+    tap_action:
+      action: toggle

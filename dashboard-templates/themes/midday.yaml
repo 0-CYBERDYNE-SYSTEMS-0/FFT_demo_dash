@@ -1,0 +1,37 @@
+# Midday Theme
+# Time period: 8:00 - 16:00
+# Bright, high-contrast, productive palette for daylight hours
+# Apply when context.suggestedTheme === 'midday' or timeOfDay === 'morning'/'afternoon'
+
+midday:
+  modes:
+    dark:
+      primary-color: "#3b82f6"
+      accent-color: "#06b6d4"
+      primary-background-color: "#0f172a"
+      secondary-background-color: "#1e293b"
+      card-background-color: "#1e3a5f"
+      ha-card-background: "#1e3a5f"
+      primary-text-color: "#f1f5f9"
+      secondary-text-color: "#94a3b8"
+      disabled-text-color: "#64748b"
+      divider-color: "rgba(148, 163, 184, 0.22)"
+      state-icon-color: "#60a5fa"
+      state-icon-active-color: "#3b82f6"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#22c55e"
+      info-color: "#06b6d4"
+      paper-listbox-background-color: "#1e3a5f"
+      paper-card-background-color: "#1e3a5f"
+      paper-item-icon-color: "#60a5fa"
+      app-header-background-color: "#1e293b"
+      app-header-text-color: "#f1f5f9"
+      sidebar-background-color: "#0f172a"
+      sidebar-text-color: "#94a3b8"
+      sidebar-selected-background-color: "rgba(59, 130, 246, 0.22)"
+      sidebar-selected-text-color: "#3b82f6"
+      label-badge-background-color: "#1e3a5f"
+      label-badge-text-color: "#f1f5f9"
+      table-row-background-color: "#1e293b"
+      table-row-alternative-background-color: "#1e3a5f"

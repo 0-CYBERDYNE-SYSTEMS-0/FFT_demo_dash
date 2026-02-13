@@ -1,0 +1,182 @@
+# Greenhouse View Template
+# Section temps, humidity, heaters, coolers, vents
+#
+# Customization points:
+# - Add/remove greenhouse sections (A, B, C)
+# - Adjust temperature thresholds for alerts
+# - Configure climate control entities
+
+title: Climate
+path: climate
+icon: mdi:greenhouse
+type: sections
+max_columns: 3
+dense_section_placement: true
+sections:
+  - type: grid
+    cards:
+      - type: custom:mushroom-title-card
+        title: Climate Analytics
+        subtitle: Greenhouse and barn conditions with robust trend views
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Multi-Line Greenhouse Temperature (6h)
+          show_states: true
+        graph_span: 6h
+        apex_config:
+          chart:
+            height: 280
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+          stroke:
+            curve: smooth
+            width: 2
+          dataLabels:
+            enabled: false
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+            strokeDashArray: 3
+        series:
+          - entity: sensor.greenhouse_temp_a
+            name: Greenhouse A
+            color: '#f97316'
+          - entity: sensor.greenhouse_temp_b
+            name: Greenhouse B
+            color: '#14b8a6'
+          - entity: sensor.greenhouse_temp_c
+            name: Greenhouse C
+            color: '#ef4444'
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Multi-Area Humidity + Barn Temp (6h)
+        graph_span: 6h
+        apex_config:
+          chart:
+            height: 280
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+          stroke:
+            curve: smooth
+            width: 2
+          dataLabels:
+            enabled: false
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+            strokeDashArray: 3
+          tooltip:
+            shared: true
+            intersect: false
+            x:
+              format: HH:mm
+        yaxis:
+          - id: humidity
+            min: 0
+            max: 100
+          - id: temp
+            opposite: true
+            min: 30
+            max: 110
+        series:
+          - entity: input_number.greenhouse_humidity_a
+            name: GH Humidity A
+            yaxis_id: humidity
+            type: area
+            color: '#06b6d4'
+          - entity: input_number.greenhouse_humidity_b
+            name: GH Humidity B
+            yaxis_id: humidity
+            type: area
+            color: '#3b82f6'
+          - entity: sensor.barn_temperature
+            name: Barn Temp
+            yaxis_id: temp
+            type: line
+            color: '#f59e0b'
+      - type: entity-filter
+        title: Climate Warnings
+        show_empty: false
+        state_filter:
+          - 'on'
+        entities:
+          - binary_sensor.frost_risk
+          - binary_sensor.heat_warning
+          - binary_sensor.high_wind_alert
+          - binary_sensor.greenhouse_too_hot
+          - binary_sensor.greenhouse_too_cold
+          - binary_sensor.barn_too_cold
+  - type: grid
+    cards:
+      - type: entities
+        title: Climate Controls
+        entities:
+          - switch.greenhouse_heater_a
+          - switch.greenhouse_cooling_a
+          - switch.greenhouse_vent_a
+          - input_boolean.greenhouse_heater_b
+          - input_boolean.greenhouse_cooling_b
+          - input_boolean.greenhouse_vent_b
+          - input_boolean.greenhouse_heater_c
+          - input_boolean.greenhouse_cooling_c
+          - input_boolean.greenhouse_vent_c
+      - type: entities
+        title: Livestock Controls
+        entities:
+          - switch.barn_heater
+          - switch.barn_fan
+          - input_boolean.chicken_coop_heater
+          - input_boolean.chicken_coop_fan
+          - input_boolean.automatic_feeder_1
+          - input_boolean.automatic_feeder_2
+          - input_boolean.livestock_water_heater
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Livestock Environment (6h)
+        graph_span: 6h
+        apex_config:
+          chart:
+            height: 260
+            animations:
+              enabled: false
+          stroke:
+            curve: smooth
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+        yaxis:
+          - id: temp
+            min: 30
+            max: 110
+          - id: humidity
+            opposite: true
+            min: 0
+            max: 100
+        series:
+          - entity: sensor.barn_temperature
+            name: Barn Temp
+            yaxis_id: temp
+            color: '#f59e0b'
+          - entity: input_number.barn_humidity
+            name: Barn Humidity
+            yaxis_id: humidity
+            color: '#06b6d4'
+      - type: logbook
+        title: Climate Activity (Last 4h)
+        hours_to_show: 4

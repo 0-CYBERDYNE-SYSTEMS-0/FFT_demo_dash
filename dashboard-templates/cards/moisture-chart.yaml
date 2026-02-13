@@ -1,0 +1,67 @@
+# Moisture Chart Card Template
+# ApexCharts multi-series soil moisture trend visualization
+#
+# Usage: Add to irrigation or overview dashboards
+# Customization: 
+#   - Add/remove zones by modifying series entities
+#   - Adjust graph_span for different time ranges (1h, 4h, 24h, 7d)
+#   - Modify colors per zone
+
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Soil Moisture Trends
+  show_states: true
+graph_span: 4h
+apex_config:
+  chart:
+    height: 300
+    toolbar:
+      show: true
+    animations:
+      enabled: false
+  stroke:
+    curve: smooth
+    width: 2
+  dataLabels:
+    enabled: false
+  legend:
+    show: true
+    position: top
+    horizontalAlign: left
+  grid:
+    borderColor: '#22324a'
+    strokeDashArray: 3
+  tooltip:
+    shared: true
+    intersect: false
+    x:
+      format: HH:mm
+all_series_config:
+  group_by:
+    func: avg
+    duration: 10min
+yaxis:
+  - min: 0
+    max: 100
+    decimals: 0
+    title: Moisture %
+series:
+  - entity: sensor.soil_moisture_north
+    name: North Field
+    color: '#00d1ff'
+  - entity: sensor.soil_moisture_south
+    name: South Field
+    color: '#4dff88'
+  - entity: sensor.soil_moisture_west_pasture
+    name: West Pasture
+    color: '#ffc857'
+  - entity: sensor.soil_moisture_east_orchard
+    name: East Orchard
+    color: '#ff6b6b'
+  - entity: sensor.soil_moisture_vegetable
+    name: Vegetable
+    color: '#d66efd'
+  - entity: sensor.soil_moisture_nursery
+    name: Nursery
+    color: '#5eead4'

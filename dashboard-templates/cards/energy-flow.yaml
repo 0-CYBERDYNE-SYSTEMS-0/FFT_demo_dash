@@ -1,0 +1,73 @@
+# Energy Flow Card Template
+# Solar/grid/battery power flow visualization
+#
+# Usage: Add to energy or overview dashboards
+# Customization:
+#   - Adjust yaxis ranges for your power capacity
+#   - Add/remove series for different energy sources
+
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Energy Flow
+  show_states: true
+graph_span: 6h
+apex_config:
+  chart:
+    height: 300
+    toolbar:
+      show: true
+    animations:
+      enabled: false
+  stroke:
+    curve: smooth
+    width: 2
+  dataLabels:
+    enabled: false
+  legend:
+    show: true
+    position: top
+    horizontalAlign: left
+  grid:
+    borderColor: '#22324a'
+    strokeDashArray: 3
+  tooltip:
+    shared: true
+    intersect: false
+    x:
+      format: HH:mm
+all_series_config:
+  group_by:
+    func: avg
+    duration: 10min
+yaxis:
+  - id: power
+    min: 0
+    max: 250
+    title: Power (kW)
+  - id: battery
+    opposite: true
+    min: 0
+    max: 100
+    title: Battery %
+series:
+  - entity: sensor.solar_power
+    name: Solar Generation
+    yaxis_id: power
+    type: area
+    color: '#fbbf24'
+  - entity: sensor.power_consumption
+    name: Consumption
+    yaxis_id: power
+    type: line
+    color: '#fb7185'
+  - entity: input_number.grid_power_consumption
+    name: Grid Import
+    yaxis_id: power
+    type: area
+    color: '#8b5cf6'
+  - entity: sensor.battery_level
+    name: Battery Level
+    yaxis_id: battery
+    type: line
+    color: '#34d399'

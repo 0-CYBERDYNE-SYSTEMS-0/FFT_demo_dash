@@ -1,0 +1,37 @@
+# Dusk Theme
+# Time period: 16:00 - 20:00
+# Deep orange/purple, transitional evening palette
+# Apply when context.suggestedTheme === 'dusk' or timeOfDay === 'evening'
+
+dusk:
+  modes:
+    dark:
+      primary-color: "#a855f7"
+      accent-color: "#f97316"
+      primary-background-color: "#1a1025"
+      secondary-background-color: "#2d1f3d"
+      card-background-color: "#3d2555"
+      ha-card-background: "#3d2555"
+      primary-text-color: "#f5f3ff"
+      secondary-text-color: "#c4b5fd"
+      disabled-text-color: "#7c3aed"
+      divider-color: "rgba(168, 85, 247, 0.22)"
+      state-icon-color: "#c084fc"
+      state-icon-active-color: "#a855f7"
+      warning-color: "#fb923c"
+      error-color: "#f87171"
+      success-color: "#4ade80"
+      info-color: "#38bdf8"
+      paper-listbox-background-color: "#3d2555"
+      paper-card-background-color: "#3d2555"
+      paper-item-icon-color: "#c084fc"
+      app-header-background-color: "#2d1f3d"
+      app-header-text-color: "#f5f3ff"
+      sidebar-background-color: "#1a1025"
+      sidebar-text-color: "#c4b5fd"
+      sidebar-selected-background-color: "rgba(168, 85, 247, 0.22)"
+      sidebar-selected-text-color: "#a855f7"
+      label-badge-background-color: "#3d2555"
+      label-badge-text-color: "#f5f3ff"
+      table-row-background-color: "#2d1f3d"
+      table-row-alternative-background-color: "#3d2555"

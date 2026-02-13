@@ -1,0 +1,50 @@
+# Yield Tracker Card Template
+# Season yield summary for grain, vegetables, fruit, eggs, milk
+#
+# Usage: Add to command center or harvest tracking dashboards
+# Customization: Update entities for your yield tracking sensors
+
+type: grid
+title: Season Yield Summary
+columns: 2
+square: false
+cards:
+  - type: gauge
+    entity: input_number.yield_grain_current
+    name: Grain Yield
+    unit: ' bu'
+    min: 0
+    max: 20000
+    severity:
+      green: 10000
+      yellow: 5000
+      red: 2000
+  - type: gauge
+    entity: input_number.yield_vegetables_current
+    name: Vegetable Yield
+    unit: ' lbs'
+    min: 0
+    max: 10000
+    severity:
+      green: 5000
+      yellow: 2500
+      red: 1000
+  - type: gauge
+    entity: input_number.yield_fruit_current
+    name: Fruit Yield
+    unit: ' lbs'
+    min: 0
+    max: 5000
+    severity:
+      green: 3000
+      yellow: 1500
+      red: 500
+  - type: entities
+    title: Daily Production
+    entities:
+      - entity: input_number.eggs_today
+        name: Eggs Today
+        icon: mdi:egg
+      - entity: input_number.milk_today
+        name: Milk Today (gal)
+        icon: mdi:cow

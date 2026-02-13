@@ -1,0 +1,37 @@
+# Dawn Theme
+# Time period: 5:00 - 8:00
+# Warm amber/gold palette, soft backgrounds for early morning
+# Apply when context.suggestedTheme === 'dawn' or timeOfDay === 'morning' before 8:00
+
+dawn:
+  modes:
+    dark:
+      primary-color: "#f59e0b"
+      accent-color: "#fbbf24"
+      primary-background-color: "#1c1410"
+      secondary-background-color: "#2a1f14"
+      card-background-color: "#352518"
+      ha-card-background: "#352518"
+      primary-text-color: "#fef3c7"
+      secondary-text-color: "#d4a574"
+      disabled-text-color: "#8b6914"
+      divider-color: "rgba(251, 191, 36, 0.22)"
+      state-icon-color: "#fbbf24"
+      state-icon-active-color: "#f59e0b"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#84cc16"
+      info-color: "#60a5fa"
+      paper-listbox-background-color: "#352518"
+      paper-card-background-color: "#352518"
+      paper-item-icon-color: "#fbbf24"
+      app-header-background-color: "#2a1f14"
+      app-header-text-color: "#fef3c7"
+      sidebar-background-color: "#1c1410"
+      sidebar-text-color: "#d4a574"
+      sidebar-selected-background-color: "rgba(245, 158, 11, 0.22)"
+      sidebar-selected-text-color: "#fbbf24"
+      label-badge-background-color: "#352518"
+      label-badge-text-color: "#fef3c7"
+      table-row-background-color: "#2a1f14"
+      table-row-alternative-background-color: "#352518"

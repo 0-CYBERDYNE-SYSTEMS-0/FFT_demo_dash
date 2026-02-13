@@ -1,0 +1,206 @@
+# Command Center View Template
+# High-level situational view with live controls and telemetry
+# 
+# Customization points:
+# - Update entity IDs to match your HA instance
+# - Adjust graph_span for different time ranges
+# - Modify chip entities for different status indicators
+
+title: Command Center
+path: command-center
+icon: mdi:radar
+type: sections
+max_columns: 3
+dense_section_placement: true
+sections:
+  - type: grid
+    cards:
+      - type: markdown
+        title: FFT Farm Command Center
+        content: |
+          ## Live Agent Operations
+          High-level situational view with live controls and telemetry.
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: entity
+            entity: binary_sensor.irrigation_active
+            icon: mdi:sprinkler-variant
+          - type: entity
+            entity: binary_sensor.pumps_running
+            icon: mdi:pump
+          - type: entity
+            entity: binary_sensor.low_water_storage
+            icon: mdi:water-alert
+          - type: entity
+            entity: binary_sensor.storm_alert
+            icon: mdi:weather-lightning
+          - type: entity
+            entity: sensor.battery_level
+            icon: mdi:battery
+      - type: grid
+        columns: 4
+        square: false
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.outdoor_temp_avg
+            name: Outdoor Temp
+          - type: custom:mushroom-entity-card
+            entity: sensor.wind_speed_mph
+            name: Wind
+          - type: custom:mushroom-entity-card
+            entity: sensor.water_tank_total
+            name: Total Water
+          - type: custom:mushroom-entity-card
+            entity: sensor.solar_power
+            name: Solar
+          - type: custom:mushroom-entity-card
+            entity: sensor.power_consumption
+            name: Power Use
+          - type: custom:mushroom-entity-card
+            entity: sensor.battery_level
+            name: Battery
+          - type: custom:mushroom-entity-card
+            entity: sensor.cattle_count
+            name: Cattle
+          - type: custom:mushroom-entity-card
+            entity: sensor.chicken_count
+            name: Chickens
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Farm Pulse (Last 3h)
+          show_states: true
+        graph_span: 3h
+        apex_config:
+          chart:
+            height: 260
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+          stroke:
+            curve: smooth
+            width: 2
+          dataLabels:
+            enabled: false
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+            strokeDashArray: 3
+          tooltip:
+            shared: true
+            intersect: false
+            x:
+              format: HH:mm
+        all_series_config:
+          group_by:
+            func: avg
+            duration: 10min
+        yaxis:
+          - id: moisture
+            min: 0
+            max: 100
+          - id: water
+            opposite: true
+            min: 60000
+            max: 120000
+        series:
+          - entity: sensor.soil_moisture_north
+            name: North Moisture
+            yaxis_id: moisture
+            type: area
+            color: '#36d399'
+            group_by:
+              func: avg
+              duration: 10min
+          - entity: sensor.soil_moisture_south
+            name: South Moisture
+            yaxis_id: moisture
+            type: area
+            color: '#60a5fa'
+            group_by:
+              func: avg
+              duration: 10min
+          - entity: sensor.water_tank_total
+            name: Total Water
+            yaxis_id: water
+            type: line
+            color: '#f59e0b'
+            group_by:
+              func: avg
+              duration: 10min
+  - type: grid
+    cards:
+      - type: entity-filter
+        title: Active Operations
+        show_empty: false
+        state_filter:
+          - 'on'
+        entities:
+          - switch.irrigation_north
+          - switch.irrigation_south
+          - switch.irrigation_west_pasture
+          - switch.irrigation_east_orchard
+          - switch.irrigation_vegetable
+          - switch.irrigation_nursery
+          - switch.pump_well_1
+          - switch.pump_well_2
+          - switch.pump_main
+          - switch.greenhouse_heater_a
+          - switch.greenhouse_cooling_a
+          - switch.greenhouse_vent_a
+          - switch.security_lights
+          - switch.perimeter_alarm
+      - type: entity-filter
+        title: Critical Alerts
+        show_empty: false
+        state_filter:
+          - 'on'
+        entities:
+          - binary_sensor.frost_risk
+          - binary_sensor.heat_warning
+          - binary_sensor.high_wind_alert
+          - binary_sensor.storm_alert
+          - binary_sensor.low_water_storage
+          - binary_sensor.greenhouse_too_hot
+          - binary_sensor.greenhouse_too_cold
+          - binary_sensor.barn_too_cold
+          - binary_sensor.motion_detected_barn
+          - binary_sensor.motion_detected_equipment
+      - type: logbook
+        title: Agent Action Timeline (Last 2h)
+        hours_to_show: 2
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Energy Snapshot Bars
+        graph_span: 2h
+        apex_config:
+          chart:
+            type: bar
+            height: 260
+            animations:
+              enabled: false
+          plotOptions:
+            bar:
+              columnWidth: 55%
+              borderRadius: 4
+          legend:
+            show: true
+            position: top
+            horizontalAlign: left
+          grid:
+            borderColor: '#22324a'
+        series:
+          - entity: sensor.solar_power
+            name: Solar
+            type: column
+          - entity: sensor.power_consumption
+            name: Use
+            type: column
+          - entity: sensor.battery_level
+            name: Battery %
+            type: column

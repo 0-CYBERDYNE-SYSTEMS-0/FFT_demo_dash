@@ -1,0 +1,37 @@
+# Frost Theme
+# Alert condition: frost_risk === 'on'
+# Ice blue palette with cold warning emphasis
+# Apply when context.alertLevel === 'frost' or binary_sensor.frost_risk === 'on'
+
+frost:
+  modes:
+    dark:
+      primary-color: "#06b6d4"
+      accent-color: "#22d3ee"
+      primary-background-color: "#083344"
+      secondary-background-color: "#0e4d5f"
+      card-background-color: "#155e75"
+      ha-card-background: "#155e75"
+      primary-text-color: "#ecfeff"
+      secondary-text-color: "#a5f3fc"
+      disabled-text-color: "#0891b2"
+      divider-color: "rgba(34, 211, 238, 0.22)"
+      state-icon-color: "#67e8f9"
+      state-icon-active-color: "#06b6d4"
+      warning-color: "#38bdf8"
+      error-color: "#f87171"
+      success-color: "#34d399"
+      info-color: "#818cf8"
+      paper-listbox-background-color: "#155e75"
+      paper-card-background-color: "#155e75"
+      paper-item-icon-color: "#67e8f9"
+      app-header-background-color: "#0e4d5f"
+      app-header-text-color: "#ecfeff"
+      sidebar-background-color: "#083344"
+      sidebar-text-color: "#a5f3fc"
+      sidebar-selected-background-color: "rgba(6, 182, 212, 0.22)"
+      sidebar-selected-text-color: "#22d3ee"
+      label-badge-background-color: "#155e75"
+      label-badge-text-color: "#ecfeff"
+      table-row-background-color: "#0e4d5f"
+      table-row-alternative-background-color: "#155e75"

@@ -1,0 +1,38 @@
+# Weather Hero Card Template
+# Large weather overview with temp, wind, pressure, alerts
+#
+# Usage: Embed in any dashboard view for prominent weather display
+# Customization: Update entity IDs to match your weather sensors
+
+type: grid
+columns: 2
+square: false
+cards:
+  - type: custom:mushroom-entity-card
+    entity: sensor.outdoor_temp_avg
+    name: Temperature
+    icon: mdi:thermometer
+    primary_info: state
+    secondary_info: last-changed
+  - type: custom:mushroom-entity-card
+    entity: sensor.wind_speed_mph
+    name: Wind Speed
+    icon: mdi:weather-windy
+    primary_info: state
+    secondary_info: last-changed
+  - type: custom:mushroom-entity-card
+    entity: sensor.wind_direction_cardinal
+    name: Wind Direction
+    icon: mdi:compass
+  - type: custom:mushroom-entity-card
+    entity: input_number.barometric_pressure
+    name: Pressure
+    icon: mdi:gauge
+  - type: custom:mushroom-entity-card
+    entity: input_number.rainfall_today
+    name: Rainfall Today
+    icon: mdi:weather-rainy
+  - type: custom:mushroom-entity-card
+    entity: binary_sensor.rain_detected
+    name: Rain Status
+    icon: mdi:weather-pouring

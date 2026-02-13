@@ -1,0 +1,26 @@
+# Alert Banner Card Template
+# Conditional alert notification bar with priority sorting
+#
+# Usage: Place at top of views for immediate alert visibility
+# Customization: Add/remove alert entities based on your sensors
+
+type: entity-filter
+title: Active Alerts
+show_empty: false
+state_filter:
+  - 'on'
+entities:
+  - binary_sensor.frost_risk
+  - binary_sensor.heat_warning
+  - binary_sensor.high_wind_alert
+  - binary_sensor.storm_alert
+  - binary_sensor.low_water_storage
+  - binary_sensor.greenhouse_too_hot
+  - binary_sensor.greenhouse_too_cold
+  - binary_sensor.barn_too_cold
+  - binary_sensor.motion_detected_barn
+  - binary_sensor.motion_detected_equipment
+card:
+  type: grid
+  columns: 3
+  square: false

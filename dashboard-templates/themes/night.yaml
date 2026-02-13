@@ -1,0 +1,37 @@
+# Night Theme
+# Time period: 20:00 - 5:00
+# Deep blue/dark, low strain palette for night viewing
+# Apply when context.suggestedTheme === 'night' or timeOfDay === 'night'
+
+night:
+  modes:
+    dark:
+      primary-color: "#6366f1"
+      accent-color: "#818cf8"
+      primary-background-color: "#030712"
+      secondary-background-color: "#0c1222"
+      card-background-color: "#111827"
+      ha-card-background: "#111827"
+      primary-text-color: "#e5e7eb"
+      secondary-text-color: "#9ca3af"
+      disabled-text-color: "#4b5563"
+      divider-color: "rgba(99, 102, 241, 0.22)"
+      state-icon-color: "#818cf8"
+      state-icon-active-color: "#6366f1"
+      warning-color: "#fcd34d"
+      error-color: "#f87171"
+      success-color: "#34d399"
+      info-color: "#60a5fa"
+      paper-listbox-background-color: "#111827"
+      paper-card-background-color: "#111827"
+      paper-item-icon-color: "#818cf8"
+      app-header-background-color: "#0c1222"
+      app-header-text-color: "#e5e7eb"
+      sidebar-background-color: "#030712"
+      sidebar-text-color: "#9ca3af"
+      sidebar-selected-background-color: "rgba(99, 102, 241, 0.22)"
+      sidebar-selected-text-color: "#6366f1"
+      label-badge-background-color: "#111827"
+      label-badge-text-color: "#e5e7eb"
+      table-row-background-color: "#0c1222"
+      table-row-alternative-background-color: "#111827"

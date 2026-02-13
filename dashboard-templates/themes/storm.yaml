@@ -1,0 +1,37 @@
+# Storm Theme
+# Alert condition: storm_alert === 'on'
+# Grey base with lightning accent, alert-forward layout
+# Apply when context.weatherCondition === 'storm' or binary_sensor.storm_alert === 'on'
+
+storm:
+  modes:
+    dark:
+      primary-color: "#6b7280"
+      accent-color: "#fbbf24"
+      primary-background-color: "#111827"
+      secondary-background-color: "#1f2937"
+      card-background-color: "#374151"
+      ha-card-background: "#374151"
+      primary-text-color: "#f9fafb"
+      secondary-text-color: "#d1d5db"
+      disabled-text-color: "#6b7280"
+      divider-color: "rgba(156, 163, 175, 0.22)"
+      state-icon-color: "#9ca3af"
+      state-icon-active-color: "#fbbf24"
+      warning-color: "#fbbf24"
+      error-color: "#ef4444"
+      success-color: "#10b981"
+      info-color: "#3b82f6"
+      paper-listbox-background-color: "#374151"
+      paper-card-background-color: "#374151"
+      paper-item-icon-color: "#9ca3af"
+      app-header-background-color: "#1f2937"
+      app-header-text-color: "#f9fafb"
+      sidebar-background-color: "#111827"
+      sidebar-text-color: "#d1d5db"
+      sidebar-selected-background-color: "rgba(251, 191, 36, 0.33)"
+      sidebar-selected-text-color: "#fbbf24"
+      label-badge-background-color: "#374151"
+      label-badge-text-color: "#f9fafb"
+      table-row-background-color: "#1f2937"
+      table-row-alternative-background-color: "#374151"

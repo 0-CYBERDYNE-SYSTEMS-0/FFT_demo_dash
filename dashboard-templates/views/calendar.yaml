@@ -1,0 +1,60 @@
+# Calendar View Template
+# Today's schedule, upcoming events, task timeline
+#
+# Customization points:
+# - Replace calendar entity IDs with your HA calendar integrations
+# - Adjust hours_to_show for different time ranges
+# - Add task management entities as needed
+
+title: Calendar
+path: calendar
+icon: mdi:calendar-clock
+type: sections
+max_columns: 3
+dense_section_placement: true
+sections:
+  - type: grid
+    cards:
+      - type: custom:mushroom-title-card
+        title: Farm Schedule
+        subtitle: Today's operations and upcoming events
+      - type: calendar
+        entities:
+          - calendar.farm_operations
+        title: Today's Schedule
+        initial_view: listDay
+      - type: calendar
+        entities:
+          - calendar.farm_operations
+        title: Weekly Overview
+        initial_view: listWeek
+  - type: grid
+    cards:
+      - type: entities
+        title: Scheduled Tasks
+        entities:
+          - input_boolean.irrigation_scheduled_morning
+          - input_boolean.irrigation_scheduled_evening
+          - input_boolean.greenhouse_check
+          - input_boolean.livestock_feeding
+          - input_boolean.equipment_maintenance
+      - type: entities
+        title: Upcoming Events
+        entities:
+          - sensor.next_scheduled_irrigation
+          - sensor.next_maintenance_task
+          - sensor.next_livestock_check
+      - type: logbook
+        title: Recent Activity
+        hours_to_show: 24
+      - type: markdown
+        title: Schedule Notes
+        content: |
+          ### Today's Priorities
+          - Check irrigation zones before 10:00
+          - Greenhouse temperature monitoring
+          - Livestock feeding schedule
+          
+          ### Upcoming
+          - Equipment maintenance: Friday
+          - Harvest planning: Next week
