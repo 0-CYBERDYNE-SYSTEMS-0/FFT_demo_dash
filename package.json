@@ -9,6 +9,7 @@
     "ha:logs": "docker-compose logs -f homeassistant",
     "ha:restart": "docker-compose restart homeassistant",
     "simulate:telemetry": "tsx scripts/simulate-farm-telemetry.ts",
+    "simulate:demo": "tsx scripts/simulate-farm-telemetry.ts",
     "test:ha": "tsx scripts/test-ha-connection.ts",
     "typecheck": "tsc --noEmit",
     "build": "tsc"

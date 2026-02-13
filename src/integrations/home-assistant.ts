@@ -135,6 +135,18 @@ export class HomeAssistantAdapter {
     });
   }
 
+  async setSwitch(entityId: string, on: boolean) {
+    return this.callService('switch', on ? 'turn_on' : 'turn_off', {
+      entity_id: entityId,
+    });
+  }
+
+  async setInputBoolean(entityId: string, on: boolean) {
+    return this.callService('input_boolean', on ? 'turn_on' : 'turn_off', {
+      entity_id: entityId,
+    });
+  }
+
   // === IRRIGATION CONTROLS ===
   async turnOnIrrigation(zone: string): Promise<void> {
     const entityMap: Record<string, string> = {
