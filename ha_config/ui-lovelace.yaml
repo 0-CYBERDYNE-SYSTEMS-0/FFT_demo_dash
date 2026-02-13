@@ -1,0 +1,299 @@
+title: FFT Agent Monitoring
+views:
+  - title: Agent Command Center
+    path: command-center
+    icon: mdi:robot
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: System Status Banner
+            content: |
+              ## FFT Farm Agent Control Plane
+              - Irrigation Active: **{{ states('binary_sensor.irrigation_active') }}**
+              - Pumps Running: **{{ states('binary_sensor.pumps_running') }}**
+              - Last Refresh: **{{ now().strftime('%Y-%m-%d %H:%M:%S') }}**
+              This dashboard is optimized for agent-driven operations and state-change observability.
+          - type: glance
+            title: Key Metrics
+            columns: 4
+            entities:
+              - sensor.outdoor_temp_avg
+              - sensor.wind_speed_mph
+              - sensor.water_tank_total
+              - sensor.water_tank_main
+              - sensor.solar_power
+              - sensor.power_consumption
+              - sensor.battery_level
+              - sensor.grain_yield
+              - sensor.cattle_count
+              - sensor.chicken_count
+              - sensor.barn_temperature
+              - sensor.greenhouse_humidity_avg
+      - type: grid
+        cards:
+          - type: entity-filter
+            title: Active Operations
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - switch.irrigation_north
+              - switch.irrigation_south
+              - switch.irrigation_east_orchard
+              - switch.irrigation_west_pasture
+              - switch.irrigation_vegetable
+              - switch.irrigation_nursery
+              - switch.pump_well_1
+              - switch.pump_well_2
+              - switch.pump_main
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
+              - switch.backup_generator
+              - switch.perimeter_alarm
+              - switch.security_lights
+          - type: entity-filter
+            title: Alert Feed
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.high_wind_alert
+              - binary_sensor.storm_alert
+              - binary_sensor.low_water_storage
+              - binary_sensor.low_soil_moisture_north
+              - binary_sensor.low_soil_moisture_south
+              - binary_sensor.greenhouse_too_hot
+              - binary_sensor.greenhouse_too_cold
+              - binary_sensor.barn_too_cold
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
+          - type: logbook
+            title: Recent Activity (Last 1 Hour)
+            hours_to_show: 1
+
+  - title: Field Operations
+    path: field-operations
+    icon: mdi:sprout
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: Soil and Irrigation
+            content: |
+              ## Soil Moisture + Zone Control
+              Moisture values are telemetry targets; switches and booleans are agent control channels.
+          - type: glance
+            title: Soil Moisture
+            columns: 3
+            entities:
+              - sensor.soil_moisture_north
+              - sensor.soil_moisture_south
+              - sensor.soil_moisture_west_pasture
+              - sensor.soil_moisture_east_orchard
+              - sensor.soil_moisture_vegetable
+              - sensor.soil_moisture_nursery
+          - type: entities
+            title: Irrigation Switches
+            entities:
+              - switch.irrigation_north
+              - switch.irrigation_south
+              - switch.irrigation_west_pasture
+              - switch.irrigation_east_orchard
+              - switch.irrigation_vegetable
+              - switch.irrigation_nursery
+          - type: entities
+            title: Extended Irrigation Controls
+            entities:
+              - input_boolean.irrigation_drip_main
+              - input_boolean.irrigation_misting_system
+              - input_boolean.irrigation_grain_silo_a
+              - input_boolean.irrigation_grain_silo_b
+      - type: grid
+        cards:
+          - type: entities
+            title: Water System
+            entities:
+              - sensor.water_tank_main
+              - sensor.water_tank_secondary
+              - sensor.water_tank_nursery
+              - sensor.water_tank_total
+              - input_number.tank_level_main
+              - input_number.tank_level_secondary
+              - input_number.tank_level_nursery
+              - switch.pump_well_1
+              - switch.pump_well_2
+              - switch.pump_main
+          - type: glance
+            title: Nutrient Status
+            entities:
+              - input_number.soil_ph_north
+              - input_number.soil_ph_south
+              - input_number.soil_ph_vegetable
+              - input_number.soil_ph_orchard
+              - input_number.nitrogen_level_north
+              - input_number.nitrogen_level_south
+              - input_number.phosphorus_level
+              - input_number.potassium_level
+
+  - title: Climate and Greenhouse
+    path: climate-greenhouse
+    icon: mdi:greenhouse
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: glance
+            title: Greenhouse Sections
+            entities:
+              - sensor.greenhouse_temp_a
+              - sensor.greenhouse_temp_b
+              - sensor.greenhouse_temp_c
+              - input_number.greenhouse_humidity_a
+              - input_number.greenhouse_humidity_b
+              - input_number.greenhouse_humidity_c
+          - type: entities
+            title: Greenhouse Controls A
+            entities:
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
+              - input_boolean.greenhouse_shade_a
+              - input_boolean.greenhouse_humidifier_a
+          - type: entities
+            title: Greenhouse Controls B/C
+            entities:
+              - input_boolean.greenhouse_heater_b
+              - input_boolean.greenhouse_cooling_b
+              - input_boolean.greenhouse_vent_b
+              - input_boolean.greenhouse_shade_b
+              - input_boolean.greenhouse_humidifier_b
+              - input_boolean.greenhouse_heater_c
+              - input_boolean.greenhouse_cooling_c
+              - input_boolean.greenhouse_vent_c
+              - input_boolean.greenhouse_shade_c
+          - type: entity-filter
+            title: Climate Alerts
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.high_wind_alert
+              - binary_sensor.greenhouse_too_hot
+              - binary_sensor.greenhouse_too_cold
+
+  - title: Operations and Livestock
+    path: operations-livestock
+    icon: mdi:cow
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: glance
+            title: Livestock Panel
+            entities:
+              - sensor.cattle_count
+              - sensor.chicken_count
+              - sensor.barn_temperature
+              - input_number.barn_humidity
+              - input_number.feed_silo_level
+              - input_number.eggs_today
+              - input_number.milk_today
+          - type: entities
+            title: Livestock Controls
+            entities:
+              - switch.barn_heater
+              - switch.barn_fan
+              - input_boolean.automatic_feeder_1
+              - input_boolean.automatic_feeder_2
+              - input_boolean.livestock_water_heater
+          - type: entity-filter
+            title: Livestock Alerts
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.barn_too_cold
+      - type: grid
+        cards:
+          - type: glance
+            title: Equipment
+            entities:
+              - input_number.tractor_fuel
+              - input_number.harvester_fuel
+              - input_number.truck_fuel_1
+              - input_number.truck_fuel_2
+              - binary_sensor.tractor_available
+              - binary_sensor.harvester_available
+          - type: entities
+            title: Storage and Yield
+            entities:
+              - input_number.grain_storage_temp_a
+              - input_number.grain_storage_temp_b
+              - input_number.cold_storage_temp
+              - sensor.grain_yield
+              - input_number.yield_vegetables_current
+              - input_number.yield_fruit_current
+
+  - title: Power and Security
+    path: power-security
+    icon: mdi:shield-home
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: glance
+            title: Energy
+            entities:
+              - sensor.solar_power
+              - sensor.power_consumption
+              - sensor.battery_level
+              - input_number.generator_fuel_level
+              - switch.backup_generator
+              - input_number.grid_power_consumption
+              - input_number.solar_generation_kw
+              - input_number.battery_storage_pct
+          - type: entity-filter
+            title: Power Alerts
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.low_water_storage
+              - binary_sensor.storm_alert
+      - type: grid
+        cards:
+          - type: entities
+            title: Security
+            entities:
+              - switch.perimeter_alarm
+              - switch.security_lights
+              - switch.rain_sensors
+              - input_boolean.gate_lock_main
+              - input_boolean.gate_lock_secondary
+          - type: entity-filter
+            title: Active Security Alerts
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
+              - binary_sensor.storm_alert
+      - type: grid
+        cards:
+          - type: logbook
+            title: Security and Power Activity (Last 2 Hours)
+            hours_to_show: 2

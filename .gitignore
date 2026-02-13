@@ -1,0 +1,14 @@
+.env
+node_modules/
+.DS_Store
+
+# Home Assistant runtime/state (never publish)
+ha_config/.storage/
+ha_config/home-assistant*.log*
+ha_config/home-assistant_v2.db*
+ha_config/.HA_VERSION
+ha_config/.ha_run.lock
+
+# MQTT runtime
+mosquitto/data/
+mosquitto/log/

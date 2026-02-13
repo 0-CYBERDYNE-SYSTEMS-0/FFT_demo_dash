@@ -1,0 +1,1152 @@
+# Full-Scale Agricultural Operation - Home Assistant Configuration
+# Comprehensive Farm Simulation with Multiple Zones, Systems, and Sensors
+
+#############################################################
+# INPUT NUMBERS - Controllable Values for Simulation
+#############################################################
+
+input_number:
+  # === FIELD MOISTURE SENSORS ===
+  soil_moisture_north_field:
+    name: "Soil Moisture - North Field"
+    min: 0
+    max: 100
+    initial: 45
+    step: 1
+  soil_moisture_south_field:
+    name: "Soil Moisture - South Field"
+    min: 0
+    max: 100
+    initial: 52
+    step: 1
+  soil_moisture_west_pasture:
+    name: "Soil Moisture - West Pasture"
+    min: 0
+    max: 100
+    initial: 38
+    step: 1
+  soil_moisture_east_orchard:
+    name: "Soil Moisture - East Orchard"
+    min: 0
+    max: 100
+    initial: 55
+    step: 1
+  soil_moisture_grain_silo_a:
+    name: "Soil Moisture - Grain Silo A"
+    min: 0
+    max: 100
+    initial: 32
+    step: 1
+  soil_moisture_grain_silo_b:
+    name: "Soil Moisture - Grain Silo B"
+    min: 0
+    max: 100
+    initial: 29
+    step: 1
+  soil_moisture_vegetable_field:
+    name: "Soil Moisture - Vegetable Field"
+    min: 0
+    max: 100
+    initial: 62
+    step: 1
+  soil_moisture_nursery:
+    name: "Soil Moisture - Nursery"
+    min: 0
+    max: 100
+    initial: 70
+    step: 1
+
+  # === TEMPERATURE SENSORS ===
+  greenhouse_temp_section_a:
+    name: "Greenhouse Temp - Section A"
+    min: 32
+    max: 120
+    initial: 72
+    step: 1
+  greenhouse_temp_section_b:
+    name: "Greenhouse Temp - Section B"
+    min: 32
+    max: 120
+    initial: 68
+    step: 1
+  greenhouse_temp_section_c:
+    name: "Greenhouse Temp - Section C"
+    min: 32
+    max: 120
+    initial: 75
+    step: 1
+  outdoor_temp_north:
+    name: "Outdoor Temp - North"
+    min: -20
+    max: 120
+    initial: 58
+    step: 1
+  outdoor_temp_south:
+    name: "Outdoor Temp - South"
+    min: -20
+    max: 120
+    initial: 61
+    step: 1
+  outdoor_temp_west:
+    name: "Outdoor Temp - West"
+    min: -20
+    max: 120
+    initial: 55
+    step: 1
+  outdoor_temp_east:
+    name: "Outdoor Temp - East"
+    min: -20
+    max: 120
+    initial: 59
+    step: 1
+  soil_temp_depth_6in:
+    name: "Soil Temp - 6 Inch Depth"
+    min: 32
+    max: 100
+    initial: 62
+    step: 1
+  soil_temp_depth_24in:
+    name: "Soil Temp - 24 Inch Depth"
+    min: 32
+    max: 100
+    initial: 58
+    step: 1
+
+  # === WATER MANAGEMENT ===
+  tank_level_main:
+    name: "Water Tank - Main Reservoir"
+    min: 0
+    max: 100000
+    initial: 75000
+    step: 100
+  tank_level_secondary:
+    name: "Water Tank - Secondary"
+    min: 0
+    max: 50000
+    initial: 35000
+    step: 100
+  tank_level_nursery:
+    name: "Water Tank - Nursery"
+    min: 0
+    max: 5000
+    initial: 4200
+    step: 50
+  well_1_level:
+    name: "Well 1 - Water Level"
+    min: 0
+    max: 100
+    initial: 78
+    step: 1
+  well_2_level:
+    name: "Well 2 - Water Level"
+    min: 0
+    max: 100
+    initial: 82
+    step: 1
+  pond_level:
+    name: "Pond Water Level"
+    min: 0
+    max: 100
+    initial: 65
+    step: 1
+  rainwater_collection:
+    name: "Rainwater Collection"
+    min: 0
+    max: 10000
+    initial: 2500
+    step: 50
+
+  # === ENERGY / POWER ===
+  solar_generation_kw:
+    name: "Solar Generation"
+    min: 0
+    max: 500
+    initial: 125
+    step: 5
+  grid_power_consumption:
+    name: "Grid Power Consumption"
+    min: 0
+    max: 200
+    initial: 45
+    step: 1
+  battery_storage_pct:
+    name: "Battery Storage"
+    min: 0
+    max: 100
+    initial: 85
+    step: 1
+  generator_fuel_level:
+    name: "Generator Fuel Level"
+    min: 0
+    max: 100
+    initial: 92
+    step: 1
+
+  # === HUMIDITY ===
+  greenhouse_humidity_a:
+    name: "Greenhouse Humidity - Section A"
+    min: 0
+    max: 100
+    initial: 65
+    step: 1
+  greenhouse_humidity_b:
+    name: "Greenhouse Humidity - Section B"
+    min: 0
+    max: 100
+    initial: 72
+    step: 1
+  greenhouse_humidity_c:
+    name: "Greenhouse Humidity - Section C"
+    min: 0
+    max: 100
+    initial: 58
+    step: 1
+  outdoor_humidity:
+    name: "Outdoor Humidity"
+    min: 0
+    max: 100
+    initial: 48
+    step: 1
+
+  # === LIGHT LEVELS ===
+  greenhouse_light_level_a:
+    name: "Greenhouse Light - Section A"
+    min: 0
+    max: 100000
+    initial: 45000
+    step: 500
+  greenhouse_light_level_b:
+    name: "Greenhouse Light - Section B"
+    min: 0
+    max: 100000
+    initial: 52000
+    step: 500
+  greenhouse_light_level_c:
+    name: "Greenhouse Light - Section C"
+    min: 0
+    max: 100000
+    initial: 38000
+    step: 500
+  outdoor_light_level:
+    name: "Outdoor Light Level"
+    min: 0
+    max: 150000
+    initial: 75000
+    step: 1000
+
+  # === pH LEVELS ===
+  soil_ph_north:
+    name: "Soil pH - North Field"
+    min: 0
+    max: 14
+    initial: 6.8
+    step: 0.1
+  soil_ph_south:
+    name: "Soil pH - South Field"
+    min: 0
+    max: 14
+    initial: 7.2
+    step: 0.1
+  soil_ph_orchard:
+    name: "Soil pH - Orchard"
+    min: 0
+    max: 14
+    initial: 6.5
+    step: 0.1
+  soil_ph_vegetable:
+    name: "Soil pH - Vegetable Field"
+    min: 0
+    max: 14
+    initial: 6.9
+    step: 0.1
+  water_ph_main:
+    name: "Water pH - Main"
+    min: 0
+    max: 14
+    initial: 7.1
+    step: 0.1
+  water_ph_nursery:
+    name: "Water pH - Nursery"
+    min: 0
+    max: 14
+    initial: 6.8
+    step: 0.1
+
+  # === NUTRIENT LEVELS ===
+  nitrogen_level_north:
+    name: "Nitrogen Level - North Field"
+    min: 0
+    max: 200
+    initial: 95
+    step: 1
+  nitrogen_level_south:
+    name: "Nitrogen Level - South Field"
+    min: 0
+    max: 200
+    initial: 88
+    step: 1
+  phosphorus_level:
+    name: "Phosphorus Level"
+    min: 0
+    max: 200
+    initial: 62
+    step: 1
+  potassium_level:
+    name: "Potassium Level"
+    min: 0
+    max: 200
+    initial: 145
+    step: 1
+
+  # === WIND & WEATHER ===
+  wind_speed:
+    name: "Wind Speed"
+    min: 0
+    max: 150
+    initial: 12
+    step: 1
+  wind_direction:
+    name: "Wind Direction"
+    min: 0
+    max: 360
+    initial: 225
+    step: 5
+  rainfall_today:
+    name: "Rainfall Today"
+    min: 0
+    max: 10
+    initial: 0
+    step: 0.1
+  barometric_pressure:
+    name: "Barometric Pressure"
+    min: 28
+    max: 32
+    initial: 30.1
+    step: 0.01
+
+  # === LIVESTOCK ===
+  barn_temp:
+    name: "Barn Temperature"
+    min: 32
+    max: 100
+    initial: 55
+    step: 1
+  barn_humidity:
+    name: "Barn Humidity"
+    min: 0
+    max: 100
+    initial: 62
+    step: 1
+  chicken_coop_temp:
+    name: "Chicken Coop Temperature"
+    min: 32
+    max: 100
+    initial: 68
+    step: 1
+  chicken_count:
+    name: "Chicken Count"
+    min: 0
+    max: 500
+    initial: 142
+    step: 1
+  cattle_count:
+    name: "Cattle Count"
+    min: 0
+    max: 200
+    initial: 48
+    step: 1
+  feed_silo_level:
+    name: "Feed Silo Level"
+    min: 0
+    max: 100
+    initial: 72
+    step: 1
+  water_trough_level_1:
+    name: "Water Trough 1"
+    min: 0
+    max: 100
+    initial: 85
+    step: 1
+  water_trough_level_2:
+    name: "Water Trough 2"
+    min: 0
+    max: 100
+    initial: 78
+    step: 1
+
+  # === EQUIPMENT ===
+  tractor_fuel:
+    name: "Tractor Fuel Level"
+    min: 0
+    max: 100
+    initial: 65
+    step: 1
+  harvester_fuel:
+    name: "Harvester Fuel Level"
+    min: 0
+    max: 100
+    initial: 82
+    step: 1
+  truck_fuel_1:
+    name: "Truck 1 Fuel Level"
+    min: 0
+    max: 100
+    initial: 45
+    step: 1
+  truck_fuel_2:
+    name: "Truck 2 Fuel Level"
+    min: 0
+    max: 100
+    initial: 58
+    step: 1
+
+  # === YIELD HARVEST ===
+  yield_grain_current:
+    name: "Current Grain Yield (Bushels)"
+    min: 0
+    max: 100000
+    initial: 15250
+    step: 100
+  yield_vegetables_current:
+    name: "Current Vegetable Yield (lbs)"
+    min: 0
+    max: 100000
+    initial: 8750
+    step: 50
+  yield_fruit_current:
+    name: "Current Fruit Yield (lbs)"
+    min: 0
+    max: 100000
+    initial: 4200
+    step: 50
+  eggs_today:
+    name: "Eggs Collected Today"
+    min: 0
+    max: 500
+    initial: 0
+    step: 1
+  milk_today:
+    name: "Milk Produced Today (Gallons)"
+    min: 0
+    max: 500
+    initial: 0
+    step: 1
+
+  # === STORAGE ===
+  grain_storage_temp_a:
+    name: "Grain Storage Temp - Silo A"
+    min: 0
+    max: 120
+    initial: 52
+    step: 1
+  grain_storage_temp_b:
+    name: "Grain Storage Temp - Silo B"
+    min: 0
+    max: 120
+    initial: 48
+    step: 1
+  cold_storage_temp:
+    name: "Cold Storage Temperature"
+    min: -10
+    max: 50
+    initial: 38
+    step: 1
+  cold_storage_humidity:
+    name: "Cold Storage Humidity"
+    min: 0
+    max: 100
+    initial: 45
+    step: 1
+
+#############################################################
+# INPUT BOOLEANS - Binary Controls
+#############################################################
+
+input_boolean:
+  # === IRRIGATION SYSTEMS ===
+  irrigation_north_field:
+    name: "Irrigation North Field"
+    initial: off
+  irrigation_south_field:
+    name: "Irrigation South Field"
+    initial: off
+  irrigation_west_pasture:
+    name: "Irrigation West Pasture"
+    initial: off
+  irrigation_east_orchard:
+    name: "Irrigation East Orchard"
+    initial: off
+  irrigation_vegetable_field:
+    name: "Irrigation Vegetable Field"
+    initial: off
+  irrigation_nursery:
+    name: "Irrigation Nursery"
+    initial: off
+  irrigation_grain_silo_a:
+    name: "Irrigation Grain Silo A"
+    initial: off
+  irrigation_grain_silo_b:
+    name: "Irrigation Grain Silo B"
+    initial: off
+  irrigation_misting_system:
+    name: "Irrigation Misting System"
+    initial: off
+  irrigation_drip_main:
+    name: "Irrigation Drip Main"
+    initial: off
+
+  # === PUMPS & WATER ===
+  pump_well_1:
+    name: "Pump Well 1"
+    initial: off
+  pump_well_2:
+    name: "Pump Well 2"
+    initial: off
+  pump_main_reservoir:
+    name: "Pump Main Reservoir"
+    initial: off
+  pump_secondary_tank:
+    name: "Pump Secondary Tank"
+    initial: off
+  pump_pond_circulation:
+    name: "Pump Pond Circulation"
+    initial: off
+  pump_rainwater:
+    name: "Pump Rainwater"
+    initial: off
+  pump_fertilizer_injection:
+    name: "Pump Fertilizer Injection"
+    initial: off
+
+  # === CLIMATE CONTROL ===
+  greenhouse_heater_a:
+    name: "Greenhouse Heater A"
+    initial: off
+  greenhouse_heater_b:
+    name: "Greenhouse Heater B"
+    initial: off
+  greenhouse_heater_c:
+    name: "Greenhouse Heater C"
+    initial: off
+  greenhouse_cooling_a:
+    name: "Greenhouse Cooling A"
+    initial: off
+  greenhouse_cooling_b:
+    name: "Greenhouse Cooling B"
+    initial: off
+  greenhouse_cooling_c:
+    name: "Greenhouse Cooling C"
+    initial: off
+  greenhouse_vent_a:
+    name: "Greenhouse Vent A"
+    initial: off
+  greenhouse_vent_b:
+    name: "Greenhouse Vent B"
+    initial: off
+  greenhouse_vent_c:
+    name: "Greenhouse Vent C"
+    initial: off
+  greenhouse_shade_a:
+    name: "Greenhouse Shade A"
+    initial: off
+  greenhouse_shade_b:
+    name: "Greenhouse Shade B"
+    initial: off
+  greenhouse_shade_c:
+    name: "Greenhouse Shade C"
+    initial: off
+  greenhouse_humidifier_a:
+    name: "Greenhouse Humidifier A"
+    initial: off
+  greenhouse_humidifier_b:
+    name: "Greenhouse Humidifier B"
+    initial: off
+  greenhouse_fog_system:
+    name: "Greenhouse Fog System"
+    initial: off
+
+  # === LIGHTING ===
+  greenhouse_lights_a:
+    name: "Greenhouse Lights A"
+    initial: off
+  greenhouse_lights_b:
+    name: "Greenhouse Lights B"
+    initial: off
+  greenhouse_lights_c:
+    name: "Greenhouse Lights C"
+    initial: off
+  outdoor_flood_lights:
+    name: "Outdoor Flood Lights"
+    initial: off
+  barn_lights:
+    name: "Barn Lights"
+    initial: off
+  security_lights_perimeter:
+    name: "Security Lights Perimeter"
+    initial: off
+
+  # === LIVESTOCK SYSTEMS ===
+  barn_heater:
+    name: "Barn Heater"
+    initial: off
+  barn_fan:
+    name: "Barn Fan"
+    initial: off
+  chicken_coop_heater:
+    name: "Chicken Coop Heater"
+    initial: off
+  chicken_coop_fan:
+    name: "Chicken Coop Fan"
+    initial: off
+  automatic_feeder_1:
+    name: "Automatic Feeder 1"
+    initial: off
+  automatic_feeder_2:
+    name: "Automatic Feeder 2"
+    initial: off
+  livestock_water_heater:
+    name: "Livestock Water Heater"
+    initial: off
+
+  # === EQUIPMENT ===
+  tractor_charger:
+    name: "Tractor Charger"
+    initial: off
+  backup_generator:
+    name: "Backup Generator"
+    initial: off
+
+  # === SECURITY ===
+  perimeter_alarm:
+    name: "Perimeter Alarm"
+    initial: off
+  motion_sensor_barn:
+    name: "Motion Sensor Barn"
+    initial: off
+  motion_sensor_equipment:
+    name: "Motion Sensor Equipment"
+    initial: off
+  gate_lock_main:
+    name: "Gate Lock Main"
+    initial: off
+  gate_lock_secondary:
+    name: "Gate Lock Secondary"
+    initial: off
+
+  # === WEATHER OVERRIDES ===
+  rain_detected:
+    name: "Rain Detected"
+    initial: off
+  frost_protection:
+    name: "Frost Protection"
+    initial: off
+  storm_shutters:
+    name: "Storm Shutters"
+    initial: off
+
+  # === ALERTS ===
+  alert_high_temp:
+    name: "Alert High Temp"
+    initial: off
+  alert_low_temp:
+    name: "Alert Low Temp"
+    initial: off
+  alert_low_moisture:
+    name: "Alert Low Moisture"
+    initial: off
+  alert_equipment_fault:
+    name: "Alert Equipment Fault"
+    initial: off
+
+#############################################################
+# TEMPLATE SENSORS
+#############################################################
+
+sensor:
+  - platform: template
+    sensors:
+      # === SOIL MOISTURE ===
+      soil_moisture_north:
+        value_template: "{{ states('input_number.soil_moisture_north_field') | default(45) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Soil Moisture - North Field"
+        
+      soil_moisture_south:
+        value_template: "{{ states('input_number.soil_moisture_south_field') | default(52) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Soil Moisture - South Field"
+        
+      soil_moisture_west_pasture:
+        value_template: "{{ states('input_number.soil_moisture_west_pasture') | default(38) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Soil Moisture - West Pasture"
+        
+      soil_moisture_east_orchard:
+        value_template: "{{ states('input_number.soil_moisture_east_orchard') | default(55) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Soil Moisture - East Orchard"
+        
+      soil_moisture_vegetable:
+        value_template: "{{ states('input_number.soil_moisture_vegetable_field') | default(62) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Soil Moisture - Vegetable Field"
+        
+      soil_moisture_nursery:
+        value_template: "{{ states('input_number.soil_moisture_nursery') | default(70) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Soil Moisture - Nursery"
+
+      # === TEMPERATURES ===
+      greenhouse_temp_a:
+        value_template: "{{ states('input_number.greenhouse_temp_section_a') | default(72) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Greenhouse Temp - Section A"
+        
+      greenhouse_temp_b:
+        value_template: "{{ states('input_number.greenhouse_temp_section_b') | default(68) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Greenhouse Temp - Section B"
+        
+      greenhouse_temp_c:
+        value_template: "{{ states('input_number.greenhouse_temp_section_c') | default(75) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Greenhouse Temp - Section C"
+        
+      outdoor_temp_avg:
+        value_template: "{{ ((states('input_number.outdoor_temp_north') | float(58) + states('input_number.outdoor_temp_south') | float(61) + states('input_number.outdoor_temp_west') | float(55) + states('input_number.outdoor_temp_east') | float(59)) / 4) | round(1) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Average Outdoor Temperature"
+
+      # === WATER LEVELS ===
+      water_tank_main:
+        value_template: "{{ states('input_number.tank_level_main') | default(75000) }}"
+        unit_of_measurement: "gal"
+        friendly_name: "Main Water Reservoir"
+        
+      water_tank_secondary:
+        value_template: "{{ states('input_number.tank_level_secondary') | default(35000) }}"
+        unit_of_measurement: "gal"
+        friendly_name: "Secondary Water Tank"
+        
+      water_tank_nursery:
+        value_template: "{{ states('input_number.tank_level_nursery') | default(4200) }}"
+        unit_of_measurement: "gal"
+        friendly_name: "Nursery Water Tank"
+        
+      water_tank_total:
+        value_template: "{{ (states('input_number.tank_level_main') | float(75000) + states('input_number.tank_level_secondary') | float(35000) + states('input_number.tank_level_nursery') | float(4200)) | int }}"
+        unit_of_measurement: "gal"
+        friendly_name: "Total Water Storage"
+
+      # === POWER ===
+      solar_power:
+        value_template: "{{ states('input_number.solar_generation_kw') | default(125) }}"
+        unit_of_measurement: "kW"
+        friendly_name: "Solar Power Generation"
+        
+      power_consumption:
+        value_template: "{{ states('input_number.grid_power_consumption') | default(45) }}"
+        unit_of_measurement: "kW"
+        friendly_name: "Grid Power Consumption"
+        
+      battery_level:
+        value_template: "{{ states('input_number.battery_storage_pct') | default(85) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Battery Storage"
+
+      # === HUMIDITY ===
+      greenhouse_humidity_avg:
+        value_template: "{{ ((states('input_number.greenhouse_humidity_a') | float(65) + states('input_number.greenhouse_humidity_b') | float(72) + states('input_number.greenhouse_humidity_c') | float(58)) / 3) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Average Greenhouse Humidity"
+
+      # === WIND ===
+      wind_speed_mph:
+        value_template: "{{ states('input_number.wind_speed') | default(12) }}"
+        unit_of_measurement: "mph"
+        friendly_name: "Wind Speed"
+        
+      wind_direction_cardinal:
+        value_template: >
+          {% set directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'] %}
+          {% set degrees = states('input_number.wind_direction') | float(0) %}
+          {{ directions[(degrees / 22.5) | int % 16] }}
+        friendly_name: "Wind Direction"
+
+      # === LIVESTOCK ===
+      barn_temperature:
+        value_template: "{{ states('input_number.barn_temp') | default(55) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Barn Temperature"
+        
+      chicken_count:
+        value_template: "{{ states('input_number.chicken_count') | default(142) }}"
+        unit_of_measurement: "head"
+        friendly_name: "Chicken Count"
+        
+      cattle_count:
+        value_template: "{{ states('input_number.cattle_count') | default(48) }}"
+        unit_of_measurement: "head"
+        friendly_name: "Cattle Count"
+
+      # === YIELDS ===
+      grain_yield:
+        value_template: "{{ states('input_number.yield_grain_current') | default(15250) }}"
+        unit_of_measurement: "bu"
+        friendly_name: "Grain Yield"
+
+#############################################################
+# BINARY SENSORS
+#############################################################
+
+binary_sensor:
+  - platform: template
+    sensors:
+      # === WEATHER ALERTS ===
+      frost_risk:
+        value_template: "{{ states('sensor.outdoor_temp_avg') | float(58) < 35 }}"
+        friendly_name: "Frost Risk"
+        
+      heat_warning:
+        value_template: "{{ states('sensor.greenhouse_temp_avg') | float(70) > 95 }}"
+        friendly_name: "Heat Warning"
+        
+      high_wind_alert:
+        value_template: "{{ states('input_number.wind_speed') | float(12) > 50 }}"
+        friendly_name: "High Wind Alert"
+        
+      rain_detected:
+        value_template: "{{ states('input_number.rainfall_today') | float(0) > 0 }}"
+        friendly_name: "Rain Detected"
+        
+      storm_alert:
+        value_template: "{{ states('input_number.barometric_pressure') | float(30.1) < 29.5 }}"
+        friendly_name: "Storm Alert"
+
+      # === MOISTURE ALERTS ===
+      low_soil_moisture_north:
+        value_template: "{{ states('input_number.soil_moisture_north_field') | float(45) < 25 }}"
+        friendly_name: "Low Moisture - North Field"
+        
+      low_soil_moisture_south:
+        value_template: "{{ states('input_number.soil_moisture_south_field') | float(52) < 25 }}"
+        friendly_name: "Low Moisture - South Field"
+        
+      low_water_storage:
+        value_template: "{{ (states('input_number.tank_level_main') | float(75000) + states('input_number.tank_level_secondary') | float(35000)) | float(110000) < 25000 }}"
+        friendly_name: "Low Water Storage"
+
+      # === TEMPERATURE ALERTS ===
+      greenhouse_too_cold:
+        value_template: "{{ states('sensor.greenhouse_temp_avg') | float(70) < 50 }}"
+        friendly_name: "Greenhouse Too Cold"
+        
+      greenhouse_too_hot:
+        value_template: "{{ states('sensor.greenhouse_temp_avg') | float(70) > 100 }}"
+        friendly_name: "Greenhouse Too Hot"
+        
+      barn_too_cold:
+        value_template: "{{ states('input_number.barn_temp') | float(55) < 40 }}"
+        friendly_name: "Barn Too Cold"
+
+      # === EQUIPMENT STATUS ===
+      tractor_available:
+        value_template: "{{ states('input_number.tractor_fuel') | float(65) > 20 }}"
+        friendly_name: "Tractor Available"
+        
+      harvester_available:
+        value_template: "{{ states('input_number.harvester_fuel') | float(82) > 20 }}"
+        friendly_name: "Harvester Available"
+
+      # === SECURITY ===
+      motion_detected_barn:
+        value_template: "{{ states('input_boolean.motion_sensor_barn') | default('off') == 'on' }}"
+        friendly_name: "Motion Detected - Barn"
+        
+      motion_detected_equipment:
+        value_template: "{{ states('input_boolean.motion_sensor_equipment') | default('off') == 'on' }}"
+        friendly_name: "Motion Detected - Equipment"
+
+      # === SYSTEM STATUS ===
+      irrigation_active:
+        value_template: >
+          {{ states('input_boolean.irrigation_north_field') == 'on' or 
+             states('input_boolean.irrigation_south_field') == 'on' or 
+             states('input_boolean.irrigation_west_pasture') == 'on' or
+             states('input_boolean.irrigation_east_orchard') == 'on' }}
+        friendly_name: "Irrigation Active"
+        
+      pumps_running:
+        value_template: >
+          {{ states('input_boolean.pump_well_1') == 'on' or 
+             states('input_boolean.pump_well_2') == 'on' or 
+             states('input_boolean.pump_main_reservoir') == 'on' }}
+        friendly_name: "Pumps Running"
+
+#############################################################
+# TEMPLATE SWITCHES
+#############################################################
+
+switch:
+  - platform: template
+    switches:
+      # === IRRIGATION ===
+      irrigation_north:
+        value_template: "{{ states('input_boolean.irrigation_north_field') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.irrigation_north_field
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.irrigation_north_field
+
+      irrigation_south:
+        value_template: "{{ states('input_boolean.irrigation_south_field') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.irrigation_south_field
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.irrigation_south_field
+
+      irrigation_west_pasture:
+        value_template: "{{ states('input_boolean.irrigation_west_pasture') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.irrigation_west_pasture
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.irrigation_west_pasture
+
+      irrigation_east_orchard:
+        value_template: "{{ states('input_boolean.irrigation_east_orchard') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.irrigation_east_orchard
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.irrigation_east_orchard
+
+      irrigation_vegetable:
+        value_template: "{{ states('input_boolean.irrigation_vegetable_field') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.irrigation_vegetable_field
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.irrigation_vegetable_field
+
+      irrigation_nursery:
+        value_template: "{{ states('input_boolean.irrigation_nursery') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.irrigation_nursery
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.irrigation_nursery
+
+      # === PUMPS ===
+      pump_well_1:
+        value_template: "{{ states('input_boolean.pump_well_1') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.pump_well_1
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.pump_well_1
+
+      pump_well_2:
+        value_template: "{{ states('input_boolean.pump_well_2') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.pump_well_2
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.pump_well_2
+
+      pump_main:
+        value_template: "{{ states('input_boolean.pump_main_reservoir') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.pump_main_reservoir
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.pump_main_reservoir
+
+      # === GREENHOUSE ===
+      greenhouse_heater_a:
+        value_template: "{{ states('input_boolean.greenhouse_heater_a') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.greenhouse_heater_a
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.greenhouse_heater_a
+
+      greenhouse_cooling_a:
+        value_template: "{{ states('input_boolean.greenhouse_cooling_a') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.greenhouse_cooling_a
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.greenhouse_cooling_a
+
+      greenhouse_vent_a:
+        value_template: "{{ states('input_boolean.greenhouse_vent_a') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.greenhouse_vent_a
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.greenhouse_vent_a
+
+      # === LIVESTOCK ===
+      barn_heater:
+        value_template: "{{ states('input_boolean.barn_heater') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.barn_heater
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.barn_heater
+
+      barn_fan:
+        value_template: "{{ states('input_boolean.barn_fan') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.barn_fan
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.barn_fan
+
+      # === SECURITY ===
+      perimeter_alarm:
+        value_template: "{{ states('input_boolean.perimeter_alarm') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.perimeter_alarm
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.perimeter_alarm
+
+      security_lights:
+        value_template: "{{ states('input_boolean.security_lights_perimeter') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.security_lights_perimeter
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.security_lights_perimeter
+
+      # === POWER ===
+      backup_generator:
+        value_template: "{{ states('input_boolean.backup_generator') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.backup_generator
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.backup_generator
+
+      # === WEATHER OVERRIDES ===
+      rain_sensors:
+        value_template: "{{ states('input_boolean.rain_detected') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.rain_detected
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.rain_detected
+
+      frost_protection:
+        value_template: "{{ states('input_boolean.frost_protection') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.frost_protection
+        turn_off:
+          service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.frost_protection
+
+#############################################################
+# SYSTEM CONFIGURATION
+#############################################################
+
+# Enable the history and logbook
+history:
+logbook:
+
+# Enable frontend
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Enable map
+map:
+
+# API (enabled by default)
+api:
+
+# MQTT (for optional MQTT integration)
+mqtt: []
+
+# Automation
+automation: !include automations.yaml
+
+# Script
+script: !include scripts.yaml
+
+# Scene
+scene: !include scenes.yaml
+
+# HTTP Configuration with auth
+http:
+  server_port: 8123
+  cors_allowed_origins:
+    - http://localhost:3000
+    - http://127.0.0.1:3000
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+    - 192.168.65.0/24
+
+lovelace:
+  mode: yaml
