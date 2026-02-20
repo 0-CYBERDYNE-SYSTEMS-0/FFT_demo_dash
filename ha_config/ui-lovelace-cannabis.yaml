@@ -1,0 +1,2094 @@
+title: FFT Licensed Cannabis Ops
+theme: farm_ops_theater
+views:
+  - title: Executive Portfolio
+    path: nexus
+    icon: mdi:hexagon-multiple
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Executive Portfolio
+              Licensed multi-site cannabis/hemp operations rollup with transfer pressure, production flow, and compliance posture.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: NOAA Radar
+                icon: mdi:radar
+                tap_action:
+                  action: url
+                  url_path: https://radar.weather.gov/
+              - type: button
+                name: GOES Live
+                icon: mdi:satellite-variant
+                tap_action:
+                  action: url
+                  url_path: https://www.ospo.noaa.gov/Products/imagery/goes.html
+              - type: button
+                name: Windy Map
+                icon: mdi:map-search
+                tap_action:
+                  action: url
+                  url_path: https://www.windy.com/
+              - type: button
+                name: METRC Docs
+                icon: mdi:file-document-check-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.metrc.com/resources/
+          - type: custom:mushroom-chips-card
+            alignment: start
+            chips:
+              - type: entity
+                entity: input_select.cannabis_site_focus
+                icon: mdi:map-marker-radius
+                content_info: state
+              - type: entity
+                entity: input_select.cannabis_shift_mode
+                icon: mdi:account-clock-outline
+                content_info: state
+              - type: entity
+                entity: input_select.cannabis_security_posture
+                icon: mdi:shield-account
+                content_info: state
+              - type: entity
+                entity: input_select.incident_mode
+                icon: mdi:alert-decagram
+                content_info: state
+              - type: entity
+                entity: input_select.cannabis_scenario
+                icon: mdi:state-machine
+                content_info: state
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: tile
+                entity: sensor.audit_completeness_pct
+                name: Audit Completeness
+              - type: tile
+                entity: sensor.qa_release_readiness
+                name: QA Release Readiness
+              - type: tile
+                entity: sensor.transfer_queue_count
+                name: Transfer Queue
+              - type: tile
+                entity: sensor.custody_break_risk
+                name: Custody Break Risk
+              - type: tile
+                entity: sensor.cannabis_dispatch_health_idx
+                name: Dispatch Health
+              - type: tile
+                entity: sensor.cannabis_schedule_risk_idx
+                name: Schedule Risk
+              - type: tile
+                entity: sensor.cannabis_security_workload_idx
+                name: Security Workload
+              - type: tile
+                entity: sensor.compliance_open_items
+                name: Compliance Open Items
+          - type: custom:bar-card
+            title: Inventory Rollup
+            width: 70%
+            height: 24px
+            direction: right
+            entities:
+              - entity: sensor.cannabis_total_dried_flower_lbs
+                name: Dried Flower (lbs)
+                min: 0
+                max: 200000
+              - entity: sensor.cannabis_total_extract_liters
+                name: Extract (L)
+                min: 0
+                max: 50000
+              - entity: sensor.cannabis_total_packaged_units
+                name: Packaged Units
+                min: 0
+                max: 2000000
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Enterprise Pressure (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.cannabis_schedule_risk_idx
+                name: Schedule Risk
+                color: '#ff8b7a'
+              - entity: sensor.cannabis_security_workload_idx
+                name: Security Workload
+                color: '#ffc857'
+              - entity: sensor.cannabis_dispatch_health_idx
+                name: Dispatch Health
+                color: '#4ad7b8'
+              - entity: sensor.custody_break_risk
+                name: Custody Risk
+                color: '#d18cff'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Production Throughput (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            series:
+              - entity: sensor.cannabis_packaging_throughput_units_hr
+                name: Packaging Units/hr
+                type: column
+                color: '#4cc9f0'
+              - entity: sensor.cannabis_extraction_queue_count
+                name: Extraction Queue
+                type: line
+                color: '#f4a261'
+              - entity: sensor.cannabis_line_uptime_pct
+                name: Line Uptime
+                type: line
+                color: '#70e000'
+          - type: entities
+            title: Chain-of-Custody Snapshot
+            show_header_toggle: false
+            entities:
+              - entity: input_text.metrc_manifest_id
+                name: Latest Manifest
+              - entity: input_text.metrc_last_package_tag
+                name: Latest Package Tag
+              - entity: input_text.metrc_last_plant_batch_tag
+                name: Latest Plant Batch Tag
+              - entity: input_text.metrc_last_coa_id
+                name: Latest COA
+              - entity: input_text.cannabis_manifest_live_id
+                name: Active Dispatch Manifest
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              ## Portfolio Cameras
+              Deterministic camera panels for demo stability.
+          - type: picture-glance
+            title: North Gate Live
+            image: /local/cams/cam-north-yard.svg
+            entities:
+              - entity: sensor.cannabis_camera_health_pct
+              - entity: sensor.cannabis_camera_alert_count
+          - type: picture-glance
+            title: Flower Room Live
+            image: /local/cams/cam-greenhouse.svg
+            entities:
+              - entity: sensor.cannabis_air_temp_f
+              - entity: sensor.cannabis_rh_pct
+          - type: picture-glance
+            title: Processing Dock Live
+            image: /local/cams/cam-equipment.svg
+            entities:
+              - entity: input_boolean.cannabis_transport_delay
+              - entity: sensor.cannabis_transfer_eta_min
+
+  - title: Regulatory War Room
+    path: war-room
+    icon: mdi:shield-alert
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Regulatory War Room
+              Incident response, escalation, and chain-of-custody remediation controls.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: NWS Alerts
+                icon: mdi:alarm-light
+                tap_action:
+                  action: url
+                  url_path: https://www.weather.gov/alerts
+              - type: button
+                name: SPC Outlook
+                icon: mdi:weather-lightning
+                tap_action:
+                  action: url
+                  url_path: https://www.spc.noaa.gov/products/outlook/
+              - type: button
+                name: NOAA NowCOAST
+                icon: mdi:earth
+                tap_action:
+                  action: url
+                  url_path: https://nowcoast.noaa.gov/
+              - type: button
+                name: METRC Support
+                icon: mdi:lifebuoy
+                tap_action:
+                  action: url
+                  url_path: https://www.metrc.com/support/
+          - type: custom:mushroom-chips-card
+            alignment: start
+            chips:
+              - type: entity
+                entity: input_select.incident_mode
+              - type: entity
+                entity: binary_sensor.cannabis_security_escalation_required
+                icon: mdi:alarm-light-outline
+                content_info: state
+              - type: entity
+                entity: binary_sensor.cannabis_coverage_gap
+                icon: mdi:map-marker-off-outline
+                content_info: state
+              - type: entity
+                entity: binary_sensor.cannabis_dispatch_health_critical
+                icon: mdi:truck-alert-outline
+                content_info: state
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Incident Storm
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_storm
+              - type: button
+                name: Incident Intrusion
+                icon: mdi:shield-alert
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_intrusion
+              - type: button
+                name: Incident Power
+                icon: mdi:power-plug-off
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_power_failure
+              - type: button
+                name: Incident Clear
+                icon: mdi:refresh
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_clear
+          - type: entities
+            title: Escalation Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_security_posture
+              - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+              - entity: input_boolean.cannabis_site_a_vault_lock
+              - entity: input_boolean.cannabis_security_intrusion
+              - entity: input_boolean.cannabis_vault_exception_active
+              - entity: input_boolean.cannabis_badge_system_degraded
+              - entity: input_boolean.cannabis_transport_delay
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Incident Timeline (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 1
+            series:
+              - entity: input_boolean.cannabis_security_intrusion
+                name: Intrusion
+                type: column
+                color: '#ff595e'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+                name: Lockdown
+                type: column
+                color: '#ffca3a'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_transport_delay
+                name: Delay
+                type: column
+                color: '#1982c4'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.qa_hold_active
+                name: QA Hold
+                type: line
+                color: '#6a4c93'
+                transform: "return x === 'on' ? 1 : 0;"
+          - type: logbook
+            title: Event Logbook
+            entities:
+              - input_boolean.cannabis_security_intrusion
+              - input_boolean.cannabis_site_a_perimeter_lockdown
+              - input_boolean.cannabis_vault_exception_active
+              - input_boolean.cannabis_transport_delay
+              - input_boolean.qa_hold_active
+              - input_select.incident_mode
+            hours_to_show: 8
+      - type: grid
+        cards:
+          - type: entities
+            title: Regulatory Action Stack
+            show_header_toggle: false
+            entities:
+              - entity: sensor.compliance_open_items
+              - entity: sensor.audit_completeness_pct
+              - entity: sensor.metrc_sync_health
+              - entity: sensor.transfer_queue_count
+              - entity: sensor.custody_break_risk
+              - entity: input_select.transfer_status
+          - type: gauge
+            entity: sensor.cannabis_dispatch_health_idx
+            name: Dispatch Health
+            min: 0
+            max: 100
+            severity:
+              green: 70
+              yellow: 45
+              red: 0
+          - type: gauge
+            entity: sensor.cannabis_security_workload_idx
+            name: Security Workload
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 45
+              red: 70
+
+  - title: Site Operations Chamber
+    path: command-center
+    icon: mdi:cannabis
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Incident + Controls Chamber
+              Primary operator controls for cultivation, utilities, security, and workforce.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Radar Wall
+                icon: mdi:radar
+                tap_action:
+                  action: url
+                  url_path: https://radar.weather.gov/
+              - type: button
+                name: Regional Map
+                icon: mdi:map-marker-multiple
+                tap_action:
+                  action: url
+                  url_path: https://www.windy.com/
+              - type: button
+                name: Transport Layer
+                icon: mdi:truck-fast-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.weather.gov/srh/nwspage
+              - type: button
+                name: Dispatch Intel
+                icon: mdi:open-in-new
+                tap_action:
+                  action: url
+                  url_path: https://nowcoast.noaa.gov/
+          - type: custom:mushroom-chips-card
+            alignment: start
+            chips:
+              - type: entity
+                entity: input_select.incident_mode
+                icon: mdi:alert-circle
+              - type: entity
+                entity: input_select.cannabis_env_recipe
+                icon: mdi:leaf-circle-outline
+              - type: entity
+                entity: input_select.cannabis_control_profile
+                icon: mdi:tune
+              - type: entity
+                entity: input_select.cannabis_shift_mode
+                icon: mdi:account-clock
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Storm
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_storm
+              - type: button
+                name: Intrusion
+                icon: mdi:shield-alert
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_intrusion
+              - type: button
+                name: Power Failure
+                icon: mdi:power-plug-off
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_power_failure
+              - type: button
+                name: Clear
+                icon: mdi:refresh
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_clear
+          - type: markdown
+            content: |
+              ### Cultivation Controls
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: tile
+                entity: input_boolean.cannabis_site_a_zone_veg_irrigation
+                name: Site A Veg Irrigation
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_zone_flower_irrigation
+                name: Site A Flower Irrigation
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_b_greenhouse_irrigation
+                name: Site B Irrigation
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_c_hemp_block_irrigation
+                name: Site C Irrigation
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_hvac_enable
+                name: HVAC Enable
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_dehu_enable
+                name: Dehu Enable
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_co2_inject_enable
+                name: CO2 Injection
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_fertigation_enable
+                name: Fertigation Enable
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_processing_line_enable
+                name: Processing Enable
+                tap_action:
+                  action: toggle
+          - type: markdown
+            content: |
+              ### Security + Workforce Controls
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: tile
+                entity: input_boolean.cannabis_site_a_perimeter_lockdown
+                name: Perimeter Lockdown
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_vault_lock
+                name: Vault Lock
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_site_a_camera_ptz_patrol
+                name: Camera PTZ Patrol
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_security_intrusion
+                name: Intrusion Signal
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_staff_shortage_alert
+                name: Staff Shortage
+                tap_action:
+                  action: toggle
+              - type: tile
+                entity: input_boolean.cannabis_schedule_disruption_active
+                name: Schedule Disruption
+                tap_action:
+                  action: toggle
+          - type: entities
+            title: Active Operation Stack
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cannabis_staff_on_shift_total
+              - entity: sensor.cannabis_work_orders_open
+              - entity: sensor.cannabis_work_orders_overdue
+              - entity: sensor.cannabis_schedule_adherence_pct
+              - entity: input_text.cannabis_shift_supervisor
+              - entity: input_text.cannabis_next_critical_task
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Live Analytics Chamber
+              Environmental, irrigation/fertigation, and execution telemetry.
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Environment Model (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 290
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - id: env
+                min: 0
+                max: 100
+              - id: co2
+                opposite: true
+                min: 300
+                max: 1600
+            series:
+              - entity: sensor.cannabis_air_temp_f
+                name: Air Temp F
+                yaxis_id: env
+                color: '#ff9f1c'
+              - entity: sensor.cannabis_leaf_temp_f
+                name: Leaf Temp F
+                yaxis_id: env
+                color: '#ffbf69'
+              - entity: sensor.cannabis_rh_pct
+                name: RH %
+                yaxis_id: env
+                color: '#2ec4b6'
+              - entity: sensor.cannabis_env_vpd_kpa
+                name: VPD kPa
+                yaxis_id: env
+                color: '#9d4edd'
+              - entity: sensor.cannabis_co2_ppm
+                name: CO2 ppm
+                yaxis_id: co2
+                color: '#4cc9f0'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Irrigation + Fertigation Pulse (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 290
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - id: chem
+                min: 0
+                max: 8
+              - id: dose
+                opposite: true
+                min: 0
+                max: 320
+            series:
+              - entity: sensor.cannabis_ec_in
+                name: EC In
+                yaxis_id: chem
+                color: '#00b4d8'
+              - entity: sensor.cannabis_ph_in
+                name: pH In
+                yaxis_id: chem
+                color: '#90be6d'
+              - entity: sensor.cannabis_runoff_ec
+                name: Runoff EC
+                yaxis_id: chem
+                color: '#f8961e'
+              - entity: sensor.cannabis_runoff_ph
+                name: Runoff pH
+                yaxis_id: chem
+                color: '#f3722c'
+              - entity: sensor.cannabis_dose_rate_ml_min
+                name: Dose Rate
+                yaxis_id: dose
+                color: '#f9c74f'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Workforce + Work Orders (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 290
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 180
+            series:
+              - entity: sensor.cannabis_staff_on_shift_total
+                name: Staff On Shift
+                type: line
+                color: '#43aa8b'
+              - entity: sensor.cannabis_work_orders_open
+                name: Work Orders Open
+                type: column
+                color: '#577590'
+              - entity: sensor.cannabis_work_orders_overdue
+                name: Work Orders Overdue
+                type: column
+                color: '#f94144'
+              - entity: sensor.cannabis_schedule_adherence_pct
+                name: Schedule Adherence
+                type: line
+                color: '#277da1'
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Compliance + Cameras Chamber
+              Compliance status, camera health, and drone mission operations.
+          - type: entities
+            title: Compliance + Transfers
+            show_header_toggle: false
+            entities:
+              - entity: sensor.compliance_open_items
+              - entity: sensor.audit_completeness_pct
+              - entity: sensor.metrc_sync_health
+              - entity: sensor.transfer_queue_count
+              - entity: input_select.transfer_status
+              - entity: sensor.custody_break_risk
+              - entity: input_text.metrc_manifest_id
+          - type: entities
+            title: Camera + Drone Status
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cannabis_camera_health_pct
+              - entity: sensor.cannabis_camera_alert_count
+              - entity: input_select.cannabis_drone_mission_state
+              - entity: sensor.cannabis_drone_progress_pct
+              - entity: sensor.cannabis_drone_battery_pct
+              - entity: sensor.cannabis_drone_anomaly_score
+              - entity: binary_sensor.cannabis_drone_geofence_breach_active
+          - type: picture-glance
+            title: North Gate
+            image: /local/cams/cam-north-yard.svg
+            entities:
+              - entity: sensor.cannabis_camera_health_pct
+              - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+          - type: picture-glance
+            title: Flower Room
+            image: /local/cams/cam-greenhouse.svg
+            entities:
+              - entity: sensor.cannabis_air_temp_f
+              - entity: sensor.cannabis_rh_pct
+          - type: picture-glance
+            title: Packaging Dock
+            image: /local/cams/cam-equipment.svg
+            entities:
+              - entity: sensor.cannabis_packaging_throughput_units_hr
+              - entity: sensor.cannabis_transfer_eta_min
+          - type: todo-list
+            entity: todo.shopping_list
+            title: Shift Execution Checklist
+
+  - title: Cultivation
+    path: irrigation
+    icon: mdi:sprinkler
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Cultivation Irrigation + Nutrient Delivery
+              Zone orchestration for indoor flower, greenhouse, and outdoor hemp blocks.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: VPD Guide
+                icon: mdi:thermometer-water
+                tap_action:
+                  action: url
+                  url_path: https://www.umass.edu/agriculture-food-environment/greenhouse-floriculture/fact-sheets/vapor-pressure-deficit-vpd-and-greenhouse-production
+              - type: button
+                name: DLI Ref
+                icon: mdi:white-balance-sunny
+                tap_action:
+                  action: url
+                  url_path: https://fluence-led.com/horticulture-lighting-knowledge/what-is-dli/
+              - type: button
+                name: Irrigation Intel
+                icon: mdi:water-sync
+                tap_action:
+                  action: url
+                  url_path: https://www.epa.gov/waterdata
+              - type: button
+                name: Crop Risk Map
+                icon: mdi:map-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.windy.com/
+          - type: entities
+            title: Irrigation Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_site_a_zone_veg_irrigation
+              - entity: input_boolean.cannabis_site_a_zone_flower_irrigation
+              - entity: input_boolean.cannabis_site_b_greenhouse_irrigation
+              - entity: input_boolean.cannabis_site_c_hemp_block_irrigation
+              - entity: input_number.cannabis_irrigation_zone_a_cycles
+              - entity: input_number.cannabis_irrigation_zone_b_cycles
+          - type: entities
+            title: Fertigation Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_site_a_fertigation_enable
+              - entity: input_number.cannabis_fertigation_ec_in
+              - entity: input_number.cannabis_fertigation_ph_in
+              - entity: input_number.cannabis_fertigation_dose_ml_min
+              - entity: input_number.cannabis_runoff_ec
+              - entity: input_number.cannabis_runoff_ph
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Irrigation + Chemistry (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - id: left
+                min: 0
+                max: 70
+              - id: right
+                opposite: true
+                min: 0
+                max: 320
+            series:
+              - entity: input_number.cannabis_irrigation_zone_a_cycles
+                name: Zone A Cycles
+                yaxis_id: left
+                type: column
+                color: '#00bbf9'
+              - entity: input_number.cannabis_irrigation_zone_b_cycles
+                name: Zone B Cycles
+                yaxis_id: left
+                type: column
+                color: '#00f5d4'
+              - entity: input_number.cannabis_fertigation_dose_ml_min
+                name: Dose Rate
+                yaxis_id: right
+                type: line
+                color: '#fee440'
+          - type: custom:bar-card
+            title: Moisture + Reclaim Bars
+            width: 72%
+            height: 24px
+            entities:
+              - entity: input_number.cannabis_site_c_hemp_soil_moisture_pct
+                name: Site C Soil Moisture
+                min: 0
+                max: 100
+              - entity: input_number.cannabis_reclaim_quality_idx
+                name: Reclaim Quality
+                min: 0
+                max: 100
+              - entity: sensor.cannabis_schedule_risk_idx
+                name: Schedule Risk
+                min: 0
+                max: 100
+      - type: grid
+        cards:
+          - type: entities
+            title: Cultivation Stage + Recipe
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_env_recipe
+              - entity: input_select.cannabis_control_profile
+              - entity: sensor.cannabis_air_temp_f
+              - entity: sensor.cannabis_leaf_temp_f
+              - entity: sensor.cannabis_rh_pct
+              - entity: sensor.cannabis_env_vpd_kpa
+              - entity: sensor.cannabis_ppfd
+              - entity: sensor.cannabis_dli
+          - type: gauge
+            entity: sensor.cannabis_reclaim_quality_idx
+            name: Reclaim Quality
+            min: 0
+            max: 100
+            severity:
+              green: 80
+              yellow: 60
+              red: 0
+          - type: gauge
+            entity: sensor.cannabis_env_vpd_kpa
+            name: VPD
+            min: 0
+            max: 2
+            severity:
+              green: 0.8
+              yellow: 0.5
+              red: 0
+
+  - title: Utilities
+    path: energy
+    icon: mdi:transmission-tower
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Utilities
+              HVAC, dehumidification, generation, and resilience controls.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Grid Monitor
+                icon: mdi:transmission-tower
+                tap_action:
+                  action: url
+                  url_path: https://www.eia.gov/electricity/gridmonitor/dashboard/electric_overview/US48/US48
+              - type: button
+                name: Outage Map
+                icon: mdi:flash-alert
+                tap_action:
+                  action: url
+                  url_path: https://poweroutage.us/
+              - type: button
+                name: Storm Center
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: url
+                  url_path: https://www.spc.noaa.gov/products/outlook/
+              - type: button
+                name: Backup Intel
+                icon: mdi:generator-portable
+                tap_action:
+                  action: url
+                  url_path: https://www.weather.gov/
+          - type: entities
+            title: Utility Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_site_a_hvac_enable
+              - entity: input_boolean.cannabis_site_a_dehu_enable
+              - entity: input_boolean.cannabis_site_a_co2_inject_enable
+              - entity: switch.backup_generator
+              - entity: input_boolean.cannabis_hvac_alarm
+              - entity: input_boolean.cannabis_dehu_alarm
+              - entity: input_boolean.cannabis_processing_line_fault
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Utility Envelope (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - id: load
+                min: 0
+                max: 120
+              - id: power
+                opposite: true
+                min: 0
+                max: 220
+            series:
+              - entity: sensor.cannabis_hvac_load_pct
+                name: HVAC Load
+                yaxis_id: load
+                color: '#f77f00'
+              - entity: sensor.cannabis_dehu_load_pct
+                name: Dehu Load
+                yaxis_id: load
+                color: '#fcbf49'
+              - entity: sensor.power_consumption
+                name: Grid kW
+                yaxis_id: power
+                color: '#4d908e'
+              - entity: sensor.solar_power
+                name: Solar kW
+                yaxis_id: power
+                color: '#90be6d'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Resilience + Fuel (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            series:
+              - entity: sensor.battery_level
+                name: Battery
+                type: line
+                color: '#4cc9f0'
+              - entity: input_number.generator_fuel_level
+                name: Generator Fuel
+                type: line
+                color: '#ff595e'
+              - entity: input_number.cannabis_transport_risk_idx
+                name: Transport Risk
+                type: line
+                color: '#6a4c93'
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.cannabis_hvac_load_pct
+            name: HVAC Load
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 70
+              red: 88
+          - type: gauge
+            entity: sensor.cannabis_dehu_load_pct
+            name: Dehu Load
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 70
+              red: 86
+          - type: gauge
+            entity: sensor.battery_level
+            name: Battery Reserve
+            min: 0
+            max: 100
+            severity:
+              green: 40
+              yellow: 25
+              red: 0
+
+  - title: Access & Diversion
+    path: security
+    icon: mdi:shield-lock
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Access & Diversion
+              Badge/access signals, perimeter controls, vault posture, and surveillance health.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Security Posture
+                icon: mdi:shield-check-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.cisa.gov/topics/physical-security
+              - type: button
+                name: Threat Intel
+                icon: mdi:alert-octagon-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.cisa.gov/news-events/cybersecurity-advisories
+              - type: button
+                name: Radar Crosscheck
+                icon: mdi:radar
+                tap_action:
+                  action: url
+                  url_path: https://radar.weather.gov/
+              - type: button
+                name: Dispatch Watch
+                icon: mdi:truck-delivery-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.windy.com/
+          - type: entities
+            title: Security Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_security_posture
+              - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+              - entity: input_boolean.cannabis_site_a_vault_lock
+              - entity: input_boolean.cannabis_security_intrusion
+              - entity: input_boolean.cannabis_vault_exception_active
+              - entity: input_boolean.cannabis_badge_system_degraded
+              - entity: input_boolean.cannabis_camera_link_degraded
+          - type: entities
+            title: Security KPIs
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cannabis_access_denied_events_1h
+              - entity: sensor.cannabis_guard_coverage_pct
+              - entity: sensor.cannabis_security_workload_idx
+              - entity: binary_sensor.cannabis_security_escalation_required
+              - entity: binary_sensor.cannabis_coverage_gap
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Security Event Stream (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.cannabis_access_denied_events_1h
+                name: Access Denied
+                type: column
+                color: '#f94144'
+              - entity: sensor.cannabis_guard_coverage_pct
+                name: Guard Coverage
+                type: line
+                color: '#43aa8b'
+              - entity: sensor.cannabis_camera_health_pct
+                name: Camera Health
+                type: line
+                color: '#277da1'
+              - entity: sensor.cannabis_camera_alert_count
+                name: Camera Alerts
+                type: column
+                color: '#f8961e'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Drone Security Pulse (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.cannabis_drone_progress_pct
+                name: Drone Progress
+                type: line
+                color: '#4cc9f0'
+              - entity: sensor.cannabis_drone_battery_pct
+                name: Drone Battery
+                type: line
+                color: '#90be6d'
+              - entity: sensor.cannabis_drone_anomaly_score
+                name: Drone Anomaly
+                type: line
+                color: '#ff006e'
+      - type: grid
+        cards:
+          - type: picture-glance
+            title: Perimeter Channel
+            image: /local/cams/cam-north-yard.svg
+            entities:
+              - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+              - entity: sensor.cannabis_camera_health_pct
+          - type: picture-glance
+            title: Cultivation Corridor
+            image: /local/cams/cam-greenhouse.svg
+            entities:
+              - entity: sensor.cannabis_camera_alert_count
+              - entity: binary_sensor.cannabis_camera_link_degraded_active
+          - type: picture-glance
+            title: Processing Corridor
+            image: /local/cams/cam-equipment.svg
+            entities:
+              - entity: input_boolean.cannabis_vault_exception_active
+              - entity: binary_sensor.cannabis_security_escalation_required
+
+  - title: Environment
+    path: climate
+    icon: mdi:thermometer-lines
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Environment
+              VPD, CO2, PPFD, DLI, and stage-specific quality risk control.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: VPD Calculator
+                icon: mdi:chart-bell-curve-cumulative
+                tap_action:
+                  action: url
+                  url_path: https://pulsegrow.com/blogs/learn/vpd
+              - type: button
+                name: DLI Planning
+                icon: mdi:lightbulb-on-outline
+                tap_action:
+                  action: url
+                  url_path: https://fluence-led.com/horticulture-lighting-knowledge/what-is-dli/
+              - type: button
+                name: CO2 Guidance
+                icon: mdi:molecule-co2
+                tap_action:
+                  action: url
+                  url_path: https://www.osha.gov/chemicaldata/chemical/480
+              - type: button
+                name: Weather Overlay
+                icon: mdi:weather-cloudy-clock
+                tap_action:
+                  action: url
+                  url_path: https://www.weather.gov/
+          - type: entities
+            title: Environment Configuration
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_env_recipe
+              - entity: input_select.cannabis_control_profile
+              - entity: input_number.cannabis_site_a_flower_air_temp_f
+              - entity: input_number.cannabis_site_a_flower_leaf_temp_f
+              - entity: input_number.cannabis_site_a_flower_rh_pct
+              - entity: input_number.cannabis_site_a_flower_co2_ppm
+              - entity: input_number.cannabis_site_a_flower_ppfd
+              - entity: input_number.cannabis_site_a_flower_dli
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Stage Environment (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - id: primary
+                min: 0
+                max: 100
+              - id: co2
+                opposite: true
+                min: 300
+                max: 1600
+            series:
+              - entity: sensor.cannabis_air_temp_f
+                name: Air Temp
+                yaxis_id: primary
+                color: '#f8961e'
+              - entity: sensor.cannabis_leaf_temp_f
+                name: Leaf Temp
+                yaxis_id: primary
+                color: '#f9c74f'
+              - entity: sensor.cannabis_rh_pct
+                name: RH
+                yaxis_id: primary
+                color: '#43aa8b'
+              - entity: sensor.cannabis_env_vpd_kpa
+                name: VPD
+                yaxis_id: primary
+                color: '#9d4edd'
+              - entity: sensor.cannabis_co2_ppm
+                name: CO2
+                yaxis_id: co2
+                color: '#277da1'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Light + Load Envelope (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - id: light
+                min: 0
+                max: 1200
+              - id: load
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.cannabis_ppfd
+                name: PPFD
+                yaxis_id: light
+                color: '#4cc9f0'
+              - entity: sensor.cannabis_dli
+                name: DLI
+                yaxis_id: light
+                color: '#06d6a0'
+              - entity: sensor.cannabis_hvac_load_pct
+                name: HVAC Load
+                yaxis_id: load
+                color: '#ef476f'
+              - entity: sensor.cannabis_dehu_load_pct
+                name: Dehu Load
+                yaxis_id: load
+                color: '#ffd166'
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.cannabis_env_vpd_kpa
+            name: VPD kPa
+            min: 0
+            max: 2
+            severity:
+              green: 0.8
+              yellow: 0.5
+              red: 0
+          - type: gauge
+            entity: sensor.cannabis_co2_ppm
+            name: CO2 ppm
+            min: 300
+            max: 1600
+            severity:
+              green: 850
+              yellow: 600
+              red: 300
+          - type: entities
+            title: Environment Alerts
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_hvac_alarm
+              - entity: input_boolean.cannabis_dehu_alarm
+              - entity: input_boolean.cannabis_fertigation_alarm
+
+  - title: Regional Risk
+    path: weather
+    icon: mdi:weather-partly-lightning
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Regional Risk Theater
+              **Live storm intelligence + transport exposure + facility envelope awareness**
+
+              Decision-grade weather visualization for multi-site cannabis operations.
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(95, 181, 255, 0.55);
+                  background: radial-gradient(circle at 18% 12%, rgba(57, 99, 173, 0.40), rgba(10, 16, 28, 0.97) 52%), linear-gradient(140deg, rgba(16, 32, 58, 0.96), rgba(8, 14, 24, 0.98));
+                  box-shadow: 0 24px 48px rgba(4, 12, 24, 0.82);
+                }
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: NWS Radar
+                icon: mdi:radar
+                tap_action:
+                  action: url
+                  url_path: https://radar.weather.gov/
+              - type: button
+                name: GOES East
+                icon: mdi:satellite-variant
+                tap_action:
+                  action: url
+                  url_path: https://www.ospo.noaa.gov/Products/imagery/goes.html
+              - type: button
+                name: NOAA NowCOAST
+                icon: mdi:earth-arrow-right
+                tap_action:
+                  action: url
+                  url_path: https://nowcoast.noaa.gov/
+              - type: button
+                name: Windy Live
+                icon: mdi:map-search-outline
+                tap_action:
+                  action: url
+                  url_path: https://www.windy.com/
+          - type: custom:mushroom-chips-card
+            alignment: start
+            chips:
+              - type: entity
+                entity: input_select.cannabis_scenario
+                icon: mdi:state-machine
+                content_info: state
+              - type: entity
+                entity: input_select.incident_mode
+                icon: mdi:alert-decagram
+                content_info: state
+              - type: entity
+                entity: sensor.wind_speed_mph
+                icon: mdi:weather-windy
+                content_info: state
+              - type: entity
+                entity: binary_sensor.storm_alert
+                icon: mdi:weather-lightning
+                content_info: state
+              - type: entity
+                entity: sensor.cannabis_transport_risk_idx
+                icon: mdi:truck-alert-outline
+                content_info: state
+              - type: entity
+                entity: sensor.cannabis_dispatch_health_idx
+                icon: mdi:map-marker-path
+                content_info: state
+          - type: entities
+            title: Live Feed + Dispatch Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_text.cannabis_browser_ops_primary_url
+                name: Primary Intel URL
+              - entity: input_text.cannabis_browser_ops_secondary_url
+                name: Secondary Intel URL
+              - entity: input_text.cannabis_dispatch_channel_status
+                name: Dispatch Channel
+              - entity: sensor.cannabis_transfer_eta_min
+                name: Transfer ETA (min)
+              - entity: sensor.cannabis_transport_risk_idx
+                name: Transport Risk
+          - type: custom:bar-card
+            title: Exposure Bars
+            width: 72%
+            height: 24px
+            entities:
+              - entity: sensor.wind_speed_mph
+                name: Wind MPH
+                min: 0
+                max: 100
+              - entity: sensor.cannabis_transport_risk_idx
+                name: Transport Risk
+                min: 0
+                max: 100
+              - entity: sensor.cannabis_dispatch_health_idx
+                name: Dispatch Health
+                min: 0
+                max: 100
+              - entity: sensor.cannabis_guard_coverage_pct
+                name: Guard Coverage
+                min: 0
+                max: 100
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Live Weather Feed Wall
+            icon: mdi:satellite-variant
+          - type: grid
+            columns: 1
+            square: false
+            cards:
+              - type: picture
+                image: https://radar.weather.gov/ridge/standard/CONUS_loop.gif
+                tap_action:
+                  action: url
+                  url_path: https://radar.weather.gov/
+                card_mod:
+                  style: |
+                    ha-card {
+                      border: 1px solid rgba(67, 218, 255, 0.62);
+                      border-radius: 16px;
+                      overflow: hidden;
+                      box-shadow: 0 18px 42px rgba(8, 28, 41, 0.75);
+                    }
+              - type: grid
+                columns: 2
+                square: false
+                cards:
+                  - type: picture
+                    image: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/us/GEOCOLOR/latest.jpg
+                    tap_action:
+                      action: url
+                      url_path: https://www.ospo.noaa.gov/Products/imagery/goes.html
+                    card_mod:
+                      style: |
+                        ha-card {
+                          border: 1px solid rgba(103, 215, 255, 0.55);
+                          border-radius: 14px;
+                          overflow: hidden;
+                        }
+                  - type: picture
+                    image: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/us/13/latest.jpg
+                    tap_action:
+                      action: url
+                      url_path: https://www.ospo.noaa.gov/Products/imagery/goes.html
+                    card_mod:
+                      style: |
+                        ha-card {
+                          border: 1px solid rgba(178, 141, 255, 0.55);
+                          border-radius: 14px;
+                          overflow: hidden;
+                        }
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Threat Envelope + Logistics Exposure (12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              grid:
+                borderColor: '#2b425f'
+                strokeDashArray: 3
+            yaxis:
+              - id: risk
+                min: 0
+                max: 120
+              - id: pressure
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.wind_speed_mph
+                name: Wind MPH
+                yaxis_id: risk
+                color: '#00b4d8'
+              - entity: input_number.barometric_pressure
+                name: Pressure
+                yaxis_id: risk
+                color: '#90be6d'
+              - entity: sensor.cannabis_transport_risk_idx
+                name: Transport Risk
+                yaxis_id: pressure
+                color: '#ff595e'
+              - entity: sensor.cannabis_dispatch_health_idx
+                name: Dispatch Health
+                yaxis_id: pressure
+                color: '#8ac926'
+              - entity: sensor.cannabis_transfer_eta_min
+                name: Transfer ETA
+                yaxis_id: pressure
+                color: '#ffca3a'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Trigger + Actuation Pulse (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 250
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 1
+            series:
+              - entity: binary_sensor.storm_alert
+                name: Storm Alert
+                color: '#ff6f7a'
+                type: line
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_transport_delay
+                name: Transport Delay
+                color: '#ffb85c'
+                type: line
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_security_intrusion
+                name: Security Intrusion
+                color: '#bf98ff'
+                type: line
+                transform: "return x === 'on' ? 1 : 0;"
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Logistics + Site Map
+            icon: mdi:map-legend
+          - type: picture-elements
+            image: https://staticmap.openstreetmap.de/staticmap.php?center=39.50,-98.35&zoom=4&size=1200x640&maptype=mapnik
+            elements:
+              - type: icon
+                icon: mdi:map-marker-radius
+                style:
+                  top: 62%
+                  left: 16%
+                  color: '#4ad7b8'
+                  transform: translate(-50%, -50%)
+              - type: icon
+                icon: mdi:map-marker-radius
+                style:
+                  top: 50%
+                  left: 28%
+                  color: '#7cc6ff'
+                  transform: translate(-50%, -50%)
+              - type: icon
+                icon: mdi:map-marker-radius
+                style:
+                  top: 56%
+                  left: 53%
+                  color: '#ffc857'
+                  transform: translate(-50%, -50%)
+              - type: state-label
+                entity: sensor.cannabis_dispatch_health_idx
+                prefix: "Dispatch "
+                style:
+                  top: 13%
+                  left: 16%
+                  transform: translate(-50%, -50%)
+                  background: rgba(6, 44, 38, 0.84)
+                  border: 1px solid rgba(84, 240, 196, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dcfff4'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_transfer_eta_min
+                prefix: "ETA "
+                style:
+                  top: 13%
+                  left: 40%
+                  transform: translate(-50%, -50%)
+                  background: rgba(61, 31, 10, 0.84)
+                  border: 1px solid rgba(255, 184, 92, 0.58)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffe7c8'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_transport_risk_idx
+                prefix: "Risk "
+                style:
+                  top: 13%
+                  left: 62%
+                  transform: translate(-50%, -50%)
+                  background: rgba(62, 14, 24, 0.84)
+                  border: 1px solid rgba(255, 124, 140, 0.56)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffe2e8'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.wind_speed_mph
+                prefix: "Wind "
+                style:
+                  top: 13%
+                  left: 82%
+                  transform: translate(-50%, -50%)
+                  background: rgba(14, 36, 65, 0.84)
+                  border: 1px solid rgba(116, 186, 255, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dff3ff'
+                  font-size: 0.78rem
+                  font-weight: 700
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(95, 181, 255, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                }
+          - type: heading
+            heading: Facility Visual Twin
+            icon: mdi:home-analytics
+          - type: picture-elements
+            image: /local/cams/cam-greenhouse.svg
+            elements:
+              - type: state-label
+                entity: sensor.cannabis_air_temp_f
+                prefix: "Air "
+                style:
+                  top: 14%
+                  left: 14%
+                  transform: translate(-50%, -50%)
+                  background: rgba(13, 35, 58, 0.82)
+                  border: 1px solid rgba(86, 188, 255, 0.58)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dff3ff'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_rh_pct
+                prefix: "RH "
+                style:
+                  top: 14%
+                  left: 34%
+                  transform: translate(-50%, -50%)
+                  background: rgba(7, 45, 41, 0.82)
+                  border: 1px solid rgba(94, 241, 206, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dcfff4'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_co2_ppm
+                prefix: "CO2 "
+                style:
+                  top: 14%
+                  left: 58%
+                  transform: translate(-50%, -50%)
+                  background: rgba(41, 24, 64, 0.82)
+                  border: 1px solid rgba(188, 152, 255, 0.56)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#f0e6ff'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_env_vpd_kpa
+                prefix: "VPD "
+                style:
+                  top: 14%
+                  left: 80%
+                  transform: translate(-50%, -50%)
+                  background: rgba(63, 44, 13, 0.82)
+                  border: 1px solid rgba(255, 201, 120, 0.56)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffeccd'
+                  font-size: 0.78rem
+                  font-weight: 700
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(95, 181, 255, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                }
+          - type: picture-elements
+            image: /local/cams/cam-equipment.svg
+            elements:
+              - type: state-label
+                entity: sensor.cannabis_dry_room_temp_f
+                prefix: "Dry Temp "
+                style:
+                  top: 14%
+                  left: 20%
+                  transform: translate(-50%, -50%)
+                  background: rgba(61, 31, 10, 0.82)
+                  border: 1px solid rgba(255, 184, 92, 0.58)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffe7c8'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_dry_room_rh_pct
+                prefix: "Dry RH "
+                style:
+                  top: 14%
+                  left: 49%
+                  transform: translate(-50%, -50%)
+                  background: rgba(6, 45, 37, 0.82)
+                  border: 1px solid rgba(94, 241, 206, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dcfff4'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_cure_progress_pct
+                prefix: "Cure "
+                style:
+                  top: 14%
+                  left: 75%
+                  transform: translate(-50%, -50%)
+                  background: rgba(14, 36, 65, 0.82)
+                  border: 1px solid rgba(116, 186, 255, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dff3ff'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_moisture_content_pct
+                prefix: "Moisture "
+                style:
+                  top: 73%
+                  left: 82%
+                  transform: translate(-50%, -50%)
+                  background: rgba(41, 24, 64, 0.82)
+                  border: 1px solid rgba(188, 152, 255, 0.56)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#f0e6ff'
+                  font-size: 0.78rem
+                  font-weight: 700
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(255, 184, 92, 0.45);
+                  border-radius: 14px;
+                  overflow: hidden;
+                }
+          - type: picture-elements
+            image: /local/cams/cam-north-yard.svg
+            elements:
+              - type: state-label
+                entity: sensor.wind_speed_mph
+                prefix: "Wind "
+                style:
+                  top: 14%
+                  left: 18%
+                  transform: translate(-50%, -50%)
+                  background: rgba(14, 36, 65, 0.82)
+                  border: 1px solid rgba(116, 186, 255, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dff3ff'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_transport_risk_idx
+                prefix: "Risk "
+                style:
+                  top: 14%
+                  left: 44%
+                  transform: translate(-50%, -50%)
+                  background: rgba(62, 14, 24, 0.82)
+                  border: 1px solid rgba(255, 124, 140, 0.56)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffe2e8'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_transfer_eta_min
+                prefix: "ETA "
+                style:
+                  top: 14%
+                  left: 66%
+                  transform: translate(-50%, -50%)
+                  background: rgba(61, 31, 10, 0.82)
+                  border: 1px solid rgba(255, 184, 92, 0.58)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffe7c8'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_dispatch_health_idx
+                prefix: "Dispatch "
+                style:
+                  top: 14%
+                  left: 84%
+                  transform: translate(-50%, -50%)
+                  background: rgba(8, 44, 35, 0.82)
+                  border: 1px solid rgba(84, 240, 196, 0.55)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#dcfff4'
+                  font-size: 0.78rem
+                  font-weight: 700
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(96, 212, 255, 0.45);
+                  border-radius: 14px;
+                  overflow: hidden;
+                }
+          - type: markdown
+            content: |
+              ## Intel Links
+              - [NWS Radar](https://radar.weather.gov/)
+              - [NOAA GOES](https://www.ospo.noaa.gov/Products/imagery/goes.html)
+              - [NOAA NowCOAST](https://nowcoast.noaa.gov/)
+              - [Windy Interactive Map](https://www.windy.com/)
+              - [Zoom Earth Live](https://zoom.earth/)
+              - [NHC Tropical Outlook](https://www.nhc.noaa.gov/)
+              - [SPC Convective Outlook](https://www.spc.noaa.gov/products/outlook/)
+  - title: Automation
+    path: agents
+    icon: mdi:robot
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Automation
+              SOP automation, work orders, shift execution, and incident scripts.
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Ops Browser
+                icon: mdi:web
+                tap_action:
+                  action: url
+                  url_path: https://nowcoast.noaa.gov/
+              - type: button
+                name: Radar Feed
+                icon: mdi:radar
+                tap_action:
+                  action: url
+                  url_path: https://radar.weather.gov/
+              - type: button
+                name: Satellite Feed
+                icon: mdi:satellite-uplink
+                tap_action:
+                  action: url
+                  url_path: https://www.ospo.noaa.gov/Products/imagery/goes.html
+              - type: button
+                name: Wind Map
+                icon: mdi:weather-windy
+                tap_action:
+                  action: url
+                  url_path: https://www.windy.com/
+          - type: entities
+            title: SOP Control Surface
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_control_profile
+              - entity: input_select.cannabis_shift_mode
+              - entity: input_select.cannabis_site_focus
+              - entity: input_text.cannabis_shift_supervisor
+              - entity: input_text.cannabis_next_critical_task
+              - entity: input_text.cannabis_dispatch_channel_status
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Storm SOP
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_storm
+              - type: button
+                name: Intrusion SOP
+                icon: mdi:shield-alert
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_intrusion
+              - type: button
+                name: Utility SOP
+                icon: mdi:power-plug-off
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_power_failure
+              - type: button
+                name: Reset SOP
+                icon: mdi:refresh
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_clear
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Schedule Execution Loop (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 120
+            series:
+              - entity: sensor.cannabis_work_orders_open
+                name: Open Work Orders
+                type: column
+                color: '#577590'
+              - entity: sensor.cannabis_work_orders_overdue
+                name: Overdue Work Orders
+                type: column
+                color: '#f94144'
+              - entity: sensor.cannabis_schedule_adherence_pct
+                name: Schedule Adherence
+                type: line
+                color: '#43aa8b'
+              - entity: sensor.cannabis_staff_on_shift_total
+                name: Staff On Shift
+                type: line
+                color: '#4cc9f0'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Alert Pulse (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+            yaxis:
+              - min: 0
+                max: 1
+            series:
+              - entity: input_boolean.cannabis_hvac_alarm
+                name: HVAC Alarm
+                type: line
+                color: '#ff595e'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_dehu_alarm
+                name: Dehu Alarm
+                type: line
+                color: '#ffca3a'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_fertigation_alarm
+                name: Fertigation Alarm
+                type: line
+                color: '#8ac926'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: input_boolean.cannabis_processing_line_fault
+                name: Processing Fault
+                type: line
+                color: '#6a4c93'
+                transform: "return x === 'on' ? 1 : 0;"
+      - type: grid
+        cards:
+          - type: todo-list
+            entity: todo.shopping_list
+            title: Shift Task Queue
+          - type: logbook
+            title: Automation Event Log
+            entities:
+              - input_select.cannabis_control_profile
+              - input_select.cannabis_shift_mode
+              - input_boolean.cannabis_schedule_disruption_active
+              - input_boolean.cannabis_staff_shortage_alert
+              - input_boolean.cannabis_transport_delay
+            hours_to_show: 12
+          - type: entities
+            title: Browser + Dispatch Stack
+            show_header_toggle: false
+            entities:
+              - entity: input_text.cannabis_browser_ops_primary_url
+              - entity: input_text.cannabis_browser_ops_secondary_url
+              - entity: input_text.cannabis_manifest_live_id
+              - entity: sensor.cannabis_dispatch_health_idx
+              - entity: sensor.cannabis_transport_risk_idx

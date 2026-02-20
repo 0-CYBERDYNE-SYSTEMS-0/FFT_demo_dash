@@ -458,6 +458,364 @@ input_number:
     initial: 45
     step: 1
 
+  # === COMPLIANCE + TRACEABILITY ===
+  transfer_queue_count:
+    name: "Transfer Queue Count"
+    min: 0
+    max: 40
+    initial: 2
+    step: 1
+  audit_completeness_pct:
+    name: "Audit Completeness"
+    min: 0
+    max: 100
+    initial: 93
+    step: 0.1
+  qa_release_readiness:
+    name: "QA Release Readiness"
+    min: 0
+    max: 100
+    initial: 88
+    step: 0.1
+  metrc_sync_health:
+    name: "METRC Sync Health"
+    min: 0
+    max: 100
+    initial: 95
+    step: 0.1
+  custody_break_risk:
+    name: "Custody Break Risk"
+    min: 0
+    max: 100
+    initial: 6
+    step: 0.1
+
+  # === CANNABIS ENTERPRISE DIGITAL TWIN (NAMESPACED) ===
+  cannabis_site_a_flower_air_temp_f:
+    name: "Cannabis Site A Flower Air Temp"
+    min: 45
+    max: 100
+    initial: 76
+    step: 0.1
+  cannabis_site_a_flower_leaf_temp_f:
+    name: "Cannabis Site A Flower Leaf Temp"
+    min: 45
+    max: 100
+    initial: 74
+    step: 0.1
+  cannabis_site_a_flower_rh_pct:
+    name: "Cannabis Site A Flower RH"
+    min: 20
+    max: 90
+    initial: 57
+    step: 0.1
+  cannabis_site_a_flower_co2_ppm:
+    name: "Cannabis Site A Flower CO2"
+    min: 350
+    max: 1800
+    initial: 1050
+    step: 5
+  cannabis_site_a_flower_ppfd:
+    name: "Cannabis Site A Flower PPFD"
+    min: 0
+    max: 1500
+    initial: 850
+    step: 5
+  cannabis_site_a_flower_dli:
+    name: "Cannabis Site A Flower DLI"
+    min: 0
+    max: 70
+    initial: 38
+    step: 0.1
+  cannabis_site_a_hvac_load_pct:
+    name: "Cannabis Site A HVAC Load"
+    min: 0
+    max: 100
+    initial: 62
+    step: 0.1
+  cannabis_site_a_dehu_load_pct:
+    name: "Cannabis Site A Dehu Load"
+    min: 0
+    max: 100
+    initial: 54
+    step: 0.1
+  cannabis_site_a_chiller_load_pct:
+    name: "Cannabis Site A Chiller Load"
+    min: 0
+    max: 100
+    initial: 48
+    step: 0.1
+  cannabis_site_b_greenhouse_air_temp_f:
+    name: "Cannabis Site B Greenhouse Air Temp"
+    min: 40
+    max: 110
+    initial: 79
+    step: 0.1
+  cannabis_site_b_greenhouse_leaf_temp_f:
+    name: "Cannabis Site B Greenhouse Leaf Temp"
+    min: 40
+    max: 110
+    initial: 76
+    step: 0.1
+  cannabis_site_b_greenhouse_rh_pct:
+    name: "Cannabis Site B Greenhouse RH"
+    min: 20
+    max: 95
+    initial: 61
+    step: 0.1
+  cannabis_site_b_greenhouse_co2_ppm:
+    name: "Cannabis Site B Greenhouse CO2"
+    min: 350
+    max: 1600
+    initial: 920
+    step: 5
+  cannabis_site_b_greenhouse_ppfd:
+    name: "Cannabis Site B Greenhouse PPFD"
+    min: 0
+    max: 1400
+    initial: 760
+    step: 5
+  cannabis_site_b_greenhouse_dli:
+    name: "Cannabis Site B Greenhouse DLI"
+    min: 0
+    max: 70
+    initial: 35
+    step: 0.1
+  cannabis_site_c_hemp_air_temp_f:
+    name: "Cannabis Site C Hemp Air Temp"
+    min: 20
+    max: 115
+    initial: 82
+    step: 0.1
+  cannabis_site_c_hemp_rh_pct:
+    name: "Cannabis Site C Hemp RH"
+    min: 20
+    max: 100
+    initial: 58
+    step: 0.1
+  cannabis_site_c_hemp_soil_moisture_pct:
+    name: "Cannabis Site C Hemp Soil Moisture"
+    min: 0
+    max: 100
+    initial: 46
+    step: 0.1
+  cannabis_irrigation_zone_a_cycles:
+    name: "Cannabis Irrigation Zone A Cycles"
+    min: 0
+    max: 60
+    initial: 18
+    step: 1
+  cannabis_irrigation_zone_b_cycles:
+    name: "Cannabis Irrigation Zone B Cycles"
+    min: 0
+    max: 60
+    initial: 15
+    step: 1
+  cannabis_fertigation_ec_in:
+    name: "Cannabis Fertigation EC In"
+    min: 0
+    max: 4
+    initial: 2.1
+    step: 0.01
+  cannabis_fertigation_ph_in:
+    name: "Cannabis Fertigation pH In"
+    min: 4
+    max: 9
+    initial: 5.9
+    step: 0.01
+  cannabis_fertigation_dose_ml_min:
+    name: "Cannabis Fertigation Dose"
+    min: 0
+    max: 500
+    initial: 145
+    step: 1
+  cannabis_runoff_ec:
+    name: "Cannabis Runoff EC"
+    min: 0
+    max: 5
+    initial: 2.3
+    step: 0.01
+  cannabis_runoff_ph:
+    name: "Cannabis Runoff pH"
+    min: 4
+    max: 9
+    initial: 6.1
+    step: 0.01
+  cannabis_reclaim_quality_idx:
+    name: "Cannabis Reclaim Water Quality"
+    min: 0
+    max: 100
+    initial: 86
+    step: 0.1
+  cannabis_dry_room_temp_f:
+    name: "Cannabis Dry Room Temp"
+    min: 40
+    max: 90
+    initial: 63
+    step: 0.1
+  cannabis_dry_room_rh_pct:
+    name: "Cannabis Dry Room RH"
+    min: 20
+    max: 90
+    initial: 57
+    step: 0.1
+  cannabis_cure_progress_pct:
+    name: "Cannabis Cure Progress"
+    min: 0
+    max: 100
+    initial: 42
+    step: 0.1
+  cannabis_moisture_content_pct:
+    name: "Cannabis Moisture Content"
+    min: 0
+    max: 30
+    initial: 11.8
+    step: 0.1
+  cannabis_extraction_queue_count:
+    name: "Cannabis Extraction Queue"
+    min: 0
+    max: 500
+    initial: 64
+    step: 1
+  cannabis_packaging_throughput_units_hr:
+    name: "Cannabis Packaging Throughput"
+    min: 0
+    max: 4000
+    initial: 1420
+    step: 5
+  cannabis_line_uptime_pct:
+    name: "Cannabis Line Uptime"
+    min: 0
+    max: 100
+    initial: 91
+    step: 0.1
+  cannabis_qc_hold_count:
+    name: "Cannabis QC Hold Count"
+    min: 0
+    max: 200
+    initial: 7
+    step: 1
+  cannabis_access_denied_events_1h:
+    name: "Cannabis Access Denied 1h"
+    min: 0
+    max: 200
+    initial: 3
+    step: 1
+  cannabis_guard_coverage_pct:
+    name: "Cannabis Guard Coverage"
+    min: 0
+    max: 100
+    initial: 94
+    step: 0.1
+  cannabis_staff_on_shift_total:
+    name: "Cannabis Staff On Shift Total"
+    min: 0
+    max: 500
+    initial: 96
+    step: 1
+  cannabis_staff_cultivation:
+    name: "Cannabis Staff Cultivation"
+    min: 0
+    max: 300
+    initial: 44
+    step: 1
+  cannabis_staff_processing:
+    name: "Cannabis Staff Processing"
+    min: 0
+    max: 200
+    initial: 24
+    step: 1
+  cannabis_staff_security:
+    name: "Cannabis Staff Security"
+    min: 0
+    max: 100
+    initial: 14
+    step: 1
+  cannabis_staff_logistics:
+    name: "Cannabis Staff Logistics"
+    min: 0
+    max: 120
+    initial: 14
+    step: 1
+  cannabis_work_orders_open:
+    name: "Cannabis Work Orders Open"
+    min: 0
+    max: 500
+    initial: 38
+    step: 1
+  cannabis_work_orders_overdue:
+    name: "Cannabis Work Orders Overdue"
+    min: 0
+    max: 200
+    initial: 4
+    step: 1
+  cannabis_schedule_adherence_pct:
+    name: "Cannabis Schedule Adherence"
+    min: 0
+    max: 100
+    initial: 93
+    step: 0.1
+  cannabis_camera_health_pct:
+    name: "Cannabis Camera Health"
+    min: 0
+    max: 100
+    initial: 96
+    step: 0.1
+  cannabis_camera_alert_count:
+    name: "Cannabis Camera Alert Count"
+    min: 0
+    max: 300
+    initial: 2
+    step: 1
+  cannabis_drone_progress_pct:
+    name: "Cannabis Drone Mission Progress"
+    min: 0
+    max: 100
+    initial: 0
+    step: 1
+  cannabis_drone_battery_pct:
+    name: "Cannabis Drone Battery"
+    min: 0
+    max: 100
+    initial: 88
+    step: 0.1
+  cannabis_drone_anomaly_score:
+    name: "Cannabis Drone Anomaly Score"
+    min: 0
+    max: 100
+    initial: 5
+    step: 0.1
+  cannabis_transfer_eta_min:
+    name: "Cannabis Transfer ETA Minutes"
+    min: 0
+    max: 720
+    initial: 85
+    step: 1
+  cannabis_transport_risk_idx:
+    name: "Cannabis Transport Risk Index"
+    min: 0
+    max: 100
+    initial: 18
+    step: 0.1
+  cannabis_total_dried_flower_lbs:
+    name: "Cannabis Dried Flower Inventory"
+    min: 0
+    max: 200000
+    initial: 28340
+    step: 10
+  cannabis_total_extract_liters:
+    name: "Cannabis Extract Inventory"
+    min: 0
+    max: 50000
+    initial: 3720
+    step: 5
+  cannabis_total_packaged_units:
+    name: "Cannabis Packaged Units"
+    min: 0
+    max: 2000000
+    initial: 246500
+    step: 50
+
 #############################################################
 # INPUT BOOLEANS - Binary Controls
 #############################################################
@@ -643,6 +1001,87 @@ input_boolean:
   storm_shutters:
     name: "Storm Shutters"
     initial: off
+  qa_hold_active:
+    name: "QA Hold Active"
+    initial: off
+  recall_readiness:
+    name: "Recall Readiness"
+    initial: on
+  cannabis_site_a_zone_veg_irrigation:
+    name: "Cannabis Site A Veg Irrigation"
+    initial: off
+  cannabis_site_a_zone_flower_irrigation:
+    name: "Cannabis Site A Flower Irrigation"
+    initial: off
+  cannabis_site_b_greenhouse_irrigation:
+    name: "Cannabis Site B Greenhouse Irrigation"
+    initial: off
+  cannabis_site_c_hemp_block_irrigation:
+    name: "Cannabis Site C Hemp Irrigation"
+    initial: off
+  cannabis_site_a_hvac_enable:
+    name: "Cannabis Site A HVAC Enable"
+    initial: on
+  cannabis_site_a_dehu_enable:
+    name: "Cannabis Site A Dehumidification Enable"
+    initial: on
+  cannabis_site_a_co2_inject_enable:
+    name: "Cannabis Site A CO2 Inject Enable"
+    initial: on
+  cannabis_site_a_fertigation_enable:
+    name: "Cannabis Site A Fertigation Enable"
+    initial: on
+  cannabis_site_a_processing_line_enable:
+    name: "Cannabis Site A Processing Line Enable"
+    initial: on
+  cannabis_site_a_packaging_line_enable:
+    name: "Cannabis Site A Packaging Line Enable"
+    initial: on
+  cannabis_site_a_perimeter_lockdown:
+    name: "Cannabis Site A Perimeter Lockdown"
+    initial: off
+  cannabis_site_a_vault_lock:
+    name: "Cannabis Site A Vault Lock"
+    initial: on
+  cannabis_site_a_camera_ptz_patrol:
+    name: "Cannabis Site A PTZ Patrol"
+    initial: on
+  cannabis_vault_exception_active:
+    name: "Cannabis Vault Exception Active"
+    initial: off
+  cannabis_badge_system_degraded:
+    name: "Cannabis Badge System Degraded"
+    initial: off
+  cannabis_staff_shortage_alert:
+    name: "Cannabis Staff Shortage Alert"
+    initial: off
+  cannabis_schedule_disruption_active:
+    name: "Cannabis Schedule Disruption"
+    initial: off
+  cannabis_drone_geofence_breach:
+    name: "Cannabis Drone Geofence Breach"
+    initial: off
+  cannabis_camera_link_degraded:
+    name: "Cannabis Camera Link Degraded"
+    initial: off
+  cannabis_processing_line_fault:
+    name: "Cannabis Processing Line Fault"
+    initial: off
+  cannabis_hvac_alarm:
+    name: "Cannabis HVAC Alarm"
+    initial: off
+  cannabis_dehu_alarm:
+    name: "Cannabis Dehumidification Alarm"
+    initial: off
+  cannabis_fertigation_alarm:
+    name: "Cannabis Fertigation Alarm"
+    initial: off
+  cannabis_transport_delay:
+    name: "Cannabis Transport Delay"
+    initial: off
+  cannabis_security_intrusion:
+    name: "Cannabis Security Intrusion"
+    initial: off
 
   # === ALERTS ===
   alert_high_temp:
@@ -657,6 +1096,134 @@ input_boolean:
   alert_equipment_fault:
     name: "Alert Equipment Fault"
     initial: off
+
+#############################################################
+# INPUT TEXTS - Compliance Metadata
+#############################################################
+
+input_text:
+  metrc_manifest_id:
+    name: "METRC Manifest ID"
+    initial: "MANIFEST-2402-0001"
+    max: 64
+  metrc_last_package_tag:
+    name: "METRC Last Package Tag"
+    initial: "PKG-2402-0001"
+    max: 64
+  metrc_last_plant_batch_tag:
+    name: "METRC Last Plant Batch Tag"
+    initial: "PLANT-2402-0001"
+    max: 64
+  metrc_last_coa_id:
+    name: "METRC Last COA ID"
+    initial: "COA-2402-0001"
+    max: 64
+  cannabis_shift_supervisor:
+    name: "Cannabis Shift Supervisor"
+    initial: "Ops Lead A. Stone"
+    max: 64
+  cannabis_next_critical_task:
+    name: "Cannabis Next Critical Task"
+    initial: "Verify dry room humidity offset calibration"
+    max: 255
+  cannabis_dispatch_channel_status:
+    name: "Cannabis Dispatch Channel Status"
+    initial: "CLEAR"
+    max: 64
+  cannabis_browser_ops_primary_url:
+    name: "Cannabis Browser Ops Primary URL"
+    initial: "https://radar.weather.gov/"
+    max: 255
+  cannabis_browser_ops_secondary_url:
+    name: "Cannabis Browser Ops Secondary URL"
+    initial: "https://www.ospo.noaa.gov/Products/imagery/goes.html"
+    max: 255
+  cannabis_manifest_live_id:
+    name: "Cannabis Manifest Live ID"
+    initial: "CAN-MAN-2402-0001"
+    max: 64
+
+#############################################################
+# INPUT SELECTS - Control Modes
+#############################################################
+
+input_select:
+  incident_mode:
+    name: "Incident Mode"
+    options:
+      - Normal
+      - Storm
+      - Intrusion
+      - Power Failure
+    initial: Normal
+  transfer_status:
+    name: "Transfer Status"
+    options:
+      - Ready
+      - Queued
+      - In Transit
+      - Received
+      - Quarantine
+    initial: Ready
+  cannabis_shift_mode:
+    name: "Cannabis Shift Mode"
+    options:
+      - Day
+      - Swing
+      - Night
+      - Emergency
+    initial: Day
+  cannabis_site_focus:
+    name: "Cannabis Site Focus"
+    options:
+      - Site A Indoor
+      - Site B Greenhouse
+      - Site C Outdoor Hemp
+    initial: Site A Indoor
+  cannabis_security_posture:
+    name: "Cannabis Security Posture"
+    options:
+      - Normal
+      - Elevated
+      - Lockdown
+    initial: Normal
+  cannabis_drone_mission_state:
+    name: "Cannabis Drone Mission State"
+    options:
+      - Idle
+      - Preflight
+      - Survey
+      - Return
+      - Abort
+    initial: Idle
+  cannabis_scenario:
+    name: "Cannabis Scenario"
+    options:
+      - Normal Production
+      - HVAC Saturation
+      - Fertigation Drift
+      - Security Intrusion
+      - Utility Outage
+      - Compliance Drift
+      - Logistics Disruption
+    initial: Normal Production
+  cannabis_env_recipe:
+    name: "Cannabis Environment Recipe"
+    options:
+      - Clone
+      - Vegetative
+      - Flower
+      - Drying
+      - Curing
+    initial: Flower
+  cannabis_control_profile:
+    name: "Cannabis Control Profile"
+    options:
+      - Balanced
+      - Yield Maximization
+      - Quality First
+      - Risk Mitigation
+    initial: Balanced
 
 #############################################################
 # TEMPLATE SENSORS
@@ -698,17 +1265,17 @@ sensor:
 
       # === TEMPERATURES ===
       greenhouse_temp_a:
-        value_template: "{{ states('input_number.greenhouse_temp_section_a') | default(72) }}"
+        value_template: "{{ states('input_number.greenhouse_temp_section_a') | float(72) | round(1) }}"
         unit_of_measurement: "°F"
         friendly_name: "Greenhouse Temp - Section A"
         
       greenhouse_temp_b:
-        value_template: "{{ states('input_number.greenhouse_temp_section_b') | default(68) }}"
+        value_template: "{{ states('input_number.greenhouse_temp_section_b') | float(68) | round(1) }}"
         unit_of_measurement: "°F"
         friendly_name: "Greenhouse Temp - Section B"
         
       greenhouse_temp_c:
-        value_template: "{{ states('input_number.greenhouse_temp_section_c') | default(75) }}"
+        value_template: "{{ states('input_number.greenhouse_temp_section_c') | float(75) | round(1) }}"
         unit_of_measurement: "°F"
         friendly_name: "Greenhouse Temp - Section C"
         
@@ -740,12 +1307,12 @@ sensor:
 
       # === POWER ===
       solar_power:
-        value_template: "{{ states('input_number.solar_generation_kw') | default(125) }}"
+        value_template: "{{ states('input_number.solar_generation_kw') | float(125) | round(1) }}"
         unit_of_measurement: "kW"
         friendly_name: "Solar Power Generation"
         
       power_consumption:
-        value_template: "{{ states('input_number.grid_power_consumption') | default(45) }}"
+        value_template: "{{ states('input_number.grid_power_consumption') | float(45) | round(1) }}"
         unit_of_measurement: "kW"
         friendly_name: "Grid Power Consumption"
         
@@ -762,7 +1329,7 @@ sensor:
 
       # === WIND ===
       wind_speed_mph:
-        value_template: "{{ states('input_number.wind_speed') | default(12) }}"
+        value_template: "{{ states('input_number.wind_speed') | float(12) | round(1) }}"
         unit_of_measurement: "mph"
         friendly_name: "Wind Speed"
         
@@ -773,9 +1340,25 @@ sensor:
           {{ directions[(degrees / 22.5) | int % 16] }}
         friendly_name: "Wind Direction"
 
+      weather_feed_nws_radar_url:
+        value_template: "https://radar.weather.gov/station/KEWX/standard"
+        friendly_name: "Weather Feed - NWS Radar URL"
+
+      weather_feed_noaa_goes_url:
+        value_template: "https://www.ospo.noaa.gov/Products/imagery/goes.html"
+        friendly_name: "Weather Feed - NOAA GOES URL"
+
+      weather_feed_accuweather_url:
+        value_template: "https://www.accuweather.com/en/us/cedar-creek/78612/weather-radar/2237310"
+        friendly_name: "Weather Feed - AccuWeather URL"
+
+      weather_feed_accuweather_fallback_url:
+        value_template: "https://weather.com/weather/radar/interactive/l/Cedar+Creek+Texas+78612?canonicalCityId=cf67a4c97b40210d2ff2e6418fe24284"
+        friendly_name: "Weather Feed - AccuWeather Fallback URL"
+
       # === LIVESTOCK ===
       barn_temperature:
-        value_template: "{{ states('input_number.barn_temp') | default(55) }}"
+        value_template: "{{ states('input_number.barn_temp') | float(55) | round(1) }}"
         unit_of_measurement: "°F"
         friendly_name: "Barn Temperature"
         
@@ -795,6 +1378,362 @@ sensor:
         unit_of_measurement: "bu"
         friendly_name: "Grain Yield"
 
+      greenhouse_temp_avg:
+        value_template: "{{ ((states('sensor.greenhouse_temp_a') | float(72) + states('sensor.greenhouse_temp_b') | float(68) + states('sensor.greenhouse_temp_c') | float(75)) / 3) | round(1) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Average Greenhouse Temperature"
+
+      farm_risk_index:
+        value_template: >
+          {% set risk = 0 %}
+          {% if is_state('binary_sensor.storm_alert', 'on') %}{% set risk = risk + 24 %}{% endif %}
+          {% if is_state('binary_sensor.low_water_storage', 'on') %}{% set risk = risk + 24 %}{% endif %}
+          {% if is_state('binary_sensor.heat_warning', 'on') %}{% set risk = risk + 14 %}{% endif %}
+          {% if is_state('binary_sensor.high_wind_alert', 'on') %}{% set risk = risk + 14 %}{% endif %}
+          {% if is_state('binary_sensor.motion_detected_equipment', 'on') %}{% set risk = risk + 10 %}{% endif %}
+          {% if is_state('binary_sensor.motion_detected_barn', 'on') %}{% set risk = risk + 8 %}{% endif %}
+          {% if is_state('switch.perimeter_alarm', 'on') %}{% set risk = risk + 6 %}{% endif %}
+          {% set risk = risk + ((100 - (states('sensor.battery_level') | float(85))) * 0.12) %}
+          {% set risk = risk + ((100 - (states('input_number.generator_fuel_level') | float(92))) * 0.08) %}
+          {% set risk = [risk, 100] | min %}
+          {% set risk = [risk, 0] | max %}
+          {{ risk | round(0) | int }}
+        unit_of_measurement: "%"
+        friendly_name: "Farm Risk Index"
+
+      ops_efficiency_index:
+        value_template: >
+          {% set solar = states('sensor.solar_power') | float(0) %}
+          {% set load = states('sensor.power_consumption') | float(1) %}
+          {% set battery = states('sensor.battery_level') | float(0) %}
+          {% set water = (states('sensor.water_tank_total') | float(0) / 120000 * 100) %}
+          {% set moisture_avg = (
+            states('sensor.soil_moisture_north') | float(45) +
+            states('sensor.soil_moisture_south') | float(52) +
+            states('sensor.soil_moisture_west_pasture') | float(38) +
+            states('sensor.soil_moisture_east_orchard') | float(55) +
+            states('sensor.soil_moisture_vegetable') | float(62) +
+            states('sensor.soil_moisture_nursery') | float(70)
+          ) / 6 %}
+          {% set moisture_score = 100 - (((moisture_avg - 55) | abs) * 2.2) %}
+          {% set solar_ratio = (solar / (load if load > 0 else 1)) * 100 %}
+          {% set solar_score = [solar_ratio, 100] | min %}
+          {% set score = (solar_score * 0.30) + (battery * 0.25) + (water * 0.25) + (moisture_score * 0.20) %}
+          {% set score = [score, 100] | min %}
+          {% set score = [score, 0] | max %}
+          {{ score | round(0) | int }}
+        unit_of_measurement: "%"
+        friendly_name: "Ops Efficiency Index"
+
+      anomaly_score:
+        value_template: >
+          {% set a = states('sensor.greenhouse_temp_a') | float(72) %}
+          {% set b = states('sensor.greenhouse_temp_b') | float(68) %}
+          {% set c = states('sensor.greenhouse_temp_c') | float(75) %}
+          {% set spread = ([a, b, c] | max) - ([a, b, c] | min) %}
+          {% set score = spread * 6 %}
+          {% if is_state('binary_sensor.low_soil_moisture_north', 'on') %}{% set score = score + 16 %}{% endif %}
+          {% if is_state('binary_sensor.low_soil_moisture_south', 'on') %}{% set score = score + 16 %}{% endif %}
+          {% if is_state('input_boolean.alert_equipment_fault', 'on') %}{% set score = score + 28 %}{% endif %}
+          {% if is_state('switch.backup_generator', 'on') and (states('sensor.solar_power') | float(0) > 80) %}{% set score = score + 8 %}{% endif %}
+          {% if (states('sensor.wind_speed_mph') | float(0)) > 40 %}{% set score = score + 10 %}{% endif %}
+          {% set score = [score, 100] | min %}
+          {% set score = [score, 0] | max %}
+          {{ score | round(0) | int }}
+        unit_of_measurement: "%"
+        friendly_name: "Anomaly Score"
+
+      # === COMPLIANCE + TRACEABILITY ===
+      transfer_queue_count:
+        value_template: "{{ states('input_number.transfer_queue_count') | float(2) | round(0) }}"
+        unit_of_measurement: "loads"
+        friendly_name: "Transfer Queue Count"
+
+      audit_completeness_pct:
+        value_template: "{{ states('input_number.audit_completeness_pct') | float(93) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Audit Completeness"
+
+      qa_release_readiness:
+        value_template: "{{ states('input_number.qa_release_readiness') | float(88) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "QA Release Readiness"
+
+      metrc_sync_health:
+        value_template: "{{ states('input_number.metrc_sync_health') | float(95) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "METRC Sync Health"
+
+      custody_break_risk:
+        value_template: "{{ states('input_number.custody_break_risk') | float(6) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Custody Break Risk"
+
+      compliance_open_items:
+        value_template: >
+          {% set items = 0 %}
+          {% if is_state('input_boolean.qa_hold_active', 'on') %}{% set items = items + 2 %}{% endif %}
+          {% if is_state('input_boolean.recall_readiness', 'off') %}{% set items = items + 2 %}{% endif %}
+          {% if (states('sensor.audit_completeness_pct') | float(0)) < 90 %}{% set items = items + 1 %}{% endif %}
+          {% if (states('sensor.metrc_sync_health') | float(0)) < 92 %}{% set items = items + 1 %}{% endif %}
+          {% if (states('sensor.transfer_queue_count') | float(0)) > 12 %}{% set items = items + 1 %}{% endif %}
+          {{ items }}
+        unit_of_measurement: "items"
+        friendly_name: "Compliance Open Items"
+
+      # === CANNABIS DIGITAL TWIN (DERIVED) ===
+      cannabis_air_temp_f:
+        value_template: "{{ states('input_number.cannabis_site_a_flower_air_temp_f') | float(76) | round(1) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Cannabis Air Temperature"
+
+      cannabis_leaf_temp_f:
+        value_template: "{{ states('input_number.cannabis_site_a_flower_leaf_temp_f') | float(74) | round(1) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Cannabis Leaf Temperature"
+
+      cannabis_rh_pct:
+        value_template: "{{ states('input_number.cannabis_site_a_flower_rh_pct') | float(57) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Relative Humidity"
+
+      cannabis_co2_ppm:
+        value_template: "{{ states('input_number.cannabis_site_a_flower_co2_ppm') | float(1050) | round(0) }}"
+        unit_of_measurement: "ppm"
+        friendly_name: "Cannabis CO2"
+
+      cannabis_ppfd:
+        value_template: "{{ states('input_number.cannabis_site_a_flower_ppfd') | float(850) | round(0) }}"
+        unit_of_measurement: "umol/m2/s"
+        friendly_name: "Cannabis PPFD"
+
+      cannabis_dli:
+        value_template: "{{ states('input_number.cannabis_site_a_flower_dli') | float(38) | round(1) }}"
+        unit_of_measurement: "mol/m2/day"
+        friendly_name: "Cannabis DLI"
+
+      cannabis_dewpoint_f:
+        value_template: >
+          {% set t = states('input_number.cannabis_site_a_flower_air_temp_f') | float(76) %}
+          {% set rh = states('input_number.cannabis_site_a_flower_rh_pct') | float(57) %}
+          {{ (t - ((100 - rh) / 5)) | round(1) }}
+        unit_of_measurement: "°F"
+        friendly_name: "Cannabis Dewpoint"
+
+      cannabis_env_vpd_kpa:
+        value_template: >
+          {% set air_f = states('input_number.cannabis_site_a_flower_air_temp_f') | float(76) %}
+          {% set leaf_f = states('input_number.cannabis_site_a_flower_leaf_temp_f') | float(74) %}
+          {% set rh = states('input_number.cannabis_site_a_flower_rh_pct') | float(57) %}
+          {% set delta = (air_f - leaf_f) | abs %}
+          {% set vpd = (delta * 0.03) + ((100 - rh) * 0.02) %}
+          {{ vpd | round(2) }}
+        unit_of_measurement: "kPa"
+        friendly_name: "Cannabis VPD"
+
+      cannabis_hvac_load_pct:
+        value_template: "{{ states('input_number.cannabis_site_a_hvac_load_pct') | float(62) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis HVAC Load"
+
+      cannabis_dehu_load_pct:
+        value_template: "{{ states('input_number.cannabis_site_a_dehu_load_pct') | float(54) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Dehumidification Load"
+
+      cannabis_zone_cycles:
+        value_template: >
+          {{ (states('input_number.cannabis_irrigation_zone_a_cycles') | float(18)
+             + states('input_number.cannabis_irrigation_zone_b_cycles') | float(15)) | round(0) }}
+        unit_of_measurement: "cycles"
+        friendly_name: "Cannabis Irrigation Zone Cycles"
+
+      cannabis_ec_in:
+        value_template: "{{ states('input_number.cannabis_fertigation_ec_in') | float(2.1) | round(2) }}"
+        unit_of_measurement: "mS/cm"
+        friendly_name: "Cannabis Fertigation EC In"
+
+      cannabis_ph_in:
+        value_template: "{{ states('input_number.cannabis_fertigation_ph_in') | float(5.9) | round(2) }}"
+        unit_of_measurement: "pH"
+        friendly_name: "Cannabis Fertigation pH In"
+
+      cannabis_dose_rate_ml_min:
+        value_template: "{{ states('input_number.cannabis_fertigation_dose_ml_min') | float(145) | round(0) }}"
+        unit_of_measurement: "ml/min"
+        friendly_name: "Cannabis Fertigation Dose Rate"
+
+      cannabis_runoff_ec:
+        value_template: "{{ states('input_number.cannabis_runoff_ec') | float(2.3) | round(2) }}"
+        unit_of_measurement: "mS/cm"
+        friendly_name: "Cannabis Runoff EC"
+
+      cannabis_runoff_ph:
+        value_template: "{{ states('input_number.cannabis_runoff_ph') | float(6.1) | round(2) }}"
+        unit_of_measurement: "pH"
+        friendly_name: "Cannabis Runoff pH"
+
+      cannabis_reclaim_quality_idx:
+        value_template: "{{ states('input_number.cannabis_reclaim_quality_idx') | float(86) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Reclaim Water Quality"
+
+      cannabis_dry_room_temp_f:
+        value_template: "{{ states('input_number.cannabis_dry_room_temp_f') | float(63) | round(1) }}"
+        unit_of_measurement: "°F"
+        friendly_name: "Cannabis Dry Room Temperature"
+
+      cannabis_dry_room_rh_pct:
+        value_template: "{{ states('input_number.cannabis_dry_room_rh_pct') | float(57) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Dry Room RH"
+
+      cannabis_cure_progress_pct:
+        value_template: "{{ states('input_number.cannabis_cure_progress_pct') | float(42) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Cure Progress"
+
+      cannabis_moisture_content_pct:
+        value_template: "{{ states('input_number.cannabis_moisture_content_pct') | float(11.8) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Moisture Content"
+
+      cannabis_extraction_queue_count:
+        value_template: "{{ states('input_number.cannabis_extraction_queue_count') | float(64) | round(0) }}"
+        unit_of_measurement: "lots"
+        friendly_name: "Cannabis Extraction Queue"
+
+      cannabis_packaging_throughput_units_hr:
+        value_template: "{{ states('input_number.cannabis_packaging_throughput_units_hr') | float(1420) | round(0) }}"
+        unit_of_measurement: "units/hr"
+        friendly_name: "Cannabis Packaging Throughput"
+
+      cannabis_line_uptime_pct:
+        value_template: "{{ states('input_number.cannabis_line_uptime_pct') | float(91) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Line Uptime"
+
+      cannabis_qc_hold_count:
+        value_template: "{{ states('input_number.cannabis_qc_hold_count') | float(7) | round(0) }}"
+        unit_of_measurement: "lots"
+        friendly_name: "Cannabis QC Hold Count"
+
+      cannabis_access_denied_events_1h:
+        value_template: "{{ states('input_number.cannabis_access_denied_events_1h') | float(3) | round(0) }}"
+        unit_of_measurement: "events"
+        friendly_name: "Cannabis Access Denied (1h)"
+
+      cannabis_guard_coverage_pct:
+        value_template: "{{ states('input_number.cannabis_guard_coverage_pct') | float(94) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Guard Coverage"
+
+      cannabis_camera_health_pct:
+        value_template: "{{ states('input_number.cannabis_camera_health_pct') | float(96) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Camera Health"
+
+      cannabis_camera_alert_count:
+        value_template: "{{ states('input_number.cannabis_camera_alert_count') | float(2) | round(0) }}"
+        unit_of_measurement: "alerts"
+        friendly_name: "Cannabis Camera Alerts"
+
+      cannabis_drone_progress_pct:
+        value_template: "{{ states('input_number.cannabis_drone_progress_pct') | float(0) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Drone Mission Progress"
+
+      cannabis_drone_battery_pct:
+        value_template: "{{ states('input_number.cannabis_drone_battery_pct') | float(88) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Drone Battery"
+
+      cannabis_drone_anomaly_score:
+        value_template: "{{ states('input_number.cannabis_drone_anomaly_score') | float(5) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Drone Anomaly Score"
+
+      cannabis_staff_on_shift_total:
+        value_template: "{{ states('input_number.cannabis_staff_on_shift_total') | float(96) | round(0) }}"
+        unit_of_measurement: "staff"
+        friendly_name: "Cannabis Staff On Shift"
+
+      cannabis_work_orders_open:
+        value_template: "{{ states('input_number.cannabis_work_orders_open') | float(38) | round(0) }}"
+        unit_of_measurement: "work orders"
+        friendly_name: "Cannabis Work Orders Open"
+
+      cannabis_work_orders_overdue:
+        value_template: "{{ states('input_number.cannabis_work_orders_overdue') | float(4) | round(0) }}"
+        unit_of_measurement: "work orders"
+        friendly_name: "Cannabis Work Orders Overdue"
+
+      cannabis_schedule_adherence_pct:
+        value_template: "{{ states('input_number.cannabis_schedule_adherence_pct') | float(93) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Schedule Adherence"
+
+      cannabis_transfer_eta_min:
+        value_template: "{{ states('input_number.cannabis_transfer_eta_min') | float(85) | round(0) }}"
+        unit_of_measurement: "min"
+        friendly_name: "Cannabis Transfer ETA"
+
+      cannabis_transport_risk_idx:
+        value_template: "{{ states('input_number.cannabis_transport_risk_idx') | float(18) | round(1) }}"
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Transport Risk"
+
+      cannabis_total_dried_flower_lbs:
+        value_template: "{{ states('input_number.cannabis_total_dried_flower_lbs') | float(28340) | round(0) }}"
+        unit_of_measurement: "lbs"
+        friendly_name: "Cannabis Dried Flower Inventory"
+
+      cannabis_total_extract_liters:
+        value_template: "{{ states('input_number.cannabis_total_extract_liters') | float(3720) | round(0) }}"
+        unit_of_measurement: "L"
+        friendly_name: "Cannabis Extract Inventory"
+
+      cannabis_total_packaged_units:
+        value_template: "{{ states('input_number.cannabis_total_packaged_units') | float(246500) | round(0) }}"
+        unit_of_measurement: "units"
+        friendly_name: "Cannabis Packaged Units"
+
+      cannabis_schedule_risk_idx:
+        value_template: >
+          {% set open = states('input_number.cannabis_work_orders_open') | float(38) %}
+          {% set overdue = states('input_number.cannabis_work_orders_overdue') | float(4) %}
+          {% set adherence = states('input_number.cannabis_schedule_adherence_pct') | float(93) %}
+          {% set shortage = 22 if is_state('input_boolean.cannabis_staff_shortage_alert', 'on') else 0 %}
+          {% set disruption = 18 if is_state('input_boolean.cannabis_schedule_disruption_active', 'on') else 0 %}
+          {% set risk = (open * 0.18) + (overdue * 2.8) + ((100 - adherence) * 0.7) + shortage + disruption %}
+          {{ [risk, 100] | min | round(1) }}
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Schedule Risk Index"
+
+      cannabis_security_workload_idx:
+        value_template: >
+          {% set denials = states('input_number.cannabis_access_denied_events_1h') | float(3) %}
+          {% set coverage = states('input_number.cannabis_guard_coverage_pct') | float(94) %}
+          {% set intrusion = 28 if is_state('input_boolean.cannabis_security_intrusion', 'on') else 0 %}
+          {% set lockdown = 16 if is_state('input_boolean.cannabis_site_a_perimeter_lockdown', 'on') else 0 %}
+          {% set workload = (denials * 3.2) + ((100 - coverage) * 0.9) + intrusion + lockdown %}
+          {{ [workload, 100] | min | round(1) }}
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Security Workload Index"
+
+      cannabis_dispatch_health_idx:
+        value_template: >
+          {% set eta = states('input_number.cannabis_transfer_eta_min') | float(85) %}
+          {% set risk = states('input_number.cannabis_transport_risk_idx') | float(18) %}
+          {% set queue = states('input_number.transfer_queue_count') | float(2) %}
+          {% set delay = 20 if is_state('input_boolean.cannabis_transport_delay', 'on') else 0 %}
+          {% set health = 100 - ((eta / 8) + (risk * 0.8) + (queue * 2.5) + delay) %}
+          {% set health = [health, 100] | min %}
+          {% set health = [health, 0] | max %}
+          {{ health | round(1) }}
+        unit_of_measurement: "%"
+        friendly_name: "Cannabis Dispatch Health"
+
 #############################################################
 # BINARY SENSORS
 #############################################################
@@ -803,10 +1742,6 @@ binary_sensor:
   - platform: template
     sensors:
       # === WEATHER ALERTS ===
-      frost_risk:
-        value_template: "{{ states('sensor.outdoor_temp_avg') | float(58) < 35 }}"
-        friendly_name: "Frost Risk"
-        
       heat_warning:
         value_template: "{{ states('sensor.greenhouse_temp_avg') | float(70) > 95 }}"
         friendly_name: "Heat Warning"
@@ -882,6 +1817,46 @@ binary_sensor:
              states('input_boolean.pump_well_2') == 'on' or 
              states('input_boolean.pump_main_reservoir') == 'on' }}
         friendly_name: "Pumps Running"
+
+      compliance_alert:
+        value_template: >
+          {{ (states('sensor.compliance_open_items') | float(0)) > 0 or
+             is_state('input_boolean.qa_hold_active', 'on') or
+             is_state('input_boolean.recall_readiness', 'off') }}
+        friendly_name: "Compliance Alert"
+
+      cannabis_coverage_gap:
+        value_template: >
+          {{ (states('input_number.cannabis_guard_coverage_pct') | float(94)) < 85 or
+             is_state('input_boolean.cannabis_badge_system_degraded', 'on') }}
+        friendly_name: "Cannabis Coverage Gap"
+
+      cannabis_security_escalation_required:
+        value_template: >
+          {{ is_state('input_boolean.cannabis_security_intrusion', 'on') or
+             is_state('input_boolean.cannabis_vault_exception_active', 'on') or
+             (states('sensor.cannabis_security_workload_idx') | float(0)) > 70 }}
+        friendly_name: "Cannabis Security Escalation Required"
+
+      cannabis_drone_geofence_breach_active:
+        value_template: "{{ is_state('input_boolean.cannabis_drone_geofence_breach', 'on') }}"
+        friendly_name: "Cannabis Drone Geofence Breach Active"
+
+      cannabis_camera_link_degraded_active:
+        value_template: >
+          {{ is_state('input_boolean.cannabis_camera_link_degraded', 'on') or
+             (states('input_number.cannabis_camera_health_pct') | float(96)) < 75 }}
+        friendly_name: "Cannabis Camera Link Degraded"
+
+      cannabis_dispatch_health_critical:
+        value_template: "{{ (states('sensor.cannabis_dispatch_health_idx') | float(100)) < 50 }}"
+        friendly_name: "Cannabis Dispatch Health Critical"
+
+template:
+  - binary_sensor:
+      - default_entity_id: binary_sensor.frost_risk
+        name: Frost Risk
+        state: "{{ states('sensor.outdoor_temp_avg') | float(58) < 35 }}"
 
 #############################################################
 # TEMPLATE SWITCHES
@@ -1118,14 +2093,14 @@ logbook:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Enable map
-map:
-
 # API (enabled by default)
 api:
 
 # MQTT (for optional MQTT integration)
 mqtt: []
+
+# Sun integration for location-based sunrise/sunset calculations
+sun:
 
 # Automation
 automation: !include automations.yaml
@@ -1153,5 +2128,25 @@ lovelace:
   resources:
     - url: /local/community/mushroom.js
       type: module
+    - url: /local/community/button-card.js
+      type: module
+    - url: /local/community/mini-graph-card-bundle.js
+      type: module
+    - url: /local/community/bar-card.js
+      type: module
     - url: /local/community/apexcharts-card/apexcharts-card.js
       type: module
+    - url: /local/community/card-mod.js
+      type: module
+    - url: /local/community/layout-card.js
+      type: module
+    - url: /local/community/kiosk-mode.js
+      type: module
+  dashboards:
+    lovelace-cannabis:
+      mode: yaml
+      title: Licensed Cannabis Ops
+      icon: mdi:cannabis
+      show_in_sidebar: true
+      require_admin: false
+      filename: ui-lovelace-cannabis.yaml
