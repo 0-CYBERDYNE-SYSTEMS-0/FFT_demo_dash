@@ -746,10 +746,37 @@ async function runAgentActions(ha: ReturnType<typeof createHomeAssistantAdapter>
 async function updateState(
   ha: ReturnType<typeof createHomeAssistantAdapter>,
   state: FarmState,
-  profile: FarmProfile
+  profile: FarmProfile,
+  manualChanges?: Map<string, number>,
+  isEntityRecentlyManuallyChanged?: (entityId: string, gracePeriodMs?: number) => Promise<boolean>
 ): Promise<void> {
   const clamp = (val: number, min: number, max: number) => Math.min(max, Math.max(min, val));
   const states = await ha.getAllStates();
+
+  // Helper: Skip write if entity was manually changed (agent control takes precedence)
+  const setIfNotManuallyChanged = async (
+    entityId: string,
+    value: boolean | number | string
+  ): Promise<void> => {
+    if (!isEntityRecentlyManuallyChanged) {
+      // No check function provided, write normally
+      if (typeof value === 'boolean') return ha.setInputBoolean(entityId, value);
+      if (typeof value === 'number') return ha.setInputNumber(entityId, value);
+      if (typeof value === 'string') return ha.setInputSelect(entityId, value);
+      return;
+    }
+
+    const isManual = await isEntityRecentlyManuallyChanged(entityId, 5000); // 5s grace period
+    if (isManual) {
+      // Entity was manually changed, skip simulator write
+      return;
+    }
+
+    // Not manually changed, write normally
+    if (typeof value === 'boolean') return ha.setInputBoolean(entityId, value);
+    if (typeof value === 'number') return ha.setInputNumber(entityId, value);
+    if (typeof value === 'string') return ha.setInputSelect(entityId, value);
+  };
   const incidentMode = normalizeIncidentMode(
     states.find((e) => e.entity_id === 'input_select.incident_mode')?.state
   );
@@ -1725,9 +1752,9 @@ async function updateState(
       'input_boolean.cannabis_site_a_packaging_line_enable',
       state.cannabisPackagingLineEnable
     ),
-    ha.setInputBoolean('input_boolean.cannabis_site_a_perimeter_lockdown', state.cannabisPerimeterLockdown),
-    ha.setInputBoolean('input_boolean.cannabis_site_a_vault_lock', state.cannabisVaultLock),
-    ha.setInputBoolean('input_boolean.cannabis_site_a_camera_ptz_patrol', state.cannabisCameraPtzPatrol),
+    setIfNotManuallyChanged('input_boolean.cannabis_site_a_perimeter_lockdown', state.cannabisPerimeterLockdown),
+    setIfNotManuallyChanged('input_boolean.cannabis_site_a_vault_lock', state.cannabisVaultLock),
+    setIfNotManuallyChanged('input_boolean.cannabis_site_a_camera_ptz_patrol', state.cannabisCameraPtzPatrol),
     ha.setInputBoolean('input_boolean.cannabis_vault_exception_active', state.cannabisVaultExceptionActive),
     ha.setInputBoolean('input_boolean.cannabis_badge_system_degraded', state.cannabisBadgeSystemDegraded),
     ha.setInputBoolean('input_boolean.cannabis_staff_shortage_alert', state.cannabisStaffShortageAlert),
@@ -1743,13 +1770,13 @@ async function updateState(
     ha.setInputBoolean('input_boolean.cannabis_fertigation_alarm', state.cannabisFertigationAlarm),
     ha.setInputBoolean('input_boolean.cannabis_transport_delay', state.cannabisTransportDelay),
     ha.setInputBoolean('input_boolean.cannabis_security_intrusion', state.cannabisSecurityIntrusion),
-    ha.setInputSelect('input_select.cannabis_shift_mode', state.cannabisShiftMode),
-    ha.setInputSelect('input_select.cannabis_site_focus', state.cannabisSiteFocus),
-    ha.setInputSelect('input_select.cannabis_security_posture', state.cannabisSecurityPosture),
-    ha.setInputSelect('input_select.cannabis_drone_mission_state', state.cannabisDroneMissionState),
-    ha.setInputSelect('input_select.cannabis_scenario', state.cannabisScenario),
-    ha.setInputSelect('input_select.cannabis_env_recipe', state.cannabisEnvRecipe),
-    ha.setInputSelect('input_select.cannabis_control_profile', state.cannabisControlProfile),
+    setIfNotManuallyChanged('input_select.cannabis_shift_mode', state.cannabisShiftMode),
+    setIfNotManuallyChanged('input_select.cannabis_site_focus', state.cannabisSiteFocus),
+    setIfNotManuallyChanged('input_select.cannabis_security_posture', state.cannabisSecurityPosture),
+    setIfNotManuallyChanged('input_select.cannabis_drone_mission_state', state.cannabisDroneMissionState),
+    setIfNotManuallyChanged('input_select.cannabis_scenario', state.cannabisScenario),
+    setIfNotManuallyChanged('input_select.cannabis_env_recipe', state.cannabisEnvRecipe),
+    setIfNotManuallyChanged('input_select.cannabis_control_profile', state.cannabisControlProfile),
     ha.setInputText('input_text.cannabis_shift_supervisor', state.cannabisShiftSupervisor),
     ha.setInputText('input_text.cannabis_next_critical_task', state.cannabisNextCriticalTask),
     ha.setInputText('input_text.cannabis_dispatch_channel_status', state.cannabisDispatchChannelStatus),
@@ -1761,10 +1788,10 @@ async function updateState(
     ha.setInputText('input_text.cannabis_manifest_live_id', state.cannabisManifestLiveId),
 
     // Grow room tracking
-    ha.setInputSelect('input_select.cannabis_room_a_stage', state.cannabisRoomAStage),
-    ha.setInputSelect('input_select.cannabis_room_b_stage', state.cannabisRoomBStage),
-    ha.setInputSelect('input_select.cannabis_room_c_stage', state.cannabisRoomCStage),
-    ha.setInputSelect('input_select.cannabis_room_d_stage', state.cannabisRoomDStage),
+    setIfNotManuallyChanged('input_select.cannabis_room_a_stage', state.cannabisRoomAStage),
+    setIfNotManuallyChanged('input_select.cannabis_room_b_stage', state.cannabisRoomBStage),
+    setIfNotManuallyChanged('input_select.cannabis_room_c_stage', state.cannabisRoomCStage),
+    setIfNotManuallyChanged('input_select.cannabis_room_d_stage', state.cannabisRoomDStage),
     ha.setInputNumber('input_number.cannabis_room_a_days_in_stage', state.cannabisRoomADaysInStage),
     ha.setInputNumber('input_number.cannabis_room_b_days_in_stage', state.cannabisRoomBDaysInStage),
     ha.setInputNumber('input_number.cannabis_room_c_days_in_stage', state.cannabisRoomCDaysInStage),
@@ -1865,6 +1892,37 @@ async function runSimulation() {
   }
 
   let iteration = 0;
+  // Track entities that were manually changed to prevent simulator override during demos
+  const manualChanges = new Map<string, number>(); // entity_id -> timestamp of last manual change
+
+  const isEntityRecentlyManuallyChanged = async (
+    entityId: string,
+    gracePeriodMs: number = 5000
+  ): Promise<boolean> => {
+    try {
+      const response = await fetch(
+        `${process.env.HA_URL}/api/states/${entityId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${process.env.HA_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (!response.ok) return false;
+
+      const data = (await response.json()) as { last_changed?: string };
+      if (!data.last_changed) return false;
+
+      const lastChangedTime = new Date(data.last_changed).getTime();
+      const timeSinceChange = Date.now() - lastChangedTime;
+
+      // If changed recently and not by the simulator, it's a manual change
+      return timeSinceChange < gracePeriodMs;
+    } catch {
+      return false;
+    }
+  };
 
   const tick = async () => {
     try {
@@ -1874,7 +1932,7 @@ async function runSimulation() {
         console.log(`[${new Date().toISOString()}] Switched simulation profile -> ${activeProfile}`);
       }
 
-      await updateState(ha, currentState, activeProfile);
+      await updateState(ha, currentState, activeProfile, manualChanges, isEntityRecentlyManuallyChanged);
 
       iteration++;
       if (iteration % 12 === 0) {
