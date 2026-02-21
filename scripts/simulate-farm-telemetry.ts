@@ -366,6 +366,87 @@ interface FarmState {
   cannabisBrowserOpsPrimaryUrl: string;
   cannabisBrowserOpsSecondaryUrl: string;
   cannabisManifestLiveId: string;
+
+  // Grow room tracking
+  cannabisRoomAStage: string;
+  cannabisRoomBStage: string;
+  cannabisRoomCStage: string;
+  cannabisRoomDStage: string;
+  cannabisRoomADaysInStage: number;
+  cannabisRoomBDaysInStage: number;
+  cannabisRoomCDaysInStage: number;
+  cannabisRoomDDaysInStage: number;
+  cannabisRoomAPlantCount: number;
+  cannabisRoomBPlantCount: number;
+  cannabisRoomCPlantCount: number;
+  cannabisRoomDPlantCount: number;
+  cannabisRoomAExpectedYieldLbs: number;
+  cannabisRoomBExpectedYieldLbs: number;
+  cannabisRoomCExpectedYieldLbs: number;
+  cannabisRoomDExpectedYieldLbs: number;
+
+  // IPM
+  cannabisIpmPestPressureRoomA: number;
+  cannabisIpmPestPressureRoomB: number;
+  cannabisIpmPestPressureRoomC: number;
+  cannabisIpmPestPressureRoomD: number;
+  cannabisIpmDaysSinceSprayRoomA: number;
+  cannabisIpmDaysSinceSprayRoomB: number;
+  cannabisIpmDaysSinceSprayRoomC: number;
+  cannabisIpmDaysSinceSprayRoomD: number;
+  cannabisIpmScoutingDueRoomA: boolean;
+  cannabisIpmScoutingDueRoomB: boolean;
+  cannabisIpmScoutingDueRoomC: boolean;
+  cannabisIpmScoutingDueRoomD: boolean;
+  cannabisIpmZoneAQuarantine: boolean;
+  cannabisIpmZoneBQuarantine: boolean;
+  cannabisIpmZoneCQuarantine: boolean;
+  cannabisIpmZoneDQuarantine: boolean;
+
+  // Extraction lab
+  cannabisLabExtractionActive: boolean;
+  cannabisLabSafetyInterlockOk: boolean;
+  cannabisLabPpeComplianceActive: boolean;
+  cannabisLabSolventAlarm: boolean;
+  cannabisLabBatchQueueCount: number;
+  cannabisLabExtractionYieldPct: number;
+  cannabisLabSolventRecoveryPct: number;
+  cannabisLabActiveBatchDurationHrs: number;
+  cannabisLabRoomTempF: number;
+  cannabisLabRoomRhPct: number;
+  cannabisLabVentilationPct: number;
+  cannabisLabWeeklyThroughputLbsBiomass: number;
+  cannabisLabCrudeOilLbs: number;
+  cannabisLabDistillateLiters: number;
+  cannabisLabIsolateKg: number;
+  cannabisLabRosinGrams: number;
+
+  // Dispensary
+  cannabisDispensaryDailySalesUsd: number;
+  cannabisDispensaryTransactionCount: number;
+  cannabisDispensaryAvgBasketUsd: number;
+  cannabisDispensaryPatientCountToday: number;
+  cannabisDispensaryStaffFloor: number;
+  cannabisDispensaryComplianceHolds: number;
+  cannabisDispensaryFlowerInventoryGrams: number;
+  cannabisDispensaryExtractInventoryGrams: number;
+  cannabisDispensaryEdiblesInventoryUnits: number;
+  cannabisDispensaryPrerollInventoryUnits: number;
+  cannabisDispensaryPosOnline: boolean;
+  cannabisDispensaryMetrcPosSyncOk: boolean;
+  cannabisDispensaryLowInventoryAlert: boolean;
+
+  // Financial
+  cannabisFinancialCostPerGramFlower: number;
+  cannabisFinancialCostPerPoundBiomass: number;
+  cannabisFinancialLaborCostToday: number;
+  cannabisFinancialEnergyCostToday: number;
+  cannabisFinancialBatchRevenueUsd: number;
+  cannabisFinancialGrossMarginPct: number;
+
+  // Compliance extension
+  cannabisLicenseDaysRemaining: number;
+  cannabisDestructionEventCount: number;
 }
 
 function loadDotEnv(path = '.env') {
@@ -548,6 +629,87 @@ async function getCurrentState(ha: ReturnType<typeof createHomeAssistantAdapter>
     cannabisBrowserOpsPrimaryUrl: getStringState('input_text.cannabis_browser_ops_primary_url', 'https://radar.weather.gov/'),
     cannabisBrowserOpsSecondaryUrl: getStringState('input_text.cannabis_browser_ops_secondary_url', 'https://www.ospo.noaa.gov/Products/imagery/goes.html'),
     cannabisManifestLiveId: getStringState('input_text.cannabis_manifest_live_id', 'CAN-MAN-2402-0001'),
+
+    // Grow room tracking
+    cannabisRoomAStage: getStringState('input_select.cannabis_room_a_stage', 'Flower Wk4'),
+    cannabisRoomBStage: getStringState('input_select.cannabis_room_b_stage', 'Flower Wk7'),
+    cannabisRoomCStage: getStringState('input_select.cannabis_room_c_stage', 'Flush'),
+    cannabisRoomDStage: getStringState('input_select.cannabis_room_d_stage', 'Veg'),
+    cannabisRoomADaysInStage: getNumberState('input_number.cannabis_room_a_days_in_stage', 26),
+    cannabisRoomBDaysInStage: getNumberState('input_number.cannabis_room_b_days_in_stage', 47),
+    cannabisRoomCDaysInStage: getNumberState('input_number.cannabis_room_c_days_in_stage', 6),
+    cannabisRoomDDaysInStage: getNumberState('input_number.cannabis_room_d_days_in_stage', 18),
+    cannabisRoomAPlantCount: getNumberState('input_number.cannabis_room_a_plant_count', 120),
+    cannabisRoomBPlantCount: getNumberState('input_number.cannabis_room_b_plant_count', 108),
+    cannabisRoomCPlantCount: getNumberState('input_number.cannabis_room_c_plant_count', 115),
+    cannabisRoomDPlantCount: getNumberState('input_number.cannabis_room_d_plant_count', 130),
+    cannabisRoomAExpectedYieldLbs: getNumberState('input_number.cannabis_room_a_expected_yield_lbs', 18.5),
+    cannabisRoomBExpectedYieldLbs: getNumberState('input_number.cannabis_room_b_expected_yield_lbs', 16.2),
+    cannabisRoomCExpectedYieldLbs: getNumberState('input_number.cannabis_room_c_expected_yield_lbs', 17.8),
+    cannabisRoomDExpectedYieldLbs: getNumberState('input_number.cannabis_room_d_expected_yield_lbs', 21.0),
+
+    // IPM
+    cannabisIpmPestPressureRoomA: getNumberState('input_number.cannabis_ipm_pest_pressure_room_a', 1.8),
+    cannabisIpmPestPressureRoomB: getNumberState('input_number.cannabis_ipm_pest_pressure_room_b', 3.2),
+    cannabisIpmPestPressureRoomC: getNumberState('input_number.cannabis_ipm_pest_pressure_room_c', 0.9),
+    cannabisIpmPestPressureRoomD: getNumberState('input_number.cannabis_ipm_pest_pressure_room_d', 2.1),
+    cannabisIpmDaysSinceSprayRoomA: getNumberState('input_number.cannabis_ipm_days_since_spray_room_a', 8),
+    cannabisIpmDaysSinceSprayRoomB: getNumberState('input_number.cannabis_ipm_days_since_spray_room_b', 3),
+    cannabisIpmDaysSinceSprayRoomC: getNumberState('input_number.cannabis_ipm_days_since_spray_room_c', 12),
+    cannabisIpmDaysSinceSprayRoomD: getNumberState('input_number.cannabis_ipm_days_since_spray_room_d', 5),
+    cannabisIpmScoutingDueRoomA: getBooleanState('input_boolean.cannabis_ipm_scouting_due_room_a'),
+    cannabisIpmScoutingDueRoomB: getBooleanState('input_boolean.cannabis_ipm_scouting_due_room_b'),
+    cannabisIpmScoutingDueRoomC: getBooleanState('input_boolean.cannabis_ipm_scouting_due_room_c'),
+    cannabisIpmScoutingDueRoomD: getBooleanState('input_boolean.cannabis_ipm_scouting_due_room_d'),
+    cannabisIpmZoneAQuarantine: getBooleanState('input_boolean.cannabis_ipm_zone_a_quarantine'),
+    cannabisIpmZoneBQuarantine: getBooleanState('input_boolean.cannabis_ipm_zone_b_quarantine'),
+    cannabisIpmZoneCQuarantine: getBooleanState('input_boolean.cannabis_ipm_zone_c_quarantine'),
+    cannabisIpmZoneDQuarantine: getBooleanState('input_boolean.cannabis_ipm_zone_d_quarantine'),
+
+    // Extraction lab
+    cannabisLabExtractionActive: getBooleanState('input_boolean.cannabis_lab_extraction_active'),
+    cannabisLabSafetyInterlockOk: getBooleanState('input_boolean.cannabis_lab_safety_interlock_ok'),
+    cannabisLabPpeComplianceActive: getBooleanState('input_boolean.cannabis_lab_ppe_compliance_active'),
+    cannabisLabSolventAlarm: getBooleanState('input_boolean.cannabis_lab_solvent_alarm'),
+    cannabisLabBatchQueueCount: getNumberState('input_number.cannabis_lab_batch_queue_count', 3),
+    cannabisLabExtractionYieldPct: getNumberState('input_number.cannabis_lab_extraction_yield_pct', 78.5),
+    cannabisLabSolventRecoveryPct: getNumberState('input_number.cannabis_lab_solvent_recovery_pct', 88.2),
+    cannabisLabActiveBatchDurationHrs: getNumberState('input_number.cannabis_lab_active_batch_duration_hrs', 4.5),
+    cannabisLabRoomTempF: getNumberState('input_number.cannabis_lab_room_temp_f', 68.0),
+    cannabisLabRoomRhPct: getNumberState('input_number.cannabis_lab_room_rh_pct', 42.0),
+    cannabisLabVentilationPct: getNumberState('input_number.cannabis_lab_ventilation_pct', 85),
+    cannabisLabWeeklyThroughputLbsBiomass: getNumberState('input_number.cannabis_lab_weekly_throughput_lbs_biomass', 120),
+    cannabisLabCrudeOilLbs: getNumberState('input_number.cannabis_lab_crude_oil_lbs', 12.4),
+    cannabisLabDistillateLiters: getNumberState('input_number.cannabis_lab_distillate_liters', 8.2),
+    cannabisLabIsolateKg: getNumberState('input_number.cannabis_lab_isolate_kg', 1.85),
+    cannabisLabRosinGrams: getNumberState('input_number.cannabis_lab_rosin_grams', 340),
+
+    // Dispensary
+    cannabisDispensaryDailySalesUsd: getNumberState('input_number.cannabis_dispensary_daily_sales_usd', 8420),
+    cannabisDispensaryTransactionCount: getNumberState('input_number.cannabis_dispensary_transaction_count', 84),
+    cannabisDispensaryAvgBasketUsd: getNumberState('input_number.cannabis_dispensary_avg_basket_usd', 100.24),
+    cannabisDispensaryPatientCountToday: getNumberState('input_number.cannabis_dispensary_patient_count_today', 78),
+    cannabisDispensaryStaffFloor: getNumberState('input_number.cannabis_dispensary_staff_floor', 4),
+    cannabisDispensaryComplianceHolds: getNumberState('input_number.cannabis_dispensary_compliance_holds', 0),
+    cannabisDispensaryFlowerInventoryGrams: getNumberState('input_number.cannabis_dispensary_flower_inventory_grams', 1840),
+    cannabisDispensaryExtractInventoryGrams: getNumberState('input_number.cannabis_dispensary_extract_inventory_grams', 620),
+    cannabisDispensaryEdiblesInventoryUnits: getNumberState('input_number.cannabis_dispensary_edibles_inventory_units', 145),
+    cannabisDispensaryPrerollInventoryUnits: getNumberState('input_number.cannabis_dispensary_preroll_inventory_units', 88),
+    cannabisDispensaryPosOnline: getBooleanState('input_boolean.cannabis_dispensary_pos_online'),
+    cannabisDispensaryMetrcPosSyncOk: getBooleanState('input_boolean.cannabis_dispensary_metrc_pos_sync_ok'),
+    cannabisDispensaryLowInventoryAlert: getBooleanState('input_boolean.cannabis_dispensary_low_inventory_alert'),
+
+    // Financial
+    cannabisFinancialCostPerGramFlower: getNumberState('input_number.cannabis_financial_cost_per_gram_flower', 1.42),
+    cannabisFinancialCostPerPoundBiomass: getNumberState('input_number.cannabis_financial_cost_per_pound_biomass', 85),
+    cannabisFinancialLaborCostToday: getNumberState('input_number.cannabis_financial_labor_cost_today', 2840),
+    cannabisFinancialEnergyCostToday: getNumberState('input_number.cannabis_financial_energy_cost_today', 1120),
+    cannabisFinancialBatchRevenueUsd: getNumberState('input_number.cannabis_financial_batch_revenue_usd', 42000),
+    cannabisFinancialGrossMarginPct: getNumberState('input_number.cannabis_financial_gross_margin_pct', 58.4),
+
+    // Compliance extension
+    cannabisLicenseDaysRemaining: getNumberState('input_number.cannabis_license_days_remaining', 187),
+    cannabisDestructionEventCount: getNumberState('input_number.cannabis_destruction_event_count', 2),
   };
 }
 
@@ -1240,6 +1402,197 @@ async function updateState(
   state.cannabisTotalExtractLiters = roundTo(state.cannabisTotalExtractLiters, 1);
   state.cannabisTotalPackagedUnits = roundTo(state.cannabisTotalPackagedUnits, 0);
 
+  // === GROW ROOM PHYSICS ===
+  const STAGE_ORDER = [
+    'Clone', 'Veg', 'Transition',
+    'Flower Wk1', 'Flower Wk2', 'Flower Wk3', 'Flower Wk4',
+    'Flower Wk5', 'Flower Wk6', 'Flower Wk7', 'Flower Wk8',
+    'Flush', 'Harvest', 'Empty',
+  ];
+  const STAGE_DURATIONS: Record<string, number> = {
+    Clone: 14, Veg: 28, Transition: 7,
+    'Flower Wk1': 7, 'Flower Wk2': 7, 'Flower Wk3': 7, 'Flower Wk4': 7,
+    'Flower Wk5': 7, 'Flower Wk6': 7, 'Flower Wk7': 7, 'Flower Wk8': 7,
+    Flush: 10, Harvest: 1, Empty: 999,
+  };
+
+  type RoomKey = 'A' | 'B' | 'C' | 'D';
+  const advanceRoom = (
+    stage: string,
+    days: number
+  ): { stage: string; days: number } => {
+    const duration = STAGE_DURATIONS[stage] ?? 7;
+    if (days >= duration && stage !== 'Empty') {
+      const idx = STAGE_ORDER.indexOf(stage);
+      const nextStage = idx >= 0 && idx < STAGE_ORDER.length - 1 ? STAGE_ORDER[idx + 1] : 'Empty';
+      return { stage: nextStage, days: 0 };
+    }
+    // Increment days once per ~20 ticks (roughly 1 day per 20 sim ticks)
+    const newDays = Math.random() < 0.05 ? days + 1 : days;
+    return { stage, days: newDays };
+  };
+
+  const roomA = advanceRoom(state.cannabisRoomAStage, state.cannabisRoomADaysInStage);
+  state.cannabisRoomAStage = roomA.stage;
+  state.cannabisRoomADaysInStage = roomA.days;
+
+  const roomB = advanceRoom(state.cannabisRoomBStage, state.cannabisRoomBDaysInStage);
+  state.cannabisRoomBStage = roomB.stage;
+  state.cannabisRoomBDaysInStage = roomB.days;
+
+  const roomC = advanceRoom(state.cannabisRoomCStage, state.cannabisRoomCDaysInStage);
+  state.cannabisRoomCStage = roomC.stage;
+  state.cannabisRoomCDaysInStage = roomC.days;
+
+  const roomD = advanceRoom(state.cannabisRoomDStage, state.cannabisRoomDDaysInStage);
+  state.cannabisRoomDStage = roomD.stage;
+  state.cannabisRoomDDaysInStage = roomD.days;
+
+  // === IPM PHYSICS ===
+  const isFlowerBlackout = (stage: string, days: number) => stage.startsWith('Flower') && days >= 10;
+
+  // Pest pressure drift: +0.08 baseline, random noise
+  const ipmDrift = 0.08 + (Math.random() - 0.5) * 0.04;
+  state.cannabisIpmPestPressureRoomA = clamp(state.cannabisIpmPestPressureRoomA + ipmDrift, 0, 10);
+  state.cannabisIpmPestPressureRoomB = clamp(state.cannabisIpmPestPressureRoomB + ipmDrift * 0.9, 0, 10);
+  state.cannabisIpmPestPressureRoomC = clamp(state.cannabisIpmPestPressureRoomC + ipmDrift * 1.1, 0, 10);
+  state.cannabisIpmPestPressureRoomD = clamp(state.cannabisIpmPestPressureRoomD + ipmDrift * 0.95, 0, 10);
+
+  // Spray events (random ~2% chance/tick, blocked in flower blackout)
+  if (Math.random() < 0.02 && !isFlowerBlackout(state.cannabisRoomAStage, state.cannabisRoomADaysInStage)) {
+    state.cannabisIpmPestPressureRoomA = clamp(state.cannabisIpmPestPressureRoomA - 3.0, 0, 10);
+    state.cannabisIpmDaysSinceSprayRoomA = 0;
+  } else {
+    state.cannabisIpmDaysSinceSprayRoomA = Math.min(state.cannabisIpmDaysSinceSprayRoomA + (Math.random() < 0.05 ? 1 : 0), 60);
+  }
+  if (Math.random() < 0.02 && !isFlowerBlackout(state.cannabisRoomBStage, state.cannabisRoomBDaysInStage)) {
+    state.cannabisIpmPestPressureRoomB = clamp(state.cannabisIpmPestPressureRoomB - 3.0, 0, 10);
+    state.cannabisIpmDaysSinceSprayRoomB = 0;
+  } else {
+    state.cannabisIpmDaysSinceSprayRoomB = Math.min(state.cannabisIpmDaysSinceSprayRoomB + (Math.random() < 0.05 ? 1 : 0), 60);
+  }
+  if (Math.random() < 0.02 && !isFlowerBlackout(state.cannabisRoomCStage, state.cannabisRoomCDaysInStage)) {
+    state.cannabisIpmPestPressureRoomC = clamp(state.cannabisIpmPestPressureRoomC - 3.0, 0, 10);
+    state.cannabisIpmDaysSinceSprayRoomC = 0;
+  } else {
+    state.cannabisIpmDaysSinceSprayRoomC = Math.min(state.cannabisIpmDaysSinceSprayRoomC + (Math.random() < 0.05 ? 1 : 0), 60);
+  }
+  if (Math.random() < 0.02 && !isFlowerBlackout(state.cannabisRoomDStage, state.cannabisRoomDDaysInStage)) {
+    state.cannabisIpmPestPressureRoomD = clamp(state.cannabisIpmPestPressureRoomD - 3.0, 0, 10);
+    state.cannabisIpmDaysSinceSprayRoomD = 0;
+  } else {
+    state.cannabisIpmDaysSinceSprayRoomD = Math.min(state.cannabisIpmDaysSinceSprayRoomD + (Math.random() < 0.05 ? 1 : 0), 60);
+  }
+
+  // Scouting due: flip every ~7 day cycle approximation
+  if (state.cannabisIpmDaysSinceSprayRoomA >= 7) state.cannabisIpmScoutingDueRoomA = true;
+  if (state.cannabisIpmDaysSinceSprayRoomB >= 7) state.cannabisIpmScoutingDueRoomB = true;
+  if (state.cannabisIpmDaysSinceSprayRoomC >= 7) state.cannabisIpmScoutingDueRoomC = true;
+  if (state.cannabisIpmDaysSinceSprayRoomD >= 7) state.cannabisIpmScoutingDueRoomD = true;
+
+  // Round IPM values
+  state.cannabisIpmPestPressureRoomA = roundTo(state.cannabisIpmPestPressureRoomA, 1);
+  state.cannabisIpmPestPressureRoomB = roundTo(state.cannabisIpmPestPressureRoomB, 1);
+  state.cannabisIpmPestPressureRoomC = roundTo(state.cannabisIpmPestPressureRoomC, 1);
+  state.cannabisIpmPestPressureRoomD = roundTo(state.cannabisIpmPestPressureRoomD, 1);
+
+  // === LAB PHYSICS ===
+  if (state.cannabisLabExtractionActive) {
+    state.cannabisLabActiveBatchDurationHrs = state.cannabisLabActiveBatchDurationHrs + 0.25;
+    // Batch completes around 8 hrs
+    if (state.cannabisLabActiveBatchDurationHrs >= 8.0) {
+      const yieldPct = clamp(75 + (Math.random() - 0.5) * 10, 60, 95);
+      state.cannabisLabExtractionYieldPct = roundTo(yieldPct, 1);
+      state.cannabisLabDistillateLiters = clamp(state.cannabisLabDistillateLiters + yieldPct * 0.05, 0, 50);
+      state.cannabisLabActiveBatchDurationHrs = 0;
+      state.cannabisLabBatchQueueCount = Math.max(0, state.cannabisLabBatchQueueCount - 1);
+    }
+  }
+  state.cannabisLabSolventRecoveryPct = clamp(state.cannabisLabSolventRecoveryPct + (Math.random() - 0.5) * 0.5, 82, 95);
+  state.cannabisLabRoomTempF = clamp(state.cannabisLabRoomTempF + (Math.random() - 0.5) * 0.3, 50, 85);
+  state.cannabisLabRoomRhPct = clamp(state.cannabisLabRoomRhPct + (Math.random() - 0.5) * 0.5, 10, 60);
+  state.cannabisLabVentilationPct = clamp(state.cannabisLabVentilationPct + (Math.random() - 0.5) * 2, 0, 100);
+
+  // Safety interlock fault: 0.5% chance per tick, auto-clears
+  if (!state.cannabisLabSolventAlarm && Math.random() < 0.005) {
+    state.cannabisLabSafetyInterlockOk = false;
+  } else if (!state.cannabisLabSafetyInterlockOk && Math.random() < 0.33) {
+    state.cannabisLabSafetyInterlockOk = true;
+  }
+
+  state.cannabisLabActiveBatchDurationHrs = roundTo(state.cannabisLabActiveBatchDurationHrs, 1);
+  state.cannabisLabSolventRecoveryPct = roundTo(state.cannabisLabSolventRecoveryPct, 1);
+  state.cannabisLabRoomTempF = roundTo(state.cannabisLabRoomTempF, 1);
+  state.cannabisLabRoomRhPct = roundTo(state.cannabisLabRoomRhPct, 1);
+  state.cannabisLabVentilationPct = roundTo(state.cannabisLabVentilationPct, 0);
+
+  // === DISPENSARY PHYSICS ===
+  const SALES_MULTIPLIER: Record<number, number> = {
+    8: 0.4, 9: 0.6, 10: 0.7, 11: 0.9, 12: 1.2, 13: 1.1,
+    14: 0.9, 15: 0.8, 16: 0.85, 17: 1.15, 18: 1.0, 19: 0.8,
+    20: 0.6, 21: 0.3,
+  };
+  const salesMultiplier = SALES_MULTIPLIER[hour] ?? 0.5;
+  const salesIncrement = salesMultiplier * 50 * (1 + (Math.random() - 0.5) * 0.3);
+  state.cannabisDispensaryDailySalesUsd = clamp(state.cannabisDispensaryDailySalesUsd + salesIncrement, 0, 50000);
+  state.cannabisDispensaryTransactionCount = clamp(
+    Math.floor(state.cannabisDispensaryDailySalesUsd / Math.max(state.cannabisDispensaryAvgBasketUsd, 10)),
+    0, 500
+  );
+  state.cannabisDispensaryAvgBasketUsd = clamp(
+    state.cannabisDispensaryAvgBasketUsd + (Math.random() - 0.5) * 2,
+    30, 200
+  );
+  state.cannabisDispensaryPatientCountToday = clamp(
+    Math.floor(state.cannabisDispensaryTransactionCount * 0.95),
+    0, 500
+  );
+
+  // Inventory depletion
+  state.cannabisDispensaryFlowerInventoryGrams = clamp(
+    state.cannabisDispensaryFlowerInventoryGrams - salesMultiplier * 3,
+    0, 5000
+  );
+  state.cannabisDispensaryExtractInventoryGrams = clamp(
+    state.cannabisDispensaryExtractInventoryGrams - salesMultiplier * 1,
+    0, 2000
+  );
+
+  // Low inventory alert
+  state.cannabisDispensaryLowInventoryAlert =
+    state.cannabisDispensaryFlowerInventoryGrams < 100 ||
+    state.cannabisDispensaryExtractInventoryGrams < 50;
+
+  state.cannabisDispensaryDailySalesUsd = roundTo(state.cannabisDispensaryDailySalesUsd, 0);
+  state.cannabisDispensaryAvgBasketUsd = roundTo(state.cannabisDispensaryAvgBasketUsd, 2);
+  state.cannabisDispensaryFlowerInventoryGrams = roundTo(state.cannabisDispensaryFlowerInventoryGrams, 0);
+  state.cannabisDispensaryExtractInventoryGrams = roundTo(state.cannabisDispensaryExtractInventoryGrams, 0);
+
+  // === FINANCIAL PHYSICS ===
+  const totalCost = state.cannabisFinancialLaborCostToday + state.cannabisFinancialEnergyCostToday;
+  const flowerGrams = state.cannabisTotalDriedFlowerLbs * 453.6;
+  state.cannabisFinancialCostPerGramFlower = flowerGrams > 0
+    ? roundTo(totalCost / flowerGrams, 2)
+    : state.cannabisFinancialCostPerGramFlower;
+
+  const energyBias = activeScenario === 'HVAC Saturation' ? 1.15 : 1.0;
+  state.cannabisFinancialEnergyCostToday = clamp(
+    state.cannabisFinancialEnergyCostToday + energyBias * (Math.random() - 0.4) * 20,
+    0, 5000
+  );
+  state.cannabisFinancialLaborCostToday = clamp(
+    state.cannabisFinancialLaborCostToday + (Math.random() - 0.4) * 15,
+    0, 10000
+  );
+  if (state.cannabisFinancialBatchRevenueUsd > 0) {
+    state.cannabisFinancialGrossMarginPct = roundTo(
+      ((state.cannabisFinancialBatchRevenueUsd - totalCost) / state.cannabisFinancialBatchRevenueUsd) * 100,
+      1
+    );
+  }
+  state.cannabisFinancialEnergyCostToday = roundTo(state.cannabisFinancialEnergyCostToday, 0);
+  state.cannabisFinancialLaborCostToday = roundTo(state.cannabisFinancialLaborCostToday, 0);
+
   const writeResults = await Promise.allSettled([
     ha.setInputNumber('input_number.wind_speed', state.windSpeed),
     ha.setInputNumber('input_number.wind_direction', state.windDirection),
@@ -1406,6 +1759,62 @@ async function updateState(
       state.cannabisBrowserOpsSecondaryUrl
     ),
     ha.setInputText('input_text.cannabis_manifest_live_id', state.cannabisManifestLiveId),
+
+    // Grow room tracking
+    ha.setInputSelect('input_select.cannabis_room_a_stage', state.cannabisRoomAStage),
+    ha.setInputSelect('input_select.cannabis_room_b_stage', state.cannabisRoomBStage),
+    ha.setInputSelect('input_select.cannabis_room_c_stage', state.cannabisRoomCStage),
+    ha.setInputSelect('input_select.cannabis_room_d_stage', state.cannabisRoomDStage),
+    ha.setInputNumber('input_number.cannabis_room_a_days_in_stage', state.cannabisRoomADaysInStage),
+    ha.setInputNumber('input_number.cannabis_room_b_days_in_stage', state.cannabisRoomBDaysInStage),
+    ha.setInputNumber('input_number.cannabis_room_c_days_in_stage', state.cannabisRoomCDaysInStage),
+    ha.setInputNumber('input_number.cannabis_room_d_days_in_stage', state.cannabisRoomDDaysInStage),
+
+    // IPM
+    ha.setInputNumber('input_number.cannabis_ipm_pest_pressure_room_a', state.cannabisIpmPestPressureRoomA),
+    ha.setInputNumber('input_number.cannabis_ipm_pest_pressure_room_b', state.cannabisIpmPestPressureRoomB),
+    ha.setInputNumber('input_number.cannabis_ipm_pest_pressure_room_c', state.cannabisIpmPestPressureRoomC),
+    ha.setInputNumber('input_number.cannabis_ipm_pest_pressure_room_d', state.cannabisIpmPestPressureRoomD),
+    ha.setInputNumber('input_number.cannabis_ipm_days_since_spray_room_a', state.cannabisIpmDaysSinceSprayRoomA),
+    ha.setInputNumber('input_number.cannabis_ipm_days_since_spray_room_b', state.cannabisIpmDaysSinceSprayRoomB),
+    ha.setInputNumber('input_number.cannabis_ipm_days_since_spray_room_c', state.cannabisIpmDaysSinceSprayRoomC),
+    ha.setInputNumber('input_number.cannabis_ipm_days_since_spray_room_d', state.cannabisIpmDaysSinceSprayRoomD),
+    ha.setInputBoolean('input_boolean.cannabis_ipm_scouting_due_room_a', state.cannabisIpmScoutingDueRoomA),
+    ha.setInputBoolean('input_boolean.cannabis_ipm_scouting_due_room_b', state.cannabisIpmScoutingDueRoomB),
+    ha.setInputBoolean('input_boolean.cannabis_ipm_scouting_due_room_c', state.cannabisIpmScoutingDueRoomC),
+    ha.setInputBoolean('input_boolean.cannabis_ipm_scouting_due_room_d', state.cannabisIpmScoutingDueRoomD),
+
+    // Lab
+    ha.setInputBoolean('input_boolean.cannabis_lab_extraction_active', state.cannabisLabExtractionActive),
+    ha.setInputBoolean('input_boolean.cannabis_lab_safety_interlock_ok', state.cannabisLabSafetyInterlockOk),
+    ha.setInputBoolean('input_boolean.cannabis_lab_ppe_compliance_active', state.cannabisLabPpeComplianceActive),
+    ha.setInputBoolean('input_boolean.cannabis_lab_solvent_alarm', state.cannabisLabSolventAlarm),
+    ha.setInputNumber('input_number.cannabis_lab_batch_queue_count', state.cannabisLabBatchQueueCount),
+    ha.setInputNumber('input_number.cannabis_lab_extraction_yield_pct', state.cannabisLabExtractionYieldPct),
+    ha.setInputNumber('input_number.cannabis_lab_solvent_recovery_pct', state.cannabisLabSolventRecoveryPct),
+    ha.setInputNumber('input_number.cannabis_lab_active_batch_duration_hrs', state.cannabisLabActiveBatchDurationHrs),
+    ha.setInputNumber('input_number.cannabis_lab_room_temp_f', state.cannabisLabRoomTempF),
+    ha.setInputNumber('input_number.cannabis_lab_room_rh_pct', state.cannabisLabRoomRhPct),
+    ha.setInputNumber('input_number.cannabis_lab_ventilation_pct', state.cannabisLabVentilationPct),
+    ha.setInputNumber('input_number.cannabis_lab_distillate_liters', state.cannabisLabDistillateLiters),
+
+    // Dispensary
+    ha.setInputBoolean('input_boolean.cannabis_dispensary_pos_online', state.cannabisDispensaryPosOnline),
+    ha.setInputBoolean('input_boolean.cannabis_dispensary_metrc_pos_sync_ok', state.cannabisDispensaryMetrcPosSyncOk),
+    ha.setInputBoolean('input_boolean.cannabis_dispensary_low_inventory_alert', state.cannabisDispensaryLowInventoryAlert),
+    ha.setInputNumber('input_number.cannabis_dispensary_daily_sales_usd', state.cannabisDispensaryDailySalesUsd),
+    ha.setInputNumber('input_number.cannabis_dispensary_transaction_count', state.cannabisDispensaryTransactionCount),
+    ha.setInputNumber('input_number.cannabis_dispensary_avg_basket_usd', state.cannabisDispensaryAvgBasketUsd),
+    ha.setInputNumber('input_number.cannabis_dispensary_patient_count_today', state.cannabisDispensaryPatientCountToday),
+    ha.setInputNumber('input_number.cannabis_dispensary_flower_inventory_grams', state.cannabisDispensaryFlowerInventoryGrams),
+    ha.setInputNumber('input_number.cannabis_dispensary_extract_inventory_grams', state.cannabisDispensaryExtractInventoryGrams),
+
+    // Financial
+    ha.setInputNumber('input_number.cannabis_financial_cost_per_gram_flower', state.cannabisFinancialCostPerGramFlower),
+    ha.setInputNumber('input_number.cannabis_financial_labor_cost_today', state.cannabisFinancialLaborCostToday),
+    ha.setInputNumber('input_number.cannabis_financial_energy_cost_today', state.cannabisFinancialEnergyCostToday),
+    ha.setInputNumber('input_number.cannabis_financial_gross_margin_pct', state.cannabisFinancialGrossMarginPct),
+
     ...incidentActions,
   ]);
 
