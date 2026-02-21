@@ -10,6 +10,73 @@ views:
     sections:
       - type: grid
         cards:
+          - type: picture-elements
+            image: https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1400&q=80&auto=format&fit=crop
+            elements:
+              - type: state-label
+                entity: sensor.audit_completeness_pct
+                prefix: "Audit "
+                style:
+                  top: 38%
+                  left: 12%
+                  transform: translate(-50%, -50%)
+                  background: rgba(7, 45, 24, 0.88)
+                  border: 1px solid rgba(64, 220, 150, 0.62)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#c5ffe0'
+                  font-size: 0.82rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.qa_release_readiness
+                prefix: "QA "
+                style:
+                  top: 38%
+                  left: 36%
+                  transform: translate(-50%, -50%)
+                  background: rgba(14, 36, 65, 0.88)
+                  border: 1px solid rgba(86, 188, 255, 0.60)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#dff3ff'
+                  font-size: 0.82rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_dispatch_health_idx
+                prefix: "Dispatch "
+                style:
+                  top: 38%
+                  left: 62%
+                  transform: translate(-50%, -50%)
+                  background: rgba(55, 30, 8, 0.88)
+                  border: 1px solid rgba(255, 184, 60, 0.62)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#ffedcc'
+                  font-size: 0.82rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.compliance_open_items
+                prefix: "Open "
+                style:
+                  top: 38%
+                  left: 86%
+                  transform: translate(-50%, -50%)
+                  background: rgba(50, 10, 18, 0.88)
+                  border: 1px solid rgba(255, 100, 120, 0.60)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#ffe8ec'
+                  font-size: 0.82rem
+                  font-weight: 700
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(64, 180, 110, 0.40);
+                  border-radius: 16px;
+                  overflow: hidden;
+                  box-shadow: 0 16px 48px rgba(2, 12, 8, 0.90);
+                }
           - type: markdown
             content: |
               # Executive Portfolio
@@ -236,18 +303,42 @@ views:
             entities:
               - entity: sensor.cannabis_camera_health_pct
               - entity: sensor.cannabis_camera_alert_count
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 20px rgba(40,220,130,0.12), 0 10px 28px rgba(2,14,10,0.88);
+                }
           - type: picture-glance
             title: Flower Room Live
             image: /local/cams/cam-greenhouse.svg
             entities:
               - entity: sensor.cannabis_air_temp_f
               - entity: sensor.cannabis_rh_pct
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 20px rgba(40,220,130,0.12), 0 10px 28px rgba(2,14,10,0.88);
+                }
           - type: picture-glance
             title: Processing Dock Live
             image: /local/cams/cam-equipment.svg
             entities:
               - entity: input_boolean.cannabis_transport_delay
               - entity: sensor.cannabis_transfer_eta_min
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 20px rgba(40,220,130,0.12), 0 10px 28px rgba(2,14,10,0.88);
+                }
 
   - title: Regulatory War Room
     path: war-room
@@ -258,10 +349,44 @@ views:
     sections:
       - type: grid
         cards:
-          - type: markdown
-            content: |
-              # Regulatory War Room
-              Incident response, escalation, and chain-of-custody remediation controls.
+          - type: custom:button-card
+            show_name: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - background: linear-gradient(135deg, rgba(38,4,10,1) 0%, rgba(75,6,22,1) 40%, rgba(14,4,32,1) 75%, rgba(8,4,28,1) 100%)
+                - height: 112px
+                - border-radius: 16px
+                - border: 1px solid rgba(255, 75, 100, 0.38)
+                - box-shadow: "0 0 70px rgba(255,38,65,0.14), 0 18px 42px rgba(14,4,22,0.92)"
+                - overflow: hidden
+                - position: relative
+            card_mod:
+              style: |
+                ha-card::before {
+                  content: 'REGULATORY WAR ROOM';
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  font-size: 1.15rem;
+                  font-weight: 900;
+                  letter-spacing: 0.24em;
+                  color: rgba(255, 140, 165, 0.92);
+                  text-shadow: 0 0 32px rgba(255,55,80,0.60), 0 2px 10px rgba(0,0,0,0.90);
+                  pointer-events: none;
+                  z-index: 1;
+                  white-space: nowrap;
+                }
+                ha-card::after {
+                  content: '';
+                  position: absolute;
+                  inset: 0;
+                  background: radial-gradient(ellipse at 50% 55%, rgba(255,45,70,0.12) 0%, transparent 62%);
+                  pointer-events: none;
+                  z-index: 0;
+                }
           - type: custom:apexcharts-card
             header:
               show: true
@@ -485,10 +610,44 @@ views:
     sections:
       - type: grid
         cards:
-          - type: markdown
-            content: |
-              # Incident + Controls Chamber
-              Primary operator controls for cultivation, utilities, security, and workforce.
+          - type: custom:button-card
+            show_name: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - background: linear-gradient(135deg, rgba(4,18,8,1) 0%, rgba(8,32,16,1) 30%, rgba(4,20,36,1) 70%, rgba(6,14,36,1) 100%)
+                - height: 110px
+                - border-radius: 16px
+                - border: 1px solid rgba(64, 200, 120, 0.36)
+                - box-shadow: "0 0 60px rgba(30,200,100,0.10), 0 18px 42px rgba(4,14,20,0.92)"
+                - overflow: hidden
+                - position: relative
+            card_mod:
+              style: |
+                ha-card::before {
+                  content: 'SITE OPERATIONS CHAMBER';
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  font-size: 1.10rem;
+                  font-weight: 900;
+                  letter-spacing: 0.22em;
+                  color: rgba(120, 240, 180, 0.90);
+                  text-shadow: 0 0 28px rgba(40,220,120,0.52), 0 2px 10px rgba(0,0,0,0.88);
+                  pointer-events: none;
+                  z-index: 1;
+                  white-space: nowrap;
+                }
+                ha-card::after {
+                  content: '';
+                  position: absolute;
+                  inset: 0;
+                  background: radial-gradient(ellipse at 50% 55%, rgba(40,200,110,0.09) 0%, transparent 65%);
+                  pointer-events: none;
+                  z-index: 0;
+                }
           - type: custom:bar-card
             title: Control Load Lanes
             width: 70%
@@ -654,11 +813,19 @@ views:
                 name: Perimeter Lockdown
                 tap_action:
                   action: toggle
+                card_mod:
+                  style: |
+                    @keyframes pulse-red { 0%,100% { box-shadow: 0 0 0 rgba(255,55,75,0); } 50% { box-shadow: 0 0 40px rgba(255,55,75,0.80); } }
+                    ha-card.is-on { animation: pulse-red 2.2s ease-in-out infinite; }
               - type: tile
                 entity: input_boolean.cannabis_site_a_vault_lock
                 name: Vault Lock
                 tap_action:
                   action: toggle
+                card_mod:
+                  style: |
+                    @keyframes pulse-red { 0%,100% { box-shadow: 0 0 0 rgba(255,55,75,0); } 50% { box-shadow: 0 0 40px rgba(255,55,75,0.80); } }
+                    ha-card.is-on { animation: pulse-red 2.2s ease-in-out infinite; }
               - type: tile
                 entity: input_boolean.cannabis_site_a_camera_ptz_patrol
                 name: Camera PTZ Patrol
@@ -669,16 +836,28 @@ views:
                 name: Intrusion Signal
                 tap_action:
                   action: toggle
+                card_mod:
+                  style: |
+                    @keyframes pulse-red { 0%,100% { box-shadow: 0 0 0 rgba(255,55,75,0); } 50% { box-shadow: 0 0 44px rgba(255,55,75,0.88); } }
+                    ha-card.is-on { animation: pulse-red 1.8s ease-in-out infinite; }
               - type: tile
                 entity: input_boolean.cannabis_staff_shortage_alert
                 name: Staff Shortage
                 tap_action:
                   action: toggle
+                card_mod:
+                  style: |
+                    @keyframes pulse-amber { 0%,100% { box-shadow: 0 0 0 rgba(255,175,30,0); } 50% { box-shadow: 0 0 36px rgba(255,175,30,0.72); } }
+                    ha-card.is-on { animation: pulse-amber 2.2s ease-in-out infinite; }
               - type: tile
                 entity: input_boolean.cannabis_schedule_disruption_active
                 name: Schedule Disruption
                 tap_action:
                   action: toggle
+                card_mod:
+                  style: |
+                    @keyframes pulse-amber { 0%,100% { box-shadow: 0 0 0 rgba(255,175,30,0); } 50% { box-shadow: 0 0 36px rgba(255,175,30,0.72); } }
+                    ha-card.is-on { animation: pulse-amber 2.2s ease-in-out infinite; }
           - type: entities
             title: Active Operation Stack
             show_header_toggle: false
@@ -877,18 +1056,42 @@ views:
             entities:
               - entity: sensor.cannabis_camera_health_pct
               - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 20px rgba(40,220,130,0.12), 0 10px 28px rgba(2,14,10,0.88);
+                }
           - type: picture-glance
             title: Flower Room
             image: /local/cams/cam-greenhouse.svg
             entities:
               - entity: sensor.cannabis_air_temp_f
               - entity: sensor.cannabis_rh_pct
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 20px rgba(40,220,130,0.12), 0 10px 28px rgba(2,14,10,0.88);
+                }
           - type: picture-glance
             title: Packaging Dock
             image: /local/cams/cam-equipment.svg
             entities:
               - entity: sensor.cannabis_packaging_throughput_units_hr
               - entity: sensor.cannabis_transfer_eta_min
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.48);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 20px rgba(40,220,130,0.12), 0 10px 28px rgba(2,14,10,0.88);
+                }
           - type: todo-list
             entity: todo.shopping_list
             title: Shift Execution Checklist
@@ -1315,18 +1518,161 @@ views:
             entities:
               - entity: input_boolean.cannabis_site_a_perimeter_lockdown
               - entity: sensor.cannabis_camera_health_pct
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.50);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 22px rgba(40,220,130,0.14), 0 12px 32px rgba(2,14,10,0.90);
+                }
           - type: picture-glance
             title: Cultivation Corridor
             image: /local/cams/cam-greenhouse.svg
             entities:
               - entity: sensor.cannabis_camera_alert_count
               - entity: binary_sensor.cannabis_camera_link_degraded_active
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.50);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 22px rgba(40,220,130,0.14), 0 12px 32px rgba(2,14,10,0.90);
+                }
           - type: picture-glance
             title: Processing Corridor
             image: /local/cams/cam-equipment.svg
             entities:
               - entity: input_boolean.cannabis_vault_exception_active
               - entity: binary_sensor.cannabis_security_escalation_required
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(40, 220, 130, 0.50);
+                  border-radius: 14px;
+                  overflow: hidden;
+                  box-shadow: 0 0 22px rgba(40,220,130,0.14), 0 12px 32px rgba(2,14,10,0.90);
+                }
+          - type: heading
+            heading: Drone Field Coverage
+            icon: mdi:quadcopter
+          - type: custom:button-card
+            entity: input_select.cannabis_drone_mission_state
+            name: |
+              [[[
+                return 'DRONE MISSION';
+              ]]]
+            show_state: true
+            show_name: true
+            show_icon: false
+            styles:
+              card:
+                - border-radius: 14px
+                - overflow: hidden
+                - height: 148px
+                - background-image: |
+                    [[[
+                      return 'url(' + states['sensor.cannabis_drone_scene_url'].state.trim() + ')';
+                    ]]]
+                - background-size: cover
+                - background-position: center
+                - border: |
+                    [[[
+                      const s = states['input_select.cannabis_drone_mission_state'].state;
+                      if (s === 'Survey') return '2px solid rgba(64,220,150,0.82)';
+                      if (s === 'Preflight') return '2px solid rgba(255,198,60,0.82)';
+                      if (s === 'Return') return '2px solid rgba(255,140,40,0.82)';
+                      if (s === 'Abort') return '2px solid rgba(255,70,85,0.92)';
+                      return '1px solid rgba(86,160,220,0.32)';
+                    ]]]
+                - box-shadow: |
+                    [[[
+                      const s = states['input_select.cannabis_drone_mission_state'].state;
+                      if (s === 'Survey') return '0 0 44px rgba(64,220,150,0.48), 0 8px 32px rgba(4,16,12,0.90)';
+                      if (s === 'Preflight') return '0 0 44px rgba(255,198,60,0.48), 0 8px 32px rgba(20,16,4,0.90)';
+                      if (s === 'Return') return '0 0 44px rgba(255,140,40,0.48), 0 8px 32px rgba(20,10,4,0.90)';
+                      if (s === 'Abort') return '0 0 56px rgba(255,70,85,0.68), 0 8px 32px rgba(24,4,8,0.92)';
+                      return '0 8px 32px rgba(4,12,28,0.92)';
+                    ]]]
+              state:
+                - font-size: 1.8rem
+                - font-weight: 800
+                - color: '#ffffff'
+                - text-shadow: 0 2px 14px rgba(0,0,0,0.85)
+                - position: relative
+                - z-index: 1
+              name:
+                - font-size: 0.62rem
+                - font-weight: 700
+                - letter-spacing: 0.14em
+                - color: rgba(200,230,255,0.72)
+                - text-transform: uppercase
+                - position: relative
+                - z-index: 1
+            card_mod:
+              style: |
+                ha-card::before {
+                  content: '';
+                  position: absolute;
+                  inset: 0;
+                  background: linear-gradient(160deg, rgba(0,8,20,0.18) 0%, rgba(0,8,20,0.78) 100%);
+                  z-index: 0;
+                }
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: tile
+                entity: sensor.cannabis_drone_battery_pct
+                name: Battery
+                icon: mdi:battery-medium
+              - type: tile
+                entity: sensor.cannabis_drone_progress_pct
+                name: Progress
+                icon: mdi:progress-check
+              - type: tile
+                entity: binary_sensor.cannabis_drone_geofence_breach_active
+                name: Geofence
+                icon: mdi:map-marker-radius
+          - type: custom:bar-card
+            title: Drone Telemetry Lanes
+            width: 72%
+            height: 22px
+            direction: right
+            entities:
+              - entity: sensor.cannabis_drone_battery_pct
+                name: Battery %
+                min: 0
+                max: 100
+                color: '#31d6a1'
+              - entity: sensor.cannabis_drone_progress_pct
+                name: Mission %
+                min: 0
+                max: 100
+                color: '#56bcff'
+              - entity: sensor.cannabis_drone_anomaly_score
+                name: Anomaly %
+                min: 0
+                max: 100
+                color: '#ff6f7a'
+          - type: custom:mini-graph-card
+            name: Drone Telemetry (4h)
+            hours_to_show: 4
+            points_per_hour: 6
+            show:
+              icon: false
+              labels: true
+            entities:
+              - entity: sensor.cannabis_drone_battery_pct
+                name: Battery
+                color: '#31d6a1'
+              - entity: sensor.cannabis_drone_progress_pct
+                name: Progress
+                color: '#56bcff'
+              - entity: sensor.cannabis_drone_anomaly_score
+                name: Anomaly
+                color: '#ff6f7a'
 
   - title: Environment
     path: climate
@@ -1337,10 +1683,73 @@ views:
     sections:
       - type: grid
         cards:
-          - type: markdown
-            content: |
-              # Environment
-              VPD, CO2, PPFD, DLI, and stage-specific quality risk control.
+          - type: picture-elements
+            image: /local/cams/cam-greenhouse.svg
+            elements:
+              - type: state-label
+                entity: sensor.cannabis_air_temp_f
+                prefix: "Air "
+                style:
+                  top: 40%
+                  left: 12%
+                  transform: translate(-50%, -50%)
+                  background: rgba(14, 36, 65, 0.92)
+                  border: 1px solid rgba(255, 165, 30, 0.72)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#ffe8b0'
+                  font-size: 0.82rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_rh_pct
+                prefix: "RH "
+                style:
+                  top: 40%
+                  left: 36%
+                  transform: translate(-50%, -50%)
+                  background: rgba(7, 45, 41, 0.92)
+                  border: 1px solid rgba(64, 220, 190, 0.60)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#dcfff4'
+                  font-size: 0.82rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_co2_ppm
+                prefix: "CO2 "
+                style:
+                  top: 40%
+                  left: 60%
+                  transform: translate(-50%, -50%)
+                  background: rgba(41, 24, 64, 0.92)
+                  border: 1px solid rgba(188, 152, 255, 0.60)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#f0e6ff'
+                  font-size: 0.82rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_env_vpd_kpa
+                prefix: "VPD "
+                style:
+                  top: 40%
+                  left: 84%
+                  transform: translate(-50%, -50%)
+                  background: rgba(45, 15, 55, 0.92)
+                  border: 1px solid rgba(220, 120, 255, 0.60)
+                  border-radius: 10px
+                  padding: 4px 10px
+                  color: '#fce0ff'
+                  font-size: 0.82rem
+                  font-weight: 700
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(80, 200, 130, 0.42);
+                  border-radius: 16px;
+                  overflow: hidden;
+                  box-shadow: 0 16px 48px rgba(2, 12, 8, 0.90);
+                }
           - type: grid
             columns: 4
             square: false
@@ -1541,6 +1950,45 @@ views:
                 tap_action:
                   action: url
                   url_path: https://www.windy.com/
+          - type: custom:button-card
+            entity: sensor.cannabis_weather_scene_url
+            show_name: false
+            show_state: false
+            show_icon: false
+            styles:
+              card:
+                - height: 148px
+                - border-radius: 14px
+                - overflow: hidden
+                - background-image: |
+                    [[[
+                      return 'url(' + states['sensor.cannabis_weather_scene_url'].state.trim() + ')';
+                    ]]]
+                - background-size: cover
+                - background-position: center
+                - border: |
+                    [[[
+                      if (states['binary_sensor.storm_alert'].state === 'on') return '2px solid rgba(255,80,80,0.80)';
+                      if (states['binary_sensor.frost_risk'].state === 'on') return '2px solid rgba(160,200,255,0.75)';
+                      if (states['binary_sensor.high_wind_alert'].state === 'on') return '2px solid rgba(255,200,60,0.75)';
+                      return '1px solid rgba(86,188,255,0.28)';
+                    ]]]
+                - box-shadow: |
+                    [[[
+                      if (states['binary_sensor.storm_alert'].state === 'on') return '0 0 52px rgba(255,60,60,0.50), 0 12px 32px rgba(4,12,24,0.85)';
+                      if (states['binary_sensor.frost_risk'].state === 'on') return '0 0 40px rgba(140,190,255,0.40), 0 12px 32px rgba(4,12,24,0.85)';
+                      return '0 12px 40px rgba(4,12,24,0.90)';
+                    ]]]
+            card_mod:
+              style: |
+                ha-card::after {
+                  content: '';
+                  position: absolute;
+                  inset: 0;
+                  background: linear-gradient(180deg, rgba(6,12,22,0.05) 0%, rgba(6,12,22,0.68) 100%);
+                  border-radius: 14px;
+                  pointer-events: none;
+                }
           - type: custom:mushroom-chips-card
             alignment: start
             chips:
@@ -1637,26 +2085,40 @@ views:
               - entity: sensor.cannabis_transport_risk_idx
                 name: Transport Risk
           - type: custom:bar-card
-            title: Exposure Bars
+            title: Exposure + Drone Lanes
             width: 72%
-            height: 24px
+            height: 22px
             entities:
               - entity: sensor.wind_speed_mph
                 name: Wind MPH
                 min: 0
                 max: 100
+                color: '#56bcff'
               - entity: sensor.cannabis_transport_risk_idx
                 name: Transport Risk
                 min: 0
                 max: 100
+                color: '#ff6f7a'
               - entity: sensor.cannabis_dispatch_health_idx
                 name: Dispatch Health
                 min: 0
                 max: 100
+                color: '#31d6a1'
               - entity: sensor.cannabis_guard_coverage_pct
                 name: Guard Coverage
                 min: 0
                 max: 100
+                color: '#9d8bff'
+              - entity: sensor.cannabis_drone_battery_pct
+                name: Drone Battery
+                min: 0
+                max: 100
+                color: '#40dc96'
+              - entity: sensor.cannabis_drone_anomaly_score
+                name: Drone Anomaly
+                min: 0
+                max: 100
+                color: '#ffb347'
 
       - type: grid
         cards:
@@ -1806,6 +2268,108 @@ views:
           - type: heading
             heading: Facility Visual Twin
             icon: mdi:home-analytics
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: custom:button-card
+                entity: input_select.cannabis_drone_mission_state
+                name: |
+                  [[[
+                    return 'DRONE MISSION';
+                  ]]]
+                show_state: true
+                show_name: true
+                show_icon: false
+                styles:
+                  card:
+                    - border-radius: 12px
+                    - overflow: hidden
+                    - height: 90px
+                    - background-image: |
+                        [[[
+                          return 'url(' + states['sensor.cannabis_drone_scene_url'].state.trim() + ')';
+                        ]]]
+                    - background-size: cover
+                    - background-position: center
+                    - border: |
+                        [[[
+                          const s = states['input_select.cannabis_drone_mission_state'].state;
+                          if (s === 'Survey') return '2px solid rgba(64,220,150,0.80)';
+                          if (s === 'Preflight') return '2px solid rgba(255,198,60,0.80)';
+                          if (s === 'Return') return '2px solid rgba(255,140,40,0.80)';
+                          if (s === 'Abort') return '2px solid rgba(255,70,85,0.90)';
+                          return '1px solid rgba(86,160,220,0.30)';
+                        ]]]
+                    - box-shadow: |
+                        [[[
+                          const s = states['input_select.cannabis_drone_mission_state'].state;
+                          if (s === 'Survey') return '0 0 40px rgba(64,220,150,0.45)';
+                          if (s === 'Abort') return '0 0 50px rgba(255,70,85,0.65)';
+                          return '0 8px 28px rgba(4,12,28,0.90)';
+                        ]]]
+                  state:
+                    - font-size: 1.2rem
+                    - font-weight: 800
+                    - color: '#ffffff'
+                    - text-shadow: 0 2px 12px rgba(0,0,0,0.85)
+                    - position: relative
+                    - z-index: 1
+                  name:
+                    - font-size: 0.58rem
+                    - font-weight: 700
+                    - letter-spacing: 0.14em
+                    - color: rgba(200,230,255,0.72)
+                    - text-transform: uppercase
+                    - position: relative
+                    - z-index: 1
+                card_mod:
+                  style: |
+                    ha-card::before {
+                      content: '';
+                      position: absolute;
+                      inset: 0;
+                      background: linear-gradient(160deg, rgba(0,8,20,0.15) 0%, rgba(0,8,20,0.72) 100%);
+                      z-index: 0;
+                    }
+              - type: tile
+                entity: binary_sensor.cannabis_drone_geofence_breach_active
+                name: Geofence
+                icon: mdi:map-marker-radius
+              - type: tile
+                entity: sensor.cannabis_drone_battery_pct
+                name: Drone Battery
+                icon: mdi:battery-medium
+              - type: tile
+                entity: sensor.cannabis_drone_anomaly_score
+                name: Anomaly Score
+                icon: mdi:alert-circle-outline
+          - type: custom:bar-card
+            title: Drone + Facility Pressure
+            width: 72%
+            height: 22px
+            direction: right
+            entities:
+              - entity: sensor.cannabis_drone_battery_pct
+                name: Drone Battery
+                min: 0
+                max: 100
+                color: '#31d6a1'
+              - entity: sensor.cannabis_drone_progress_pct
+                name: Mission Progress
+                min: 0
+                max: 100
+                color: '#56bcff'
+              - entity: sensor.cannabis_drone_anomaly_score
+                name: Anomaly Score
+                min: 0
+                max: 100
+                color: '#ff6f7a'
+              - entity: sensor.cannabis_env_vpd_kpa
+                name: VPD kPa
+                min: 0
+                max: 2
+                color: '#9d4edd'
           - type: picture-elements
             image: /local/cams/cam-greenhouse.svg
             elements:
@@ -1997,6 +2561,48 @@ views:
                   color: '#dcfff4'
                   font-size: 0.78rem
                   font-weight: 700
+              - type: state-label
+                entity: input_select.cannabis_drone_mission_state
+                prefix: "Drone "
+                style:
+                  top: 72%
+                  left: 20%
+                  transform: translate(-50%, -50%)
+                  background: rgba(7, 28, 48, 0.86)
+                  border: 1px solid rgba(67, 218, 255, 0.60)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#b8eaff'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_drone_battery_pct
+                prefix: "Bat "
+                style:
+                  top: 72%
+                  left: 50%
+                  transform: translate(-50%, -50%)
+                  background: rgba(7, 44, 28, 0.86)
+                  border: 1px solid rgba(94, 241, 181, 0.58)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#c5fff0'
+                  font-size: 0.78rem
+                  font-weight: 700
+              - type: state-label
+                entity: sensor.cannabis_drone_anomaly_score
+                prefix: "Anomaly "
+                style:
+                  top: 72%
+                  left: 82%
+                  transform: translate(-50%, -50%)
+                  background: rgba(48, 14, 22, 0.86)
+                  border: 1px solid rgba(255, 111, 122, 0.58)
+                  border-radius: 10px
+                  padding: 3px 8px
+                  color: '#ffe2e5'
+                  font-size: 0.78rem
+                  font-weight: 700
             card_mod:
               style: |
                 ha-card {
@@ -2004,16 +2610,31 @@ views:
                   border-radius: 14px;
                   overflow: hidden;
                 }
+          - type: custom:mini-graph-card
+            name: Facility Envelope + Drone (8h)
+            hours_to_show: 8
+            points_per_hour: 4
+            show:
+              icon: false
+              labels: true
+            line_width: 2
+            entities:
+              - entity: sensor.cannabis_air_temp_f
+                name: Air Temp
+                color: '#ff9f1c'
+              - entity: sensor.cannabis_rh_pct
+                name: RH %
+                color: '#2ec4b6'
+              - entity: sensor.cannabis_env_vpd_kpa
+                name: VPD
+                color: '#9d4edd'
+              - entity: sensor.cannabis_drone_anomaly_score
+                name: Drone Anomaly
+                color: '#ff6f7a'
           - type: markdown
             content: |
-              ## Intel Links
-              - [NWS Radar](https://radar.weather.gov/)
-              - [NOAA GOES](https://www.ospo.noaa.gov/Products/imagery/goes.html)
-              - [NOAA NowCOAST](https://nowcoast.noaa.gov/)
-              - [Windy Interactive Map](https://www.windy.com/)
-              - [Zoom Earth Live](https://zoom.earth/)
-              - [NHC Tropical Outlook](https://www.nhc.noaa.gov/)
-              - [SPC Convective Outlook](https://www.spc.noaa.gov/products/outlook/)
+              #### Intel Links
+              [NWS Radar](https://radar.weather.gov/) · [NOAA GOES](https://www.ospo.noaa.gov/Products/imagery/goes.html) · [NowCOAST](https://nowcoast.noaa.gov/) · [Windy](https://www.windy.com/) · [SPC Outlook](https://www.spc.noaa.gov/products/outlook/)
   - title: Automation
     path: agents
     icon: mdi:robot

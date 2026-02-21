@@ -1734,6 +1734,35 @@ sensor:
         unit_of_measurement: "%"
         friendly_name: "Cannabis Dispatch Health"
 
+      cannabis_weather_scene_url:
+        value_template: >
+          {% if is_state('binary_sensor.storm_alert', 'on') %}
+            https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1400&q=80&auto=format&fit=crop
+          {% elif is_state('binary_sensor.frost_risk', 'on') %}
+            https://images.unsplash.com/photo-1509117110144-ba4dffc8aa80?w=1400&q=80&auto=format&fit=crop
+          {% elif is_state('binary_sensor.high_wind_alert', 'on') %}
+            https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1400&q=80&auto=format&fit=crop
+          {% elif is_state('binary_sensor.rain_detected', 'on') %}
+            https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1400&q=80&auto=format&fit=crop
+          {% else %}
+            https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400&q=80&auto=format&fit=crop
+          {% endif %}
+        friendly_name: "Cannabis Weather Scene"
+
+      cannabis_drone_scene_url:
+        value_template: >
+          {% set s = states('input_select.cannabis_drone_mission_state') %}
+          {% if s == 'Survey' %}
+            https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1200&q=80&auto=format&fit=crop
+          {% elif s == 'Preflight' %}
+            https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200&q=80&auto=format&fit=crop
+          {% elif s == 'Return' or s == 'Abort' %}
+            https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=80&auto=format&fit=crop
+          {% else %}
+            https://images.unsplash.com/photo-1487887235947-a955ef187fea?w=1200&q=80&auto=format&fit=crop
+          {% endif %}
+        friendly_name: "Cannabis Drone Scene"
+
 #############################################################
 # BINARY SENSORS
 #############################################################
