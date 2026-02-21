@@ -155,6 +155,10 @@ views:
             alignment: start
             chips:
               - type: entity
+                entity: input_select.cannabis_active_facility
+                icon: mdi:map-marker-multiple
+                content_info: state
+              - type: entity
                 entity: input_select.cannabis_site_focus
                 icon: mdi:map-marker-radius
                 content_info: state
@@ -174,6 +178,9 @@ views:
                 entity: input_select.cannabis_scenario
                 icon: mdi:state-machine
                 content_info: state
+          - type: heading
+            heading: Compliance KPIs
+            heading_style: title
           - type: grid
             columns: 4
             square: false
@@ -190,6 +197,13 @@ views:
               - type: tile
                 entity: sensor.custody_break_risk
                 name: Custody Break Risk
+          - type: heading
+            heading: Operations KPIs
+            heading_style: title
+          - type: grid
+            columns: 4
+            square: false
+            cards:
               - type: tile
                 entity: sensor.cannabis_dispatch_health_idx
                 name: Dispatch Health
@@ -202,6 +216,44 @@ views:
               - type: tile
                 entity: sensor.compliance_open_items
                 name: Compliance Open Items
+          - type: heading
+            heading: Commercial KPIs
+            heading_style: title
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: tile
+                entity: input_number.cannabis_dispensary_daily_sales_usd
+                name: Dispensary Daily Sales ($)
+              - type: tile
+                entity: sensor.cannabis_lab_safety_idx
+                name: Lab Safety Index
+              - type: tile
+                entity: sensor.cannabis_ipm_overall_pressure_idx
+                name: IPM Pressure
+              - type: tile
+                entity: input_number.cannabis_financial_gross_margin_pct
+                name: Gross Margin %
+          - type: heading
+            heading: Grow Room Status
+            heading_style: title
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: tile
+                entity: input_select.cannabis_room_a_stage
+                name: Room A Stage
+              - type: tile
+                entity: input_select.cannabis_room_b_stage
+                name: Room B Stage
+              - type: tile
+                entity: input_select.cannabis_room_c_stage
+                name: Room C Stage
+              - type: tile
+                entity: input_select.cannabis_room_d_stage
+                name: Room D Stage
           - type: custom:bar-card
             title: Inventory Rollup
             width: 70%
@@ -600,6 +652,30 @@ views:
               green: 0
               yellow: 45
               red: 70
+      - type: grid
+        cards:
+          - type: heading
+            heading: Extended Compliance
+            heading_style: title
+          - type: tile
+            entity: input_number.cannabis_license_days_remaining
+            name: License Days Remaining
+          - type: tile
+            entity: binary_sensor.cannabis_license_expiring_soon
+            name: License Expiring Soon
+          - type: tile
+            entity: input_select.cannabis_coa_status
+            name: COA Status
+          - type: tile
+            entity: input_number.cannabis_destruction_event_count
+            name: Destruction Events
+          - type: logbook
+            title: Compliance Events (24h)
+            hours_to_show: 24
+            entities:
+              - input_number.cannabis_license_days_remaining
+              - input_select.cannabis_coa_status
+              - binary_sensor.cannabis_license_expiring_soon
 
   - title: Site Operations Chamber
     path: command-center
@@ -702,6 +778,10 @@ views:
             alignment: start
             chips:
               - type: entity
+                entity: input_select.cannabis_active_facility
+                icon: mdi:map-marker-multiple
+                content_info: state
+              - type: entity
                 entity: input_select.incident_mode
                 icon: mdi:alert-circle
               - type: entity
@@ -713,6 +793,40 @@ views:
               - type: entity
                 entity: input_select.cannabis_shift_mode
                 icon: mdi:account-clock
+          - type: heading
+            heading: IPM Status
+            heading_style: subtitle
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: tile
+                entity: input_number.cannabis_ipm_pest_pressure_room_a
+                name: IPM Room A
+              - type: tile
+                entity: input_number.cannabis_ipm_pest_pressure_room_b
+                name: IPM Room B
+              - type: tile
+                entity: input_number.cannabis_ipm_pest_pressure_room_c
+                name: IPM Room C
+              - type: tile
+                entity: input_number.cannabis_ipm_pest_pressure_room_d
+                name: IPM Room D
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.cannabis_ipm_spray_blackout_active
+                state: "on"
+            card:
+              type: custom:button-card
+              name: "⚠ SPRAY BLACKOUT ACTIVE — Flower rooms in Day 10+"
+              styles:
+                card:
+                  - background: '#4a0000'
+                  - border: '2px solid #e74c3c'
+                name:
+                  - color: '#ff6b6b'
+                  - font-size: 13px
+                  - font-weight: bold
           - type: grid
             columns: 4
             square: false
@@ -1105,6 +1219,41 @@ views:
     sections:
       - type: grid
         cards:
+          - type: heading
+            heading: Room Status Quick View
+            heading_style: title
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: tile
+                entity: input_select.cannabis_room_a_stage
+                name: Room A
+              - type: tile
+                entity: input_select.cannabis_room_b_stage
+                name: Room B
+              - type: tile
+                entity: input_select.cannabis_room_c_stage
+                name: Room C
+              - type: tile
+                entity: input_select.cannabis_room_d_stage
+                name: Room D
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: button
+                name: "→ Grow Room Tracker"
+                icon: mdi:greenhouse
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-cannabis/grow-rooms
+              - type: button
+                name: "→ IPM Hub"
+                icon: mdi:bug-outline
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-cannabis/ipm
           - type: markdown
             content: |
               # Cultivation Irrigation + Nutrient Delivery
@@ -2261,10 +2410,12 @@ views:
             entities:
               - zone.home
               - person.administrator
-          - type: iframe
-            title: Live Weather Map
-            url: https://embed.windy.com/embed2.html?lat=39.500&lon=-98.350&zoom=4&level=surface&overlay=radar&product=ecmwf
-            aspect_ratio: 56.25%
+          - type: button
+            name: Live Weather Map (Windy)
+            icon: mdi:weather-cloudy
+            tap_action:
+              action: url
+              url_path: https://embed.windy.com/embed2.html?lat=39.500&lon=-98.350&zoom=4&level=surface&overlay=radar&product=ecmwf
           - type: heading
             heading: Facility Visual Twin
             icon: mdi:home-analytics
@@ -2686,6 +2837,38 @@ views:
               - entity: input_text.cannabis_shift_supervisor
               - entity: input_text.cannabis_next_critical_task
               - entity: input_text.cannabis_dispatch_channel_status
+          - type: entities
+            title: Grow Stage SOPs — Change Room Stage
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_room_a_stage
+                name: Room A Stage
+              - entity: input_select.cannabis_room_b_stage
+                name: Room B Stage
+              - entity: input_select.cannabis_room_c_stage
+                name: Room C Stage
+              - entity: input_select.cannabis_room_d_stage
+                name: Room D Stage
+          - type: entities
+            title: Shift Todo — IPM Scouting Tasks
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_ipm_scouting_due_room_a
+                name: Scout Room A
+                tap_action:
+                  action: toggle
+              - entity: input_boolean.cannabis_ipm_scouting_due_room_b
+                name: Scout Room B
+                tap_action:
+                  action: toggle
+              - entity: input_boolean.cannabis_ipm_scouting_due_room_c
+                name: Scout Room C
+                tap_action:
+                  action: toggle
+              - entity: input_boolean.cannabis_ipm_scouting_due_room_d
+                name: Scout Room D
+                tap_action:
+                  action: toggle
           - type: grid
             columns: 4
             square: false
@@ -2817,3 +3000,839 @@ views:
               - entity: input_text.cannabis_manifest_live_id
               - entity: sensor.cannabis_dispatch_health_idx
               - entity: sensor.cannabis_transport_risk_idx
+
+  ##############################################################
+  # VIEW 10: GROW ROOM TRACKER
+  ##############################################################
+  - title: Grow Room Tracker
+    path: grow-rooms
+    icon: mdi:greenhouse
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    theme: cannabis_ops_theater
+    sections:
+
+      # --- Section 1: Room Status Grid ---
+      - type: grid
+        title: Room Status Grid
+        columns: 2
+        cards:
+          - type: custom:button-card
+            name: Room A
+            entity: input_select.cannabis_room_a_stage
+            show_state: true
+            styles:
+              card:
+                - background: >
+                    [[[ const s = states['input_select.cannabis_room_a_stage'].state;
+                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
+                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
+                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
+                        if (s === 'Flush') return '#4a1500';
+                        if (s === 'Harvest') return '#3a3000';
+                        return '#1a1a1a'; ]]]
+              name:
+                - font-size: 14px
+                - font-weight: bold
+                - color: '#e8f5e9'
+            custom_fields:
+              batch: >
+                [[[ return states['input_text.cannabis_room_a_batch_id'].state || '—'; ]]]
+              strain: >
+                [[[ return states['input_text.cannabis_room_a_strain'].state || '—'; ]]]
+              days: >
+                [[[ return 'Day ' + states['input_number.cannabis_room_a_days_in_stage'].state; ]]]
+              plants: >
+                [[[ return states['input_number.cannabis_room_a_plant_count'].state + ' plants'; ]]]
+
+          - type: custom:button-card
+            name: Room B
+            entity: input_select.cannabis_room_b_stage
+            show_state: true
+            styles:
+              card:
+                - background: >
+                    [[[ const s = states['input_select.cannabis_room_b_stage'].state;
+                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
+                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
+                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
+                        if (s === 'Flush') return '#4a1500';
+                        if (s === 'Harvest') return '#3a3000';
+                        return '#1a1a1a'; ]]]
+              name:
+                - font-size: 14px
+                - font-weight: bold
+                - color: '#e8f5e9'
+            custom_fields:
+              batch: >
+                [[[ return states['input_text.cannabis_room_b_batch_id'].state || '—'; ]]]
+              strain: >
+                [[[ return states['input_text.cannabis_room_b_strain'].state || '—'; ]]]
+              days: >
+                [[[ return 'Day ' + states['input_number.cannabis_room_b_days_in_stage'].state; ]]]
+              plants: >
+                [[[ return states['input_number.cannabis_room_b_plant_count'].state + ' plants'; ]]]
+
+          - type: custom:button-card
+            name: Room C
+            entity: input_select.cannabis_room_c_stage
+            show_state: true
+            styles:
+              card:
+                - background: >
+                    [[[ const s = states['input_select.cannabis_room_c_stage'].state;
+                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
+                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
+                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
+                        if (s === 'Flush') return '#4a1500';
+                        if (s === 'Harvest') return '#3a3000';
+                        return '#1a1a1a'; ]]]
+              name:
+                - font-size: 14px
+                - font-weight: bold
+                - color: '#e8f5e9'
+            custom_fields:
+              batch: >
+                [[[ return states['input_text.cannabis_room_c_batch_id'].state || '—'; ]]]
+              strain: >
+                [[[ return states['input_text.cannabis_room_c_strain'].state || '—'; ]]]
+              days: >
+                [[[ return 'Day ' + states['input_number.cannabis_room_c_days_in_stage'].state; ]]]
+              plants: >
+                [[[ return states['input_number.cannabis_room_c_plant_count'].state + ' plants'; ]]]
+
+          - type: custom:button-card
+            name: Room D
+            entity: input_select.cannabis_room_d_stage
+            show_state: true
+            styles:
+              card:
+                - background: >
+                    [[[ const s = states['input_select.cannabis_room_d_stage'].state;
+                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
+                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
+                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
+                        if (s === 'Flush') return '#4a1500';
+                        if (s === 'Harvest') return '#3a3000';
+                        return '#1a1a1a'; ]]]
+              name:
+                - font-size: 14px
+                - font-weight: bold
+                - color: '#e8f5e9'
+            custom_fields:
+              batch: >
+                [[[ return states['input_text.cannabis_room_d_batch_id'].state || '—'; ]]]
+              strain: >
+                [[[ return states['input_text.cannabis_room_d_strain'].state || '—'; ]]]
+              days: >
+                [[[ return 'Day ' + states['input_number.cannabis_room_d_days_in_stage'].state; ]]]
+              plants: >
+                [[[ return states['input_number.cannabis_room_d_plant_count'].state + ' plants'; ]]]
+
+          - type: custom:bar-card
+            title: Days in Stage
+            entities:
+              - entity: input_number.cannabis_room_a_days_in_stage
+                name: Room A
+                max: 60
+              - entity: input_number.cannabis_room_b_days_in_stage
+                name: Room B
+                max: 60
+              - entity: input_number.cannabis_room_c_days_in_stage
+                name: Room C
+                max: 60
+              - entity: input_number.cannabis_room_d_days_in_stage
+                name: Room D
+                max: 60
+
+      # --- Section 2: Yield Forecast ---
+      - type: grid
+        title: Yield Forecast
+        columns: 1
+        cards:
+          - type: custom:bar-card
+            title: Expected Yield by Room (lbs)
+            entities:
+              - entity: input_number.cannabis_room_a_expected_yield_lbs
+                name: Room A
+                max: 50
+              - entity: input_number.cannabis_room_b_expected_yield_lbs
+                name: Room B
+                max: 50
+              - entity: input_number.cannabis_room_c_expected_yield_lbs
+                name: Room C
+                max: 50
+              - entity: input_number.cannabis_room_d_expected_yield_lbs
+                name: Room D
+                max: 50
+
+      # --- Section 3: Batch Detail ---
+      - type: grid
+        title: Batch Detail
+        columns: 1
+        cards:
+          - type: entities
+            title: Batch IDs & Strains
+            show_header_toggle: false
+            entities:
+              - entity: input_text.cannabis_room_a_batch_id
+                name: Room A Batch
+              - entity: input_text.cannabis_room_a_strain
+                name: Room A Strain
+              - entity: input_select.cannabis_room_a_stage
+                name: Room A Stage
+              - type: divider
+              - entity: input_text.cannabis_room_b_batch_id
+                name: Room B Batch
+              - entity: input_text.cannabis_room_b_strain
+                name: Room B Strain
+              - entity: input_select.cannabis_room_b_stage
+                name: Room B Stage
+              - type: divider
+              - entity: input_text.cannabis_room_c_batch_id
+                name: Room C Batch
+              - entity: input_text.cannabis_room_c_strain
+                name: Room C Strain
+              - entity: input_select.cannabis_room_c_stage
+                name: Room C Stage
+              - type: divider
+              - entity: input_text.cannabis_room_d_batch_id
+                name: Room D Batch
+              - entity: input_text.cannabis_room_d_strain
+                name: Room D Strain
+              - entity: input_select.cannabis_room_d_stage
+                name: Room D Stage
+
+  ##############################################################
+  # VIEW 11: IPM HUB
+  ##############################################################
+  - title: IPM Hub
+    path: ipm
+    icon: mdi:bug-outline
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    theme: cannabis_ops_theater
+    sections:
+
+      # --- Section 1: Pest Pressure Dashboard ---
+      - type: grid
+        title: Pest Pressure Dashboard
+        columns: 1
+        cards:
+          - type: custom:button-card
+            name: INTEGRATED PEST MANAGEMENT
+            entity: sensor.cannabis_ipm_overall_pressure_idx
+            show_state: true
+            state_display: >
+              [[[ return 'Overall Pressure: ' + entity.state + '/10'; ]]]
+            styles:
+              card:
+                - background: >
+                    [[[ const p = parseFloat(entity.state);
+                        if (p < 3) return '#1a3a1a';
+                        if (p < 6) return '#3a2a00';
+                        return '#4a0000'; ]]]
+                - border: >
+                    [[[ const p = parseFloat(entity.state);
+                        if (p < 3) return '2px solid #2ecc71';
+                        if (p < 6) return '2px solid #f39c12';
+                        return '2px solid #e74c3c'; ]]]
+              name:
+                - font-size: 16px
+                - font-weight: bold
+                - color: '#e8f5e9'
+
+          - type: custom:bar-card
+            title: Pest Pressure by Room (0–10)
+            entities:
+              - entity: input_number.cannabis_ipm_pest_pressure_room_a
+                name: Room A
+                max: 10
+                color: '#2ecc71'
+              - entity: input_number.cannabis_ipm_pest_pressure_room_b
+                name: Room B
+                max: 10
+                color: '#2ecc71'
+              - entity: input_number.cannabis_ipm_pest_pressure_room_c
+                name: Room C
+                max: 10
+                color: '#2ecc71'
+              - entity: input_number.cannabis_ipm_pest_pressure_room_d
+                name: Room D
+                max: 10
+                color: '#2ecc71'
+            severity:
+              - value: 6
+                color: '#e74c3c'
+              - value: 3
+                color: '#f39c12'
+              - value: 0
+                color: '#2ecc71'
+
+          - type: tile
+            entity: input_boolean.cannabis_ipm_scouting_due_room_a
+            name: Scouting Due — Room A
+            tap_action:
+              action: toggle
+          - type: tile
+            entity: input_boolean.cannabis_ipm_scouting_due_room_b
+            name: Scouting Due — Room B
+            tap_action:
+              action: toggle
+          - type: tile
+            entity: input_boolean.cannabis_ipm_scouting_due_room_c
+            name: Scouting Due — Room C
+            tap_action:
+              action: toggle
+          - type: tile
+            entity: input_boolean.cannabis_ipm_scouting_due_room_d
+            name: Scouting Due — Room D
+            tap_action:
+              action: toggle
+
+      # --- Section 2: Spray Blackout & Controls ---
+      - type: grid
+        title: Spray Blackout & Controls
+        columns: 1
+        cards:
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.cannabis_ipm_spray_blackout_active
+                state: "on"
+            card:
+              type: custom:button-card
+              name: "⚠ SPRAY BLACKOUT ACTIVE"
+              label: One or more rooms in Flower Day 10+ — no spray permitted
+              styles:
+                card:
+                  - background: '#4a0000'
+                  - border: '2px solid #e74c3c'
+                name:
+                  - color: '#ff6b6b'
+                  - font-size: 16px
+                  - font-weight: bold
+                label:
+                  - color: '#ffaaaa'
+                  - font-size: 12px
+
+          - type: entities
+            title: Last Spray Products & Days Since Spray
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_ipm_last_spray_product_room_a
+                name: Room A Product
+              - entity: input_number.cannabis_ipm_days_since_spray_room_a
+                name: Room A Days Since Spray
+              - type: divider
+              - entity: input_select.cannabis_ipm_last_spray_product_room_b
+                name: Room B Product
+              - entity: input_number.cannabis_ipm_days_since_spray_room_b
+                name: Room B Days Since Spray
+              - type: divider
+              - entity: input_select.cannabis_ipm_last_spray_product_room_c
+                name: Room C Product
+              - entity: input_number.cannabis_ipm_days_since_spray_room_c
+                name: Room C Days Since Spray
+              - type: divider
+              - entity: input_select.cannabis_ipm_last_spray_product_room_d
+                name: Room D Product
+              - entity: input_number.cannabis_ipm_days_since_spray_room_d
+                name: Room D Days Since Spray
+
+          - type: entities
+            title: Zone Quarantine Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_ipm_zone_a_quarantine
+                name: Room A Quarantine
+              - entity: input_boolean.cannabis_ipm_zone_b_quarantine
+                name: Room B Quarantine
+              - entity: input_boolean.cannabis_ipm_zone_c_quarantine
+                name: Room C Quarantine
+              - entity: input_boolean.cannabis_ipm_zone_d_quarantine
+                name: Room D Quarantine
+
+      # --- Section 3: IPM Trends ---
+      - type: grid
+        title: IPM Trends
+        columns: 1
+        cards:
+          - type: custom:mini-graph-card
+            title: Pest Pressure Trend (14-day)
+            entities:
+              - entity: input_number.cannabis_ipm_pest_pressure_room_a
+                name: Room A
+              - entity: input_number.cannabis_ipm_pest_pressure_room_b
+                name: Room B
+              - entity: input_number.cannabis_ipm_pest_pressure_room_c
+                name: Room C
+              - entity: input_number.cannabis_ipm_pest_pressure_room_d
+                name: Room D
+            hours_to_show: 336
+            points_per_hour: 1
+            line_width: 2
+            show:
+              labels: true
+              points: false
+
+          - type: logbook
+            title: IPM Events (12h)
+            hours_to_show: 12
+            entities:
+              - input_boolean.cannabis_ipm_scouting_due_room_a
+              - input_boolean.cannabis_ipm_scouting_due_room_b
+              - input_boolean.cannabis_ipm_scouting_due_room_c
+              - input_boolean.cannabis_ipm_scouting_due_room_d
+              - input_boolean.cannabis_ipm_zone_a_quarantine
+              - input_boolean.cannabis_ipm_zone_b_quarantine
+              - input_boolean.cannabis_ipm_zone_c_quarantine
+              - input_boolean.cannabis_ipm_zone_d_quarantine
+              - binary_sensor.cannabis_ipm_spray_blackout_active
+
+  ##############################################################
+  # VIEW 12: EXTRACTION LAB
+  ##############################################################
+  - title: Extraction Lab
+    path: lab
+    icon: mdi:flask-outline
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    theme: cannabis_ops_theater
+    sections:
+
+      # --- Section 1: Safety Status ---
+      - type: grid
+        title: Safety Status
+        columns: 1
+        cards:
+          - type: custom:button-card
+            name: LAB SAFETY STATUS
+            entity: binary_sensor.cannabis_ipm_spray_blackout_active
+            show_state: false
+            state_display: >
+              [[[
+                const interlock = states['input_boolean.cannabis_lab_safety_interlock_ok'].state === 'on';
+                const ppe = states['input_boolean.cannabis_lab_ppe_compliance_active'].state === 'on';
+                const alarm = states['input_boolean.cannabis_lab_solvent_alarm'].state === 'on';
+                const vent = parseFloat(states['input_number.cannabis_lab_ventilation_pct'].state) >= 75;
+                const safe = interlock && ppe && !alarm && vent;
+                return safe ? '✓ ALL SYSTEMS NOMINAL' : '⚠ SAFETY CONDITION ACTIVE';
+              ]]]
+            styles:
+              card:
+                - background: >
+                    [[[
+                      const interlock = states['input_boolean.cannabis_lab_safety_interlock_ok'].state === 'on';
+                      const ppe = states['input_boolean.cannabis_lab_ppe_compliance_active'].state === 'on';
+                      const alarm = states['input_boolean.cannabis_lab_solvent_alarm'].state === 'on';
+                      const vent = parseFloat(states['input_number.cannabis_lab_ventilation_pct'].state) >= 75;
+                      return (interlock && ppe && !alarm && vent) ? '#1a3a1a' : '#4a0000';
+                    ]]]
+                - border: >
+                    [[[
+                      const interlock = states['input_boolean.cannabis_lab_safety_interlock_ok'].state === 'on';
+                      const ppe = states['input_boolean.cannabis_lab_ppe_compliance_active'].state === 'on';
+                      const alarm = states['input_boolean.cannabis_lab_solvent_alarm'].state === 'on';
+                      const vent = parseFloat(states['input_number.cannabis_lab_ventilation_pct'].state) >= 75;
+                      return (interlock && ppe && !alarm && vent) ? '2px solid #2ecc71' : '2px solid #e74c3c';
+                    ]]]
+              name:
+                - font-size: 16px
+                - font-weight: bold
+                - color: '#e8f5e9'
+
+          - type: entities
+            title: Safety Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_lab_safety_interlock_ok
+                name: Safety Interlock
+              - entity: input_boolean.cannabis_lab_ppe_compliance_active
+                name: PPE Compliance
+              - entity: input_boolean.cannabis_lab_solvent_alarm
+                name: Solvent Alarm
+
+          - type: gauge
+            entity: input_number.cannabis_lab_room_temp_f
+            name: Lab Temp (°F)
+            min: 50
+            max: 85
+            severity:
+              green: 60
+              yellow: 78
+              red: 82
+
+          - type: gauge
+            entity: input_number.cannabis_lab_room_rh_pct
+            name: Lab RH %
+            min: 10
+            max: 60
+            severity:
+              green: 20
+              yellow: 50
+              red: 58
+
+          - type: gauge
+            entity: input_number.cannabis_lab_ventilation_pct
+            name: Ventilation %
+            min: 0
+            max: 100
+            severity:
+              green: 75
+              yellow: 50
+              red: 0
+
+      # --- Section 2: Batch Operations ---
+      - type: grid
+        title: Batch Operations
+        columns: 1
+        cards:
+          - type: entities
+            title: Extraction Controls
+            show_header_toggle: false
+            entities:
+              - entity: input_select.cannabis_lab_extraction_method
+                name: Extraction Method
+              - entity: input_select.cannabis_lab_current_product_type
+                name: Product Type
+              - entity: input_boolean.cannabis_lab_extraction_active
+                name: Extraction Active
+
+          - type: custom:mini-graph-card
+            title: Active Batch Duration (hrs)
+            entity: input_number.cannabis_lab_active_batch_duration_hrs
+            hours_to_show: 12
+            line_width: 2
+            show:
+              labels: true
+
+          - type: custom:bar-card
+            title: Lab Efficiency
+            entities:
+              - entity: input_number.cannabis_lab_extraction_yield_pct
+                name: Extraction Yield %
+                max: 100
+              - entity: input_number.cannabis_lab_solvent_recovery_pct
+                name: Solvent Recovery %
+                max: 100
+
+          - type: entities
+            title: Batch Queue
+            show_header_toggle: false
+            entities:
+              - entity: input_number.cannabis_lab_batch_queue_count
+                name: Batch Queue Count
+              - entity: input_number.cannabis_lab_weekly_throughput_lbs_biomass
+                name: Weekly Biomass (lbs)
+
+      # --- Section 3: Extract Inventory & Analytics ---
+      - type: grid
+        title: Extract Inventory
+        columns: 1
+        cards:
+          - type: custom:bar-card
+            title: Inventory by Extract Type
+            entities:
+              - entity: input_number.cannabis_lab_crude_oil_lbs
+                name: Crude Oil (lbs)
+                max: 100
+              - entity: input_number.cannabis_lab_distillate_liters
+                name: Distillate (L)
+                max: 50
+              - entity: input_number.cannabis_lab_isolate_kg
+                name: Isolate (kg)
+                max: 10
+              - entity: input_number.cannabis_lab_rosin_grams
+                name: Rosin (g)
+                max: 2000
+
+          - type: custom:mini-graph-card
+            title: Yield % & Solvent Recovery (24h)
+            entities:
+              - entity: input_number.cannabis_lab_extraction_yield_pct
+                name: Yield %
+              - entity: input_number.cannabis_lab_solvent_recovery_pct
+                name: Solvent Recovery %
+            hours_to_show: 24
+            line_width: 2
+            show:
+              labels: true
+
+          - type: logbook
+            title: Lab Events (24h)
+            hours_to_show: 24
+            entities:
+              - input_boolean.cannabis_lab_extraction_active
+              - input_boolean.cannabis_lab_solvent_alarm
+              - input_boolean.cannabis_lab_safety_interlock_ok
+
+  ##############################################################
+  # VIEW 13: DISPENSARY
+  ##############################################################
+  - title: Dispensary
+    path: dispensary
+    icon: mdi:storefront-outline
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    theme: cannabis_ops_theater
+    sections:
+
+      # --- Section 1: Daily Performance ---
+      - type: grid
+        title: Daily Performance
+        columns: 2
+        cards:
+          - type: tile
+            entity: input_number.cannabis_dispensary_daily_sales_usd
+            name: Daily Sales ($)
+          - type: tile
+            entity: input_number.cannabis_dispensary_transaction_count
+            name: Transactions
+          - type: tile
+            entity: input_number.cannabis_dispensary_avg_basket_usd
+            name: Avg Basket ($)
+          - type: tile
+            entity: input_number.cannabis_dispensary_patient_count_today
+            name: Patients Today
+
+          - type: custom:mini-graph-card
+            title: Revenue Rate ($/hr)
+            entity: sensor.cannabis_dispensary_revenue_rate_usd_hr
+            hours_to_show: 8
+            line_width: 2
+            show:
+              labels: true
+              points: false
+
+          - type: entities
+            title: Operations Status
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.cannabis_dispensary_pos_online
+                name: POS Online
+              - entity: input_boolean.cannabis_dispensary_metrc_pos_sync_ok
+                name: METRC POS Sync
+              - entity: input_text.cannabis_dispensary_top_product_today
+                name: Top Product Today
+              - entity: input_number.cannabis_dispensary_compliance_holds
+                name: Compliance Holds
+              - entity: input_number.cannabis_dispensary_staff_floor
+                name: Staff on Floor
+
+      # --- Section 2: Inventory Status ---
+      - type: grid
+        title: Inventory Status
+        columns: 1
+        cards:
+          - type: custom:bar-card
+            title: Inventory by Category
+            entities:
+              - entity: input_number.cannabis_dispensary_flower_inventory_grams
+                name: Flower (g)
+                max: 5000
+              - entity: input_number.cannabis_dispensary_extract_inventory_grams
+                name: Extract (g)
+                max: 2000
+              - entity: input_number.cannabis_dispensary_edibles_inventory_units
+                name: Edibles (units)
+                max: 500
+              - entity: input_number.cannabis_dispensary_preroll_inventory_units
+                name: Prerolls (units)
+                max: 300
+            severity:
+              - value: 50
+                color: '#e74c3c'
+              - value: 200
+                color: '#f39c12'
+              - value: 500
+                color: '#2ecc71'
+
+          - type: conditional
+            conditions:
+              - entity: input_boolean.cannabis_dispensary_low_inventory_alert
+                state: "on"
+            card:
+              type: custom:button-card
+              name: "⚠ LOW INVENTORY ALERT"
+              label: One or more product categories below threshold
+              styles:
+                card:
+                  - background: '#4a2200'
+                  - border: '2px solid #f39c12'
+                name:
+                  - color: '#ffcc44'
+                  - font-size: 14px
+                  - font-weight: bold
+
+          - type: entities
+            title: Floor Operations
+            show_header_toggle: false
+            entities:
+              - entity: input_number.cannabis_dispensary_staff_floor
+                name: Staff on Floor
+              - entity: input_number.cannabis_dispensary_compliance_holds
+                name: Compliance Holds
+
+      # --- Section 3: Sales Trends & Compliance ---
+      - type: grid
+        title: Sales Trends
+        columns: 1
+        cards:
+          - type: custom:mini-graph-card
+            title: Intraday Sales (8h)
+            entities:
+              - entity: input_number.cannabis_dispensary_daily_sales_usd
+                name: Daily Sales ($)
+              - entity: input_number.cannabis_dispensary_transaction_count
+                name: Transaction Count
+            hours_to_show: 8
+            line_width: 2
+            show:
+              labels: true
+              points: false
+
+          - type: custom:mini-graph-card
+            title: Inventory Depletion (8h)
+            entities:
+              - entity: input_number.cannabis_dispensary_flower_inventory_grams
+                name: Flower (g)
+              - entity: input_number.cannabis_dispensary_extract_inventory_grams
+                name: Extract (g)
+              - entity: input_number.cannabis_dispensary_edibles_inventory_units
+                name: Edibles
+              - entity: input_number.cannabis_dispensary_preroll_inventory_units
+                name: Prerolls
+            hours_to_show: 8
+            line_width: 2
+            show:
+              labels: true
+              points: false
+
+          - type: logbook
+            title: Compliance Events (12h)
+            hours_to_show: 12
+            entities:
+              - input_boolean.cannabis_dispensary_metrc_pos_sync_ok
+              - input_boolean.cannabis_dispensary_low_inventory_alert
+              - input_boolean.cannabis_dispensary_pos_online
+
+  ##############################################################
+  # VIEW 14: FINANCIAL PULSE
+  ##############################################################
+  - title: Financial Pulse
+    path: financial
+    icon: mdi:chart-line
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    theme: cannabis_ops_theater
+    sections:
+
+      # --- Section 1: Key Metrics ---
+      - type: grid
+        title: Key Financial Metrics
+        columns: 3
+        cards:
+          - type: tile
+            entity: input_number.cannabis_financial_cost_per_gram_flower
+            name: Cost/Gram ($)
+          - type: tile
+            entity: input_number.cannabis_financial_cost_per_pound_biomass
+            name: Cost/Lb Biomass ($)
+          - type: tile
+            entity: input_number.cannabis_financial_gross_margin_pct
+            name: Gross Margin %
+          - type: tile
+            entity: input_number.cannabis_financial_labor_cost_today
+            name: Labor Cost Today ($)
+          - type: tile
+            entity: input_number.cannabis_financial_energy_cost_today
+            name: Energy Cost Today ($)
+          - type: tile
+            entity: input_number.cannabis_financial_batch_revenue_usd
+            name: Batch Revenue ($)
+
+          - type: custom:mini-graph-card
+            title: Gross Margin % Trend (7-day)
+            entity: input_number.cannabis_financial_gross_margin_pct
+            hours_to_show: 168
+            points_per_hour: 1
+            line_width: 2
+            show:
+              labels: true
+              points: false
+
+          - type: entities
+            title: EBITDA Proxy
+            show_header_toggle: false
+            entities:
+              - entity: sensor.cannabis_financial_ebitda_proxy
+                name: EBITDA Proxy ($)
+
+      # --- Section 2: Cost vs Revenue ---
+      - type: grid
+        title: Cost vs Revenue
+        columns: 1
+        cards:
+          - type: custom:mini-graph-card
+            title: Revenue vs Labor vs Energy (30-day)
+            entities:
+              - entity: input_number.cannabis_financial_batch_revenue_usd
+                name: Batch Revenue
+              - entity: input_number.cannabis_financial_labor_cost_today
+                name: Labor Cost
+              - entity: input_number.cannabis_financial_energy_cost_today
+                name: Energy Cost
+            hours_to_show: 720
+            points_per_hour: 1
+            line_width: 2
+            show:
+              labels: true
+              points: false
+
+          - type: custom:mini-graph-card
+            title: Gross Margin % (30-day trend)
+            entity: input_number.cannabis_financial_gross_margin_pct
+            hours_to_show: 720
+            points_per_hour: 1
+            line_width: 2
+            show:
+              labels: true
+
+      # --- Section 3: Cost Breakdown ---
+      - type: grid
+        title: Cost Breakdown
+        columns: 1
+        cards:
+          - type: custom:bar-card
+            title: Cost Breakdown by Category
+            entities:
+              - entity: input_number.cannabis_financial_labor_cost_today
+                name: Labor ($)
+                max: 10000
+              - entity: input_number.cannabis_financial_energy_cost_today
+                name: Energy ($)
+                max: 5000
+
+          - type: entities
+            title: Full Financial Snapshot
+            show_header_toggle: false
+            entities:
+              - entity: input_number.cannabis_financial_cost_per_gram_flower
+                name: Cost/Gram ($)
+              - entity: input_number.cannabis_financial_cost_per_pound_biomass
+                name: Cost/Lb Biomass ($)
+              - entity: input_number.cannabis_financial_labor_cost_today
+                name: Labor Cost Today ($)
+              - entity: input_number.cannabis_financial_energy_cost_today
+                name: Energy Cost Today ($)
+              - entity: input_number.cannabis_financial_batch_revenue_usd
+                name: Batch Revenue ($)
+              - entity: input_number.cannabis_financial_gross_margin_pct
+                name: Gross Margin %
+              - entity: sensor.cannabis_financial_ebitda_proxy
+                name: EBITDA Proxy ($)

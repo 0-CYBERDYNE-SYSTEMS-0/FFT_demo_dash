@@ -816,6 +816,318 @@ input_number:
     initial: 246500
     step: 50
 
+  # === GROW ROOM TRACKING ===
+  cannabis_room_a_days_in_stage:
+    name: "Room A Days in Stage"
+    min: 0
+    max: 120
+    initial: 26
+    step: 1
+  cannabis_room_a_plant_count:
+    name: "Room A Plant Count"
+    min: 0
+    max: 500
+    initial: 120
+    step: 1
+  cannabis_room_a_expected_yield_lbs:
+    name: "Room A Expected Yield (lbs)"
+    min: 0
+    max: 50
+    initial: 18.5
+    step: 0.1
+  cannabis_room_b_days_in_stage:
+    name: "Room B Days in Stage"
+    min: 0
+    max: 120
+    initial: 47
+    step: 1
+  cannabis_room_b_plant_count:
+    name: "Room B Plant Count"
+    min: 0
+    max: 500
+    initial: 108
+    step: 1
+  cannabis_room_b_expected_yield_lbs:
+    name: "Room B Expected Yield (lbs)"
+    min: 0
+    max: 50
+    initial: 16.2
+    step: 0.1
+  cannabis_room_c_days_in_stage:
+    name: "Room C Days in Stage"
+    min: 0
+    max: 120
+    initial: 6
+    step: 1
+  cannabis_room_c_plant_count:
+    name: "Room C Plant Count"
+    min: 0
+    max: 500
+    initial: 115
+    step: 1
+  cannabis_room_c_expected_yield_lbs:
+    name: "Room C Expected Yield (lbs)"
+    min: 0
+    max: 50
+    initial: 17.8
+    step: 0.1
+  cannabis_room_d_days_in_stage:
+    name: "Room D Days in Stage"
+    min: 0
+    max: 120
+    initial: 18
+    step: 1
+  cannabis_room_d_plant_count:
+    name: "Room D Plant Count"
+    min: 0
+    max: 500
+    initial: 130
+    step: 1
+  cannabis_room_d_expected_yield_lbs:
+    name: "Room D Expected Yield (lbs)"
+    min: 0
+    max: 50
+    initial: 21.0
+    step: 0.1
+
+  # === IPM ===
+  cannabis_ipm_pest_pressure_room_a:
+    name: "IPM Pest Pressure Room A"
+    min: 0
+    max: 10
+    initial: 1.8
+    step: 0.1
+  cannabis_ipm_pest_pressure_room_b:
+    name: "IPM Pest Pressure Room B"
+    min: 0
+    max: 10
+    initial: 3.2
+    step: 0.1
+  cannabis_ipm_pest_pressure_room_c:
+    name: "IPM Pest Pressure Room C"
+    min: 0
+    max: 10
+    initial: 0.9
+    step: 0.1
+  cannabis_ipm_pest_pressure_room_d:
+    name: "IPM Pest Pressure Room D"
+    min: 0
+    max: 10
+    initial: 2.1
+    step: 0.1
+  cannabis_ipm_days_since_spray_room_a:
+    name: "IPM Days Since Spray Room A"
+    min: 0
+    max: 60
+    initial: 8
+    step: 1
+  cannabis_ipm_days_since_spray_room_b:
+    name: "IPM Days Since Spray Room B"
+    min: 0
+    max: 60
+    initial: 3
+    step: 1
+  cannabis_ipm_days_since_spray_room_c:
+    name: "IPM Days Since Spray Room C"
+    min: 0
+    max: 60
+    initial: 12
+    step: 1
+  cannabis_ipm_days_since_spray_room_d:
+    name: "IPM Days Since Spray Room D"
+    min: 0
+    max: 60
+    initial: 5
+    step: 1
+
+  # === EXTRACTION LAB ===
+  cannabis_lab_batch_queue_count:
+    name: "Lab Batch Queue Count"
+    min: 0
+    max: 20
+    initial: 3
+    step: 1
+  cannabis_lab_extraction_yield_pct:
+    name: "Lab Extraction Yield %"
+    min: 0
+    max: 100
+    initial: 78.5
+    step: 0.1
+  cannabis_lab_solvent_recovery_pct:
+    name: "Lab Solvent Recovery %"
+    min: 0
+    max: 100
+    initial: 88.2
+    step: 0.1
+  cannabis_lab_active_batch_duration_hrs:
+    name: "Lab Active Batch Duration (hrs)"
+    min: 0
+    max: 72
+    initial: 4.5
+    step: 0.1
+  cannabis_lab_room_temp_f:
+    name: "Lab Room Temp (°F)"
+    min: 50
+    max: 85
+    initial: 68.0
+    step: 0.1
+  cannabis_lab_room_rh_pct:
+    name: "Lab Room RH %"
+    min: 10
+    max: 60
+    initial: 42.0
+    step: 0.1
+  cannabis_lab_ventilation_pct:
+    name: "Lab Ventilation %"
+    min: 0
+    max: 100
+    initial: 85
+    step: 1
+  cannabis_lab_weekly_throughput_lbs_biomass:
+    name: "Lab Weekly Biomass Throughput (lbs)"
+    min: 0
+    max: 500
+    initial: 120
+    step: 1
+  cannabis_lab_crude_oil_lbs:
+    name: "Lab Crude Oil Inventory (lbs)"
+    min: 0
+    max: 100
+    initial: 12.4
+    step: 0.1
+  cannabis_lab_distillate_liters:
+    name: "Lab Distillate Inventory (L)"
+    min: 0
+    max: 50
+    initial: 8.2
+    step: 0.1
+  cannabis_lab_isolate_kg:
+    name: "Lab Isolate Inventory (kg)"
+    min: 0
+    max: 10
+    initial: 1.85
+    step: 0.01
+  cannabis_lab_rosin_grams:
+    name: "Lab Rosin Inventory (g)"
+    min: 0
+    max: 2000
+    initial: 340
+    step: 1
+
+  # === DISPENSARY ===
+  cannabis_dispensary_daily_sales_usd:
+    name: "Dispensary Daily Sales ($)"
+    min: 0
+    max: 50000
+    initial: 8420
+    step: 1
+  cannabis_dispensary_transaction_count:
+    name: "Dispensary Transaction Count"
+    min: 0
+    max: 500
+    initial: 84
+    step: 1
+  cannabis_dispensary_avg_basket_usd:
+    name: "Dispensary Avg Basket ($)"
+    min: 0
+    max: 200
+    initial: 100.24
+    step: 0.01
+  cannabis_dispensary_patient_count_today:
+    name: "Dispensary Patients Today"
+    min: 0
+    max: 500
+    initial: 78
+    step: 1
+  cannabis_dispensary_staff_floor:
+    name: "Dispensary Staff on Floor"
+    min: 0
+    max: 20
+    initial: 4
+    step: 1
+  cannabis_dispensary_compliance_holds:
+    name: "Dispensary Compliance Holds"
+    min: 0
+    max: 20
+    initial: 0
+    step: 1
+  cannabis_dispensary_flower_inventory_grams:
+    name: "Dispensary Flower Inventory (g)"
+    min: 0
+    max: 5000
+    initial: 1840
+    step: 1
+  cannabis_dispensary_extract_inventory_grams:
+    name: "Dispensary Extract Inventory (g)"
+    min: 0
+    max: 2000
+    initial: 620
+    step: 1
+  cannabis_dispensary_edibles_inventory_units:
+    name: "Dispensary Edibles Inventory (units)"
+    min: 0
+    max: 500
+    initial: 145
+    step: 1
+  cannabis_dispensary_preroll_inventory_units:
+    name: "Dispensary Preroll Inventory (units)"
+    min: 0
+    max: 300
+    initial: 88
+    step: 1
+
+  # === FINANCIAL ===
+  cannabis_financial_cost_per_gram_flower:
+    name: "Financial Cost/Gram Flower ($)"
+    min: 0
+    max: 20
+    initial: 1.42
+    step: 0.01
+  cannabis_financial_cost_per_pound_biomass:
+    name: "Financial Cost/Lb Biomass ($)"
+    min: 0
+    max: 300
+    initial: 85
+    step: 1
+  cannabis_financial_labor_cost_today:
+    name: "Financial Labor Cost Today ($)"
+    min: 0
+    max: 10000
+    initial: 2840
+    step: 1
+  cannabis_financial_energy_cost_today:
+    name: "Financial Energy Cost Today ($)"
+    min: 0
+    max: 5000
+    initial: 1120
+    step: 1
+  cannabis_financial_batch_revenue_usd:
+    name: "Financial Batch Revenue ($)"
+    min: 0
+    max: 100000
+    initial: 42000
+    step: 100
+  cannabis_financial_gross_margin_pct:
+    name: "Financial Gross Margin %"
+    min: -50
+    max: 100
+    initial: 58.4
+    step: 0.1
+
+  # === COMPLIANCE EXTENSION ===
+  cannabis_license_days_remaining:
+    name: "Cannabis License Days Remaining"
+    min: 0
+    max: 365
+    initial: 187
+    step: 1
+  cannabis_destruction_event_count:
+    name: "Cannabis Destruction Event Count"
+    min: 0
+    max: 100
+    initial: 2
+    step: 1
+
 #############################################################
 # INPUT BOOLEANS - Binary Controls
 #############################################################
@@ -1097,6 +1409,57 @@ input_boolean:
     name: "Alert Equipment Fault"
     initial: off
 
+  # === IPM BOOLEANS ===
+  cannabis_ipm_zone_a_quarantine:
+    name: "IPM Room A Quarantine"
+    initial: off
+  cannabis_ipm_zone_b_quarantine:
+    name: "IPM Room B Quarantine"
+    initial: off
+  cannabis_ipm_zone_c_quarantine:
+    name: "IPM Room C Quarantine"
+    initial: off
+  cannabis_ipm_zone_d_quarantine:
+    name: "IPM Room D Quarantine"
+    initial: off
+  cannabis_ipm_scouting_due_room_a:
+    name: "IPM Scouting Due Room A"
+    initial: off
+  cannabis_ipm_scouting_due_room_b:
+    name: "IPM Scouting Due Room B"
+    initial: on
+  cannabis_ipm_scouting_due_room_c:
+    name: "IPM Scouting Due Room C"
+    initial: off
+  cannabis_ipm_scouting_due_room_d:
+    name: "IPM Scouting Due Room D"
+    initial: off
+
+  # === EXTRACTION LAB BOOLEANS ===
+  cannabis_lab_extraction_active:
+    name: "Lab Extraction Active"
+    initial: on
+  cannabis_lab_safety_interlock_ok:
+    name: "Lab Safety Interlock OK"
+    initial: on
+  cannabis_lab_ppe_compliance_active:
+    name: "Lab PPE Compliance Active"
+    initial: on
+  cannabis_lab_solvent_alarm:
+    name: "Lab Solvent Alarm"
+    initial: off
+
+  # === DISPENSARY BOOLEANS ===
+  cannabis_dispensary_pos_online:
+    name: "Dispensary POS Online"
+    initial: on
+  cannabis_dispensary_metrc_pos_sync_ok:
+    name: "Dispensary METRC POS Sync OK"
+    initial: on
+  cannabis_dispensary_low_inventory_alert:
+    name: "Dispensary Low Inventory Alert"
+    initial: off
+
 #############################################################
 # INPUT TEXTS - Compliance Metadata
 #############################################################
@@ -1141,6 +1504,46 @@ input_text:
   cannabis_manifest_live_id:
     name: "Cannabis Manifest Live ID"
     initial: "CAN-MAN-2402-0001"
+    max: 64
+
+  # === GROW ROOM BATCH TRACKING ===
+  cannabis_room_a_batch_id:
+    name: "Room A Batch ID"
+    initial: "BATCH-2026-031"
+    max: 64
+  cannabis_room_a_strain:
+    name: "Room A Strain"
+    initial: "Blue Dream"
+    max: 64
+  cannabis_room_b_batch_id:
+    name: "Room B Batch ID"
+    initial: "BATCH-2026-028"
+    max: 64
+  cannabis_room_b_strain:
+    name: "Room B Strain"
+    initial: "OG Kush"
+    max: 64
+  cannabis_room_c_batch_id:
+    name: "Room C Batch ID"
+    initial: "BATCH-2026-022"
+    max: 64
+  cannabis_room_c_strain:
+    name: "Room C Strain"
+    initial: "Girl Scout Cookies"
+    max: 64
+  cannabis_room_d_batch_id:
+    name: "Room D Batch ID"
+    initial: "BATCH-2026-019"
+    max: 64
+  cannabis_room_d_strain:
+    name: "Room D Strain"
+    initial: "Gorilla Glue #4"
+    max: 64
+
+  # === DISPENSARY ===
+  cannabis_dispensary_top_product_today:
+    name: "Dispensary Top Product Today"
+    initial: "Blue Dream 3.5g"
     max: 64
 
 #############################################################
@@ -1224,6 +1627,166 @@ input_select:
       - Quality First
       - Risk Mitigation
     initial: Balanced
+
+  # === LOCATION SELECTOR ===
+  cannabis_active_facility:
+    name: "Active Facility"
+    options:
+      - Site A Indoor
+      - Site B Greenhouse
+      - Site C Hemp Block
+      - Extraction Lab
+      - Dispensary
+      - All Sites
+    initial: Site A Indoor
+    icon: mdi:map-marker-multiple
+
+  # === GROW ROOM STAGES ===
+  cannabis_room_a_stage:
+    name: "Room A Stage"
+    options:
+      - Clone
+      - Veg
+      - Transition
+      - Flower Wk1
+      - Flower Wk2
+      - Flower Wk3
+      - Flower Wk4
+      - Flower Wk5
+      - Flower Wk6
+      - Flower Wk7
+      - Flower Wk8
+      - Flush
+      - Harvest
+      - Empty
+    initial: Flower Wk4
+  cannabis_room_b_stage:
+    name: "Room B Stage"
+    options:
+      - Clone
+      - Veg
+      - Transition
+      - Flower Wk1
+      - Flower Wk2
+      - Flower Wk3
+      - Flower Wk4
+      - Flower Wk5
+      - Flower Wk6
+      - Flower Wk7
+      - Flower Wk8
+      - Flush
+      - Harvest
+      - Empty
+    initial: Flower Wk7
+  cannabis_room_c_stage:
+    name: "Room C Stage"
+    options:
+      - Clone
+      - Veg
+      - Transition
+      - Flower Wk1
+      - Flower Wk2
+      - Flower Wk3
+      - Flower Wk4
+      - Flower Wk5
+      - Flower Wk6
+      - Flower Wk7
+      - Flower Wk8
+      - Flush
+      - Harvest
+      - Empty
+    initial: Flush
+  cannabis_room_d_stage:
+    name: "Room D Stage"
+    options:
+      - Clone
+      - Veg
+      - Transition
+      - Flower Wk1
+      - Flower Wk2
+      - Flower Wk3
+      - Flower Wk4
+      - Flower Wk5
+      - Flower Wk6
+      - Flower Wk7
+      - Flower Wk8
+      - Flush
+      - Harvest
+      - Empty
+    initial: Veg
+
+  # === IPM SPRAY PRODUCTS ===
+  cannabis_ipm_last_spray_product_room_a:
+    name: "IPM Last Spray Room A"
+    options:
+      - None
+      - Spinosad
+      - Neem Oil
+      - Pyrethrin
+      - Beneficial Insects Only
+      - Other Approved
+    initial: None
+  cannabis_ipm_last_spray_product_room_b:
+    name: "IPM Last Spray Room B"
+    options:
+      - None
+      - Spinosad
+      - Neem Oil
+      - Pyrethrin
+      - Beneficial Insects Only
+      - Other Approved
+    initial: Neem Oil
+  cannabis_ipm_last_spray_product_room_c:
+    name: "IPM Last Spray Room C"
+    options:
+      - None
+      - Spinosad
+      - Neem Oil
+      - Pyrethrin
+      - Beneficial Insects Only
+      - Other Approved
+    initial: None
+  cannabis_ipm_last_spray_product_room_d:
+    name: "IPM Last Spray Room D"
+    options:
+      - None
+      - Spinosad
+      - Neem Oil
+      - Pyrethrin
+      - Beneficial Insects Only
+      - Other Approved
+    initial: Spinosad
+
+  # === EXTRACTION LAB ===
+  cannabis_lab_extraction_method:
+    name: "Lab Extraction Method"
+    options:
+      - BHO
+      - CO2
+      - Ethanol
+      - Rosin Press
+    initial: CO2
+  cannabis_lab_current_product_type:
+    name: "Lab Current Product Type"
+    options:
+      - Crude Oil
+      - Distillate
+      - Isolate
+      - Live Resin
+      - Rosin
+      - Wax
+      - Shatter
+    initial: Distillate
+
+  # === COMPLIANCE ===
+  cannabis_coa_status:
+    name: "COA Status"
+    options:
+      - Pending
+      - Pass
+      - Fail
+      - Quarantine
+    initial: Pass
 
 #############################################################
 # TEMPLATE SENSORS
@@ -1763,6 +2326,88 @@ sensor:
           {% endif %}
         friendly_name: "Cannabis Drone Scene"
 
+      # === ACTIVE FACILITY ROUTING ===
+      cannabis_active_air_temp_f:
+        friendly_name: "Active Facility Air Temp"
+        value_template: >
+          {% set f = states('input_select.cannabis_active_facility') %}
+          {% if f == 'Site A Indoor' %}{{ states('input_number.cannabis_site_a_flower_air_temp_f') }}
+          {% elif f == 'Site B Greenhouse' %}{{ states('input_number.cannabis_site_b_greenhouse_air_temp_f') }}
+          {% elif f == 'Site C Hemp Block' %}{{ states('input_number.cannabis_site_c_hemp_air_temp_f') }}
+          {% elif f == 'Extraction Lab' %}{{ states('input_number.cannabis_lab_room_temp_f') }}
+          {% else %}{{ states('sensor.cannabis_air_temp_f') }}{% endif %}
+        unit_of_measurement: "°F"
+      cannabis_active_rh_pct:
+        friendly_name: "Active Facility RH"
+        value_template: >
+          {% set f = states('input_select.cannabis_active_facility') %}
+          {% if f == 'Site A Indoor' %}{{ states('input_number.cannabis_site_a_flower_rh_pct') }}
+          {% elif f == 'Site B Greenhouse' %}{{ states('input_number.cannabis_site_b_greenhouse_rh_pct') }}
+          {% elif f == 'Extraction Lab' %}{{ states('input_number.cannabis_lab_room_rh_pct') }}
+          {% else %}{{ states('sensor.cannabis_rh_pct') }}{% endif %}
+        unit_of_measurement: "%"
+      cannabis_active_co2_ppm:
+        friendly_name: "Active Facility CO2"
+        value_template: >
+          {% set f = states('input_select.cannabis_active_facility') %}
+          {% if f == 'Site A Indoor' %}{{ states('input_number.cannabis_site_a_co2_ppm') }}
+          {% elif f == 'Site B Greenhouse' %}{{ states('input_number.cannabis_site_b_co2_ppm') }}
+          {% else %}{{ states('sensor.cannabis_co2_ppm') }}{% endif %}
+        unit_of_measurement: "ppm"
+
+      # === IPM ANALYTICS ===
+      cannabis_ipm_overall_pressure_idx:
+        friendly_name: "IPM Overall Pressure Index"
+        value_template: >
+          {% set rooms = [
+            states('input_number.cannabis_ipm_pest_pressure_room_a') | float(0),
+            states('input_number.cannabis_ipm_pest_pressure_room_b') | float(0),
+            states('input_number.cannabis_ipm_pest_pressure_room_c') | float(0),
+            states('input_number.cannabis_ipm_pest_pressure_room_d') | float(0)
+          ] %}
+          {{ rooms | max | round(1) }}
+        unit_of_measurement: "/10"
+
+      # === LAB SAFETY INDEX ===
+      cannabis_lab_safety_idx:
+        friendly_name: "Lab Safety Index"
+        value_template: >
+          {% set interlock = 40 if is_state('input_boolean.cannabis_lab_safety_interlock_ok', 'on') else 0 %}
+          {% set ppe = 30 if is_state('input_boolean.cannabis_lab_ppe_compliance_active', 'on') else 0 %}
+          {% set vent = states('input_number.cannabis_lab_ventilation_pct') | float(0) * 0.3 %}
+          {{ (interlock + ppe + vent) | round(0) }}
+        unit_of_measurement: "/100"
+
+      # === DISPENSARY ANALYTICS ===
+      cannabis_dispensary_revenue_rate_usd_hr:
+        friendly_name: "Dispensary Revenue Rate ($/hr)"
+        value_template: >
+          {% set sales = states('input_number.cannabis_dispensary_daily_sales_usd') | float(0) %}
+          {% set hour = now().hour %}
+          {% set elapsed = [hour - 8, 1] | max %}
+          {{ (sales / elapsed) | round(0) }}
+        unit_of_measurement: "$/hr"
+      cannabis_dispensary_inventory_health_idx:
+        friendly_name: "Dispensary Inventory Health"
+        value_template: >
+          {% set flower = states('input_number.cannabis_dispensary_flower_inventory_grams') | float(0) %}
+          {% set extract = states('input_number.cannabis_dispensary_extract_inventory_grams') | float(0) %}
+          {% set edibles = states('input_number.cannabis_dispensary_edibles_inventory_units') | float(0) %}
+          {% set prerolls = states('input_number.cannabis_dispensary_preroll_inventory_units') | float(0) %}
+          {% set score = ([flower / 5000, 1] | min * 25) + ([extract / 2000, 1] | min * 25) + ([edibles / 500, 1] | min * 25) + ([prerolls / 300, 1] | min * 25) %}
+          {{ score | round(0) }}
+        unit_of_measurement: "/100"
+
+      # === FINANCIAL ANALYTICS ===
+      cannabis_financial_ebitda_proxy:
+        friendly_name: "EBITDA Proxy ($)"
+        value_template: >
+          {% set revenue = states('input_number.cannabis_financial_batch_revenue_usd') | float(0) %}
+          {% set labor = states('input_number.cannabis_financial_labor_cost_today') | float(0) %}
+          {% set energy = states('input_number.cannabis_financial_energy_cost_today') | float(0) %}
+          {{ (revenue - labor - energy) | round(0) }}
+        unit_of_measurement: "$"
+
 #############################################################
 # BINARY SENSORS
 #############################################################
@@ -2109,6 +2754,44 @@ switch:
           service: input_boolean.turn_off
           target:
             entity_id: input_boolean.frost_protection
+
+  - platform: template
+    sensors:
+      # === IPM BINARY SENSORS ===
+      cannabis_ipm_spray_blackout_active:
+        friendly_name: "IPM Spray Blackout Active"
+        value_template: >
+          {% set stage_a = states('input_select.cannabis_room_a_stage') %}
+          {% set stage_b = states('input_select.cannabis_room_b_stage') %}
+          {% set stage_c = states('input_select.cannabis_room_c_stage') %}
+          {% set stage_d = states('input_select.cannabis_room_d_stage') %}
+          {% set days_a = states('input_number.cannabis_room_a_days_in_stage') | int(0) %}
+          {% set days_b = states('input_number.cannabis_room_b_days_in_stage') | int(0) %}
+          {% set days_c = states('input_number.cannabis_room_c_days_in_stage') | int(0) %}
+          {% set days_d = states('input_number.cannabis_room_d_days_in_stage') | int(0) %}
+          {{ ('Flower' in stage_a and days_a >= 10) or
+             ('Flower' in stage_b and days_b >= 10) or
+             ('Flower' in stage_c and days_c >= 10) or
+             ('Flower' in stage_d and days_d >= 10) }}
+        device_class: safety
+
+      # === DISPENSARY BINARY SENSORS ===
+      cannabis_dispensary_low_flower_stock:
+        friendly_name: "Dispensary Low Flower Stock"
+        value_template: "{{ states('input_number.cannabis_dispensary_flower_inventory_grams') | float(0) < 100 }}"
+        device_class: problem
+      cannabis_dispensary_pos_degraded:
+        friendly_name: "Dispensary POS Degraded"
+        value_template: >
+          {{ is_state('input_boolean.cannabis_dispensary_pos_online', 'off') or
+             is_state('input_boolean.cannabis_dispensary_metrc_pos_sync_ok', 'off') }}
+        device_class: problem
+
+      # === COMPLIANCE BINARY SENSORS ===
+      cannabis_license_expiring_soon:
+        friendly_name: "Cannabis License Expiring Soon"
+        value_template: "{{ states('input_number.cannabis_license_days_remaining') | int(365) < 90 }}"
+        device_class: problem
 
 #############################################################
 # SYSTEM CONFIGURATION

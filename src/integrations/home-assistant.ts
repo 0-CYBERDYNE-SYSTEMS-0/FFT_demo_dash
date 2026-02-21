@@ -76,6 +76,58 @@ export interface CannabisOpsStatus {
     drone_anomaly_score: number;
     drone_geofence_breach: boolean;
   };
+  grow_rooms: {
+    rooms: Array<{
+      id: string;
+      batch_id: string;
+      strain: string;
+      stage: string;
+      days_in_stage: number;
+      plant_count: number;
+      expected_yield_lbs: number;
+    }>;
+  };
+  ipm: {
+    overall_pressure_idx: number;
+    spray_blackout_active: boolean;
+    rooms: Array<{
+      pressure: number;
+      days_since_spray: number;
+      scouting_due: boolean;
+      last_product: string;
+    }>;
+  };
+  lab: {
+    extraction_active: boolean;
+    safety_idx: number;
+    solvent_alarm: boolean;
+    batch_queue_count: number;
+    extraction_yield_pct: number;
+    solvent_recovery_pct: number;
+    inventory: {
+      crude_lbs: number;
+      distillate_liters: number;
+      isolate_kg: number;
+      rosin_grams: number;
+    };
+  };
+  dispensary: {
+    daily_sales_usd: number;
+    transaction_count: number;
+    avg_basket_usd: number;
+    patient_count_today: number;
+    pos_online: boolean;
+    metrc_sync_ok: boolean;
+    inventory_health_idx: number;
+    compliance_holds: number;
+  };
+  financial: {
+    cost_per_gram: number;
+    gross_margin_pct: number;
+    labor_cost_today: number;
+    energy_cost_today: number;
+    ebitda_proxy: number;
+  };
 }
 
 export interface FarmStatus {
@@ -170,6 +222,11 @@ export interface FarmStatus {
   security_access: CannabisOpsStatus['security_access'];
   workforce_schedule: CannabisOpsStatus['workforce_schedule'];
   video_drone: CannabisOpsStatus['video_drone'];
+  grow_rooms: CannabisOpsStatus['grow_rooms'];
+  ipm: CannabisOpsStatus['ipm'];
+  lab: CannabisOpsStatus['lab'];
+  dispensary: CannabisOpsStatus['dispensary'];
+  financial: CannabisOpsStatus['financial'];
 }
 
 export class HomeAssistantAdapter {
@@ -515,6 +572,58 @@ export class HomeAssistantAdapter {
         drone_anomaly_score: parseFloat(getValue('sensor.cannabis_drone_anomaly_score', 5) as string) || 5,
         drone_geofence_breach: getValue('binary_sensor.cannabis_drone_geofence_breach_active') === 'on',
       },
+      grow_rooms: {
+        rooms: ['a', 'b', 'c', 'd'].map((r) => ({
+          id: `room_${r}`,
+          batch_id: getValue(`input_text.cannabis_room_${r}_batch_id`, `BATCH-2026-00${r}`) as string,
+          strain: getValue(`input_text.cannabis_room_${r}_strain`, 'Unknown') as string,
+          stage: getValue(`input_select.cannabis_room_${r}_stage`, 'Veg') as string,
+          days_in_stage: parseFloat(getValue(`input_number.cannabis_room_${r}_days_in_stage`, 0) as string) || 0,
+          plant_count: parseFloat(getValue(`input_number.cannabis_room_${r}_plant_count`, 0) as string) || 0,
+          expected_yield_lbs: parseFloat(getValue(`input_number.cannabis_room_${r}_expected_yield_lbs`, 0) as string) || 0,
+        })),
+      },
+      ipm: {
+        overall_pressure_idx: parseFloat(getValue('sensor.cannabis_ipm_overall_pressure_idx', 0) as string) || 0,
+        spray_blackout_active: getValue('binary_sensor.cannabis_ipm_spray_blackout_active') === 'on',
+        rooms: ['a', 'b', 'c', 'd'].map((r) => ({
+          pressure: parseFloat(getValue(`input_number.cannabis_ipm_pest_pressure_room_${r}`, 0) as string) || 0,
+          days_since_spray: parseFloat(getValue(`input_number.cannabis_ipm_days_since_spray_room_${r}`, 0) as string) || 0,
+          scouting_due: getValue(`input_boolean.cannabis_ipm_scouting_due_room_${r}`) === 'on',
+          last_product: getValue(`input_select.cannabis_ipm_last_spray_product_room_${r}`, 'None') as string,
+        })),
+      },
+      lab: {
+        extraction_active: getValue('input_boolean.cannabis_lab_extraction_active') === 'on',
+        safety_idx: parseFloat(getValue('sensor.cannabis_lab_safety_idx', 100) as string) || 100,
+        solvent_alarm: getValue('input_boolean.cannabis_lab_solvent_alarm') === 'on',
+        batch_queue_count: parseFloat(getValue('input_number.cannabis_lab_batch_queue_count', 0) as string) || 0,
+        extraction_yield_pct: parseFloat(getValue('input_number.cannabis_lab_extraction_yield_pct', 78) as string) || 78,
+        solvent_recovery_pct: parseFloat(getValue('input_number.cannabis_lab_solvent_recovery_pct', 88) as string) || 88,
+        inventory: {
+          crude_lbs: parseFloat(getValue('input_number.cannabis_lab_crude_oil_lbs', 0) as string) || 0,
+          distillate_liters: parseFloat(getValue('input_number.cannabis_lab_distillate_liters', 0) as string) || 0,
+          isolate_kg: parseFloat(getValue('input_number.cannabis_lab_isolate_kg', 0) as string) || 0,
+          rosin_grams: parseFloat(getValue('input_number.cannabis_lab_rosin_grams', 0) as string) || 0,
+        },
+      },
+      dispensary: {
+        daily_sales_usd: parseFloat(getValue('input_number.cannabis_dispensary_daily_sales_usd', 0) as string) || 0,
+        transaction_count: parseFloat(getValue('input_number.cannabis_dispensary_transaction_count', 0) as string) || 0,
+        avg_basket_usd: parseFloat(getValue('input_number.cannabis_dispensary_avg_basket_usd', 0) as string) || 0,
+        patient_count_today: parseFloat(getValue('input_number.cannabis_dispensary_patient_count_today', 0) as string) || 0,
+        pos_online: getValue('input_boolean.cannabis_dispensary_pos_online') === 'on',
+        metrc_sync_ok: getValue('input_boolean.cannabis_dispensary_metrc_pos_sync_ok') === 'on',
+        inventory_health_idx: parseFloat(getValue('sensor.cannabis_dispensary_inventory_health_idx', 100) as string) || 100,
+        compliance_holds: parseFloat(getValue('input_number.cannabis_dispensary_compliance_holds', 0) as string) || 0,
+      },
+      financial: {
+        cost_per_gram: parseFloat(getValue('input_number.cannabis_financial_cost_per_gram_flower', 0) as string) || 0,
+        gross_margin_pct: parseFloat(getValue('input_number.cannabis_financial_gross_margin_pct', 0) as string) || 0,
+        labor_cost_today: parseFloat(getValue('input_number.cannabis_financial_labor_cost_today', 0) as string) || 0,
+        energy_cost_today: parseFloat(getValue('input_number.cannabis_financial_energy_cost_today', 0) as string) || 0,
+        ebitda_proxy: parseFloat(getValue('sensor.cannabis_financial_ebitda_proxy', 0) as string) || 0,
+      },
     };
   }
 
@@ -528,6 +637,11 @@ export class HomeAssistantAdapter {
       security_access: status.security_access,
       workforce_schedule: status.workforce_schedule,
       video_drone: status.video_drone,
+      grow_rooms: status.grow_rooms,
+      ipm: status.ipm,
+      lab: status.lab,
+      dispensary: status.dispensary,
+      financial: status.financial,
     };
   }
 
