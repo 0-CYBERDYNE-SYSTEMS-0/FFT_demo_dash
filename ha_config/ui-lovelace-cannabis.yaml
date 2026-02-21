@@ -2914,123 +2914,107 @@ views:
 
       # --- Section 1: Room Status Grid ---
       - type: grid
-        title: Room Status Grid
+        title: Room Operations Overview
         columns: 2
         cards:
-          - type: custom:button-card
-            name: Room A
-            entity: input_select.cannabis_room_a_stage
-            show_state: true
-            styles:
-              card:
-                - background: >
-                    [[[ const s = states['input_select.cannabis_room_a_stage'].state;
-                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
-                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
-                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
-                        if (s === 'Flush') return '#4a1500';
-                        if (s === 'Harvest') return '#3a3000';
-                        return '#1a1a1a'; ]]]
-              name:
-                - font-size: 14px
-                - font-weight: bold
-                - color: '#e8f5e9'
-            custom_fields:
-              batch: >
-                [[[ return states['input_text.cannabis_room_a_batch_id'].state || '—'; ]]]
-              strain: >
-                [[[ return states['input_text.cannabis_room_a_strain'].state || '—'; ]]]
-              days: >
-                [[[ return 'Day ' + states['input_number.cannabis_room_a_days_in_stage'].state; ]]]
-              plants: >
-                [[[ return states['input_number.cannabis_room_a_plant_count'].state + ' plants'; ]]]
+          - type: vertical-stack
+            cards:
+              - type: heading
+                heading: Room A
+                heading_style: subtitle
+              - type: tile
+                entity: input_select.cannabis_room_a_stage
+                name: Current Stage
+              - type: tile
+                entity: input_text.cannabis_room_a_batch_id
+                name: Batch ID
+              - type: tile
+                entity: input_text.cannabis_room_a_strain
+                name: Strain
+              - type: tile
+                entity: input_number.cannabis_room_a_plant_count
+                name: Plant Count
+              - type: tile
+                entity: input_number.cannabis_room_a_days_in_stage
+                name: Days in Stage
+              - type: tile
+                entity: input_number.cannabis_room_a_expected_yield_lbs
+                name: Expected Yield
 
-          - type: custom:button-card
-            name: Room B
-            entity: input_select.cannabis_room_b_stage
-            show_state: true
-            styles:
-              card:
-                - background: >
-                    [[[ const s = states['input_select.cannabis_room_b_stage'].state;
-                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
-                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
-                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
-                        if (s === 'Flush') return '#4a1500';
-                        if (s === 'Harvest') return '#3a3000';
-                        return '#1a1a1a'; ]]]
-              name:
-                - font-size: 14px
-                - font-weight: bold
-                - color: '#e8f5e9'
-            custom_fields:
-              batch: >
-                [[[ return states['input_text.cannabis_room_b_batch_id'].state || '—'; ]]]
-              strain: >
-                [[[ return states['input_text.cannabis_room_b_strain'].state || '—'; ]]]
-              days: >
-                [[[ return 'Day ' + states['input_number.cannabis_room_b_days_in_stage'].state; ]]]
-              plants: >
-                [[[ return states['input_number.cannabis_room_b_plant_count'].state + ' plants'; ]]]
+          - type: vertical-stack
+            cards:
+              - type: heading
+                heading: Room B
+                heading_style: subtitle
+              - type: tile
+                entity: input_select.cannabis_room_b_stage
+                name: Current Stage
+              - type: tile
+                entity: input_text.cannabis_room_b_batch_id
+                name: Batch ID
+              - type: tile
+                entity: input_text.cannabis_room_b_strain
+                name: Strain
+              - type: tile
+                entity: input_number.cannabis_room_b_plant_count
+                name: Plant Count
+              - type: tile
+                entity: input_number.cannabis_room_b_days_in_stage
+                name: Days in Stage
+              - type: tile
+                entity: input_number.cannabis_room_b_expected_yield_lbs
+                name: Expected Yield
 
-          - type: custom:button-card
-            name: Room C
-            entity: input_select.cannabis_room_c_stage
-            show_state: true
-            styles:
-              card:
-                - background: >
-                    [[[ const s = states['input_select.cannabis_room_c_stage'].state;
-                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
-                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
-                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
-                        if (s === 'Flush') return '#4a1500';
-                        if (s === 'Harvest') return '#3a3000';
-                        return '#1a1a1a'; ]]]
-              name:
-                - font-size: 14px
-                - font-weight: bold
-                - color: '#e8f5e9'
-            custom_fields:
-              batch: >
-                [[[ return states['input_text.cannabis_room_c_batch_id'].state || '—'; ]]]
-              strain: >
-                [[[ return states['input_text.cannabis_room_c_strain'].state || '—'; ]]]
-              days: >
-                [[[ return 'Day ' + states['input_number.cannabis_room_c_days_in_stage'].state; ]]]
-              plants: >
-                [[[ return states['input_number.cannabis_room_c_plant_count'].state + ' plants'; ]]]
+          - type: vertical-stack
+            cards:
+              - type: heading
+                heading: Room C
+                heading_style: subtitle
+              - type: tile
+                entity: input_select.cannabis_room_c_stage
+                name: Current Stage
+              - type: tile
+                entity: input_text.cannabis_room_c_batch_id
+                name: Batch ID
+              - type: tile
+                entity: input_text.cannabis_room_c_strain
+                name: Strain
+              - type: tile
+                entity: input_number.cannabis_room_c_plant_count
+                name: Plant Count
+              - type: tile
+                entity: input_number.cannabis_room_c_days_in_stage
+                name: Days in Stage
+              - type: tile
+                entity: input_number.cannabis_room_c_expected_yield_lbs
+                name: Expected Yield
 
-          - type: custom:button-card
-            name: Room D
-            entity: input_select.cannabis_room_d_stage
-            show_state: true
-            styles:
-              card:
-                - background: >
-                    [[[ const s = states['input_select.cannabis_room_d_stage'].state;
-                        if (['Clone','Veg'].includes(s)) return '#1a3a1a';
-                        if (['Flower Wk1','Flower Wk2','Flower Wk3','Flower Wk4'].includes(s)) return '#3a2a00';
-                        if (['Flower Wk5','Flower Wk6','Flower Wk7','Flower Wk8'].includes(s)) return '#4a1f00';
-                        if (s === 'Flush') return '#4a1500';
-                        if (s === 'Harvest') return '#3a3000';
-                        return '#1a1a1a'; ]]]
-              name:
-                - font-size: 14px
-                - font-weight: bold
-                - color: '#e8f5e9'
-            custom_fields:
-              batch: >
-                [[[ return states['input_text.cannabis_room_d_batch_id'].state || '—'; ]]]
-              strain: >
-                [[[ return states['input_text.cannabis_room_d_strain'].state || '—'; ]]]
-              days: >
-                [[[ return 'Day ' + states['input_number.cannabis_room_d_days_in_stage'].state; ]]]
-              plants: >
-                [[[ return states['input_number.cannabis_room_d_plant_count'].state + ' plants'; ]]]
+          - type: vertical-stack
+            cards:
+              - type: heading
+                heading: Room D
+                heading_style: subtitle
+              - type: tile
+                entity: input_select.cannabis_room_d_stage
+                name: Current Stage
+              - type: tile
+                entity: input_text.cannabis_room_d_batch_id
+                name: Batch ID
+              - type: tile
+                entity: input_text.cannabis_room_d_strain
+                name: Strain
+              - type: tile
+                entity: input_number.cannabis_room_d_plant_count
+                name: Plant Count
+              - type: tile
+                entity: input_number.cannabis_room_d_days_in_stage
+                name: Days in Stage
+              - type: tile
+                entity: input_number.cannabis_room_d_expected_yield_lbs
+                name: Expected Yield
 
           - type: custom:bar-card
-            title: Days in Stage
+            title: Days in Stage Progress
             entities:
               - entity: input_number.cannabis_room_a_days_in_stage
                 name: Room A
@@ -3115,53 +3099,29 @@ views:
     theme: cannabis_ops_theater
     sections:
 
-      # --- Section 1: Pest Pressure Dashboard ---
+      # --- Section 1: Pest Pressure Status ---
       - type: grid
-        title: Pest Pressure Dashboard
-        columns: 1
+        title: Pest Pressure Monitoring
+        columns: 2
         cards:
-          - type: custom:button-card
-            name: INTEGRATED PEST MANAGEMENT
+          - type: tile
             entity: sensor.cannabis_ipm_overall_pressure_idx
-            show_state: true
-            state_display: >
-              [[[ return 'Overall Pressure: ' + entity.state + '/10'; ]]]
-            styles:
-              card:
-                - background: >
-                    [[[ const p = parseFloat(entity.state);
-                        if (p < 3) return '#1a3a1a';
-                        if (p < 6) return '#3a2a00';
-                        return '#4a0000'; ]]]
-                - border: >
-                    [[[ const p = parseFloat(entity.state);
-                        if (p < 3) return '2px solid #2ecc71';
-                        if (p < 6) return '2px solid #f39c12';
-                        return '2px solid #e74c3c'; ]]]
-              name:
-                - font-size: 16px
-                - font-weight: bold
-                - color: '#e8f5e9'
-
+            name: Overall Pressure Index
           - type: custom:bar-card
             title: Pest Pressure by Room (0–10)
             entities:
               - entity: input_number.cannabis_ipm_pest_pressure_room_a
                 name: Room A
                 max: 10
-                color: '#2ecc71'
               - entity: input_number.cannabis_ipm_pest_pressure_room_b
                 name: Room B
                 max: 10
-                color: '#2ecc71'
               - entity: input_number.cannabis_ipm_pest_pressure_room_c
                 name: Room C
                 max: 10
-                color: '#2ecc71'
               - entity: input_number.cannabis_ipm_pest_pressure_room_d
                 name: Room D
                 max: 10
-                color: '#2ecc71'
             severity:
               - value: 6
                 color: '#e74c3c'
@@ -3170,24 +3130,29 @@ views:
               - value: 0
                 color: '#2ecc71'
 
+      # --- Section 1b: Scouting Tasks ---
+      - type: grid
+        title: Scouting Due Tasks
+        columns: 2
+        cards:
           - type: tile
             entity: input_boolean.cannabis_ipm_scouting_due_room_a
-            name: Scouting Due — Room A
+            name: Room A Scouting Due
             tap_action:
               action: toggle
           - type: tile
             entity: input_boolean.cannabis_ipm_scouting_due_room_b
-            name: Scouting Due — Room B
+            name: Room B Scouting Due
             tap_action:
               action: toggle
           - type: tile
             entity: input_boolean.cannabis_ipm_scouting_due_room_c
-            name: Scouting Due — Room C
+            name: Room C Scouting Due
             tap_action:
               action: toggle
           - type: tile
             entity: input_boolean.cannabis_ipm_scouting_due_room_d
-            name: Scouting Due — Room D
+            name: Room D Scouting Due
             tap_action:
               action: toggle
 
@@ -3304,55 +3269,27 @@ views:
 
       # --- Section 1: Safety Status ---
       - type: grid
-        title: Safety Status
-        columns: 1
+        title: Safety Status & Controls
+        columns: 2
         cards:
-          - type: custom:button-card
-            name: LAB SAFETY STATUS
-            entity: binary_sensor.cannabis_ipm_spray_blackout_active
-            show_state: false
-            state_display: >
-              [[[
-                const interlock = states['input_boolean.cannabis_lab_safety_interlock_ok'].state === 'on';
-                const ppe = states['input_boolean.cannabis_lab_ppe_compliance_active'].state === 'on';
-                const alarm = states['input_boolean.cannabis_lab_solvent_alarm'].state === 'on';
-                const vent = parseFloat(states['input_number.cannabis_lab_ventilation_pct'].state) >= 75;
-                const safe = interlock && ppe && !alarm && vent;
-                return safe ? '✓ ALL SYSTEMS NOMINAL' : '⚠ SAFETY CONDITION ACTIVE';
-              ]]]
-            styles:
-              card:
-                - background: >
-                    [[[
-                      const interlock = states['input_boolean.cannabis_lab_safety_interlock_ok'].state === 'on';
-                      const ppe = states['input_boolean.cannabis_lab_ppe_compliance_active'].state === 'on';
-                      const alarm = states['input_boolean.cannabis_lab_solvent_alarm'].state === 'on';
-                      const vent = parseFloat(states['input_number.cannabis_lab_ventilation_pct'].state) >= 75;
-                      return (interlock && ppe && !alarm && vent) ? '#1a3a1a' : '#4a0000';
-                    ]]]
-                - border: >
-                    [[[
-                      const interlock = states['input_boolean.cannabis_lab_safety_interlock_ok'].state === 'on';
-                      const ppe = states['input_boolean.cannabis_lab_ppe_compliance_active'].state === 'on';
-                      const alarm = states['input_boolean.cannabis_lab_solvent_alarm'].state === 'on';
-                      const vent = parseFloat(states['input_number.cannabis_lab_ventilation_pct'].state) >= 75;
-                      return (interlock && ppe && !alarm && vent) ? '2px solid #2ecc71' : '2px solid #e74c3c';
-                    ]]]
-              name:
-                - font-size: 16px
-                - font-weight: bold
-                - color: '#e8f5e9'
-
-          - type: entities
-            title: Safety Controls
-            show_header_toggle: false
-            entities:
-              - entity: input_boolean.cannabis_lab_safety_interlock_ok
-                name: Safety Interlock
-              - entity: input_boolean.cannabis_lab_ppe_compliance_active
-                name: PPE Compliance
-              - entity: input_boolean.cannabis_lab_solvent_alarm
-                name: Solvent Alarm
+          - type: tile
+            entity: input_boolean.cannabis_lab_safety_interlock_ok
+            name: Safety Interlock
+            tap_action:
+              action: toggle
+          - type: tile
+            entity: input_boolean.cannabis_lab_ppe_compliance_active
+            name: PPE Compliance
+            tap_action:
+              action: toggle
+          - type: tile
+            entity: input_boolean.cannabis_lab_solvent_alarm
+            name: Solvent Alarm
+            tap_action:
+              action: toggle
+          - type: tile
+            entity: sensor.cannabis_lab_safety_idx
+            name: Safety Index
 
           - type: gauge
             entity: input_number.cannabis_lab_room_temp_f
@@ -3400,13 +3337,9 @@ views:
               - entity: input_boolean.cannabis_lab_extraction_active
                 name: Extraction Active
 
-          - type: custom:mini-graph-card
-            title: Active Batch Duration (hrs)
+          - type: tile
             entity: input_number.cannabis_lab_active_batch_duration_hrs
-            hours_to_show: 12
-            line_width: 2
-            show:
-              labels: true
+            name: Active Batch Duration (hrs)
 
           - type: custom:bar-card
             title: Lab Efficiency
@@ -3498,14 +3431,9 @@ views:
             entity: input_number.cannabis_dispensary_patient_count_today
             name: Patients Today
 
-          - type: custom:mini-graph-card
-            title: Revenue Rate ($/hr)
+          - type: tile
             entity: sensor.cannabis_dispensary_revenue_rate_usd_hr
-            hours_to_show: 8
-            line_width: 2
-            show:
-              labels: true
-              points: false
+            name: Revenue Rate ($/hr)
 
           - type: entities
             title: Operations Status
@@ -3655,15 +3583,9 @@ views:
             entity: input_number.cannabis_financial_batch_revenue_usd
             name: Batch Revenue ($)
 
-          - type: custom:mini-graph-card
-            title: Gross Margin % Trend (7-day)
+          - type: tile
             entity: input_number.cannabis_financial_gross_margin_pct
-            hours_to_show: 168
-            points_per_hour: 1
-            line_width: 2
-            show:
-              labels: true
-              points: false
+            name: Gross Margin % Trend (7-day)
 
           - type: entities
             title: EBITDA Proxy
@@ -3677,30 +3599,22 @@ views:
         title: Cost vs Revenue
         columns: 1
         cards:
-          - type: custom:mini-graph-card
-            title: Revenue vs Labor vs Energy (30-day)
+          - type: custom:bar-card
+            title: Revenue vs Labor vs Energy (Today)
             entities:
               - entity: input_number.cannabis_financial_batch_revenue_usd
                 name: Batch Revenue
+                max: 50000
               - entity: input_number.cannabis_financial_labor_cost_today
                 name: Labor Cost
+                max: 10000
               - entity: input_number.cannabis_financial_energy_cost_today
                 name: Energy Cost
-            hours_to_show: 720
-            points_per_hour: 1
-            line_width: 2
-            show:
-              labels: true
-              points: false
+                max: 5000
 
-          - type: custom:mini-graph-card
-            title: Gross Margin % (30-day trend)
+          - type: tile
             entity: input_number.cannabis_financial_gross_margin_pct
-            hours_to_show: 720
-            points_per_hour: 1
-            line_width: 2
-            show:
-              labels: true
+            name: Gross Margin % (30-day trend)
 
       # --- Section 3: Cost Breakdown ---
       - type: grid

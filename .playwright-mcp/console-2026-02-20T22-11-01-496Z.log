@@ -1,0 +1,63 @@
+[  453313ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-alfa.dropcam.com/nexus_aac/a407dbd1077a4c069373df16b45a8537/media_w2073294277_1020.ts?public=z4uWODIK19:0
+[  453314ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-alfa.dropcam.com/nexus_aac/a407dbd1077a4c069373df16b45a8537/media_w53857854_1047.ts?public=z4uWODIK19:0
+[  477806ms] Error: Invalid hex color: 
+    at o (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:31835)
+    at i (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:30221)
+    at http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:15335
+    at Array.forEach (<anonymous>)
+    at http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:15057
+    at Array.forEach (<anonymous>)
+    at g._generateData (http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:14944)
+    at g.willUpdate (http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:13645)
+    at g.performUpdate (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:48844)
+    at g.scheduleUpdate (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:48423)
+[  477807ms] Error: Invalid hex color: 
+    at o (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:31835)
+    at i (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:30221)
+    at http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:15335
+    at Array.forEach (<anonymous>)
+    at http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:15057
+    at Array.forEach (<anonymous>)
+    at g._generateData (http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:14944)
+    at g.willUpdate (http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:13645)
+    at g.performUpdate (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:48844)
+    at g.scheduleUpdate (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:48423)
+[  477807ms] Error: Invalid hex color: 
+    at o (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:31835)
+    at i (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:30221)
+    at http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:15335
+    at Array.forEach (<anonymous>)
+    at http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:15057
+    at Array.forEach (<anonymous>)
+    at g._generateData (http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:14944)
+    at g.willUpdate (http://localhost:8123/frontend_latest/70250.a69a74e986be11ce.js:1:13645)
+    at g.performUpdate (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:48844)
+    at g.scheduleUpdate (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:48423)
+[  478079ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8123/unknown/node_modules/@lit/reactive-element/src/reactive-element.ts:0
+[  760446ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:8123/static/icons/favicon-192x192.png (Download error or resource isn't a valid image) @ http://localhost:8123/auth/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8123%2Fcannabis-ops%2Fagents%3Fauth_callback%3D1&client_id=http%3A%2F%2Flocalhost%3A8123%2F&state=eyJoYXNzVXJsIjoiaHR0cDovL2xvY2FsaG9zdDo4MTIzIiwiY2xpZW50SWQiOiJodHRwOi8vbG9jYWxob3N0OjgxMjMvIn0%3D:0
+[ 1132587ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:8123/static/icons/favicon-192x192.png (Download error or resource isn't a valid image) @ http://localhost:8123/auth/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8123%2Fcannabis-ops%2Fagents%3Fauth_callback%3D1&client_id=http%3A%2F%2Flocalhost%3A8123%2F&state=eyJoYXNzVXJsIjoiaHR0cDovL2xvY2FsaG9zdDo4MTIzIiwiY2xpZW50SWQiOiJodHRwOi8vbG9jYWxob3N0OjgxMjMvIn0%3D:0
+[ 1381652ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:8123/static/icons/favicon-192x192.png (Download error or resource isn't a valid image) @ http://localhost:8123/auth/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8123%2Flovelace%2Fnexus%3Fauth_callback%3D1&client_id=http%3A%2F%2Flocalhost%3A8123%2F&state=eyJoYXNzVXJsIjoiaHR0cDovL2xvY2FsaG9zdDo4MTIzIiwiY2xpZW50SWQiOiJodHRwOi8vbG9jYWxob3N0OjgxMjMvIn0%3D:0
+[ 1443008ms] Error: kiosk-mode: Cannot select Lovelace config after 500 attempts. Giving up!
+    at a (http://localhost:8123/local/community/kiosk-mode.js:1:2080)
+[ 1504010ms] 3
+[ 1504010ms] 3
+[ 1504011ms] 3
+[ 1503962ms] [ERROR] Failure writing unhandled promise rejection to system log: 3 @ http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:50
+[ 1503962ms] [ERROR] Failure writing unhandled promise rejection to system log: 3 @ http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:50
+[ 1503962ms] [ERROR] Failure writing unhandled promise rejection to system log: 3 @ http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:50
+[ 1504540ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1505543ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1507632ms] Object
+[ 1918014ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1918282ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8123/api/history/period/2026-02-20T22:42:48.271Z?filter_entity_id=sensor.wind_speed_mph&end_time=2026-02-20T22:42:59.774Z&skip_initial_state&significant_changes_only=0:0
+[ 1918282ms] [WARNING] apexcharts-card:  {error: Request error, status_code: undefined, body: undefined} @ http://localhost:8123/local/community/apexcharts-card/apexcharts-card.js:0
+[ 1918283ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8123/api/history/period/2026-02-20T22:42:33.357Z?filter_entity_id=sensor.cannabis_transport_risk_idx&end_time=2026-02-20T22:42:59.774Z&skip_initial_state&significant_changes_only=0:0
+[ 1918283ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8123/api/history/period/2026-02-20T22:42:48.338Z?filter_entity_id=sensor.cannabis_dispatch_health_idx&end_time=2026-02-20T22:42:59.774Z&skip_initial_state&significant_changes_only=0:0
+[ 1918283ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8123/api/history/period/2026-02-20T22:38:33.337Z?filter_entity_id=sensor.cannabis_transfer_eta_min&end_time=2026-02-20T22:42:59.774Z&skip_initial_state&significant_changes_only=0:0
+[ 1919017ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1921074ms] Object
+[ 2665794ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2666796ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2668902ms] Object
+[ 3357380ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://staticmap.openstreetmap.de/staticmap.php?center=39.50,-98.35&zoom=4&size=1200x640&maptype=mapnik:0
+[ 3608165ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://staticmap.openstreetmap.de/staticmap.php?center=39.50,-98.35&zoom=4&size=1200x640&maptype=mapnik:0

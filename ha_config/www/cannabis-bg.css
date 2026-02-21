@@ -1,0 +1,6 @@
+/* Pins the cannabis cultivation backdrop to the HTML element so the
+   background fills the full viewport including areas below Lovelace
+   section grid content. */
+html {
+  background: #050b04 url('https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1920&q=60&auto=format&fit=crop') center / cover fixed !important;
+}

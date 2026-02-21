@@ -1,0 +1,21 @@
+[  202624ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[  203626ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1467306ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1468309ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1470314ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1473518ms] Object
+[ 1473520ms] SecurityError: Failed to execute 'replaceState' on 'History': A history state object with URL 'http://0.0.0.0/' cannot be created in a document with origin 'http://localhost:8123' and URL 'http://localhost:8123/home'.
+    at s (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:2:44474)
+[ 1535501ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1536504ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1538559ms] Object
+[ 1572705ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1573709ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1575773ms] Object
+[19189054ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0
+[19189227ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0
+[19189432ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0
+[19189617ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0
+[19189823ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0
+[19190068ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0
+[19190290ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://stream-uc2-delta.dropcam.com/nexus_aac/bcb4249ac7e64e4d8ffe8948d4a59d18/media_w885079589_227.ts?public=CicGaHojwa:0

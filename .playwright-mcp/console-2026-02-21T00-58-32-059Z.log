@@ -1,0 +1,2 @@
+[  109016ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[  110018ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0

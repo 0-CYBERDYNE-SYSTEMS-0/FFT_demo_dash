@@ -1,0 +1,24 @@
+[    1406ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
+[    3940ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ https://embed.windy.com/v/41.1.0.emb.4d73/plugins/lightnings.js:0
+[  975638ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
+[  975639ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
+[ 1009160ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:36:57.427Z?filter_entity_id=sensor.audit_completeness_pct&end_time=2026-02-21T00:37:00.899Z&skip_initial_state&minimal_response&no_attributes:0
+[ 1009160ms] [WARNING] mini-graph-card:  {error: Request error, status_code: undefined, body: undefined} @ http://localhost:8123/local/community/mini-graph-card-bundle.js:0
+[ 1009162ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:36:57.436Z?filter_entity_id=sensor.metrc_sync_health&end_time=2026-02-21T00:37:00.900Z&skip_initial_state&minimal_response&no_attributes:0
+[ 1009162ms] [WARNING] mini-graph-card:  {error: Request error, status_code: undefined, body: undefined} @ http://localhost:8123/local/community/mini-graph-card-bundle.js:0
+[ 1009163ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:36:57.458Z?filter_entity_id=sensor.qa_release_readiness&end_time=2026-02-21T00:37:00.900Z&skip_initial_state&minimal_response&no_attributes:0
+[ 1009163ms] [WARNING] mini-graph-card:  {error: Request error, status_code: undefined, body: undefined} @ http://localhost:8123/local/community/mini-graph-card-bundle.js:0
+[ 1009662ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:36:49.981Z?filter_entity_id=sensor.cannabis_schedule_risk_idx&end_time=2026-02-21T00:37:01.399Z&skip_initial_state&significant_changes_only=0:0
+[ 1009662ms] [WARNING] apexcharts-card:  {error: Request error, status_code: undefined, body: undefined} @ http://localhost:8123/local/community/apexcharts-card/apexcharts-card.js:0
+[ 1009662ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8123/api/history/period/2026-02-21T00:36:14.891Z?filter_entity_id=sensor.cannabis_packaging_throughput_units_hr&end_time=2026-02-21T00:37:01.400Z&skip_initial_state&significant_changes_only=0:0
+[ 1009662ms] [WARNING] apexcharts-card:  {error: Request error, status_code: undefined, body: undefined} @ http://localhost:8123/local/community/apexcharts-card/apexcharts-card.js:0
+[ 1009662ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:22:24.667Z?filter_entity_id=sensor.cannabis_security_workload_idx&end_time=2026-02-21T00:37:01.399Z&skip_initial_state&significant_changes_only=0:0
+[ 1009662ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:36:44.898Z?filter_entity_id=sensor.cannabis_dispatch_health_idx&end_time=2026-02-21T00:37:01.399Z&skip_initial_state&significant_changes_only=0:0
+[ 1009662ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8123/api/history/period/2026-02-21T00:36:54.885Z?filter_entity_id=sensor.custody_break_risk&end_time=2026-02-21T00:37:01.399Z&skip_initial_state&significant_changes_only=0:0
+[ 1009662ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8123/api/history/period/2026-02-21T00:36:54.894Z?filter_entity_id=sensor.cannabis_extraction_queue_count&end_time=2026-02-21T00:37:01.400Z&skip_initial_state&significant_changes_only=0:0
+[ 1009663ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8123/api/history/period/2026-02-21T00:36:49.980Z?filter_entity_id=sensor.cannabis_line_uptime_pct&end_time=2026-02-21T00:37:01.400Z&skip_initial_state&significant_changes_only=0:0
+[ 1009877ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1010880ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 1012692ms] 3
+[ 1012692ms] 3
+[ 1013382ms] Object
