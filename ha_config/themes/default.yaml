@@ -5,31 +5,58 @@
 farm_ops_theater:
   modes:
     dark:
-      primary-color: "#20c997"
-      accent-color: "#ff8a00"
-      primary-background-color: "#06080d"
-      secondary-background-color: "#0b0f18"
-      card-background-color: "#111723"
-      ha-card-background: "#111723"
-      primary-text-color: "#ecf2ff"
-      secondary-text-color: "#9fb4d1"
-      disabled-text-color: "#536178"
-      divider-color: "rgba(142, 164, 201, 0.22)"
-      state-icon-color: "#70c7ff"
-      state-icon-active-color: "#20c997"
-      warning-color: "#ffb020"
-      error-color: "#ff5d5d"
-      success-color: "#2ad58b"
-      info-color: "#4aa8ff"
-      paper-listbox-background-color: "#111723"
-      paper-card-background-color: "#111723"
-      paper-item-icon-color: "#70c7ff"
-      app-header-background-color: "#0b0f18"
-      app-header-text-color: "#ecf2ff"
-      sidebar-background-color: "#090d14"
-      sidebar-text-color: "#b9c8e0"
-      sidebar-selected-background-color: "rgba(32, 201, 151, 0.22)"
-      sidebar-selected-text-color: "#20c997"
+      primary-color: "#2eeec0"
+      accent-color: "#ffbc61"
+      primary-background-color: "#04060c"
+      secondary-background-color: "#0a1120"
+      card-background-color: "#172335"
+      ha-card-background: "#172335"
+      lovelace-background: "radial-gradient(circle at 14% 7%, rgba(74, 156, 255, 0.28) 0%, rgba(13, 24, 43, 0.95) 36%, #03050a 76%)"
+      primary-text-color: "#f1f7ff"
+      secondary-text-color: "#c2d2eb"
+      disabled-text-color: "#7f93b1"
+      divider-color: "rgba(138, 161, 201, 0.2)"
+      state-icon-color: "#8acfff"
+      state-icon-active-color: "#2eeec0"
+      warning-color: "#ffbc61"
+      error-color: "#ff7272"
+      success-color: "#2eeec0"
+      info-color: "#5db7ff"
+      paper-listbox-background-color: "#172335"
+      paper-card-background-color: "#172335"
+      paper-item-icon-color: "#8acfff"
+      app-header-background-color: "#0d1424"
+      app-header-text-color: "#f1f7ff"
+      sidebar-background-color: "#09101d"
+      sidebar-text-color: "#cad8ee"
+      sidebar-selected-background-color: "rgba(46, 238, 192, 0.22)"
+      sidebar-selected-text-color: "#2eeec0"
+      ha-card-border-radius: "18px"
+      ha-card-border-width: "1px"
+      ha-card-border-color: "rgba(111, 154, 224, 0.34)"
+      ha-card-box-shadow: "0 12px 34px rgba(2, 6, 16, 0.68)"
+      primary-font-family: '"Rajdhani", "Barlow Condensed", "Segoe UI", sans-serif'
+      paper-font-common-base_-_font-family: '"Rajdhani", "Barlow Condensed", "Segoe UI", sans-serif'
+      paper-font-common-code_-_font-family: '"JetBrains Mono", "SFMono-Regular", Menlo, monospace'
+      ha-card-header-font-size: "1.1rem"
+      ha-card-header-font-weight: "700"
+      card-mod-theme: farm_ops_theater
+      card-mod-root-yaml: |
+        .: |
+          :host {
+            --ha-view-sections-column-gap: 14px;
+          }
+      card-mod-card-yaml: |
+        .: |
+          ha-card {
+            backdrop-filter: blur(4px);
+            transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+          }
+          ha-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(3, 7, 18, 0.82);
+            border-color: rgba(93, 183, 255, 0.64);
+          }
 
 # Dawn Theme - Early morning (5:00-8:00)
 # Warm amber/gold palette for sunrise hours
@@ -275,3 +302,65 @@ harvest:
       label-badge-text-color: "#fef3c7"
       table-row-background-color: "#2d2014"
       table-row-alternative-background-color: "#3d2a14"
+
+# Intrusion Alert Theme - Security breach posture
+intrusion_alert:
+  modes:
+    dark:
+      primary-color: "#ef4444"
+      accent-color: "#f97316"
+      primary-background-color: "#090b12"
+      secondary-background-color: "#170f18"
+      card-background-color: "#27131b"
+      ha-card-background: "#27131b"
+      lovelace-background: "radial-gradient(circle at 88% 8%, rgba(239, 68, 68, 0.28) 0%, rgba(49, 17, 21, 0.92) 33%, #070910 78%)"
+      primary-text-color: "#ffe9ea"
+      secondary-text-color: "#ffc5cb"
+      disabled-text-color: "#8c4c53"
+      divider-color: "rgba(239, 68, 68, 0.24)"
+      state-icon-color: "#fca5a5"
+      state-icon-active-color: "#ef4444"
+      warning-color: "#f97316"
+      error-color: "#ef4444"
+      success-color: "#34d399"
+      info-color: "#38bdf8"
+      paper-listbox-background-color: "#27131b"
+      paper-card-background-color: "#27131b"
+      paper-item-icon-color: "#fca5a5"
+      app-header-background-color: "#170f18"
+      app-header-text-color: "#ffe9ea"
+      sidebar-background-color: "#0c0b12"
+      sidebar-text-color: "#ffc5cb"
+      sidebar-selected-background-color: "rgba(239, 68, 68, 0.3)"
+      sidebar-selected-text-color: "#ef4444"
+
+# Power Failure Theme - Blackout and backup mode
+power_failure_alert:
+  modes:
+    dark:
+      primary-color: "#22d3ee"
+      accent-color: "#facc15"
+      primary-background-color: "#030507"
+      secondary-background-color: "#0a1218"
+      card-background-color: "#111c25"
+      ha-card-background: "#111c25"
+      lovelace-background: "radial-gradient(circle at 12% 12%, rgba(34, 211, 238, 0.18) 0%, rgba(7, 14, 22, 0.96) 38%, #020406 82%)"
+      primary-text-color: "#e8f7ff"
+      secondary-text-color: "#a7c7da"
+      disabled-text-color: "#597384"
+      divider-color: "rgba(34, 211, 238, 0.2)"
+      state-icon-color: "#7dd3fc"
+      state-icon-active-color: "#22d3ee"
+      warning-color: "#facc15"
+      error-color: "#f87171"
+      success-color: "#34d399"
+      info-color: "#38bdf8"
+      paper-listbox-background-color: "#111c25"
+      paper-card-background-color: "#111c25"
+      paper-item-icon-color: "#7dd3fc"
+      app-header-background-color: "#0a1218"
+      app-header-text-color: "#e8f7ff"
+      sidebar-background-color: "#05090e"
+      sidebar-text-color: "#a7c7da"
+      sidebar-selected-background-color: "rgba(34, 211, 238, 0.24)"
+      sidebar-selected-text-color: "#22d3ee"

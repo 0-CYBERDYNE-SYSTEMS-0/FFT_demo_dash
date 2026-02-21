@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2414"/>
+      <stop offset="1" stop-color="#0f0a06"/>
+    </linearGradient>
+    <linearGradient id="pad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a2f17"/>
+      <stop offset="1" stop-color="#2b1a0d"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg3)"/>
+  <rect x="78" y="140" width="1124" height="526" rx="24" fill="#26170d" stroke="#ffb75d" stroke-opacity="0.54"/>
+  <rect x="108" y="176" width="1064" height="454" rx="18" fill="url(#pad)"/>
+
+  <circle cx="220" cy="98" r="12" fill="#ff6b6b">
+    <animate attributeName="opacity" values="1;0.25;1" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <text x="252" y="104" fill="#ffe7c7" font-size="28" font-family="Rajdhani, Segoe UI, Arial">EQUIPMENT BAY // LIVE WATCH</text>
+
+  <rect x="164" y="456" width="954" height="132" fill="#3e2816" opacity="0.88"/>
+  <rect x="210" y="360" width="180" height="94" fill="#5a3b20" opacity="0.86"/>
+  <rect x="468" y="310" width="276" height="144" fill="#6f4927" opacity="0.86"/>
+  <rect x="816" y="334" width="220" height="120" fill="#5a3b20" opacity="0.86"/>
+
+  <rect x="108" y="208" width="1064" height="3" fill="#ffc57b" opacity="0.65">
+    <animate attributeName="y" values="208;622;208" dur="5.5s" repeatCount="indefinite"/>
+  </rect>
+
+  <g>
+    <rect x="170" y="420" width="42" height="24" rx="5" fill="#ffd56f" opacity="0.9">
+      <animate attributeName="x" values="170;980;170" dur="13s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="150" y="446" width="84" height="2" fill="#ffd56f" opacity="0.55">
+      <animate attributeName="x" values="150;960;150" dur="13s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <text x="116" y="224" fill="#eec08e" font-size="18" font-family="Rajdhani, Segoe UI, Arial">PATROL TRACKING: NOMINAL</text>
+  <text x="112" y="664" fill="#ffc57b" font-size="18" font-family="Rajdhani, Segoe UI, Arial">STATUS: MOTION SAFE</text>
+  <text x="910" y="664" fill="#d7b48b" font-size="16" font-family="Rajdhani, Segoe UI, Arial">ALERT LEVEL: LOW</text>
+</svg>

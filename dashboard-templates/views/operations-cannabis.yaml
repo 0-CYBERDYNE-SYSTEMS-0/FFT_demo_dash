@@ -1,0 +1,72 @@
+# Operations template for cannabis clone
+
+title: Automation
+path: agents
+icon: mdi:robot
+type: sections
+max_columns: 3
+sections:
+  - type: grid
+    cards:
+      - type: markdown
+        content: |
+          # Automation
+          SOP runbooks, work-order execution, and shift orchestration.
+      - type: entities
+        title: SOP Control Surface
+        show_header_toggle: false
+        entities:
+          - entity: input_select.cannabis_control_profile
+          - entity: input_select.cannabis_shift_mode
+          - entity: input_select.cannabis_site_focus
+          - entity: input_text.cannabis_shift_supervisor
+          - entity: input_text.cannabis_next_critical_task
+      - type: todo-list
+        entity: todo.shopping_list
+        title: Shift Task Queue
+  - type: grid
+    cards:
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Schedule Execution Loop (8h)
+          show_states: true
+        graph_span: 8h
+        apex_config:
+          chart:
+            height: 280
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+        series:
+          - entity: sensor.cannabis_work_orders_open
+            name: Open Work Orders
+            type: column
+            color: '#577590'
+          - entity: sensor.cannabis_work_orders_overdue
+            name: Overdue Work Orders
+            type: column
+            color: '#f94144'
+          - entity: sensor.cannabis_schedule_adherence_pct
+            name: Schedule Adherence
+            type: line
+            color: '#43aa8b'
+  - type: grid
+    cards:
+      - type: logbook
+        title: Automation Event Log
+        entities:
+          - input_select.cannabis_control_profile
+          - input_boolean.cannabis_schedule_disruption_active
+          - input_boolean.cannabis_staff_shortage_alert
+          - input_boolean.cannabis_transport_delay
+        hours_to_show: 12
+      - type: entities
+        title: Dispatch + Browser
+        show_header_toggle: false
+        entities:
+          - entity: input_text.cannabis_browser_ops_primary_url
+          - entity: input_text.cannabis_browser_ops_secondary_url
+          - entity: input_text.cannabis_manifest_live_id
+          - entity: sensor.cannabis_dispatch_health_idx

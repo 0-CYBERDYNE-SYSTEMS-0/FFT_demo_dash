@@ -1,0 +1,66 @@
+# Security template for cannabis clone
+
+title: Access & Diversion
+path: security
+icon: mdi:shield-lock
+type: sections
+max_columns: 3
+sections:
+  - type: grid
+    cards:
+      - type: markdown
+        content: |
+          # Access & Diversion
+          Badge/access, perimeter, vault, and surveillance health.
+      - type: entities
+        title: Security Controls
+        show_header_toggle: false
+        entities:
+          - entity: input_select.cannabis_security_posture
+          - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+          - entity: input_boolean.cannabis_site_a_vault_lock
+          - entity: input_boolean.cannabis_security_intrusion
+          - entity: input_boolean.cannabis_vault_exception_active
+          - entity: input_boolean.cannabis_badge_system_degraded
+  - type: grid
+    cards:
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Security Event Stream (8h)
+          show_states: true
+        graph_span: 8h
+        apex_config:
+          chart:
+            height: 280
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+        series:
+          - entity: sensor.cannabis_access_denied_events_1h
+            name: Access Denied
+            type: column
+            color: '#f94144'
+          - entity: sensor.cannabis_guard_coverage_pct
+            name: Guard Coverage
+            type: line
+            color: '#43aa8b'
+          - entity: sensor.cannabis_camera_health_pct
+            name: Camera Health
+            type: line
+            color: '#277da1'
+  - type: grid
+    cards:
+      - type: picture-glance
+        title: Perimeter Channel
+        image: /local/cams/cam-north-yard.svg
+        entities:
+          - entity: sensor.cannabis_camera_health_pct
+          - entity: input_boolean.cannabis_site_a_perimeter_lockdown
+      - type: picture-glance
+        title: Processing Corridor
+        image: /local/cams/cam-equipment.svg
+        entities:
+          - entity: input_boolean.cannabis_vault_exception_active
+          - entity: binary_sensor.cannabis_security_escalation_required

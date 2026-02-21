@@ -11,6 +11,28 @@
           content: |
             # Incident + Controls Chamber
             Primary operator controls for cultivation, utilities, security, and workforce.
+        - type: custom:bar-card
+          title: Control Load Lanes
+          width: 70%
+          height: 24px
+          direction: right
+          entities:
+            - entity: sensor.cannabis_hvac_load_pct
+              name: HVAC Load
+              min: 0
+              max: 100
+            - entity: sensor.cannabis_dehu_load_pct
+              name: Dehu Load
+              min: 0
+              max: 100
+            - entity: sensor.cannabis_zone_cycles
+              name: Irrigation Cycles
+              min: 0
+              max: 100
+            - entity: sensor.cannabis_schedule_adherence_pct
+              name: Schedule Adherence
+              min: 0
+              max: 100
         - type: grid
           columns: 4
           square: false
@@ -317,7 +339,7 @@
         - type: markdown
           content: |
             # Compliance + Cameras Chamber
-            Compliance status, camera health, and drone mission operations.
+            Compliance status, camera health, and transfer operations.
         - type: entities
           title: Compliance + Transfers
           show_header_toggle: false
@@ -329,17 +351,48 @@
             - entity: input_select.transfer_status
             - entity: sensor.custody_break_risk
             - entity: input_text.metrc_manifest_id
-        - type: entities
-          title: Camera + Drone Status
-          show_header_toggle: false
-          entities:
-            - entity: sensor.cannabis_camera_health_pct
+        - type: custom:apexcharts-card
+          header:
+            show: true
+            title: Camera + Transfer Pulse (8h)
+            show_states: true
+          graph_span: 8h
+          apex_config:
+            chart:
+              height: 260
+              toolbar:
+                show: false
+              animations:
+                enabled: false
+          yaxis:
+            - id: counts
+              min: 0
+              max: 40
+            - id: pct
+              opposite: true
+              min: 0
+              max: 100
+          series:
             - entity: sensor.cannabis_camera_alert_count
-            - entity: input_select.cannabis_drone_mission_state
-            - entity: sensor.cannabis_drone_progress_pct
-            - entity: sensor.cannabis_drone_battery_pct
-            - entity: sensor.cannabis_drone_anomaly_score
-            - entity: binary_sensor.cannabis_drone_geofence_breach_active
+              name: Camera Alerts
+              type: column
+              yaxis_id: counts
+              color: '#ff6f7a'
+            - entity: sensor.cannabis_transfer_eta_min
+              name: Transfer ETA
+              type: line
+              yaxis_id: counts
+              color: '#ffb85c'
+            - entity: sensor.cannabis_camera_health_pct
+              name: Camera Health
+              type: line
+              yaxis_id: pct
+              color: '#56bcff'
+            - entity: sensor.cannabis_transport_risk_idx
+              name: Transport Risk
+              type: line
+              yaxis_id: pct
+              color: '#d18cff'
         - type: picture-glance
           title: North Gate
           image: /local/cams/cam-north-yard.svg

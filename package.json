@@ -11,8 +11,12 @@
     "simulate:telemetry": "tsx scripts/simulate-farm-telemetry.ts",
     "simulate:demo": "tsx scripts/simulate-farm-telemetry.ts",
     "test:ha": "tsx scripts/test-ha-connection.ts",
+    "qa:media-guard": "bash scripts/qa-no-placeholders.sh",
+    "qa:live-embeds": "node scripts/qa-live-embeds.mjs",
+    "qa:cannabis-clone": "node scripts/qa-cannabis-clone.mjs",
     "typecheck": "tsc --noEmit",
-    "build": "tsc"
+    "build": "tsc",
+    "qa:cannabis-taxonomy": "node scripts/qa-cannabis-taxonomy.mjs"
   },
   "dependencies": {
     "zod": "^3.23.0"

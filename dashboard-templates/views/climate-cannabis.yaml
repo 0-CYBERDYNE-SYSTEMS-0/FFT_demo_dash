@@ -1,0 +1,74 @@
+# Climate template for cannabis clone
+
+title: Environment
+path: climate
+icon: mdi:thermometer-lines
+type: sections
+max_columns: 3
+sections:
+  - type: grid
+    cards:
+      - type: markdown
+        content: |
+          # Environment
+          VPD, CO2, PPFD, DLI, and stage envelope controls.
+      - type: entities
+        title: Environment Configuration
+        show_header_toggle: false
+        entities:
+          - entity: input_select.cannabis_env_recipe
+          - entity: input_select.cannabis_control_profile
+          - entity: input_number.cannabis_site_a_flower_air_temp_f
+          - entity: input_number.cannabis_site_a_flower_leaf_temp_f
+          - entity: input_number.cannabis_site_a_flower_rh_pct
+          - entity: input_number.cannabis_site_a_flower_co2_ppm
+  - type: grid
+    cards:
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Stage Environment (8h)
+          show_states: true
+        graph_span: 8h
+        apex_config:
+          chart:
+            height: 280
+            toolbar:
+              show: false
+            animations:
+              enabled: false
+        series:
+          - entity: sensor.cannabis_air_temp_f
+            name: Air Temp
+            color: '#f8961e'
+          - entity: sensor.cannabis_leaf_temp_f
+            name: Leaf Temp
+            color: '#f9c74f'
+          - entity: sensor.cannabis_rh_pct
+            name: RH
+            color: '#43aa8b'
+          - entity: sensor.cannabis_env_vpd_kpa
+            name: VPD
+            color: '#9d4edd'
+          - entity: sensor.cannabis_co2_ppm
+            name: CO2
+            color: '#277da1'
+  - type: grid
+    cards:
+      - type: gauge
+        entity: sensor.cannabis_env_vpd_kpa
+        name: VPD
+        min: 0
+        max: 2
+      - type: gauge
+        entity: sensor.cannabis_co2_ppm
+        name: CO2
+        min: 300
+        max: 1600
+      - type: entities
+        title: Environment Alerts
+        show_header_toggle: false
+        entities:
+          - entity: input_boolean.cannabis_hvac_alarm
+          - entity: input_boolean.cannabis_dehu_alarm
+          - entity: input_boolean.cannabis_fertigation_alarm

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173524"/>
+      <stop offset="1" stop-color="#08120c"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f4b35"/>
+      <stop offset="1" stop-color="#10271c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg2)"/>
+  <rect x="70" y="130" width="1140" height="540" rx="26" fill="#102218" stroke="#45d58f" stroke-opacity="0.5"/>
+  <rect x="102" y="170" width="1076" height="460" rx="20" fill="url(#glass)"/>
+
+  <circle cx="220" cy="98" r="12" fill="#ffc048">
+    <animate attributeName="opacity" values="1;0.35;1" dur="1.3s" repeatCount="indefinite"/>
+  </circle>
+  <text x="252" y="104" fill="#dcffec" font-size="28" font-family="Rajdhani, Segoe UI, Arial">GREENHOUSE // ENVIRONMENT FEED</text>
+
+  <g opacity="0.82">
+    <rect x="170" y="470" width="940" height="118" fill="#1a3b2a"/>
+    <rect x="218" y="352" width="84" height="118" fill="#2d6d4c"/>
+    <rect x="366" y="320" width="84" height="150" fill="#2f7250"/>
+    <rect x="514" y="338" width="84" height="132" fill="#2b6949"/>
+    <rect x="662" y="294" width="84" height="176" fill="#2f7753"/>
+    <rect x="810" y="332" width="84" height="138" fill="#2f7250"/>
+    <rect x="958" y="310" width="84" height="160" fill="#337f58"/>
+  </g>
+
+  <rect x="102" y="250" width="1076" height="2" fill="#85f0bc" opacity="0.7">
+    <animate attributeName="y" values="250;600;250" dur="6.4s" repeatCount="indefinite"/>
+  </rect>
+
+  <g>
+    <circle cx="310" cy="290" r="8" fill="#ffd05f">
+      <animate attributeName="cx" values="310;960;310" dur="11s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="960" cy="300" r="7" fill="#58d2ff" opacity="0.9">
+      <animate attributeName="cx" values="960;310;960" dur="14s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <text x="120" y="222" fill="#95dfbb" font-size="18" font-family="Rajdhani, Segoe UI, Arial">HUMIDITY CONTROL LOOP: ACTIVE</text>
+  <text x="118" y="664" fill="#79e8b6" font-size="18" font-family="Rajdhani, Segoe UI, Arial">STATUS: VENTILATION BALANCED</text>
+  <text x="918" y="664" fill="#9ec5b0" font-size="16" font-family="Rajdhani, Segoe UI, Arial">TEMP HOLD 72.4F</text>
+</svg>

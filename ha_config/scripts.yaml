@@ -1,2 +1,186 @@
-# Scripts
-# Add your scripts here
+incident_mode_storm:
+  alias: Incident Mode - Storm
+  mode: single
+  sequence:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.incident_mode
+      data:
+        option: Storm
+    - service: frontend.set_theme
+      data:
+        name: storm
+    - service: input_boolean.turn_on
+      target:
+        entity_id:
+          - input_boolean.storm_shutters
+          - input_boolean.security_lights_perimeter
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.wind_speed
+      data:
+        value: 72
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.barometric_pressure
+      data:
+        value: 29.15
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.rainfall_today
+      data:
+        value: 3.8
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.battery_storage_pct
+      data:
+        value: 62
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.solar_generation_kw
+      data:
+        value: 18
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.grid_power_consumption
+      data:
+        value: 104
+
+incident_mode_intrusion:
+  alias: Incident Mode - Intrusion
+  mode: single
+  sequence:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.incident_mode
+      data:
+        option: Intrusion
+    - service: frontend.set_theme
+      data:
+        name: intrusion_alert
+    - service: input_boolean.turn_on
+      target:
+        entity_id:
+          - input_boolean.motion_sensor_barn
+          - input_boolean.motion_sensor_equipment
+          - input_boolean.security_lights_perimeter
+          - input_boolean.perimeter_alarm
+    - service: switch.turn_on
+      target:
+        entity_id:
+          - switch.perimeter_alarm
+          - switch.security_lights
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.battery_storage_pct
+      data:
+        value: 48
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.grid_power_consumption
+      data:
+        value: 88
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.wind_speed
+      data:
+        value: 19
+
+incident_mode_power_failure:
+  alias: Incident Mode - Power Failure
+  mode: single
+  sequence:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.incident_mode
+      data:
+        option: Power Failure
+    - service: frontend.set_theme
+      data:
+        name: power_failure_alert
+    - service: switch.turn_on
+      target:
+        entity_id: switch.backup_generator
+    - service: input_boolean.turn_on
+      target:
+        entity_id:
+          - input_boolean.backup_generator
+          - input_boolean.outdoor_flood_lights
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.solar_generation_kw
+      data:
+        value: 4
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.grid_power_consumption
+      data:
+        value: 122
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.battery_storage_pct
+      data:
+        value: 12
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.generator_fuel_level
+      data:
+        value: 41
+
+incident_mode_clear:
+  alias: Incident Mode - Clear
+  mode: single
+  sequence:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.incident_mode
+      data:
+        option: Normal
+    - service: frontend.set_theme
+      data:
+        name: farm_ops_theater
+    - service: input_boolean.turn_off
+      target:
+        entity_id:
+          - input_boolean.motion_sensor_barn
+          - input_boolean.motion_sensor_equipment
+          - input_boolean.security_lights_perimeter
+          - input_boolean.perimeter_alarm
+          - input_boolean.storm_shutters
+          - input_boolean.outdoor_flood_lights
+    - service: switch.turn_off
+      target:
+        entity_id:
+          - switch.perimeter_alarm
+          - switch.security_lights
+          - switch.backup_generator
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.wind_speed
+      data:
+        value: 12
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.barometric_pressure
+      data:
+        value: 30.12
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.rainfall_today
+      data:
+        value: 0.2
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.solar_generation_kw
+      data:
+        value: 92
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.grid_power_consumption
+      data:
+        value: 41
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.battery_storage_pct
+      data:
+        value: 86

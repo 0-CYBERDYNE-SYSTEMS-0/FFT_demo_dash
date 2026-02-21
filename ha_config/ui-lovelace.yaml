@@ -1,74 +1,1371 @@
 title: FFT Farm Ops Theater
 theme: farm_ops_theater
 views:
-  - title: Command Center
-    path: command-center
-    icon: mdi:radar
+  - title: Nexus
+    path: nexus
+    icon: mdi:hexagon-multiple
     type: sections
-    max_columns: 3
+    max_columns: 4
     dense_section_placement: true
+    badges: []
     sections:
       - type: grid
         cards:
           - type: markdown
-            title: FFT Farm Command Center
             content: |
-              ## Live Agent Operations
-              High-level situational view with live controls and telemetry.
+              # FFT NEXUS
+              <span style="font-size:1.02rem;color:#9fd0ff;">High-density operational cockpit for instant control, trend clarity, and visual impact.</span>
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(93, 183, 255, 0.4);
+                  background: linear-gradient(130deg, rgba(17, 32, 56, 0.96), rgba(8, 13, 24, 0.96));
+                  box-shadow: 0 18px 42px rgba(2, 9, 21, 0.78);
+                }
+          - type: custom:button-card
+            entity: sensor.battery_level
+            name: Autonomous Ops Pulse
+            icon: mdi:radar
+            show_state: true
+            show_label: true
+            label: |
+              [[[
+                const solar = states['sensor.solar_power']?.state ?? '-';
+                const grid = states['sensor.power_consumption']?.state ?? '-';
+                const water = states['sensor.water_tank_total']?.state ?? '-';
+                return `Solar ${solar} kW  |  Grid ${grid} kW  |  Water ${water} gal`;
+              ]]]
+            styles:
+              card:
+                - border-radius: 22px
+                - padding: 18px
+                - background: linear-gradient(145deg, rgba(19, 49, 80, 0.98), rgba(13, 20, 33, 0.98))
+                - border: 1px solid rgba(102, 193, 255, 0.45)
+                - box-shadow: 0 14px 34px rgba(4, 13, 29, 0.74)
+              grid:
+                - grid-template-areas: '"i n" "i s" "l l"'
+                - grid-template-columns: 64px 1fr
+                - grid-template-rows: min-content min-content min-content
+                - row-gap: 5px
+              icon:
+                - color: '#67d7ff'
+                - width: 44px
+              name:
+                - font-size: 1.25rem
+                - font-weight: 700
+                - color: '#eaf6ff'
+              state:
+                - color: '#7df2c5'
+                - font-size: 1.04rem
+                - font-weight: 700
+              label:
+                - color: '#b4cdea'
+                - font-size: 0.92rem
+                - justify-self: start
+            state:
+              - operator: template
+                value: |
+                  [[[
+                    return Number(entity?.state ?? 0) < 30;
+                  ]]]
+                styles:
+                  card:
+                    - border: 1px solid rgba(255, 120, 120, 0.75)
+                    - box-shadow: 0 0 26px rgba(255, 108, 108, 0.32)
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: custom:button-card
+                entity: switch.irrigation_north
+                name: North Irrigation
+                icon: mdi:sprinkler-variant
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.irrigation_south
+                name: South Irrigation
+                icon: mdi:sprinkler-variant
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.pump_main
+                name: Main Pump
+                icon: mdi:pump
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.backup_generator
+                name: Backup Generator
+                icon: mdi:generator-stationary
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.security_lights
+                name: Security Lights
+                icon: mdi:lightbulb-alert
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.perimeter_alarm
+                name: Perimeter Alarm
+                icon: mdi:shield-alert
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.greenhouse_heater_a
+                name: GH Heater A
+                icon: mdi:radiator
+                show_state: true
+                tap_action:
+                  action: toggle
+              - type: custom:button-card
+                entity: switch.greenhouse_cooling_a
+                name: GH Cooling A
+                icon: mdi:fan
+                show_state: true
+                tap_action:
+                  action: toggle
+            card_mod:
+              style: |
+                ha-card {
+                  border: 1px solid rgba(64, 222, 182, 0.36);
+                  background: linear-gradient(140deg, rgba(10, 24, 38, 0.95), rgba(8, 13, 22, 0.95));
+                }
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Ops Vitals (8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 230
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.farm_risk_index
+                name: Risk
+                color: '#ff6f7a'
+              - entity: sensor.ops_efficiency_index
+                name: Efficiency
+                color: '#30e7bf'
+              - entity: sensor.anomaly_score
+                name: Anomaly
+                color: '#bf98ff'
+          - type: custom:bar-card
+            title: Ops Pulse Inputs
+            direction: right
+            width: 72%
+            height: 24px
+            entities:
+              - entity: sensor.solar_power
+                name: Solar
+                min: 0
+                max: 250
+              - entity: sensor.power_consumption
+                name: Load
+                min: 0
+                max: 220
+              - entity: sensor.battery_level
+                name: Battery
+                min: 0
+                max: 100
+              - entity: sensor.water_tank_total
+                name: Water
+                min: 0
+                max: 120000
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              ## Sparkline Matrix
+              Fast visual read on trend direction without opening entity popups.
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: custom:mini-graph-card
+                name: GH Temp A
+                entities:
+                  - sensor.greenhouse_temp_a
+                hours_to_show: 12
+                points_per_hour: 2
+                line_width: 3
+                animate: true
+                color_thresholds:
+                  - value: 55
+                    color: '#56bcff'
+                  - value: 70
+                    color: '#30e7bf'
+                  - value: 80
+                    color: '#ff7e72'
+                show:
+                  fill: fade
+                  extrema: true
+              - type: custom:mini-graph-card
+                name: GH Temp B
+                entities:
+                  - sensor.greenhouse_temp_b
+                hours_to_show: 12
+                points_per_hour: 2
+                line_width: 3
+                animate: true
+                show:
+                  fill: fade
+                  extrema: true
+              - type: custom:mini-graph-card
+                name: GH Temp C
+                entities:
+                  - sensor.greenhouse_temp_c
+                hours_to_show: 12
+                points_per_hour: 2
+                line_width: 3
+                animate: true
+                show:
+                  fill: fade
+                  extrema: true
+              - type: custom:mini-graph-card
+                name: Moisture North
+                entities:
+                  - sensor.soil_moisture_north
+                hours_to_show: 12
+                points_per_hour: 2
+                line_width: 3
+                animate: true
+                show:
+                  fill: fade
+                  extrema: true
+              - type: custom:mini-graph-card
+                name: Moisture South
+                entities:
+                  - sensor.soil_moisture_south
+                hours_to_show: 12
+                points_per_hour: 2
+                line_width: 3
+                animate: true
+                show:
+                  fill: fade
+                  extrema: true
+              - type: custom:mini-graph-card
+                name: Wind MPH
+                entities:
+                  - sensor.wind_speed_mph
+                hours_to_show: 12
+                points_per_hour: 2
+                line_width: 3
+                animate: true
+                show:
+                  fill: fade
+                  extrema: true
+          - type: custom:bar-card
+            title: Resource Depth Bars
+            direction: right
+            width: 70%
+            height: 36px
+            positions:
+              icon: outside
+              indicator: inside
+              name: inside
+              value: inside
+            entities:
+              - entity: sensor.water_tank_total
+                name: Water Tank
+                max: 120000
+              - entity: sensor.battery_level
+                name: Battery
+                max: 100
+              - entity: input_number.feed_silo_level
+                name: Feed Silo
+                max: 100
+              - entity: input_number.generator_fuel_level
+                name: Generator Fuel
+                max: 100
+              - entity: input_number.nitrogen_level_north
+                name: Nitrogen North
+                max: 100
+      - type: grid
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Power Matrix (Last 12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 20min
+            yaxis:
+              - id: power
+                min: 0
+                max: 220
+              - id: pct
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                yaxis_id: power
+                type: area
+                color: '#f59e0b'
+              - entity: sensor.power_consumption
+                name: Load
+                yaxis_id: power
+                type: line
+                color: '#56bcff'
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: pct
+                type: line
+                color: '#30e7bf'
+              - entity: input_number.generator_fuel_level
+                name: Generator %
+                yaxis_id: pct
+                type: line
+                color: '#ff6f7a'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Yield Vector (Last 24h)
+              show_states: true
+            graph_span: 24h
+            apex_config:
+              chart:
+                type: bar
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              plotOptions:
+                bar:
+                  borderRadius: 8
+                  columnWidth: 54%
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 30min
+            series:
+              - entity: input_number.yield_grain_current
+                name: Grain
+                type: column
+                color: '#ffb85c'
+              - entity: input_number.yield_vegetables_current
+                name: Vegetable
+                type: column
+                color: '#30e7bf'
+              - entity: input_number.yield_fruit_current
+                name: Fruit
+                type: column
+                color: '#56bcff'
+              - entity: input_number.eggs_today
+                name: Eggs
+                type: line
+                color: '#eab308'
+              - entity: input_number.milk_today
+                name: Milk
+                type: line
+                color: '#9d8bff'
+      - type: grid
+        cards:
+          - type: custom:bar-card
+            title: Facility Vitals Snapshot
+            direction: right
+            width: 70%
+            height: 30px
+            entities:
+              - entity: sensor.greenhouse_temp_a
+                name: GH A Temp
+                min: 30
+                max: 110
+              - entity: sensor.greenhouse_temp_b
+                name: GH B Temp
+                min: 30
+                max: 110
+              - entity: sensor.water_tank_total
+                name: Water Total
+                min: 0
+                max: 120000
+              - entity: sensor.battery_level
+                name: Battery
+                min: 0
+                max: 100
+              - entity: sensor.wind_speed_mph
+                name: Wind
+                min: 0
+                max: 100
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: iframe
+                title: North Yard
+                url: https://video.nest.com/embedded/live/CicGaHojwa?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/wisconsin-pasture-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Greenhouse
+                url: https://video.nest.com/embedded/live/J3TrdvuJOU?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/sheep-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Equipment
+                url: https://video.nest.com/embedded/live/z4uWODIK19?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/turkey-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+      - type: grid
+        cards:
+          - type: history-graph
+            title: Security + Infrastructure Pulse (Last 12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - switch.security_lights
+              - switch.perimeter_alarm
+              - input_boolean.motion_sensor_barn
+              - input_boolean.motion_sensor_equipment
+              - switch.backup_generator
+              - binary_sensor.storm_alert
+          - type: entities
+            title: Macro Channel Board
+            show_header_toggle: false
+            entities:
+              - input_number.soil_ph_north
+              - input_number.soil_ph_south
+              - input_number.soil_ph_orchard
+              - input_number.soil_ph_vegetable
+              - input_number.nitrogen_level_north
+              - input_number.nitrogen_level_south
+              - input_number.phosphorus_level
+              - input_number.potassium_level
+              - input_number.water_ph_main
+              - input_number.water_ph_nursery
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              ## Entity Atlas: Boolean Fabric
+              Full toggle matrix for automation channels that were previously hidden.
+          - type: entities
+            title: Boolean Fabric A
+            show_header_toggle: false
+            state_color: true
+            entities:
+              - input_boolean.alert_equipment_fault
+              - input_boolean.alert_high_temp
+              - input_boolean.alert_low_moisture
+              - input_boolean.alert_low_temp
+              - input_boolean.barn_fan
+              - input_boolean.barn_heater
+              - input_boolean.barn_lights
+              - input_boolean.frost_protection
+              - input_boolean.greenhouse_cooling_a
+              - input_boolean.greenhouse_fog_system
+              - input_boolean.greenhouse_heater_a
+              - input_boolean.greenhouse_humidifier_a
+              - input_boolean.greenhouse_humidifier_b
+              - input_boolean.greenhouse_lights_a
+              - input_boolean.greenhouse_lights_b
+              - input_boolean.greenhouse_lights_c
+              - input_boolean.pump_main_reservoir
+              - input_boolean.greenhouse_shade_a
+              - input_boolean.greenhouse_shade_b
+          - type: entities
+            title: Boolean Fabric B
+            show_header_toggle: false
+            state_color: true
+            entities:
+              - input_boolean.greenhouse_shade_c
+              - input_boolean.greenhouse_vent_a
+              - input_boolean.irrigation_drip_main
+              - input_boolean.irrigation_east_orchard
+              - input_boolean.irrigation_grain_silo_a
+              - input_boolean.irrigation_grain_silo_b
+              - input_boolean.irrigation_misting_system
+              - switch.irrigation_north
+              - input_boolean.irrigation_north_field
+              - input_boolean.irrigation_nursery
+              - switch.irrigation_south
+              - input_boolean.irrigation_south_field
+              - input_boolean.irrigation_vegetable_field
+              - input_boolean.irrigation_west_pasture
+              - input_boolean.pump_well_1
+              - input_boolean.pump_well_2
+              - input_boolean.rain_detected
+              - input_boolean.storm_shutters
+              - input_boolean.tractor_charger
+              - switch.frost_protection
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              ## Entity Atlas: Raw Numeric Mesh
+              Direct helper channels for calibration, QA, and synthetic replay.
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Raw Moisture/Tank Overlay (Last 12h)
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 300
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 20min
+            yaxis:
+              - id: moisture
+                min: 0
+                max: 100
+              - id: tank
+                opposite: true
+                min: 0
+                max: 120000
+            series:
+              - entity: input_number.soil_moisture_north_field
+                name: North Field
+                yaxis_id: moisture
+                type: line
+                color: '#56bcff'
+              - entity: input_number.soil_moisture_south_field
+                name: South Field
+                yaxis_id: moisture
+                type: line
+                color: '#30e7bf'
+              - entity: input_number.soil_moisture_vegetable_field
+                name: Vegetable
+                yaxis_id: moisture
+                type: line
+                color: '#ffb85c'
+              - entity: input_number.tank_level_main
+                name: Tank Main
+                yaxis_id: tank
+                type: area
+                color: '#9d8bff'
+              - entity: input_number.tank_level_secondary
+                name: Tank Secondary
+                yaxis_id: tank
+                type: area
+                color: '#ff6f7a'
+          - type: entities
+            title: Numeric Mesh A
+            show_header_toggle: false
+            entities:
+              - input_number.barn_temp
+              - input_number.barometric_pressure
+              - input_number.cattle_count
+              - input_number.chicken_coop_temp
+              - input_number.chicken_count
+              - input_number.greenhouse_light_level_a
+              - input_number.greenhouse_light_level_b
+              - input_number.greenhouse_light_level_c
+              - sensor.greenhouse_temp_avg
+              - input_number.greenhouse_temp_section_a
+              - input_number.greenhouse_temp_section_b
+              - input_number.greenhouse_temp_section_c
+              - input_number.outdoor_humidity
+              - input_number.outdoor_light_level
+              - input_number.outdoor_temp_east
+              - input_number.outdoor_temp_north
+              - input_number.outdoor_temp_south
+          - type: entities
+            title: Numeric Mesh B
+            show_header_toggle: false
+            entities:
+              - input_number.outdoor_temp_west
+              - input_number.soil_moisture_east_orchard
+              - input_number.soil_moisture_grain_silo_a
+              - input_number.soil_moisture_grain_silo_b
+              - sensor.soil_moisture_north
+              - input_number.soil_moisture_north_field
+              - input_number.soil_moisture_nursery
+              - sensor.soil_moisture_south
+              - input_number.soil_moisture_south_field
+              - input_number.soil_moisture_vegetable_field
+              - input_number.soil_moisture_west_pasture
+              - sensor.water_tank_total
+              - input_number.tank_level_main
+              - input_number.tank_level_nursery
+              - input_number.tank_level_secondary
+              - input_number.water_trough_level_1
+              - input_number.water_trough_level_2
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              ## Entity Atlas: Meta + System Surface
+              Backup telemetry, system entities, to-do, and location channels.
+          - type: map
+            default_zoom: 13
+            entities:
+              - zone.home
+              - person.administrator
+          - type: todo-list
+            entity: todo.shopping_list
+            title: Operations Checklist
+          - type: entities
+            title: Backup/System Channels
+            show_header_toggle: false
+            entities:
+              - event.backup_automatic_backup
+              - sensor.backup_backup_manager_state
+              - sensor.backup_last_attempted_automatic_backup
+              - sensor.backup_last_successful_automatic_backup
+              - sensor.backup_next_scheduled_automatic_backup
+              - tts.google_translate_en_com
+  - title: War Room
+    path: war-room
+    icon: mdi:monitor-dashboard
+    panel: true
+    badges: []
+    kiosk_mode:
+      hide_header: true
+      hide_sidebar: true
+    cards:
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-gap: 10px
+          grid-template-columns: repeat(12, minmax(0, 1fr))
+          grid-template-rows: minmax(150px, 18vh) minmax(250px, 30vh) minmax(250px, 30vh) minmax(200px, 22vh)
+          grid-template-areas: |
+            "hero hero hero mission mission mission incidents incidents incidents mode mode mode"
+            "trend trend trend trend trend trend pressure pressure pressure threat threat threat"
+            "floor floor floor floor floor floor camera_n camera_n camera_g camera_g camera_e camera_e"
+            "resources resources resources resources timeline timeline timeline timeline state state state state"
+          mediaquery:
+            "(max-width: 900px)":
+              grid-gap: 8px
+              grid-template-columns: 1fr
+              grid-template-rows: repeat(14, minmax(180px, auto))
+              grid-template-areas: |
+                "hero"
+                "mission"
+                "incidents"
+                "mode"
+                "trend"
+                "pressure"
+                "threat"
+                "floor"
+                "camera_n"
+                "camera_g"
+                "camera_e"
+                "resources"
+                "timeline"
+                "state"
+            "(min-width: 901px) and (max-width: 1400px)":
+              grid-gap: 9px
+              grid-template-columns: repeat(6, minmax(0, 1fr))
+              grid-template-rows: minmax(120px, auto) repeat(5, minmax(220px, auto))
+              grid-template-areas: |
+                "hero hero mission mission incidents incidents"
+                "mode mode trend trend trend trend"
+                "pressure pressure pressure threat threat threat"
+                "floor floor floor floor camera_n camera_g"
+                "resources resources timeline timeline camera_e camera_e"
+                "state state state state state state"
+        cards:
+          - type: markdown
+            view_layout:
+              grid-area: hero
+            content: |
+              # WAR ROOM NEXUS
+              **Zero-dead-space tactical wall for live operations.**
+              Kiosk endpoint: `/lovelace/war-room?kiosk`
+          - type: grid
+            view_layout:
+              grid-area: mission
+            columns: 3
+            square: false
+            cards:
+              - type: custom:button-card
+                entity: sensor.farm_risk_index
+                name: Risk
+                icon: mdi:alert-octagon
+                show_label: true
+                label: Threat
+                styles:
+                  card:
+                    - border-radius: 16px
+                    - border: 1px solid rgba(255, 111, 122, 0.6)
+                    - background: linear-gradient(145deg, rgba(47, 10, 16, 0.96), rgba(16, 8, 12, 0.96))
+                  icon:
+                    - color: '#ff6f7a'
+                  state:
+                    - font-size: 1.8rem
+                    - font-weight: 800
+              - type: custom:button-card
+                entity: sensor.ops_efficiency_index
+                name: Efficiency
+                icon: mdi:speedometer
+                show_label: true
+                label: Output
+                styles:
+                  card:
+                    - border-radius: 16px
+                    - border: 1px solid rgba(48, 231, 191, 0.55)
+                    - background: linear-gradient(145deg, rgba(10, 42, 37, 0.96), rgba(9, 15, 13, 0.96))
+                  icon:
+                    - color: '#30e7bf'
+                  state:
+                    - font-size: 1.8rem
+                    - font-weight: 800
+              - type: custom:button-card
+                entity: sensor.anomaly_score
+                name: Anomaly
+                icon: mdi:chart-bell-curve-cumulative
+                show_label: true
+                label: Turbulence
+                styles:
+                  card:
+                    - border-radius: 16px
+                    - border: 1px solid rgba(191, 152, 255, 0.55)
+                    - background: linear-gradient(145deg, rgba(40, 24, 62, 0.96), rgba(14, 12, 20, 0.96))
+                  icon:
+                    - color: '#bf98ff'
+                  state:
+                    - font-size: 1.8rem
+                    - font-weight: 800
+          - type: grid
+            view_layout:
+              grid-area: incidents
+            columns: 2
+            square: false
+            cards:
+              - type: custom:button-card
+                name: Storm
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: call-service
+                  service: script.incident_mode_storm
+                styles:
+                  card:
+                    - border-radius: 14px
+                    - padding: 14px
+                    - background: linear-gradient(145deg, rgba(73, 55, 25, 0.96), rgba(22, 18, 11, 0.96))
+                    - border: 1px solid rgba(255, 184, 92, 0.6)
+                  icon:
+                    - color: '#ffb85c'
+              - type: custom:button-card
+                name: Intrusion
+                icon: mdi:shield-alert
+                tap_action:
+                  action: call-service
+                  service: script.incident_mode_intrusion
+                styles:
+                  card:
+                    - border-radius: 14px
+                    - padding: 14px
+                    - background: linear-gradient(145deg, rgba(58, 16, 24, 0.96), rgba(20, 10, 15, 0.96))
+                    - border: 1px solid rgba(255, 111, 122, 0.62)
+                  icon:
+                    - color: '#ff6f7a'
+              - type: custom:button-card
+                name: Power Failure
+                icon: mdi:power-plug-off
+                tap_action:
+                  action: call-service
+                  service: script.incident_mode_power_failure
+                styles:
+                  card:
+                    - border-radius: 14px
+                    - padding: 14px
+                    - background: linear-gradient(145deg, rgba(18, 38, 52, 0.96), rgba(8, 14, 21, 0.96))
+                    - border: 1px solid rgba(93, 183, 255, 0.62)
+                  icon:
+                    - color: '#5db7ff'
+              - type: custom:button-card
+                name: Clear
+                icon: mdi:refresh
+                tap_action:
+                  action: call-service
+                  service: script.incident_mode_clear
+                styles:
+                  card:
+                    - border-radius: 14px
+                    - padding: 14px
+                    - background: linear-gradient(145deg, rgba(12, 30, 25, 0.96), rgba(9, 14, 12, 0.96))
+                    - border: 1px solid rgba(48, 231, 191, 0.58)
+                  icon:
+                    - color: '#30e7bf'
+          - type: entities
+            view_layout:
+              grid-area: mode
+            title: Live Mode + Trigger Stack
+            show_header_toggle: false
+            state_color: true
+            entities:
+              - input_select.incident_mode
+              - binary_sensor.storm_alert
+              - binary_sensor.low_water_storage
+              - binary_sensor.high_wind_alert
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
+              - switch.backup_generator
+              - switch.perimeter_alarm
+          - type: custom:apexcharts-card
+            view_layout:
+              grid-area: trend
+            header:
+              show: true
+              title: Mission Indices Stream (24h)
+              show_states: true
+            graph_span: 24h
+            apex_config:
+              chart:
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 20min
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.farm_risk_index
+                name: Risk
+                color: '#ff6f7a'
+                type: line
+              - entity: sensor.ops_efficiency_index
+                name: Efficiency
+                color: '#30e7bf'
+                type: line
+              - entity: sensor.anomaly_score
+                name: Anomaly
+                color: '#bf98ff'
+                type: area
+              - entity: binary_sensor.storm_alert
+                name: Storm
+                color: '#ffb85c'
+                type: column
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: binary_sensor.motion_detected_equipment
+                name: Intrusion
+                color: '#56bcff'
+                type: column
+                transform: "return x === 'on' ? 100 : 0;"
+          - type: custom:apexcharts-card
+            view_layout:
+              grid-area: pressure
+            header:
+              show: true
+              title: Power Matrix (12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                type: bar
+                stacked: true
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              plotOptions:
+                bar:
+                  borderRadius: 6
+                  columnWidth: 58%
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 15min
+            series:
+              - entity: sensor.power_consumption
+                name: Grid
+                color: '#4f9cff'
+                type: column
+              - entity: sensor.solar_power
+                name: Solar
+                color: '#f59e0b'
+                type: column
+              - entity: sensor.battery_level
+                name: Battery
+                color: '#30e7bf'
+                type: line
+              - entity: input_number.generator_fuel_level
+                name: Generator %
+                color: '#ff6f7a'
+                type: line
+          - type: history-graph
+            view_layout:
+              grid-area: threat
+            title: Threat + Actuation Timeline (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - switch.perimeter_alarm
+              - switch.security_lights
+              - switch.backup_generator
+              - input_boolean.storm_shutters
+              - input_boolean.motion_sensor_barn
+              - input_boolean.motion_sensor_equipment
+          - type: custom:apexcharts-card
+            view_layout:
+              grid-area: floor
+            header:
+              show: true
+              title: Facility Vitals Snapshot (12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 240
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+            yaxis:
+              - id: water
+                min: 0
+                max: 120000
+              - id: signal
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.water_tank_total
+                name: Water
+                type: area
+                yaxis_id: water
+                color: '#30e7bf'
+              - entity: sensor.wind_speed_mph
+                name: Wind
+                type: line
+                yaxis_id: signal
+                color: '#56bcff'
+              - entity: sensor.battery_level
+                name: Battery
+                type: line
+                yaxis_id: signal
+                color: '#f59e0b'
+              - entity: input_number.generator_fuel_level
+                name: Generator %
+                type: line
+                yaxis_id: signal
+                color: '#ff6f7a'
+          - type: iframe
+            view_layout:
+              grid-area: camera_n
+            title: North Gate Live
+            url: https://video.nest.com/embedded/live/CicGaHojwa?autoplay=1
+            # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/wisconsin-pasture-farm-sanctuary
+            aspect_ratio: 56.25%
+          - type: iframe
+            view_layout:
+              grid-area: camera_g
+            title: Greenhouse Live
+            url: https://video.nest.com/embedded/live/J3TrdvuJOU?autoplay=1
+            # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/sheep-barn-farm-sanctuary
+            aspect_ratio: 56.25%
+          - type: iframe
+            view_layout:
+              grid-area: camera_e
+            title: Equipment Live
+            url: https://video.nest.com/embedded/live/z4uWODIK19?autoplay=1
+            # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/turkey-barn-farm-sanctuary
+            aspect_ratio: 56.25%
+          - type: custom:bar-card
+            view_layout:
+              grid-area: resources
+            title: Resource Depth Bars
+            direction: right
+            width: 70%
+            height: 32px
+            entities:
+              - entity: sensor.battery_level
+                name: Battery
+                max: 100
+              - entity: input_number.generator_fuel_level
+                name: Generator Fuel
+                max: 100
+              - entity: input_number.feed_silo_level
+                name: Feed Silo
+                max: 100
+              - entity: input_number.nitrogen_level_north
+                name: Nitrogen North
+                max: 100
+              - entity: input_number.nitrogen_level_south
+                name: Nitrogen South
+                max: 100
+              - entity: input_number.water_trough_level_1
+                name: Water Trough 1
+                max: 100
+              - entity: input_number.water_trough_level_2
+                name: Water Trough 2
+                max: 100
+          - type: custom:apexcharts-card
+            view_layout:
+              grid-area: timeline
+            header:
+              show: true
+              title: Ops Rhythm (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 230
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
+            yaxis:
+              - id: flow
+                min: 0
+                max: 120000
+              - id: run
+                opposite: true
+                min: 0
+                max: 1
+                decimals: 0
+            series:
+              - entity: sensor.water_tank_total
+                name: Water
+                yaxis_id: flow
+                type: area
+                color: '#30e7bf'
+              - entity: sensor.power_consumption
+                name: Grid
+                yaxis_id: flow
+                type: line
+                color: '#5db7ff'
+              - entity: binary_sensor.irrigation_active
+                name: Irrigation
+                yaxis_id: run
+                type: column
+                color: '#ffb85c'
+                transform: "return x === 'on' ? 1 : 0;"
+              - entity: binary_sensor.pumps_running
+                name: Pumps
+                yaxis_id: run
+                type: column
+                color: '#ff7e72'
+                transform: "return x === 'on' ? 1 : 0;"
+          - type: entities
+            view_layout:
+              grid-area: state
+            title: Mission State Board
+            show_header_toggle: false
+            entities:
+              - sensor.farm_risk_index
+              - sensor.ops_efficiency_index
+              - sensor.anomaly_score
+              - sensor.greenhouse_temp_avg
+              - sensor.backup_backup_manager_state
+              - sensor.backup_last_attempted_automatic_backup
+              - sensor.backup_last_successful_automatic_backup
+              - sensor.backup_next_scheduled_automatic_backup
+  # Command Center View Template
+  # Farm operations command wall in 3-chamber sections layout
+
+  - title: Command Center
+    path: command-center
+    icon: mdi:view-dashboard
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    badges: []
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Farm Ops Chamber
+              Incident + actuator controls for irrigation, climate, pumps, and security.
           - type: custom:mushroom-chips-card
+            alignment: start
             chips:
               - type: entity
                 entity: binary_sensor.irrigation_active
                 icon: mdi:sprinkler-variant
+                content_info: state
               - type: entity
                 entity: binary_sensor.pumps_running
                 icon: mdi:pump
-              - type: entity
-                entity: binary_sensor.low_water_storage
-                icon: mdi:water-alert
+                content_info: state
               - type: entity
                 entity: binary_sensor.storm_alert
                 icon: mdi:weather-lightning
+                content_info: state
+              - type: entity
+                entity: binary_sensor.low_water_storage
+                icon: mdi:water-alert
+                content_info: state
               - type: entity
                 entity: sensor.battery_level
                 icon: mdi:battery
+                content_info: state
+              - type: entity
+                entity: input_select.incident_mode
+                icon: mdi:alert-decagram
+                content_info: state
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: button
+                name: Storm
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_storm
+              - type: button
+                name: Intrusion
+                icon: mdi:shield-alert
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_intrusion
+              - type: button
+                name: Power Failure
+                icon: mdi:power-plug-off
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_power_failure
+              - type: button
+                name: Clear
+                icon: mdi:refresh
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  data:
+                    entity_id: script.incident_mode_clear
+          - type: heading
+            heading: Irrigation
+            icon: mdi:sprinkler-variant
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_north
+                name: North Irrigation
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_south
+                name: South Irrigation
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: switch.irrigation_vegetable
+                name: Vegetable Irrigation
+                tap_action:
+                  action: toggle
+          - type: heading
+            heading: Pumps + Primary Climate
+            icon: mdi:pump
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: switch.pump_main
+                name: Main Pump
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: switch.greenhouse_heater_a
+                name: Heater A
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: switch.greenhouse_cooling_a
+                name: Cooling A
+                tap_action:
+                  action: toggle
+          - type: heading
+            heading: Greenhouse B/C + Barn
+            icon: mdi:greenhouse
           - type: grid
             columns: 4
             square: false
             cards:
               - type: custom:mushroom-entity-card
-                entity: sensor.outdoor_temp_avg
-                name: Outdoor Temp
+                entity: input_boolean.greenhouse_heater_b
+                name: Heater B
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.wind_speed_mph
-                name: Wind
+                entity: input_boolean.greenhouse_heater_c
+                name: Heater C
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.water_tank_total
-                name: Total Water
+                entity: input_boolean.greenhouse_cooling_b
+                name: Cooling B
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.solar_power
-                name: Solar
+                entity: input_boolean.greenhouse_cooling_c
+                name: Cooling C
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.power_consumption
-                name: Power Use
+                entity: input_boolean.greenhouse_vent_b
+                name: Vent B
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.battery_level
-                name: Battery
+                entity: input_boolean.greenhouse_vent_c
+                name: Vent C
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.cattle_count
-                name: Cattle
+                entity: switch.barn_heater
+                name: Barn Heater
+                tap_action:
+                  action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.chicken_count
-                name: Chickens
+                entity: switch.barn_fan
+                name: Barn Fan
+                tap_action:
+                  action: toggle
+          - type: heading
+            heading: Security
+            icon: mdi:shield-lock
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: switch.security_lights
+                name: Security Lights
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: switch.perimeter_alarm
+                name: Perimeter Alarm
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: input_boolean.gate_lock_main
+                name: Main Gate Lock
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-entity-card
+                entity: input_boolean.gate_lock_secondary
+                name: Secondary Gate Lock
+                tap_action:
+                  action: toggle
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Soil + Water
+            icon: mdi:water
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Farm Pulse (Last 3h)
+              title: Farm Pulse (Last 4h)
               show_states: true
-            graph_span: 3h
+            graph_span: 4h
             apex_config:
               chart:
-                height: 260
+                height: 300
                 toolbar:
                   show: false
                 animations:
@@ -82,6 +1379,12 @@ views:
                 show: true
                 position: top
                 horizontalAlign: left
+              fill:
+                type: gradient
+                gradient:
+                  shadeIntensity: 0.4
+                  opacityFrom: 0.35
+                  opacityTo: 0.04
               grid:
                 borderColor: '#22324a'
                 strokeDashArray: 3
@@ -107,53 +1410,472 @@ views:
                 name: North Moisture
                 yaxis_id: moisture
                 type: area
-                color: '#36d399'
-                group_by:
-                  func: avg
-                  duration: 10min
+                color: '#35d39d'
               - entity: sensor.soil_moisture_south
                 name: South Moisture
                 yaxis_id: moisture
                 type: area
-                color: '#60a5fa'
-                group_by:
-                  func: avg
-                  duration: 10min
+                color: '#2ea8ff'
+              - entity: sensor.soil_moisture_west_pasture
+                name: West Moisture
+                yaxis_id: moisture
+                type: line
+                color: '#8b8cf7'
               - entity: sensor.water_tank_total
                 name: Total Water
                 yaxis_id: water
                 type: line
+                color: '#ffb74d'
+          - type: heading
+            heading: Climate
+            icon: mdi:thermometer-lines
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Climate Dynamics (Last 8h)
+              show_states: true
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              fill:
+                type: gradient
+                gradient:
+                  shadeIntensity: 0.3
+                  opacityFrom: 0.32
+                  opacityTo: 0.05
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
+            yaxis:
+              - id: temp
+                min: 30
+                max: 120
+              - id: humidity
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.greenhouse_temp_a
+                name: GH A Temp
+                yaxis_id: temp
+                type: line
+                color: '#ffb85c'
+              - entity: sensor.greenhouse_temp_b
+                name: GH B Temp
+                yaxis_id: temp
+                type: line
+                color: '#ff7e72'
+              - entity: sensor.greenhouse_temp_c
+                name: GH C Temp
+                yaxis_id: temp
+                type: line
+                color: '#d49eff'
+              - entity: sensor.outdoor_temp_avg
+                name: Outdoor Temp
+                yaxis_id: temp
+                type: area
+                color: '#56bcff'
+              - entity: sensor.greenhouse_humidity_avg
+                name: GH Humidity
+                yaxis_id: humidity
+                type: area
+                color: '#30e7bf'
+          - type: heading
+            heading: Energy
+            icon: mdi:transmission-tower
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Energy Snapshot (Last 2h)
+              show_states: true
+            graph_span: 2h
+            apex_config:
+              chart:
+                type: bar
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              plotOptions:
+                bar:
+                  columnWidth: 50%
+                  borderRadius: 6
+              dataLabels:
+                enabled: false
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: power
+                min: 0
+                max: 200
+              - id: pct
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                yaxis_id: power
+                type: column
                 color: '#f59e0b'
-                group_by:
-                  func: avg
-                  duration: 10min
+              - entity: sensor.power_consumption
+                name: Usage
+                yaxis_id: power
+                type: column
+                color: '#4f9cff'
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: pct
+                type: line
+                color: '#31d6a1'
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.battery_level
+                name: Battery
+                min: 0
+                max: 100
+                severity:
+                  green: 60
+                  yellow: 30
+                  red: 0
+              - type: gauge
+                entity: sensor.solar_power
+                name: Solar kW
+                min: 0
+                max: 200
+                severity:
+                  green: 80
+                  yellow: 40
+                  red: 0
+          - type: heading
+            heading: Water Infrastructure
+            icon: mdi:waves
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Water Infrastructure Over Time (Last 12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 20min
+            yaxis:
+              - min: 0
+                max: 120000
+            series:
+              - entity: sensor.water_tank_total
+                name: Total
+                type: area
+                color: '#30e7bf'
+              - entity: sensor.water_tank_main
+                name: Main
+                type: line
+                color: '#5db7ff'
+              - entity: sensor.water_tank_secondary
+                name: Secondary
+                type: line
+                color: '#9d8bff'
+              - entity: sensor.water_tank_nursery
+                name: Nursery
+                type: line
+                color: '#ffb85c'
+          - type: heading
+            heading: Camera Feeds
+            icon: mdi:cctv
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: picture-glance
+                title: North Yard
+                image: /local/cams/cam-north-yard.svg
+                entities:
+                  - entity: binary_sensor.motion_detected_equipment
+                  - entity: switch.perimeter_alarm
+              - type: picture-glance
+                title: Greenhouse
+                image: /local/cams/cam-greenhouse.svg
+                entities:
+                  - entity: sensor.greenhouse_temp_a
+                  - entity: sensor.greenhouse_humidity_avg
+              - type: picture-glance
+                title: Equipment Bay
+                image: /local/cams/cam-equipment.svg
+                entities:
+                  - entity: sensor.power_consumption
+                  - entity: switch.security_lights
+
       - type: grid
         cards:
-          - type: entity-filter
+          - type: heading
+            heading: Key Metrics
+            icon: mdi:view-grid
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: tile
+                entity: sensor.outdoor_temp_avg
+                name: Outdoor Temp
+              - type: tile
+                entity: sensor.wind_speed_mph
+                name: Wind
+              - type: tile
+                entity: sensor.water_tank_total
+                name: Water Total
+              - type: tile
+                entity: sensor.battery_level
+                name: Battery
+              - type: tile
+                entity: sensor.solar_power
+                name: Solar
+              - type: tile
+                entity: sensor.power_consumption
+                name: Grid Use
+              - type: tile
+                entity: sensor.cattle_count
+                name: Cattle
+              - type: tile
+                entity: sensor.chicken_count
+                name: Chickens
+          - type: heading
+            heading: Risk
+            icon: mdi:chart-timeline-variant
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Risk Pressure + Environment (Last 6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              fill:
+                type: gradient
+                gradient:
+                  shadeIntensity: 0.28
+                  opacityFrom: 0.32
+                  opacityTo: 0.05
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
+            yaxis:
+              - id: risk
+                min: 0
+                max: 100
+              - id: env
+                opposite: true
+                min: 0
+                max: 140
+            series:
+              - entity: binary_sensor.storm_alert
+                name: Storm Risk
+                yaxis_id: risk
+                type: area
+                color: '#ff6f7a'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: binary_sensor.low_water_storage
+                name: Water Risk
+                yaxis_id: risk
+                type: area
+                color: '#ffb85c'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: binary_sensor.high_wind_alert
+                name: Wind Risk
+                yaxis_id: risk
+                type: line
+                color: '#d496ff'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: sensor.wind_speed_mph
+                name: Wind MPH
+                yaxis_id: env
+                type: line
+                color: '#56bcff'
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: env
+                type: line
+                color: '#30e7bf'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Fleet Fuel + Yield Pressure (Last 12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 320
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#294164'
+                strokeDashArray: 3
+              tooltip:
+                shared: true
+                intersect: false
+                x:
+                  format: HH:mm
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 20min
+            yaxis:
+              - id: fuel
+                min: 0
+                max: 100
+              - id: yield
+                opposite: true
+                min: 0
+                max: 25000
+            series:
+              - entity: input_number.tractor_fuel
+                name: Tractor Fuel
+                yaxis_id: fuel
+                type: line
+                color: '#ffb85c'
+              - entity: input_number.harvester_fuel
+                name: Harvester Fuel
+                yaxis_id: fuel
+                type: line
+                color: '#ff7e72'
+              - entity: input_number.truck_fuel_1
+                name: Truck 1 Fuel
+                yaxis_id: fuel
+                type: line
+                color: '#56bcff'
+              - entity: input_number.truck_fuel_2
+                name: Truck 2 Fuel
+                yaxis_id: fuel
+                type: line
+                color: '#9d8bff'
+              - entity: sensor.grain_yield
+                name: Grain Yield
+                yaxis_id: yield
+                type: area
+                color: '#30e7bf'
+          - type: heading
+            heading: Active Operations
+            icon: mdi:toggle-switch-variant
+          - type: entities
             title: Active Operations
-            show_empty: false
-            state_filter:
-              - 'on'
+            show_header_toggle: false
+            state_color: true
             entities:
-              - switch.irrigation_north
-              - switch.irrigation_south
-              - switch.irrigation_west_pasture
-              - switch.irrigation_east_orchard
-              - switch.irrigation_vegetable
-              - switch.irrigation_nursery
-              - switch.pump_well_1
-              - switch.pump_well_2
-              - switch.pump_main
-              - switch.greenhouse_heater_a
-              - switch.greenhouse_cooling_a
-              - switch.greenhouse_vent_a
-              - switch.security_lights
-              - switch.perimeter_alarm
-          - type: entity-filter
+              - entity: switch.irrigation_north
+                name: North Irrigation
+              - entity: switch.irrigation_south
+                name: South Irrigation
+              - entity: switch.irrigation_west_pasture
+                name: West Pasture
+              - entity: switch.irrigation_east_orchard
+                name: East Orchard
+              - entity: switch.irrigation_vegetable
+                name: Vegetable
+              - entity: switch.irrigation_nursery
+                name: Nursery
+              - entity: switch.pump_well_1
+                name: Well Pump 1
+              - entity: switch.pump_well_2
+                name: Well Pump 2
+              - entity: switch.pump_main
+                name: Main Pump
+              - entity: switch.greenhouse_heater_a
+                name: Heater A
+              - entity: switch.greenhouse_cooling_a
+                name: Cooling A
+              - entity: switch.greenhouse_vent_a
+                name: Vent A
+              - entity: switch.security_lights
+                name: Security Lights
+              - entity: switch.perimeter_alarm
+                name: Perimeter Alarm
+          - type: heading
+            heading: Critical Alerts
+            icon: mdi:alert-outline
+          - type: entities
             title: Critical Alerts
-            show_empty: false
-            state_filter:
-              - 'on'
+            show_header_toggle: false
+            state_color: true
             entities:
               - binary_sensor.frost_risk
               - binary_sensor.heat_warning
@@ -165,41 +1887,9 @@ views:
               - binary_sensor.barn_too_cold
               - binary_sensor.motion_detected_barn
               - binary_sensor.motion_detected_equipment
-          - type: logbook
-            title: Agent Action Timeline (Last 2h)
-            hours_to_show: 2
-          - type: custom:apexcharts-card
-            header:
-              show: true
-              title: Energy Snapshot Bars
-            graph_span: 2h
-            apex_config:
-              chart:
-                type: bar
-                height: 260
-                animations:
-                  enabled: false
-              plotOptions:
-                bar:
-                  columnWidth: 55%
-                  borderRadius: 4
-              legend:
-                show: true
-                position: top
-                horizontalAlign: left
-              grid:
-                borderColor: '#22324a'
-            series:
-              - entity: sensor.solar_power
-                name: Solar
-                type: column
-              - entity: sensor.power_consumption
-                name: Use
-                type: column
-              - entity: sensor.battery_level
-                name: Battery %
-                type: column
-
+          - type: markdown
+            content: |
+              Agent actions and service calls are tracked in Home Assistant Logbook.
   - title: Irrigation
     path: irrigation
     icon: mdi:sprinkler
@@ -213,7 +1903,7 @@ views:
             title: Irrigation Command Deck
             subtitle: Zone control, moisture analytics, and pump orchestration
           - type: grid
-            columns: 3
+            columns: 2
             square: false
             cards:
               - type: custom:mushroom-entity-card
@@ -283,6 +1973,65 @@ views:
               - entity: sensor.soil_moisture_nursery
                 name: Nursery
                 color: '#5eead4'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Soil Temp + pH Channels (8h)
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 240
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: temp
+                min: 30
+                max: 90
+              - id: ph
+                opposite: true
+                min: 4
+                max: 9
+            series:
+              - entity: input_number.soil_temp_depth_6in
+                name: Soil Temp 6in
+                yaxis_id: temp
+                color: '#22d3ee'
+              - entity: input_number.soil_temp_depth_24in
+                name: Soil Temp 24in
+                yaxis_id: temp
+                color: '#38bdf8'
+              - entity: input_number.water_ph_main
+                name: Water pH Main
+                yaxis_id: ph
+                color: '#f59e0b'
+              - entity: input_number.water_ph_nursery
+                name: Water pH Nursery
+                yaxis_id: ph
+                color: '#a78bfa'
+          - type: history-graph
+            title: Moisture Risks + Auto States (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - binary_sensor.low_soil_moisture_north
+              - binary_sensor.low_soil_moisture_south
+              - input_boolean.pump_main_reservoir
+              - input_boolean.pump_secondary_tank
+              - input_boolean.pump_pond_circulation
+              - input_boolean.pump_rainwater
+              - input_boolean.pump_fertilizer_injection
       - type: grid
         cards:
           - type: custom:apexcharts-card
@@ -360,6 +2109,97 @@ views:
             name: Nursery Tank
             min: 0
             max: 5000
+      - type: grid
+        cards:
+          - type: custom:bar-card
+            title: Moisture Balance Bars
+            direction: right
+            width: 72%
+            height: 28px
+            entities:
+              - entity: sensor.soil_moisture_north
+                name: North
+                max: 100
+              - entity: sensor.soil_moisture_south
+                name: South
+                max: 100
+              - entity: sensor.soil_moisture_west_pasture
+                name: West
+                max: 100
+              - entity: sensor.soil_moisture_east_orchard
+                name: East
+                max: 100
+              - entity: sensor.soil_moisture_vegetable
+                name: Vegetable
+                max: 100
+              - entity: sensor.soil_moisture_nursery
+                name: Nursery
+                max: 100
+          - type: history-graph
+            title: Irrigation + Pump Pulse (8h)
+            hours_to_show: 8
+            refresh_interval: 30
+            entities:
+              - switch.irrigation_north
+              - switch.irrigation_south
+              - switch.irrigation_west_pasture
+              - switch.irrigation_east_orchard
+              - switch.irrigation_vegetable
+              - switch.irrigation_nursery
+              - switch.pump_well_1
+              - switch.pump_well_2
+              - switch.pump_main
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Water Reserve Delta (6h)
+              show_states: true
+            graph_span: 6h
+            apex_config:
+              chart:
+                height: 240
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: gal
+                min: 0
+                max: 120000
+              - id: pct
+                opposite: true
+                min: 0
+                max: 100
+            all_series_config:
+              group_by:
+                func: avg
+                duration: 10min
+            series:
+              - entity: sensor.water_tank_total
+                name: Total
+                yaxis_id: gal
+                type: area
+                color: '#14b8a6'
+              - entity: sensor.water_tank_main
+                name: Main
+                yaxis_id: gal
+                type: line
+                color: '#60a5fa'
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: pct
+                type: line
+                color: '#f59e0b'
 
   - title: Energy
     path: energy
@@ -468,6 +2308,63 @@ views:
               - entity: input_number.grid_power_consumption
                 name: Grid
                 type: column
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Battery + Grid Stress (8h)
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 240
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: pct
+                min: 0
+                max: 100
+              - id: power
+                opposite: true
+                min: 0
+                max: 200
+            series:
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: pct
+                color: '#34d399'
+              - entity: input_number.generator_fuel_level
+                name: Generator Fuel
+                yaxis_id: pct
+                color: '#f59e0b'
+              - entity: sensor.power_consumption
+                name: Power Consumption
+                yaxis_id: power
+                color: '#fb7185'
+              - entity: input_number.grid_power_consumption
+                name: Grid Draw
+                yaxis_id: power
+                color: '#60a5fa'
+          - type: history-graph
+            title: Power Routing States (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - switch.backup_generator
+              - switch.pump_main
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
       - type: grid
         cards:
           - type: entities
@@ -525,6 +2422,170 @@ views:
               - entity: input_number.battery_storage_pct
                 name: Battery %
                 color: '#34d399'
+          - type: custom:mini-graph-card
+            name: Grid + Generator Coupling (12h)
+            entities:
+              - sensor.power_consumption
+              - input_number.grid_power_consumption
+              - sensor.battery_level
+              - input_number.generator_fuel_level
+            hours_to_show: 12
+            points_per_hour: 4
+            line_width: 3
+            animate: true
+            show:
+              fill: fade
+              legend: true
+          - type: history-graph
+            title: Energy + Climate Flags (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - binary_sensor.storm_alert
+              - binary_sensor.high_wind_alert
+              - binary_sensor.low_water_storage
+              - binary_sensor.frost_risk
+              - switch.backup_generator
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+          - type: entities
+            title: Power Routing Controls
+            entities:
+              - switch.backup_generator
+              - switch.pump_main
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
+      - type: grid
+        cards:
+          - type: grid
+            columns: 4
+            square: false
+            cards:
+              - type: gauge
+                entity: sensor.solar_power
+                name: Solar
+                min: 0
+                max: 250
+              - type: gauge
+                entity: sensor.power_consumption
+                name: Grid Use
+                min: 0
+                max: 200
+              - type: gauge
+                entity: sensor.battery_level
+                name: Battery
+                min: 0
+                max: 100
+              - type: gauge
+                entity: input_number.generator_fuel_level
+                name: Generator
+                min: 0
+                max: 100
+          - type: custom:mini-graph-card
+            name: Fast Energy Sparklines
+            entities:
+              - sensor.solar_power
+              - sensor.power_consumption
+              - sensor.battery_level
+              - input_number.generator_fuel_level
+            hours_to_show: 12
+            points_per_hour: 3
+            animate: true
+            line_width: 3
+            show:
+              fill: fade
+              legend: true
+          - type: history-graph
+            title: Power Incident Flags (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - binary_sensor.storm_alert
+              - binary_sensor.low_water_storage
+              - switch.backup_generator
+          - type: custom:bar-card
+            title: Energy Reserve Bars
+            direction: right
+            width: 72%
+            height: 24px
+            entities:
+              - entity: sensor.battery_level
+                name: Battery
+                min: 0
+                max: 100
+              - entity: input_number.generator_fuel_level
+                name: Generator Fuel
+                min: 0
+                max: 100
+              - entity: input_number.solar_generation_kw
+                name: Solar Input
+                min: 0
+                max: 200
+              - entity: input_number.grid_power_consumption
+                name: Grid Draw
+                min: 0
+                max: 200
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Load Partition + Storage (12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 250
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: power
+                min: 0
+                max: 220
+              - id: pct
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.solar_power
+                name: Solar
+                yaxis_id: power
+                color: '#fbbf24'
+              - entity: sensor.power_consumption
+                name: Consumption
+                yaxis_id: power
+                color: '#fb7185'
+              - entity: input_number.grid_power_consumption
+                name: Grid
+                yaxis_id: power
+                color: '#60a5fa'
+              - entity: sensor.battery_level
+                name: Battery %
+                yaxis_id: pct
+                color: '#34d399'
+          - type: entities
+            title: Backup and Reserve Detail
+            show_header_toggle: false
+            entities:
+              - input_number.solar_generation_kw
+              - input_number.grid_power_consumption
+              - input_number.battery_storage_pct
+              - input_number.generator_fuel_level
+              - sensor.power_consumption
+              - sensor.solar_power
+              - sensor.battery_level
+              - sensor.water_tank_total
 
   - title: Security
     path: security
@@ -592,11 +2653,40 @@ views:
                 name: Storm Alert
                 type: line
                 color: '#a78bfa'
+          - type: custom:bar-card
+            title: Perimeter and Threat Bars
+            direction: right
+            width: 70%
+            height: 24px
+            entities:
+              - entity: sensor.farm_risk_index
+                name: Risk
+                min: 0
+                max: 100
+              - entity: sensor.anomaly_score
+                name: Anomaly
+                min: 0
+                max: 100
+              - entity: input_number.tractor_fuel
+                name: Tractor Fuel
+                min: 0
+                max: 100
+              - entity: input_number.harvester_fuel
+                name: Harvester Fuel
+                min: 0
+                max: 100
       - type: grid
         cards:
-          - type: logbook
+          - type: history-graph
             title: Security Timeline (Last 6h)
             hours_to_show: 6
+            refresh_interval: 30
+            entities:
+              - switch.perimeter_alarm
+              - switch.security_lights
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
+              - binary_sensor.storm_alert
           - type: entities
             title: Fleet and Availability
             entities:
@@ -646,6 +2736,143 @@ views:
               - binary_sensor.motion_detected_barn
               - binary_sensor.motion_detected_equipment
               - binary_sensor.storm_alert
+          - type: custom:mini-graph-card
+            name: Fleet Fuel Trend (12h)
+            entities:
+              - input_number.tractor_fuel
+              - input_number.harvester_fuel
+              - input_number.truck_fuel_1
+              - input_number.truck_fuel_2
+            hours_to_show: 12
+            points_per_hour: 4
+            show:
+              fill: fade
+              legend: true
+      - type: grid
+        cards:
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: iframe
+                title: North Gate Live
+                url: https://video.nest.com/embedded/live/CicGaHojwa?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/wisconsin-pasture-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Greenhouse Live
+                url: https://video.nest.com/embedded/live/J3TrdvuJOU?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/sheep-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Equipment Live
+                url: https://video.nest.com/embedded/live/z4uWODIK19?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/turkey-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: picture
+                image: https://radar.weather.gov/ridge/standard/CONUS_loop.gif
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/weather
+          - type: history-graph
+            title: Alarm and Lighting Actuation (8h)
+            hours_to_show: 8
+            refresh_interval: 30
+            entities:
+              - switch.perimeter_alarm
+              - switch.security_lights
+              - input_boolean.motion_sensor_barn
+              - input_boolean.motion_sensor_equipment
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Threat Pressure Composite (8h)
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 240
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: sensor.farm_risk_index
+                name: Risk
+                type: line
+                color: '#f87171'
+              - entity: sensor.anomaly_score
+                name: Anomaly
+                type: line
+                color: '#a78bfa'
+              - entity: binary_sensor.motion_detected_barn
+                name: Barn Motion
+                type: column
+                color: '#fb923c'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: binary_sensor.motion_detected_equipment
+                name: Equip Motion
+                type: column
+                color: '#60a5fa'
+                transform: "return x === 'on' ? 100 : 0;"
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Camera Motion + Alert Pulse (8h)
+            graph_span: 8h
+            apex_config:
+              chart:
+                height: 240
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - min: 0
+                max: 100
+            series:
+              - entity: switch.perimeter_alarm
+                name: Alarm
+                type: column
+                color: '#f97316'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: switch.security_lights
+                name: Lights
+                type: column
+                color: '#facc15'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: binary_sensor.motion_detected_barn
+                name: Barn Motion
+                type: line
+                color: '#38bdf8'
+                transform: "return x === 'on' ? 100 : 0;"
+              - entity: binary_sensor.motion_detected_equipment
+                name: Equip Motion
+                type: line
+                color: '#22c55e'
+                transform: "return x === 'on' ? 100 : 0;"
 
   - title: Climate
     path: climate
@@ -818,9 +3045,442 @@ views:
                 name: Barn Humidity
                 yaxis_id: humidity
                 color: '#06b6d4'
-          - type: logbook
+          - type: history-graph
             title: Climate Activity (Last 4h)
             hours_to_show: 4
+            refresh_interval: 30
+            entities:
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
+              - switch.barn_heater
+              - switch.barn_fan
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+      - type: grid
+        cards:
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: gauge
+                entity: sensor.greenhouse_temp_a
+                name: GH A Temp
+                min: 30
+                max: 110
+              - type: gauge
+                entity: sensor.greenhouse_temp_b
+                name: GH B Temp
+                min: 30
+                max: 110
+              - type: gauge
+                entity: input_number.greenhouse_humidity_a
+                name: GH A Humidity
+                min: 0
+                max: 100
+              - type: gauge
+                entity: input_number.barn_humidity
+                name: Barn Humidity
+                min: 0
+                max: 100
+          - type: custom:bar-card
+            title: Climate Actuator Load
+            direction: right
+            width: 70%
+            height: 24px
+            entities:
+              - entity: switch.greenhouse_heater_a
+                name: GH Heater A
+                min: 0
+                max: 1
+                severity:
+                  - color: '#334155'
+                    from: 0
+                    to: 0.5
+                  - color: '#f97316'
+                    from: 0.5
+                    to: 1
+              - entity: switch.greenhouse_cooling_a
+                name: GH Cooling A
+                min: 0
+                max: 1
+              - entity: switch.greenhouse_vent_a
+                name: GH Vent A
+                min: 0
+                max: 1
+              - entity: switch.barn_heater
+                name: Barn Heater
+                min: 0
+                max: 1
+              - entity: switch.barn_fan
+                name: Barn Fan
+                min: 0
+                max: 1
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Barn and Greenhouse Envelope (12h)
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 260
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+            yaxis:
+              - id: temp
+                min: 30
+                max: 110
+              - id: humidity
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.greenhouse_temp_a
+                name: GH Temp A
+                yaxis_id: temp
+                color: '#f97316'
+              - entity: sensor.greenhouse_temp_b
+                name: GH Temp B
+                yaxis_id: temp
+                color: '#38bdf8'
+              - entity: sensor.barn_temperature
+                name: Barn Temp
+                yaxis_id: temp
+                color: '#facc15'
+              - entity: input_number.greenhouse_humidity_a
+                name: GH Humidity A
+                yaxis_id: humidity
+                color: '#14b8a6'
+          - type: iframe
+            title: Greenhouse Live
+            url: https://video.nest.com/embedded/live/J3TrdvuJOU?autoplay=1
+            # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/sheep-barn-farm-sanctuary
+            aspect_ratio: 56.25%
+
+  - title: Weather
+    path: weather
+    icon: mdi:weather-lightning-rainy
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: Weather Ops Command
+            subtitle: Radar, satellite, storm triggers, and on-farm climate impact.
+          - type: picture
+            image: https://radar.weather.gov/ridge/standard/CONUS_loop.gif
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Atmospheric + Resource Coupling (24h)
+              show_states: true
+            graph_span: 24h
+            apex_config:
+              chart:
+                height: 250
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: wind
+                min: 0
+                max: 60
+              - id: water
+                opposite: true
+                min: 60000
+                max: 120000
+            series:
+              - entity: sensor.wind_speed_mph
+                name: Wind MPH
+                yaxis_id: wind
+                color: '#60a5fa'
+              - entity: sensor.water_tank_total
+                name: Water Total
+                yaxis_id: water
+                color: '#14b8a6'
+              - entity: input_number.rainwater_collection
+                name: Rain Collection
+                yaxis_id: wind
+                color: '#22c55e'
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Wind + Thermal Swing (12h)
+              show_states: true
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 250
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: wind
+                min: 0
+                max: 50
+              - id: temp
+                opposite: true
+                min: 20
+                max: 110
+            series:
+              - entity: sensor.wind_speed_mph
+                name: Wind MPH
+                yaxis_id: wind
+                color: '#60a5fa'
+              - entity: sensor.greenhouse_temp_avg
+                name: Greenhouse Avg
+                yaxis_id: temp
+                color: '#f59e0b'
+              - entity: sensor.barn_temperature
+                name: Barn Temp
+                yaxis_id: temp
+                color: '#22c55e'
+          - type: history-graph
+            title: Farm Alert Lanes (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - binary_sensor.storm_alert
+              - binary_sensor.high_wind_alert
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.low_water_storage
+              - input_boolean.storm_shutters
+          - type: entities
+            title: Weather Controls + Signals
+            show_header_toggle: false
+            entities:
+              - switch.rain_sensors
+              - input_boolean.storm_shutters
+              - binary_sensor.storm_alert
+              - binary_sensor.high_wind_alert
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - sensor.wind_speed_mph
+      - type: grid
+        cards:
+          - type: picture
+            image: https://radar.weather.gov/ridge/standard/CONUS_loop.gif
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Storm Pressure Composite (24h)
+              show_states: true
+            graph_span: 24h
+            apex_config:
+              chart:
+                height: 250
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+            yaxis:
+              - id: wind
+                min: 0
+                max: 60
+              - id: idx
+                opposite: true
+                min: 0
+                max: 100
+            series:
+              - entity: sensor.wind_speed_mph
+                name: Wind MPH
+                yaxis_id: wind
+                color: '#60a5fa'
+              - entity: sensor.farm_risk_index
+                name: Risk
+                yaxis_id: idx
+                color: '#f87171'
+              - entity: sensor.anomaly_score
+                name: Anomaly
+                yaxis_id: idx
+                color: '#a78bfa'
+              - entity: binary_sensor.storm_alert
+                name: Storm Alert
+                yaxis_id: idx
+                type: column
+                color: '#fbbf24'
+                transform: "return x === 'on' ? 100 : 0;"
+          - type: history-graph
+            title: Storm Trigger and Actuation (24h)
+            hours_to_show: 24
+            refresh_interval: 60
+            entities:
+              - binary_sensor.storm_alert
+              - binary_sensor.high_wind_alert
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - input_boolean.storm_shutters
+              - switch.rain_sensors
+          - type: custom:bar-card
+            title: Hydrology + Exposure Bars
+            direction: right
+            width: 72%
+            height: 24px
+            entities:
+              - entity: input_number.rainwater_collection
+                name: Rainwater Collection
+                min: 0
+                max: 100
+              - entity: input_number.pond_level
+                name: Pond Level
+                min: 0
+                max: 100
+              - entity: input_number.well_1_level
+                name: Well 1
+                min: 0
+                max: 100
+              - entity: input_number.well_2_level
+                name: Well 2
+                min: 0
+                max: 100
+              - entity: sensor.water_tank_total
+                name: Water Total
+                min: 0
+                max: 120000
+          - type: history-graph
+            title: Weather-Hydrology Pulse (24h)
+            hours_to_show: 24
+            refresh_interval: 60
+            entities:
+              - input_number.rainwater_collection
+              - input_number.pond_level
+              - input_number.well_1_level
+              - input_number.well_2_level
+              - sensor.water_tank_total
+          - type: markdown
+            title: External Forecast Links
+            content: |
+              - [NWS Radar](https://radar.weather.gov/station/KEWX/standard)
+              - [NWS Forecast](https://forecast.weather.gov/MapClick.php?lat=30.0802035&lon=-97.4932894)
+              - [SPC Convective Outlook](https://www.spc.noaa.gov/products/outlook/)
+              - [Windy](https://www.windy.com/)
+              - [AccuWeather Radar](https://www.accuweather.com/en/us/cedar-creek/78612/weather-radar/2237310)
+              - [AccuWeather Fallback Radar (Weather.com)](https://weather.com/weather/radar/interactive/l/Cedar+Creek+Texas+78612?canonicalCityId=cf67a4c97b40210d2ff2e6418fe24284)
+      - type: grid
+        cards:
+          - type: markdown
+            title: Live Camera Network
+            content: |
+              Live agricultural operations camera feeds plus weather radar access.
+          - type: grid
+            columns: 1
+            square: false
+            cards:
+              - type: iframe
+                title: North Gate Live
+                url: https://video.nest.com/embedded/live/CicGaHojwa?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/wisconsin-pasture-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Greenhouse Live
+                url: https://video.nest.com/embedded/live/J3TrdvuJOU?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/sheep-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Equipment Live
+                url: https://video.nest.com/embedded/live/z4uWODIK19?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/turkey-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: picture
+                image: https://radar.weather.gov/ridge/standard/CONUS_loop.gif
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/weather
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: custom:button-card
+                entity: sensor.weather_feed_nws_radar_url
+                icon: mdi:radar
+                name: NWS Radar Feed
+                show_state: false
+                tap_action:
+                  action: url
+                  url_path: |
+                    [[[
+                      return entity?.state || 'https://radar.weather.gov/station/KEWX/standard';
+                    ]]]
+              - type: custom:button-card
+                entity: sensor.weather_feed_noaa_goes_url
+                icon: mdi:satellite-variant
+                name: NOAA GOES Feed
+                show_state: false
+                tap_action:
+                  action: url
+                  url_path: |
+                    [[[
+                      return entity?.state || 'https://www.ospo.noaa.gov/Products/imagery/goes.html';
+                    ]]]
+              - type: custom:button-card
+                entity: sensor.weather_feed_accuweather_url
+                icon: mdi:weather-partly-rainy
+                name: AccuWeather Feed
+                show_state: false
+                tap_action:
+                  action: url
+                  url_path: |
+                    [[[
+                      return entity?.state || 'https://www.accuweather.com/en/us/cedar-creek/78612/weather-radar/2237310';
+                    ]]]
+          - type: custom:button-card
+            entity: sensor.weather_feed_accuweather_fallback_url
+            icon: mdi:backup-restore
+            name: AccuWeather Fallback (Weather.com Radar)
+            show_state: false
+            tap_action:
+              action: url
+              url_path: |
+                [[[
+                  return entity?.state || 'https://weather.com/weather/radar/interactive/l/Cedar+Creek+Texas+78612?canonicalCityId=cf67a4c97b40210d2ff2e6418fe24284';
+                ]]]
 
   - title: Agents
     path: agents
@@ -836,9 +3496,19 @@ views:
             content: |
               ### Action and Outcome Correlation
               Drill into the event timeline and verify that control actions produce expected telemetry shifts.
-          - type: logbook
+          - type: history-graph
             title: Full Agent + Device Timeline (Last 8h)
             hours_to_show: 8
+            refresh_interval: 30
+            entities:
+              - switch.irrigation_north
+              - switch.irrigation_south
+              - switch.pump_main
+              - switch.greenhouse_heater_a
+              - switch.security_lights
+              - switch.perimeter_alarm
+              - binary_sensor.storm_alert
+              - binary_sensor.motion_detected_barn
           - type: history-graph
             title: Outcome Signals
             hours_to_show: 8
@@ -896,3 +3566,215 @@ views:
                 yaxis_id: water
                 type: area
                 color: '#f59e0b'
+          - type: custom:mini-graph-card
+            name: Rapid Signal Correlation (12h)
+            entities:
+              - sensor.soil_moisture_north
+              - sensor.soil_moisture_south
+              - sensor.solar_power
+              - sensor.power_consumption
+              - sensor.farm_risk_index
+              - sensor.anomaly_score
+            hours_to_show: 12
+            points_per_hour: 4
+            animate: true
+            line_width: 2
+            show:
+              fill: fade
+              legend: true
+      - type: grid
+        cards:
+          - type: entities
+            title: Active Operation Stack
+            show_header_toggle: false
+            entities:
+              - switch.irrigation_north
+              - switch.irrigation_south
+              - switch.irrigation_west_pasture
+              - switch.irrigation_east_orchard
+              - switch.irrigation_vegetable
+              - switch.irrigation_nursery
+              - switch.pump_well_1
+              - switch.pump_well_2
+              - switch.pump_main
+              - switch.greenhouse_heater_a
+              - switch.greenhouse_cooling_a
+              - switch.greenhouse_vent_a
+              - switch.security_lights
+              - switch.perimeter_alarm
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: button
+                entity: script.incident_mode_storm
+                name: Trigger Storm
+                icon: mdi:weather-lightning-rainy
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  target:
+                    entity_id: script.incident_mode_storm
+              - type: button
+                entity: script.incident_mode_intrusion
+                name: Trigger Intrusion
+                icon: mdi:shield-alert
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  target:
+                    entity_id: script.incident_mode_intrusion
+              - type: button
+                entity: script.incident_mode_power_failure
+                name: Trigger Power Failure
+                icon: mdi:flash-alert
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  target:
+                    entity_id: script.incident_mode_power_failure
+              - type: button
+                entity: script.incident_mode_clear
+                name: Clear Incident
+                icon: mdi:check-circle-outline
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  target:
+                    entity_id: script.incident_mode_clear
+          - type: history-graph
+            title: Actuator State Lanes (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - switch.pump_well_1
+              - switch.pump_well_2
+              - switch.pump_main
+              - switch.irrigation_north
+              - switch.irrigation_south
+              - switch.irrigation_west_pasture
+              - switch.irrigation_east_orchard
+              - switch.irrigation_vegetable
+              - switch.irrigation_nursery
+          - type: custom:bar-card
+            title: Skill Channel Levels
+            direction: right
+            width: 70%
+            height: 24px
+            entities:
+              - entity: input_number.soil_temp_depth_6in
+                name: Soil 6in Temp
+                min: 30
+                max: 90
+              - entity: input_number.soil_temp_depth_24in
+                name: Soil 24in Temp
+                min: 30
+                max: 90
+              - entity: input_number.water_ph_main
+                name: Water pH Main
+                min: 4
+                max: 9
+              - entity: input_number.water_ph_nursery
+                name: Water pH Nursery
+                min: 4
+                max: 9
+              - entity: input_number.rainwater_collection
+                name: Rainwater
+                min: 0
+                max: 100
+      - type: grid
+        cards:
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: iframe
+                title: North Gate Live
+                url: https://video.nest.com/embedded/live/CicGaHojwa?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/wisconsin-pasture-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Greenhouse Live
+                url: https://video.nest.com/embedded/live/J3TrdvuJOU?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/sheep-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+              - type: iframe
+                title: Equipment Live
+                url: https://video.nest.com/embedded/live/z4uWODIK19?autoplay=1
+                # Fallback (Farm Sanctuary): https://explore.org/livecams/farm-sanctuary/turkey-barn-farm-sanctuary
+                aspect_ratio: 56.25%
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Risk + Resource Coupling (12h)
+            graph_span: 12h
+            apex_config:
+              chart:
+                height: 280
+                toolbar:
+                  show: false
+                animations:
+                  enabled: false
+              stroke:
+                curve: smooth
+                width: 2
+              grid:
+                borderColor: '#22324a'
+                strokeDashArray: 3
+              legend:
+                show: true
+                position: top
+                horizontalAlign: left
+            yaxis:
+              - id: idx
+                min: 0
+                max: 100
+              - id: resource
+                opposite: true
+                min: 0
+                max: 120000
+            series:
+              - entity: sensor.farm_risk_index
+                name: Risk
+                yaxis_id: idx
+                color: '#f87171'
+              - entity: sensor.anomaly_score
+                name: Anomaly
+                yaxis_id: idx
+                color: '#a78bfa'
+              - entity: sensor.water_tank_total
+                name: Water Total
+                yaxis_id: resource
+                color: '#22d3ee'
+              - entity: sensor.solar_power
+                name: Solar
+                yaxis_id: idx
+                color: '#fbbf24'
+          - type: entities
+            title: Coverage Exposed
+            show_header_toggle: false
+            entities:
+              - input_number.well_1_level
+              - input_number.well_2_level
+              - input_number.pond_level
+              - input_number.grain_storage_temp_a
+              - input_number.grain_storage_temp_b
+              - input_number.cold_storage_temp
+              - input_number.cold_storage_humidity
+              - input_number.generator_fuel_level
+              - input_number.tractor_fuel
+              - input_number.harvester_fuel
+              - input_number.truck_fuel_1
+              - input_number.truck_fuel_2
+          - type: history-graph
+            title: Incident Flags and QA Track (12h)
+            hours_to_show: 12
+            refresh_interval: 30
+            entities:
+              - binary_sensor.storm_alert
+              - binary_sensor.low_water_storage
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.high_wind_alert
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
