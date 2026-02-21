@@ -1,0 +1,13 @@
+[     345ms] [WARNING] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing. @ http://localhost:8123/local/agent-canvas.html:0
+[     966ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_title:0
+[     967ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_config:0
+[    5964ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_config:0
+[    5964ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_title:0
+[   10965ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_title:0
+[   10968ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_config:0
+[   15966ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_title:0
+[   15967ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_config:0
+[   20975ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_config:0
+[   20980ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_title:0
+[   25966ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_config:0
+[   25968ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.agent_canvas_title:0

@@ -1546,6 +1546,16 @@ input_text:
     initial: "Blue Dream 3.5g"
     max: 64
 
+  # === AGENT CANVAS ===
+  agent_canvas_config:
+    name: "Agent Canvas Config"
+    max: 255
+    initial: "{}"
+  agent_canvas_title:
+    name: "Agent Canvas Title"
+    max: 100
+    initial: "Agent Canvas"
+
 #############################################################
 # INPUT SELECTS - Control Modes
 #############################################################

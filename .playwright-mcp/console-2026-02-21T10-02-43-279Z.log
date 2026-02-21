@@ -1,3 +1,13 @@
 [   45208ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
 [   46212ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
 [   48283ms] Object
+[ 2271575ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2271576ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8123/auth/token:0
+[ 2272578ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8123/auth/token:0
+[ 2272578ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2274584ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2274584ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8123/auth/token:0
+[ 2277663ms] Object
+[ 2391343ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2392345ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[ 2394416ms] Object

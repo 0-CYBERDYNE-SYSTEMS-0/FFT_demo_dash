@@ -3649,3 +3649,18 @@ views:
                 name: Gross Margin %
               - entity: sensor.cannabis_financial_ebitda_proxy
                 name: EBITDA Proxy ($)
+
+  - title: Agent Canvas
+    path: agent-canvas
+    icon: mdi:palette-outline
+    type: sections
+    max_columns: 1
+    dense_section_placement: true
+    theme: cannabis_ops_theater
+    sections:
+      - type: grid
+        columns: 1
+        cards:
+          - type: iframe
+            url: /local/agent-canvas.html
+            aspect_ratio: 60%

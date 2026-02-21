@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Canvas</title>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0f1a;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #40b46e;
+      margin: 16px 0 8px;
+      text-align: center;
+    }
+    #chart-container {
+      width: 95%;
+      max-width: 1200px;
+      min-height: 300px;
+    }
+    #placeholder {
+      text-align: center;
+      color: #5a6a7a;
+      font-size: 1.1rem;
+      padding: 80px 20px;
+    }
+    #placeholder .icon { font-size: 3rem; margin-bottom: 16px; }
+    #error {
+      color: #e06060;
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="title"></div>
+  <div id="chart-container">
+    <div id="placeholder">
+      <div class="icon">&#x1f3a8;</div>
+      Awaiting agent instructions&hellip;
+    </div>
+  </div>
+  <div id="error"></div>
+
+  <script>
+    const HA_URL = window.location.origin;
+    let currentChart = null;
+    let lastConfigHash = '';
+
+    function getToken() {
+      try {
+        // Try to get from parent window if in iframe (Home Assistant integration)
+        if (window.parent && window.parent !== window) {
+          if (window.parent.__CANVASIS_TOKEN) return window.parent.__CANVASIS_TOKEN;
+        }
+        const raw = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith('ingress_session='));
+        if (raw) return raw.split('=')[1];
+      } catch (_) {}
+      return null;
+    }
+
+    function headers() {
+      const h = { 'Content-Type': 'application/json' };
+      const token = getToken();
+      if (token) h['Authorization'] = 'Bearer ' + token;
+      return h;
+    }
+
+    async function fetchState(entityId) {
+      const res = await fetch(`${HA_URL}/api/states/${entityId}`, {
+        headers: headers(),
+        credentials: 'include'
+      });
+      if (!res.ok) throw new Error(`Failed to fetch ${entityId}: ${res.status}`);
+      return await res.json();
+    }
+
+    async function fetchConfig() {
+      const state = await fetchState('input_text.agent_canvas_config');
+      return state.state || '{}';
+    }
+
+    async function fetchTitle() {
+      const state = await fetchState('input_text.agent_canvas_title');
+      return state.state || 'Agent Canvas';
+    }
+
+    async function fetchEntityValues(entities) {
+      const results = await Promise.all(entities.map(e => fetchState(e)));
+      return results.map(r => parseFloat(r.state) || 0);
+    }
+
+    function buildChart(config, values) {
+      const { type, labels, entities } = config;
+      const chartLabels = labels || entities.map(e => e.split('.').pop().replace(/_/g, ' '));
+      const colors = ['#40b46e', '#2d8a4e', '#66d994', '#1b6b3a', '#8ef0b0', '#a0f0c0'];
+
+      const baseOptions = {
+        chart: { background: 'transparent', foreColor: '#c0c0c0' },
+        theme: { mode: 'dark' },
+        colors: colors.slice(0, entities.length),
+        grid: { borderColor: '#1a2a3a' },
+        tooltip: { theme: 'dark' }
+      };
+
+      if (type === 'bar') {
+        return {
+          ...baseOptions,
+          chart: { ...baseOptions.chart, type: 'bar', height: 350 },
+          series: [{ name: config.title || 'Value', data: values }],
+          xaxis: { categories: chartLabels },
+          plotOptions: { bar: { borderRadius: 6, columnWidth: '55%' } }
+        };
+      }
+
+      if (type === 'line') {
+        return {
+          ...baseOptions,
+          chart: { ...baseOptions.chart, type: 'line', height: 350 },
+          series: [{ name: config.title || 'Value', data: values }],
+          xaxis: { categories: chartLabels },
+          stroke: { curve: 'smooth', width: 3 }
+        };
+      }
+
+      if (type === 'radial' || type === 'radialBar') {
+        return {
+          ...baseOptions,
+          chart: { ...baseOptions.chart, type: 'radialBar', height: 380 },
+          series: values,
+          labels: chartLabels,
+          plotOptions: {
+            radialBar: {
+              hollow: { size: '30%' },
+              dataLabels: {
+                name: { fontSize: '14px', color: '#c0c0c0' },
+                value: { fontSize: '20px', color: '#40b46e' }
+              }
+            }
+          }
+        };
+      }
+
+      if (type === 'comparison') {
+        return {
+          ...baseOptions,
+          chart: { ...baseOptions.chart, type: 'bar', height: 350 },
+          series: [{ name: config.title || 'Value', data: values }],
+          xaxis: { categories: chartLabels },
+          plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '60%' } }
+        };
+      }
+
+      return null;
+    }
+
+    async function render() {
+      try {
+        const [configStr, title] = await Promise.all([fetchConfig(), fetchTitle()]);
+
+        if (configStr === lastConfigHash) return;
+        lastConfigHash = configStr;
+
+        const config = JSON.parse(configStr);
+        document.getElementById('title').textContent = title;
+        document.getElementById('error').style.display = 'none';
+
+        if (!config.type || !config.entities || config.entities.length === 0) {
+          document.getElementById('placeholder').style.display = 'block';
+          if (currentChart) { currentChart.destroy(); currentChart = null; }
+          return;
+        }
+
+        document.getElementById('placeholder').style.display = 'none';
+        const values = await fetchEntityValues(config.entities);
+        const options = buildChart(config, values);
+
+        if (!options) {
+          document.getElementById('error').textContent = `Unsupported chart type: ${config.type}`;
+          document.getElementById('error').style.display = 'block';
+          return;
+        }
+
+        if (currentChart) { currentChart.destroy(); }
+        currentChart = new ApexCharts(document.getElementById('chart-container'), options);
+        currentChart.render();
+      } catch (err) {
+        if (err instanceof SyntaxError) return;
+        document.getElementById('error').textContent = err.message;
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+
+    render();
+    setInterval(render, 5000);
+  </script>
+</body>
+</html>
