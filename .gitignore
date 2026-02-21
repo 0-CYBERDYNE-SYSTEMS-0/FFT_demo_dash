@@ -12,3 +12,4 @@ ha_config/.ha_run.lock
 # MQTT runtime
 mosquitto/data/
 mosquitto/log/
+.worktrees
