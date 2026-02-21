@@ -670,18 +670,33 @@ async function updateState(
     getBoolState('input_boolean.greenhouse_cooling_c')
   );
 
-  const updateWell = (wellLevel: number, pumpOn: boolean, tankLevel: number): [number, number] => {
+  const updateWell = (
+    wellLevel: number,
+    pumpOn: boolean,
+    tankLevel: number,
+    tankMax: number
+  ): [number, number] => {
     let newWell = wellLevel;
     let newTank = tankLevel;
     if (pumpOn && wellLevel > 0) {
       newWell -= 0.1;
       newTank += TANK_INCREASE_RATE;
     }
-    return [clamp(newWell, 0, 100), clamp(newTank, 0, 100000)];
+    return [clamp(newWell, 0, 100), clamp(newTank, 0, tankMax)];
   };
 
-  [state.well1Level, state.tankLevelMain] = updateWell(state.well1Level, getAnyBoolState('switch.pump_well_1', 'input_boolean.pump_well_1'), state.tankLevelMain);
-  [state.well2Level, state.tankLevelSecondary] = updateWell(state.well2Level, getAnyBoolState('switch.pump_well_2', 'input_boolean.pump_well_2'), state.tankLevelSecondary);
+  [state.well1Level, state.tankLevelMain] = updateWell(
+    state.well1Level,
+    getAnyBoolState('switch.pump_well_1', 'input_boolean.pump_well_1'),
+    state.tankLevelMain,
+    100000
+  );
+  [state.well2Level, state.tankLevelSecondary] = updateWell(
+    state.well2Level,
+    getAnyBoolState('switch.pump_well_2', 'input_boolean.pump_well_2'),
+    state.tankLevelSecondary,
+    50000
+  );
 
   const hour = new Date().getHours();
   const solarBase = hour >= 6 && hour <= 18 ? Math.sin((hour - 6) * Math.PI / 12) * 100 : 0;
@@ -746,7 +761,7 @@ async function updateState(
   state.vegetableYield = clamp(state.vegetableYield + (0.5 + Math.random() * 1.2) * yieldFactor, 0, 40000);
   state.fruitYield = clamp(state.fruitYield + (0.25 + Math.random() * 0.8) * yieldFactor, 0, 25000);
 
-  state.eggsToday = clamp(state.eggsToday + (Math.random() < 0.45 ? 1 : 0), 0, 600);
+  state.eggsToday = clamp(state.eggsToday + (Math.random() < 0.45 ? 1 : 0), 0, 500);
   state.milkToday = clamp(state.milkToday + (Math.random() < 0.4 ? 0.1 : 0), 0, 400);
   state.feedSiloLevel = clamp(state.feedSiloLevel - (0.02 + Math.random() * 0.06), 0, 100);
   if (state.feedSiloLevel < 20 && Math.random() < 0.02) {
@@ -1397,6 +1412,18 @@ async function updateState(
   const failures = writeResults.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
   if (failures.length > 0) {
     console.warn(`⚠️ Telemetry write partial failure (${failures.length}/${writeResults.length})`);
+    for (const failure of failures.slice(0, 3)) {
+      const detail =
+        failure.reason instanceof Error
+          ? failure.reason.message
+          : typeof failure.reason === 'string'
+            ? failure.reason
+            : JSON.stringify(failure.reason);
+      console.warn(`   ↳ ${detail}`);
+    }
+    if (failures.length > 3) {
+      console.warn(`   ↳ ... ${failures.length - 3} additional write errors`);
+    }
   }
 
   if (incidentMode === 'normal') {

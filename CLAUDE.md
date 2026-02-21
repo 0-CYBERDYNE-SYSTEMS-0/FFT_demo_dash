@@ -32,8 +32,10 @@ npm run typecheck         # tsc --noEmit
 npm run test:ha
 
 # QA scripts
-npm run qa:media-guard    # check for placeholder images
-npm run qa:live-embeds    # capture live dashboard screenshots
+npm run qa:media-guard        # check for placeholder images
+npm run qa:live-embeds        # capture live dashboard screenshots
+npm run qa:cannabis-clone     # verify cannabis dashboard entity references
+npm run qa:cannabis-taxonomy  # validate cannabis entity taxonomy
 ```
 
 The sim respects env vars: `SIM_FARM_PROFILE` (mixed|drought|storm|greenhouse|high_yield), `SIM_TICK_INTERVAL_MS`, `SIM_PROFILE_SWITCH_EVERY`.
@@ -43,17 +45,24 @@ The sim respects env vars: `SIM_FARM_PROFILE` (mixed|drought|storm|greenhouse|hi
 ### Three-tier stack
 
 ```
-ha_config/configuration.yaml   → entity definitions, template sensors, binary sensor alerts
-ha_config/scripts.yaml         → incident mode scripts (storm, intrusion, power_failure, clear)
-ha_config/ui-lovelace.yaml     → main production dashboard (4 382 lines)
-ha_config/themes/default.yaml  → farm_ops_theater theme + condition-reactive themes
+ha_config/configuration.yaml      → entity definitions, template sensors, binary sensor alerts
+ha_config/scripts.yaml            → incident mode scripts (storm, intrusion, power_failure, clear)
+ha_config/ui-lovelace.yaml        → main farm ops dashboard (~4,382 lines)
+ha_config/ui-lovelace-cannabis.yaml → licensed cannabis/hemp clone dashboard (separate sidebar entry)
+ha_config/themes/default.yaml     → farm_ops_theater theme + condition-reactive themes
      ↕ REST API
 src/integrations/home-assistant.ts  → HomeAssistantAdapter, FarmStatus interface (81 fields), Zod schemas
      ↕ REST API
 scripts/simulate-farm-telemetry.ts  → physics-based telemetry loop; 5 profiles, 4 incident modes
 ```
 
-`dashboard-templates/` holds extracted, composable versions of views, cards and themes. They are **not** auto-applied to `ui-lovelace.yaml`; changes to templates must be manually merged or applied via FFT_nano's `ha_apply_dashboard` action.
+`dashboard-templates/` holds extracted, composable versions of views, cards and themes organized under `views/` and `themes/`. They are **not** auto-applied to `ui-lovelace.yaml`; changes to templates must be manually merged or applied via FFT_nano's `ha_apply_dashboard` action.
+
+### Custom cards (no HACS required)
+
+Pre-bundled `.js` files live in `ha_config/www/community/`. Add new cards by dropping the release bundle there and registering in the `resources:` section of the dashboard YAML.
+
+Cards in use: `button-card`, `mini-graph-card-bundle`, `card-mod`, `layout-card`, `kiosk-mode`, `bar-card`.
 
 ### Entity naming convention
 
@@ -93,6 +102,8 @@ When running under FFT_nano the repo is mounted at `/config/` and IPC actions (`
 | `ha_config/themes/default.yaml` | farm_ops_theater and all condition-reactive themes |
 | `src/integrations/home-assistant.ts` | HA REST client + FarmStatus typed model |
 | `scripts/simulate-farm-telemetry.ts` | Telemetry loop with farm profiles and incident support |
+| `ha_config/ui-lovelace-cannabis.yaml` | Licensed cannabis/hemp variant dashboard |
+| `ha_config/www/community/` | Pre-bundled custom card JS files (no HACS needed) |
 | `dashboard-templates/` | Composable view/card/theme templates for new dashboards |
 | `docker-compose.yml` | HA (port 8123) + Mosquitto (1883/9001) |
 

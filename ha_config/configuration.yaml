@@ -2121,6 +2121,8 @@ logbook:
 # Enable frontend
 frontend:
   themes: !include_dir_merge_named themes
+  extra_module_url:
+    - /local/cannabis-bg.js
 
 # API (enabled by default)
 api:

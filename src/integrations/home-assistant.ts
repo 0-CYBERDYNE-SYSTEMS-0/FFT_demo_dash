@@ -209,13 +209,25 @@ export class HomeAssistantAdapter {
   }
 
   async callService(domain: string, service: string, data?: Record<string, any>) {
+    const payload = data || {};
     const response = await fetch(`${this.baseUrl}/api/services/${domain}/${service}`, {
       method: 'POST',
       headers: this.getHeaders(),
-      body: JSON.stringify(data || {}),
+      body: JSON.stringify(payload),
     });
     if (!response.ok) {
-      throw new Error(`Service call ${domain}.${service} failed: ${response.status} ${response.statusText}`);
+      let responseBody = '';
+      try {
+        responseBody = await response.text();
+      } catch {
+        responseBody = '';
+      }
+      const trimmedBody = responseBody.length > 500 ? `${responseBody.slice(0, 500)}…` : responseBody;
+      const entityId = typeof payload.entity_id === 'string' ? payload.entity_id : 'n/a';
+      throw new Error(
+        `Service call ${domain}.${service} failed for ${entityId}: ${response.status} ${response.statusText}` +
+          (trimmedBody ? ` | response=${trimmedBody}` : '')
+      );
     }
     return response.json();
   }

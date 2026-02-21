@@ -58,6 +58,69 @@ farm_ops_theater:
             border-color: rgba(93, 183, 255, 0.64);
           }
 
+cannabis_ops_theater:
+  modes:
+    dark:
+      primary-color: "#2eeec0"
+      accent-color: "#ffbc61"
+      primary-background-color: "#050b04"
+      secondary-background-color: "#0a1208"
+      card-background-color: "rgba(18, 30, 46, 0.82)"
+      ha-card-background: "rgba(18, 30, 46, 0.82)"
+      lovelace-background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+      primary-text-color: "#f1f7ff"
+      secondary-text-color: "#c2d2eb"
+      disabled-text-color: "#7f93b1"
+      divider-color: "rgba(138, 161, 201, 0.2)"
+      state-icon-color: "#8acfff"
+      state-icon-active-color: "#2eeec0"
+      warning-color: "#ffbc61"
+      error-color: "#ff7272"
+      success-color: "#2eeec0"
+      info-color: "#5db7ff"
+      paper-listbox-background-color: "#172335"
+      paper-card-background-color: "#172335"
+      paper-item-icon-color: "#8acfff"
+      app-header-background-color: "#0d1424"
+      app-header-text-color: "#f1f7ff"
+      sidebar-background-color: "#09101d"
+      sidebar-text-color: "#cad8ee"
+      sidebar-selected-background-color: "rgba(46, 238, 192, 0.22)"
+      sidebar-selected-text-color: "#2eeec0"
+      ha-card-border-radius: "18px"
+      ha-card-border-width: "1px"
+      ha-card-border-color: "rgba(111, 154, 224, 0.34)"
+      ha-card-box-shadow: "0 12px 34px rgba(2, 6, 16, 0.68)"
+      primary-font-family: '"Rajdhani", "Barlow Condensed", "Segoe UI", sans-serif'
+      paper-font-common-base_-_font-family: '"Rajdhani", "Barlow Condensed", "Segoe UI", sans-serif'
+      paper-font-common-code_-_font-family: '"JetBrains Mono", "SFMono-Regular", Menlo, monospace'
+      ha-card-header-font-size: "1.1rem"
+      ha-card-header-font-weight: "700"
+      card-mod-theme: cannabis_ops_theater
+      card-mod-root-yaml: |
+        .: |
+          :host {
+            --ha-view-sections-column-gap: 14px;
+          }
+          #view {
+            min-height: calc(100vh - 56px);
+            background: linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed;
+          }
+          hui-view {
+            min-height: calc(100vh - 56px);
+          }
+      card-mod-card-yaml: |
+        .: |
+          ha-card {
+            backdrop-filter: blur(6px);
+            transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+          }
+          ha-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(3, 7, 18, 0.82);
+            border-color: rgba(93, 183, 255, 0.64);
+          }
+
 # Dawn Theme - Early morning (5:00-8:00)
 # Warm amber/gold palette for sunrise hours
 dawn:
