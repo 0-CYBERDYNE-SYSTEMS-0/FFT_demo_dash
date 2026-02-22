@@ -76,7 +76,7 @@ views:
                   icon: false
                   fill: true
               - type: custom:mini-graph-card
-                name: QA Release Readiness
+                name: Batch Release Readiness
                 entities:
                   - sensor.qa_release_readiness
                 hours_to_show: 8
@@ -172,7 +172,7 @@ views:
                 name: Audit Completeness
               - type: tile
                 entity: sensor.qa_release_readiness
-                name: QA Release Readiness
+                name: Batch Release Readiness
               - type: tile
                 entity: sensor.transfer_queue_count
                 name: Transfer Queue
@@ -330,7 +330,7 @@ views:
           - type: markdown
             content: |
               ## Portfolio Cameras
-              Deterministic camera panels for demo stability.
+              Live camera feeds across all licensed facility zones.
           - type: picture-glance
             title: North Gate Live
             image: /local/cams/cam-north-yard.svg

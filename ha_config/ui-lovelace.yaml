@@ -584,7 +584,7 @@ views:
           - type: markdown
             content: |
               ## Entity Atlas: Raw Numeric Mesh
-              Direct helper channels for calibration, QA, and synthetic replay.
+              Direct sensor channels for precision calibration and historical trend analysis.
           - type: custom:apexcharts-card
             header:
               show: true
@@ -3804,7 +3804,7 @@ views:
               - input_number.truck_fuel_1
               - input_number.truck_fuel_2
           - type: history-graph
-            title: Incident Flags and QA Track (12h)
+            title: Incident Flags and Event Log (12h)
             hours_to_show: 12
             refresh_interval: 30
             entities:
