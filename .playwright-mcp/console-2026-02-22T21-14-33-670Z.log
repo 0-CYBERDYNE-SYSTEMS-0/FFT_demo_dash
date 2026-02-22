@@ -1,0 +1,9 @@
+[     152ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    2160ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    4162ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    6153ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    8157ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   10158ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   12160ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   14158ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   16164ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0

@@ -1,0 +1,939 @@
+[     288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    2293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    4296ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    6287ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[    8293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   10294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   12288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   14295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   16288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   18295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   20295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   22288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   24294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   26286ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   28291ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   30295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   32296ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   34294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   36290ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   38295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   40290ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   42286ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   44293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   46293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   48293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   50291ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   52292ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   54295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   56289ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   58290ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   60293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   62365ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   64291ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   66294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   68288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   70290ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   72288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   74290ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   76288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   78292ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   80303ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   82292ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   84295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   86291ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   88292ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   90290ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   92294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   94288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   96294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[   98295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  100294ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  102288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  104301ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[  104303ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  105304ms] [ERROR] WebSocket connection to 'ws://localhost:8123/api/websocket' failed: Connection closed before receiving a handshake response @ http://localhost:8123/frontend_latest/core.9c169bb8cc5569b5.js:0
+[  106288ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  107632ms] Object
+[  108299ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  110348ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  112293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  114295ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  115623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  115680ms] RangeError: Maximum call stack size exceeded
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+    at set hass (http://localhost:8123/local/ipm-calendar-modal.js:1:1)
+[  115680ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  115786ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8123/unknown/node_modules/lit-html/src/directives/repeat.ts:0
+[  115788ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8123/unknown/node_modules/lit-html/src/lit-html.ts:0
+[  115788ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8123/unknown/node_modules/lit-html/src/directive.ts:0
+[  115891ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  115929ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  115961ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  115993ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  116027ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  116331ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  116368ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  116541ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  116579ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  117622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  119625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  121684ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  121719ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  121720ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  122778ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  122813ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  123626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  125629ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  127628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  129658ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  129697ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  129707ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  131368ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  131418ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  131481ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  131522ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  131556ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  131618ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  133620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  133866ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  133906ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  135626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  137626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  139630ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  141495ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  141529ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  141621ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  143628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  143925ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  143964ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  145625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  146356ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  146411ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  146481ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  146519ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  146552ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  147627ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  148358ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  148398ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  149627ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  151241ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  151285ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  151620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  153624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  155628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  157628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  159626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  161365ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161403ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161454ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161487ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161519ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161556ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161598ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161636ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  161646ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  163625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  165625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  167629ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  169624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  171623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  173620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  175626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  176357ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176394ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176440ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176477ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176512ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176579ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176614ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176648ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176687ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  176720ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  177623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  179625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  181626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  183626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  185626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  187628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  189626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  191473ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  191523ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  191620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  193619ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  195625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  197624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  199625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  201622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  203620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  205621ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  206477ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  206529ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  207622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  209624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  211622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  213623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  215624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  217623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  219624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  221455ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  221504ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  221621ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  223622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  225622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  227623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  229620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  231620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  233621ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  235623ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  236426ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  236475ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  236525ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  236561ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  236598ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  237620ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  239624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  241622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  243625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  245621ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  247626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  249625ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  251572ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  251624ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  251628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  252446ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  252484ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  253618ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  255622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  257631ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  259628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  261631ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  263626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  265622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  266470ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  266519ms] TypeError: Cannot set properties of undefined (setting 'layout')
+    at http://localhost:8123/frontend_latest/3142.5b837d6349e2f25a.js:10:33451
+    at n.dt (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1855)
+    at n.update (http://localhost:8123/frontend_latest/43300.d633acc7b247b6f4.js:17:1994)
+    at n._$AS (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:100961)
+    at O (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104041)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104991)
+    at R.p (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:104651)
+    at z.$ (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105633)
+    at z._$AI (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:105131)
+    at F (http://localhost:8123/frontend_latest/app.6b3133e6c6d8ae29.js:78:108206)
+[  267624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  269629ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  271622ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  273628ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  275626ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  277629ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
+[  279624ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
