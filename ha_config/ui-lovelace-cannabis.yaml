@@ -3,7 +3,7 @@ views:
   - title: Executive Portfolio
     path: nexus
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:hexagon-multiple
     type: sections
     max_columns: 3
@@ -49,7 +49,7 @@ views:
       - type: grid
         cards:
           - type: picture-elements
-            image: https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1400&q=80&auto=format&fit=crop
+            image: https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1400&q=80&auto=format&fit=crop
             elements: []
             card_mod:
               style: |
@@ -377,7 +377,7 @@ views:
   - title: Regulatory War Room
     path: war-room
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:shield-alert
     type: sections
     max_columns: 3
@@ -664,7 +664,7 @@ views:
   - title: Site Operations Chamber
     path: command-center
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:cannabis
     type: sections
     max_columns: 3
@@ -1199,7 +1199,7 @@ views:
   - title: Cultivation
     path: irrigation
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:sprinkler
     type: sections
     max_columns: 3
@@ -1386,7 +1386,7 @@ views:
   - title: Utilities
     path: energy
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:transmission-tower
     type: sections
     max_columns: 3
@@ -1536,7 +1536,7 @@ views:
   - title: Access & Diversion
     path: security
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:shield-lock
     type: sections
     max_columns: 3
@@ -1815,7 +1815,7 @@ views:
   - title: Environment
     path: climate
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:thermometer-lines
     type: sections
     max_columns: 3
@@ -1987,7 +1987,7 @@ views:
   - title: Regional Risk
     path: weather
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:weather-partly-lightning
     type: sections
     max_columns: 3
@@ -2723,7 +2723,7 @@ views:
   - title: Automation
     path: agents
     theme: cannabis_ops_theater
-    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+    background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
     icon: mdi:robot
     type: sections
     max_columns: 3

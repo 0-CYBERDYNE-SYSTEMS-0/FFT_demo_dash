@@ -67,7 +67,7 @@ cannabis_ops_theater:
       secondary-background-color: "#0a1208"
       card-background-color: "rgba(18, 30, 46, 0.82)"
       ha-card-background: "rgba(18, 30, 46, 0.82)"
-      lovelace-background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
+      lovelace-background: "linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed"
       primary-text-color: "#f1f7ff"
       secondary-text-color: "#c2d2eb"
       disabled-text-color: "#7f93b1"
@@ -104,7 +104,7 @@ cannabis_ops_theater:
           }
           #view {
             min-height: calc(100vh - 56px);
-            background: linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed;
+            background: linear-gradient(rgba(4,8,18,0.46), rgba(4,8,18,0.46)), url(https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop) center/cover no-repeat fixed;
           }
           hui-view {
             min-height: calc(100vh - 56px);
