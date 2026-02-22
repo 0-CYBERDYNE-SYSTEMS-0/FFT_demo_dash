@@ -380,3 +380,40 @@ series:
 - Never modify live `ui-lovelace.yaml` directly
 - Test with small subset of entities first
 - Backup before major changes (`.bak` file created automatically)
+
+## Dynamic Canvas Spec (v1.0)
+
+The Agent Canvas runtime can load `/local/agent-canvas-spec.json` and render a multi-card grid.
+
+```json
+{
+  "version": "1.0",
+  "title": "Agent Canvas",
+  "layout": {
+    "columns": 2,
+    "gap": 16,
+    "rowHeight": 300
+  },
+  "cards": [
+    {
+      "id": "climate-overview",
+      "type": "line",
+      "title": "Greenhouse Temperature",
+      "entities": ["input_number.greenhouse_temp_section_a"],
+      "labels": ["Section A"],
+      "span": 2
+    }
+  ]
+}
+```
+
+Card type options:
+
+- `line`, `bar`, `radial`, `comparison` use `entities` and optional `labels`
+- `kpi` uses `entities` and optional formatting in `options` (`prefix`, `suffix`, `decimals`)
+- `markdown` uses `options.markdown` (or `options.content`)
+- `iframe` uses `options.url`
+
+Backwards compatibility:
+
+- If the spec file is missing or invalid, the renderer falls back to `input_text.agent_canvas_config` + `input_text.agent_canvas_title`.

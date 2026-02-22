@@ -7,65 +7,152 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      background: #0a0f1a;
-      color: #e0e0e0;
+      background: radial-gradient(circle at top right, #13243e 0%, #09121f 45%, #070d17 100%);
+      color: #dce7f6;
       font-family: 'Segoe UI', system-ui, sans-serif;
       min-height: 100vh;
+      padding: 20px;
+    }
+
+    #title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #6be18f;
+      margin-bottom: 14px;
+      letter-spacing: 0.01em;
+    }
+
+    #canvas-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .canvas-card {
+      background: rgba(10, 21, 37, 0.88);
+      border: 1px solid rgba(98, 156, 220, 0.22);
+      border-radius: 12px;
+      min-height: 180px;
+      overflow: hidden;
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.24);
+    }
+
+    .canvas-card-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(98, 156, 220, 0.16);
+      font-size: 0.95rem;
+      color: #9fbcdd;
+      font-weight: 600;
+      background: rgba(8, 18, 31, 0.6);
+    }
+
+    .canvas-card-body {
+      padding: 10px;
+      min-height: 150px;
+    }
+
+    .card-error {
+      color: #ff7f7f;
+      font-size: 0.92rem;
+      padding: 12px;
+      background: rgba(68, 16, 16, 0.35);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 127, 127, 0.25);
+    }
+
+    .kpi-wrap {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      gap: 10px;
+      padding: 8px;
     }
-    #title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #40b46e;
-      margin: 16px 0 8px;
-      text-align: center;
+
+    .kpi-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dashed rgba(130, 170, 220, 0.2);
+      padding-bottom: 8px;
     }
-    #chart-container {
-      width: 95%;
-      max-width: 1200px;
-      min-height: 300px;
+
+    .kpi-label {
+      color: #9ab4d3;
+      font-size: 0.9rem;
     }
+
+    .kpi-value {
+      color: #71f7a7;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .markdown-body {
+      color: #d7e2f1;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      font-size: 0.96rem;
+      padding: 8px;
+    }
+
+    .card-iframe {
+      width: 100%;
+      min-height: 280px;
+      border: 0;
+      border-radius: 8px;
+      background: #08111e;
+    }
+
     #placeholder {
+      margin-top: 8px;
+      color: #6f87a8;
+      font-size: 1.05rem;
       text-align: center;
-      color: #5a6a7a;
-      font-size: 1.1rem;
-      padding: 80px 20px;
-    }
-    #placeholder .icon { font-size: 3rem; margin-bottom: 16px; }
-    #error {
-      color: #e06060;
-      text-align: center;
-      padding: 20px;
+      padding: 64px 16px;
+      border: 1px dashed rgba(122, 151, 189, 0.32);
+      border-radius: 14px;
+      background: rgba(8, 17, 30, 0.55);
       display: none;
+    }
+
+    #error {
+      margin-top: 10px;
+      color: #ff9b9b;
+      font-size: 0.92rem;
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 12px; }
+      #title { font-size: 1.2rem; }
+      .kpi-value { font-size: 1.24rem; }
     }
   </style>
 </head>
 <body>
-  <div id="title"></div>
-  <div id="chart-container">
-    <div id="placeholder">
-      <div class="icon">&#x1f3a8;</div>
-      Awaiting agent instructions&hellip;
-    </div>
-  </div>
+  <div id="title">Agent Canvas</div>
+  <div id="canvas-grid"></div>
+  <div id="placeholder">Awaiting agent canvas instructions...</div>
   <div id="error"></div>
 
   <script>
     const HA_URL = window.location.origin;
-    let currentChart = null;
-    let lastConfigHash = '';
+    const SPEC_URL = `${HA_URL}/local/agent-canvas-spec.json`;
+    const POLL_MS = 5000;
+    const activeCharts = [];
 
     function getToken() {
       try {
-        // Try to get from parent window if in iframe (Home Assistant integration)
         if (window.parent && window.parent !== window) {
           if (window.parent.__CANVASIS_TOKEN) return window.parent.__CANVASIS_TOKEN;
         }
-        const raw = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith('ingress_session='));
+        const raw = document.cookie
+          .split(';')
+          .map((c) => c.trim())
+          .find((c) => c.startsWith('ingress_session='));
         if (raw) return raw.split('=')[1];
       } catch (_) {}
       return null;
@@ -78,133 +165,409 @@
       return h;
     }
 
+    function showGlobalError(message) {
+      const el = document.getElementById('error');
+      if (!message) {
+        el.style.display = 'none';
+        el.textContent = '';
+        return;
+      }
+      el.textContent = message;
+      el.style.display = 'block';
+    }
+
+    function clearCharts() {
+      while (activeCharts.length > 0) {
+        const chart = activeCharts.pop();
+        try { chart.destroy(); } catch (_) {}
+      }
+    }
+
     async function fetchState(entityId) {
       const res = await fetch(`${HA_URL}/api/states/${entityId}`, {
         headers: headers(),
-        credentials: 'include'
+        credentials: 'include',
       });
       if (!res.ok) throw new Error(`Failed to fetch ${entityId}: ${res.status}`);
       return await res.json();
     }
 
-    async function fetchConfig() {
-      const state = await fetchState('input_text.agent_canvas_config');
-      return state.state || '{}';
+    async function fetchSpecFile() {
+      const res = await fetch(`${SPEC_URL}?ts=${Date.now()}`, {
+        headers: headers(),
+        credentials: 'include',
+        cache: 'no-store',
+      });
+      if (res.status === 404) return null;
+      if (!res.ok) throw new Error(`Spec file fetch failed: ${res.status}`);
+      return await res.json();
     }
 
-    async function fetchTitle() {
-      const state = await fetchState('input_text.agent_canvas_title');
-      return state.state || 'Agent Canvas';
+    function toNumber(value) {
+      const parsed = Number.parseFloat(String(value));
+      return Number.isFinite(parsed) ? parsed : null;
     }
 
-    async function fetchEntityValues(entities) {
-      const results = await Promise.all(entities.map(e => fetchState(e)));
-      return results.map(r => parseFloat(r.state) || 0);
+    function entityLabel(entityId) {
+      return entityId.split('.').pop().replace(/_/g, ' ');
     }
 
-    function buildChart(config, values) {
-      const { type, labels, entities } = config;
-      const chartLabels = labels || entities.map(e => e.split('.').pop().replace(/_/g, ' '));
-      const colors = ['#40b46e', '#2d8a4e', '#66d994', '#1b6b3a', '#8ef0b0', '#a0f0c0'];
+    function normalizeCardType(rawType) {
+      if (rawType === 'radialBar') return 'radial';
+      return rawType;
+    }
 
-      const baseOptions = {
-        chart: { background: 'transparent', foreColor: '#c0c0c0' },
+    function validateSpecShape(spec) {
+      if (!spec || typeof spec !== 'object') throw new Error('Canvas spec must be an object');
+      if (spec.version !== '1.0') throw new Error('Canvas spec version must be "1.0"');
+      if (typeof spec.title !== 'string' || !spec.title.trim()) {
+        throw new Error('Canvas spec requires a non-empty title');
+      }
+      if (!spec.layout || typeof spec.layout !== 'object') {
+        throw new Error('Canvas spec requires a layout object');
+      }
+      if (!Number.isInteger(spec.layout.columns) || spec.layout.columns < 1) {
+        throw new Error('Canvas layout.columns must be an integer >= 1');
+      }
+      if (!Array.isArray(spec.cards)) throw new Error('Canvas spec cards must be an array');
+
+      const seen = new Set();
+      for (const card of spec.cards) {
+        if (!card || typeof card !== 'object') throw new Error('Each card must be an object');
+        if (typeof card.id !== 'string' || !card.id.trim()) throw new Error('Each card requires an id');
+        if (seen.has(card.id)) throw new Error(`Duplicate card id: ${card.id}`);
+        seen.add(card.id);
+        card.type = normalizeCardType(card.type);
+      }
+
+      return spec;
+    }
+
+    async function fetchLegacySpec() {
+      const [configState, titleState] = await Promise.all([
+        fetchState('input_text.agent_canvas_config'),
+        fetchState('input_text.agent_canvas_title'),
+      ]);
+
+      const rawConfig = configState.state || '{}';
+      const title = titleState.state || 'Agent Canvas';
+
+      let parsed;
+      try {
+        parsed = JSON.parse(rawConfig);
+      } catch (_) {
+        return null;
+      }
+
+      const type = normalizeCardType(parsed.type);
+      const entities = Array.isArray(parsed.entities) ? parsed.entities.filter((e) => typeof e === 'string') : [];
+      if (!type || entities.length === 0) return null;
+
+      return {
+        version: '1.0',
+        title,
+        layout: {
+          columns: 1,
+          gap: 16,
+          rowHeight: 320,
+        },
+        cards: [
+          {
+            id: 'legacy-single',
+            type,
+            title: parsed.title || title,
+            entities,
+            labels: Array.isArray(parsed.labels) ? parsed.labels : undefined,
+            options: parsed.options && typeof parsed.options === 'object' ? parsed.options : undefined,
+            span: 1,
+          },
+        ],
+      };
+    }
+
+    async function resolveRenderableSpec() {
+      try {
+        const fileSpec = await fetchSpecFile();
+        if (fileSpec) {
+          return { spec: validateSpecShape(fileSpec), warning: '' };
+        }
+      } catch (err) {
+        const fallback = await fetchLegacySpec();
+        if (fallback) {
+          return {
+            spec: fallback,
+            warning: `Spec file unavailable/invalid; using legacy input_text config (${err.message}).`,
+          };
+        }
+        return { spec: null, warning: `Canvas spec invalid: ${err.message}` };
+      }
+
+      const legacy = await fetchLegacySpec();
+      if (legacy) return { spec: legacy, warning: '' };
+      return { spec: null, warning: '' };
+    }
+
+    function chartOptionsForCard(card, labels, values) {
+      const options = card.options && typeof card.options === 'object' ? card.options : {};
+      const colors = ['#5de68e', '#4ecb7b', '#3da866', '#71f3aa', '#7ad6ff', '#a0f0c0'];
+      const base = {
+        chart: {
+          background: 'transparent',
+          foreColor: '#c3d2e6',
+          toolbar: { show: false },
+          animations: { enabled: true },
+        },
         theme: { mode: 'dark' },
-        colors: colors.slice(0, entities.length),
-        grid: { borderColor: '#1a2a3a' },
-        tooltip: { theme: 'dark' }
+        grid: { borderColor: '#1a2b42' },
+        tooltip: { theme: 'dark' },
+        colors: colors.slice(0, Math.max(values.length, 1)),
       };
 
-      if (type === 'bar') {
+      if (card.type === 'bar') {
         return {
-          ...baseOptions,
-          chart: { ...baseOptions.chart, type: 'bar', height: 350 },
-          series: [{ name: config.title || 'Value', data: values }],
-          xaxis: { categories: chartLabels },
-          plotOptions: { bar: { borderRadius: 6, columnWidth: '55%' } }
+          ...base,
+          chart: { ...base.chart, type: 'bar', height: options.height || 250 },
+          series: [{ name: card.title || 'Value', data: values }],
+          xaxis: { categories: labels },
+          plotOptions: { bar: { borderRadius: 6, columnWidth: '55%' } },
         };
       }
 
-      if (type === 'line') {
+      if (card.type === 'line') {
         return {
-          ...baseOptions,
-          chart: { ...baseOptions.chart, type: 'line', height: 350 },
-          series: [{ name: config.title || 'Value', data: values }],
-          xaxis: { categories: chartLabels },
-          stroke: { curve: 'smooth', width: 3 }
+          ...base,
+          chart: { ...base.chart, type: 'line', height: options.height || 250 },
+          series: [{ name: card.title || 'Value', data: values }],
+          xaxis: { categories: labels },
+          stroke: { curve: 'smooth', width: 3 },
         };
       }
 
-      if (type === 'radial' || type === 'radialBar') {
+      if (card.type === 'radial') {
         return {
-          ...baseOptions,
-          chart: { ...baseOptions.chart, type: 'radialBar', height: 380 },
+          ...base,
+          chart: { ...base.chart, type: 'radialBar', height: options.height || 280 },
           series: values,
-          labels: chartLabels,
+          labels,
           plotOptions: {
             radialBar: {
-              hollow: { size: '30%' },
+              hollow: { size: '28%' },
               dataLabels: {
-                name: { fontSize: '14px', color: '#c0c0c0' },
-                value: { fontSize: '20px', color: '#40b46e' }
-              }
-            }
-          }
+                name: { fontSize: '13px', color: '#d2e2f5' },
+                value: { fontSize: '20px', color: '#73f2a9' },
+              },
+            },
+          },
         };
       }
 
-      if (type === 'comparison') {
+      if (card.type === 'comparison') {
         return {
-          ...baseOptions,
-          chart: { ...baseOptions.chart, type: 'bar', height: 350 },
-          series: [{ name: config.title || 'Value', data: values }],
-          xaxis: { categories: chartLabels },
-          plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '60%' } }
+          ...base,
+          chart: { ...base.chart, type: 'bar', height: options.height || 250 },
+          series: [{ name: card.title || 'Value', data: values }],
+          xaxis: { categories: labels },
+          plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '60%' } },
         };
       }
 
       return null;
     }
 
+    async function renderChartCard(card, cardBody, cardError) {
+      const entities = Array.isArray(card.entities) ? card.entities : [];
+      if (entities.length === 0) throw new Error('Chart card requires entities[]');
+
+      const states = await Promise.all(entities.map((entityId) => fetchState(entityId)));
+      const values = states.map((state) => toNumber(state.state) ?? 0);
+      const labels = Array.isArray(card.labels) && card.labels.length === entities.length
+        ? card.labels
+        : entities.map(entityLabel);
+
+      const options = chartOptionsForCard(card, labels, values);
+      if (!options) {
+        throw new Error(`Unsupported chart type: ${card.type}`);
+      }
+
+      const chartMount = document.createElement('div');
+      cardBody.appendChild(chartMount);
+      const chart = new ApexCharts(chartMount, options);
+      activeCharts.push(chart);
+      await chart.render();
+      cardError.style.display = 'none';
+    }
+
+    async function renderKpiCard(card, cardBody) {
+      const entities = Array.isArray(card.entities) ? card.entities : [];
+      if (entities.length === 0) throw new Error('KPI card requires entities[]');
+
+      const states = await Promise.all(entities.map((entityId) => fetchState(entityId)));
+      const labels = Array.isArray(card.labels) && card.labels.length === entities.length
+        ? card.labels
+        : entities.map(entityLabel);
+
+      const options = card.options && typeof card.options === 'object' ? card.options : {};
+      const decimals = Number.isInteger(options.decimals) ? options.decimals : 1;
+      const prefix = typeof options.prefix === 'string' ? options.prefix : '';
+      const suffix = typeof options.suffix === 'string' ? options.suffix : '';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'kpi-wrap';
+
+      states.forEach((state, idx) => {
+        const row = document.createElement('div');
+        row.className = 'kpi-row';
+
+        const label = document.createElement('div');
+        label.className = 'kpi-label';
+        label.textContent = labels[idx];
+
+        const value = document.createElement('div');
+        value.className = 'kpi-value';
+
+        const numeric = toNumber(state.state);
+        if (numeric === null) {
+          value.textContent = String(state.state);
+        } else {
+          value.textContent = `${prefix}${numeric.toFixed(decimals)}${suffix}`;
+        }
+
+        row.appendChild(label);
+        row.appendChild(value);
+        wrap.appendChild(row);
+      });
+
+      cardBody.appendChild(wrap);
+    }
+
+    function renderMarkdownCard(card, cardBody) {
+      const options = card.options && typeof card.options === 'object' ? card.options : {};
+      const markdown =
+        typeof options.markdown === 'string'
+          ? options.markdown
+          : (typeof options.content === 'string' ? options.content : '');
+
+      const content = document.createElement('div');
+      content.className = 'markdown-body';
+      content.textContent = markdown;
+      cardBody.appendChild(content);
+    }
+
+    function renderIframeCard(card, cardBody) {
+      const options = card.options && typeof card.options === 'object' ? card.options : {};
+      const url = typeof options.url === 'string' ? options.url : '';
+      if (!url) throw new Error('Iframe card requires options.url');
+
+      const iframe = document.createElement('iframe');
+      iframe.className = 'card-iframe';
+      iframe.src = url;
+      iframe.loading = 'lazy';
+      cardBody.appendChild(iframe);
+    }
+
+    async function renderCard(card, grid, columns) {
+      const shell = document.createElement('section');
+      shell.className = 'canvas-card';
+      const span = Number.isInteger(card.span) ? Math.max(1, card.span) : 1;
+      shell.style.gridColumn = `span ${Math.min(span, columns)}`;
+
+      const header = document.createElement('div');
+      header.className = 'canvas-card-header';
+      header.textContent = card.title || card.id;
+
+      const body = document.createElement('div');
+      body.className = 'canvas-card-body';
+
+      const localError = document.createElement('div');
+      localError.className = 'card-error';
+      localError.style.display = 'none';
+
+      shell.appendChild(header);
+      shell.appendChild(body);
+      shell.appendChild(localError);
+      grid.appendChild(shell);
+
+      try {
+        if (['line', 'bar', 'radial', 'comparison'].includes(card.type)) {
+          await renderChartCard(card, body, localError);
+          return;
+        }
+
+        if (card.type === 'kpi') {
+          await renderKpiCard(card, body);
+          return;
+        }
+
+        if (card.type === 'markdown') {
+          renderMarkdownCard(card, body);
+          return;
+        }
+
+        if (card.type === 'iframe') {
+          renderIframeCard(card, body);
+          return;
+        }
+
+        throw new Error(`Unsupported card type: ${card.type}`);
+      } catch (err) {
+        localError.textContent = err.message || String(err);
+        localError.style.display = 'block';
+      }
+    }
+
+    async function renderSpec(spec) {
+      clearCharts();
+
+      const titleEl = document.getElementById('title');
+      const grid = document.getElementById('canvas-grid');
+      const placeholder = document.getElementById('placeholder');
+
+      titleEl.textContent = spec.title || 'Agent Canvas';
+
+      const columns = Number.isInteger(spec.layout.columns) ? Math.max(1, spec.layout.columns) : 1;
+      const gap = Number.isInteger(spec.layout.gap) ? Math.max(0, spec.layout.gap) : 16;
+      const rowHeight = Number.isInteger(spec.layout.rowHeight)
+        ? Math.max(120, spec.layout.rowHeight)
+        : 280;
+
+      grid.innerHTML = '';
+      grid.style.gridTemplateColumns = `repeat(${columns}, minmax(0, 1fr))`;
+      grid.style.gap = `${gap}px`;
+      grid.style.gridAutoRows = `${rowHeight}px`;
+
+      if (!Array.isArray(spec.cards) || spec.cards.length === 0) {
+        placeholder.style.display = 'block';
+        return;
+      }
+
+      placeholder.style.display = 'none';
+
+      await Promise.all(
+        spec.cards.map((card) => renderCard(card, grid, columns)),
+      );
+    }
+
     async function render() {
       try {
-        const [configStr, title] = await Promise.all([fetchConfig(), fetchTitle()]);
-
-        if (configStr === lastConfigHash) return;
-        lastConfigHash = configStr;
-
-        const config = JSON.parse(configStr);
-        document.getElementById('title').textContent = title;
-        document.getElementById('error').style.display = 'none';
-
-        if (!config.type || !config.entities || config.entities.length === 0) {
+        const { spec, warning } = await resolveRenderableSpec();
+        if (!spec) {
+          clearCharts();
+          document.getElementById('canvas-grid').innerHTML = '';
           document.getElementById('placeholder').style.display = 'block';
-          if (currentChart) { currentChart.destroy(); currentChart = null; }
+          showGlobalError(warning || 'No canvas config available.');
           return;
         }
 
-        document.getElementById('placeholder').style.display = 'none';
-        const values = await fetchEntityValues(config.entities);
-        const options = buildChart(config, values);
-
-        if (!options) {
-          document.getElementById('error').textContent = `Unsupported chart type: ${config.type}`;
-          document.getElementById('error').style.display = 'block';
-          return;
-        }
-
-        if (currentChart) { currentChart.destroy(); }
-        currentChart = new ApexCharts(document.getElementById('chart-container'), options);
-        currentChart.render();
+        await renderSpec(spec);
+        showGlobalError(warning);
       } catch (err) {
-        if (err instanceof SyntaxError) return;
-        document.getElementById('error').textContent = err.message;
-        document.getElementById('error').style.display = 'block';
+        clearCharts();
+        showGlobalError(err.message || String(err));
       }
     }
 
     render();
-    setInterval(render, 5000);
+    setInterval(render, POLL_MS);
   </script>
 </body>
 </html>

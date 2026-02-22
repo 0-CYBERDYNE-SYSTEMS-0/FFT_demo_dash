@@ -13,7 +13,7 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: dawn
 
@@ -27,7 +27,7 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: farm_ops_theater
 
@@ -42,7 +42,7 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: dusk
 
@@ -57,7 +57,7 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: night
 
@@ -75,7 +75,7 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_storm
 
@@ -91,7 +91,7 @@
       entity_id: input_select.incident_mode
       state: Storm
   action:
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_clear
 
@@ -106,18 +106,18 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: frost
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: switch.frost_protection
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Frost Protection Active"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
@@ -143,7 +143,7 @@
       entity_id: input_select.incident_mode
       state: Normal
   action:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: harvest
 

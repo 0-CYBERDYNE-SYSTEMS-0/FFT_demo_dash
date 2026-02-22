@@ -909,3 +909,54 @@ Custom cards in use:
 - `kiosk-mode` — hide HA header/sidebar for demo display mode
 
 To add a community card without HACS: download the `.js` bundle from the release page, place in `ha_config/www/community/`, then reference it in the `resources:` section of `ui-lovelace.yaml`.
+
+---
+
+## 14. Dynamic Agent Canvas Spec (Multi-Card)
+
+The Agent Canvas view at `/local/agent-canvas.html` now supports a multi-card JSON spec file:
+
+- `/local/agent-canvas-spec.json` (host path: `ha_config/www/agent-canvas-spec.json`)
+
+Spec shape:
+
+```json
+{
+  "version": "1.0",
+  "title": "Agent Canvas",
+  "layout": {
+    "columns": 2,
+    "gap": 16,
+    "rowHeight": 300
+  },
+  "cards": [
+    {
+      "id": "card-id",
+      "type": "line",
+      "title": "Card Title",
+      "entities": ["input_number.example"],
+      "labels": ["Example"],
+      "span": 1,
+      "options": {}
+    }
+  ]
+}
+```
+
+Supported card `type` values:
+
+- `line`
+- `bar`
+- `radial`
+- `comparison`
+- `kpi`
+- `markdown`
+- `iframe`
+
+Runtime behavior:
+
+- Renderer polls and refreshes live values every cycle, even when config does not change.
+- Unsupported card types display a per-card error instead of failing the whole page.
+- If `agent-canvas-spec.json` is missing or invalid, renderer falls back to legacy:
+  - `input_text.agent_canvas_config`
+  - `input_text.agent_canvas_title`

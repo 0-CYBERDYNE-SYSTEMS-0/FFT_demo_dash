@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "title": "Agent Canvas",
+  "layout": {
+    "columns": 2,
+    "gap": 16,
+    "rowHeight": 300
+  },
+  "cards": [
+    {
+      "id": "climate-overview",
+      "type": "line",
+      "title": "Greenhouse Temperature",
+      "entities": [
+        "input_number.greenhouse_temp_section_a",
+        "input_number.greenhouse_temp_section_b",
+        "input_number.greenhouse_temp_section_c"
+      ],
+      "labels": [
+        "Section A",
+        "Section B",
+        "Section C"
+      ],
+      "span": 2
+    },
+    {
+      "id": "water-inventory",
+      "type": "bar",
+      "title": "Water Inventory (gal)",
+      "entities": [
+        "input_number.tank_level_main",
+        "input_number.tank_level_secondary",
+        "input_number.tank_level_nursery"
+      ],
+      "labels": [
+        "Main",
+        "Secondary",
+        "Nursery"
+      ],
+      "span": 1
+    },
+    {
+      "id": "solar-kpi",
+      "type": "kpi",
+      "title": "Power KPI",
+      "entities": [
+        "input_number.solar_generation_kw"
+      ],
+      "labels": [
+        "Solar Generation"
+      ],
+      "span": 1,
+      "options": {
+        "decimals": 0,
+        "suffix": " kW"
+      }
+    }
+  ]
+}

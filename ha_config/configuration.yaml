@@ -1587,17 +1587,17 @@ input_text:
   agent_commentary:
     name: "Agent Commentary"
     initial: ""
-    max: 512
+    max: 255
   agent_decision_log:
     name: "Agent Decision Log"
     initial: ""
-    max: 1024
+    max: 255
 
   # === DYNAMIC BACKGROUND ===
   dashboard_background_url:
     name: "Dashboard Background URL"
     initial: ""
-    max: 512
+    max: 255
 
   # === WEATHER TIME TRAVEL ===
   replay_date:
@@ -1609,7 +1609,7 @@ input_text:
   browser_mod_command:
     name: "Browser Mod Command"
     initial: ""
-    max: 512
+    max: 255
 
 #############################################################
 # INPUT SELECTS - Control Modes

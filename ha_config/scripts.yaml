@@ -2,45 +2,45 @@ incident_mode_storm:
   alias: Incident Mode - Storm
   mode: single
   sequence:
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.incident_mode
       data:
         option: Storm
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: storm
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.storm_shutters
           - input_boolean.security_lights_perimeter
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.wind_speed
       data:
         value: 72
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.barometric_pressure
       data:
         value: 29.15
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.rainfall_today
       data:
         value: 3.8
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
         value: 62
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 18
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.grid_power_consumption
       data:
@@ -50,37 +50,37 @@ incident_mode_intrusion:
   alias: Incident Mode - Intrusion
   mode: single
   sequence:
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.incident_mode
       data:
         option: Intrusion
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: intrusion_alert
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.motion_sensor_barn
           - input_boolean.motion_sensor_equipment
           - input_boolean.security_lights_perimeter
           - input_boolean.perimeter_alarm
-    - service: switch.turn_on
+    - action: switch.turn_on
       target:
         entity_id:
           - switch.perimeter_alarm
           - switch.security_lights
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
         value: 48
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.grid_power_consumption
       data:
         value: 88
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.wind_speed
       data:
@@ -90,38 +90,38 @@ incident_mode_power_failure:
   alias: Incident Mode - Power Failure
   mode: single
   sequence:
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.incident_mode
       data:
         option: Power Failure
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: power_failure_alert
-    - service: switch.turn_on
+    - action: switch.turn_on
       target:
         entity_id: switch.backup_generator
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.backup_generator
           - input_boolean.outdoor_flood_lights
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 4
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.grid_power_consumption
       data:
         value: 122
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
         value: 12
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.generator_fuel_level
       data:
@@ -131,15 +131,15 @@ incident_mode_clear:
   alias: Incident Mode - Clear
   mode: single
   sequence:
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.incident_mode
       data:
         option: Normal
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: farm_ops_theater
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       target:
         entity_id:
           - input_boolean.motion_sensor_barn
@@ -148,38 +148,38 @@ incident_mode_clear:
           - input_boolean.perimeter_alarm
           - input_boolean.storm_shutters
           - input_boolean.outdoor_flood_lights
-    - service: switch.turn_off
+    - action: switch.turn_off
       target:
         entity_id:
           - switch.perimeter_alarm
           - switch.security_lights
           - switch.backup_generator
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.wind_speed
       data:
         value: 12
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.barometric_pressure
       data:
         value: 30.12
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.rainfall_today
       data:
         value: 0.2
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 92
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.grid_power_consumption
       data:
         value: 41
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
@@ -191,50 +191,50 @@ scene_golden_hour_harvest:
   alias: "Scene: Golden Hour Harvest"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: harvest
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Golden Hour Harvest"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Peak harvest conditions. Solar at 340 kW. All zones irrigating. Grain, vegetable, and fruit yields climbing."
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 340
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.outdoor_temp_north
       data:
         value: 82
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
         value: 92
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.yield_grain_current
       data:
         value: 48200
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.yield_vegetables_current
       data:
         value: 32400
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.yield_fruit_current
       data:
         value: 19800
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.irrigation_north_field
@@ -246,48 +246,48 @@ scene_morning_irrigation_pulse:
   alias: "Scene: Morning Irrigation Pulse"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: dawn
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Morning Irrigation Pulse"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Initiating dawn irrigation sequence. North → South → East → West → Vegetable → Nursery. Tank levels monitored."
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 28
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.irrigation_north_field
     - delay: "00:00:03"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.irrigation_south_field
     - delay: "00:00:03"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.irrigation_east_orchard
     - delay: "00:00:03"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.irrigation_west_pasture
     - delay: "00:00:03"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.irrigation_vegetable_field
     - delay: "00:00:03"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.irrigation_nursery
-    - service: switch.turn_on
+    - action: switch.turn_on
       target:
         entity_id:
           - switch.pump_well_1
@@ -298,35 +298,35 @@ scene_midnight_ops:
   alias: "Scene: Midnight Ops"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: night
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Midnight Ops"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Night operations active. Solar offline. Battery draining. Security posture elevated. Generator on standby."
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 0
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.grid_power_consumption
       data:
         value: 68
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
         value: 74
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.security_lights_perimeter
@@ -336,53 +336,53 @@ scene_ipm_zone_lockdown:
   alias: "Scene: IPM Zone Lockdown"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: cannabis_ops_theater
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "IPM Zone Lockdown — Room B Quarantine"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ Pest pressure spike in Room B. Quarantine initiated. HVAC Room B isolated to prevent spray drift. Drone deploying for survey. Spray protocol: Azadirachtin."
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.cannabis_ipm_zone_b_quarantine
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       target:
         entity_id: input_boolean.cannabis_site_a_hvac_enable
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_ipm_pest_pressure_room_b
       data:
         value: 7.5
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.cannabis_ipm_scouting_due_room_a
           - input_boolean.cannabis_ipm_scouting_due_room_b
           - input_boolean.cannabis_ipm_scouting_due_room_c
           - input_boolean.cannabis_ipm_scouting_due_room_d
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_ipm_days_since_spray_room_b
       data:
         value: 0
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_drone_mission_state
       data:
         option: Survey
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_drone_progress_pct
       data:
         value: 0
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_shift_mode
       data:
@@ -392,70 +392,70 @@ scene_cannabis_full_bloom:
   alias: "Scene: Cannabis Full Bloom"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: cannabis_ops_theater
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Cannabis Full Bloom — Optimal"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "All four rooms in peak flower. Environment at setpoints: 78°F, 52% RH, 1200 ppm CO₂, PPFD 920. Yields tracking projection."
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_site_a_flower_air_temp_f
       data:
         value: 78
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_site_a_flower_rh_pct
       data:
         value: 52
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_site_a_flower_co2_ppm
       data:
         value: 1200
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_site_a_flower_ppfd
       data:
         value: 920
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_site_a_flower_dli
       data:
         value: 48
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_fertigation_ec_in
       data:
         value: 2.4
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_fertigation_ph_in
       data:
         value: 6.0
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_room_a_stage
       data:
         option: "Flower Wk4"
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_room_b_stage
       data:
         option: "Flower Wk7"
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_room_c_stage
       data:
         option: "Flower Wk5"
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_room_d_stage
       data:
@@ -465,45 +465,45 @@ scene_fertigation_drift_crisis:
   alias: "Scene: Fertigation Drift Crisis"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: cannabis_ops_theater
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Fertigation Drift Crisis"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ EC drift detected: 3.1 (high). pH dropped to 5.3 (low). Runoff EC spiking to 3.5. Retune fertigation dosing profile immediately."
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_fertigation_ec_in
       data:
         value: 3.1
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_fertigation_ph_in
       data:
         value: 5.3
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_runoff_ec
       data:
         value: 3.5
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_fertigation_dose_ml_min
       data:
         value: 180
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_scenario
       data:
         option: "Fertigation Drift"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.cannabis_fertigation_alarm
 
@@ -511,29 +511,29 @@ scene_emergency_cascade:
   alias: "Scene: Emergency Cascade"
   mode: single
   sequence:
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_storm
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Emergency Cascade — Storm + Intrusion"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ Storm cell confirmed. Wind 72 mph. Rain 3.8\". Security perimeter breach detected. Initiating dual-threat response."
     - delay: "00:00:03"
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_intrusion
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_security_posture
       data:
         option: Lockdown
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id:
           - input_boolean.cannabis_hvac_alarm
@@ -544,45 +544,45 @@ scene_drone_surveillance_sweep:
   alias: "Scene: Drone Surveillance Sweep"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: cannabis_ops_theater
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Drone Surveillance Sweep Active"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Drone mission initiated: Preflight → Survey. Battery 95%. Anomaly scoring active. Guard coverage 100%. Access log monitoring."
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_drone_mission_state
       data:
         option: Survey
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_drone_progress_pct
       data:
         value: 0
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_drone_battery_pct
       data:
         value: 95
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_drone_anomaly_score
       data:
         value: 5
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_guard_coverage_pct
       data:
         value: 100
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_access_denied_events_1h
       data:
@@ -592,63 +592,63 @@ scene_vip_tour:
   alias: "Scene: VIP Tour"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: farm_ops_theater
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "VIP Tour — All Systems Optimal"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Welcome to Cedar Creek Farm. Every system operating at peak. Solar 380 kW. Battery 95%. All compliance metrics at 98%+. Zero alerts."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_clear
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.solar_generation_kw
       data:
         value: 380
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.battery_storage_pct
       data:
         value: 95
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.greenhouse_temp_section_a
       data:
         value: 72
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.soil_moisture_north_field
       data:
         value: 60
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.soil_moisture_south_field
       data:
         value: 58
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.audit_completeness_pct
       data:
         value: 98
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.metrc_sync_health
       data:
         value: 99
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.qa_release_readiness
       data:
         value: 99
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_guard_coverage_pct
       data:
@@ -658,55 +658,55 @@ scene_compliance_audit_crunch:
   alias: "Scene: Compliance Audit Crunch"
   mode: single
   sequence:
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: cannabis_ops_theater
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_status
       data:
         value: "Compliance Audit Crunch"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ METRC sync at 78%. Audit completeness 72%. Transfer queue: 35 manifests pending. Custody break risk elevated. QA release readiness 58%."
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.metrc_sync_health
       data:
         value: 78
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.audit_completeness_pct
       data:
         value: 72
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.transfer_queue_count
       data:
         value: 35
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.custody_break_risk
       data:
         value: 65
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.qa_release_readiness
       data:
         value: 58
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_work_orders_overdue
       data:
         value: 40
-    - service: input_number.set_value
+    - action: input_number.set_value
       target:
         entity_id: input_number.cannabis_work_orders_open
       data:
         value: 380
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_scenario
       data:
@@ -718,47 +718,47 @@ demo_sequence_full_day:
   alias: "Demo: Full Day at Cedar Creek"
   mode: single
   sequence:
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Good morning. 6:14 AM at Cedar Creek Farm. Initializing dawn operations. Irrigation sequence beginning."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_morning_irrigation_pulse
     - delay: "00:00:30"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Operations nominal. Solar generation climbing. NWS monitoring active. No advisories."
-    - service: frontend.set_theme
+    - action: frontend.set_theme
       data:
         name: farm_ops_theater
     - delay: "00:00:30"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ NWS advisory confirmed. Storm cell 12 miles SW. ETA 15 minutes. Initiating storm protocol."
     - delay: "00:00:10"
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_storm
     - delay: "00:00:30"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Storm passing. Wind subsiding. Damage assessment in progress. All critical systems intact."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_clear
     - delay: "00:00:05"
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_vip_tour
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
@@ -768,37 +768,37 @@ demo_sequence_cannabis_ops:
   alias: "Demo: Cannabis Ops Showcase"
   mode: single
   sequence:
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Cannabis operations tour beginning. All four rooms in active grow cycle. Starting with peak bloom conditions."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_cannabis_full_bloom
     - delay: "00:00:30"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ Pest pressure detected in Room B. Initiating IPM quarantine protocol."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_ipm_zone_lockdown
     - delay: "00:00:30"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ Fertigation drift detected. EC and pH out of spec. Retune required."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_fertigation_drift_crisis
     - delay: "00:00:30"
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_vip_tour
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
@@ -808,33 +808,33 @@ demo_sequence_emergency_response:
   alias: "Demo: Emergency Response"
   mode: single
   sequence:
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "All systems normal. Monitoring NWS and perimeter feeds."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_clear
     - delay: "00:00:15"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "⚠ Dual threat detected: storm cell confirmed AND perimeter breach. Initiating emergency cascade."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.scene_emergency_cascade
     - delay: "00:00:40"
-    - service: input_text.set_value
+    - action: input_text.set_value
       target:
         entity_id: input_text.agent_commentary
       data:
         value: "Threats neutralized. Perimeter secured. Weather passing. Initiating recovery sequence."
-    - service: script.turn_on
+    - action: script.turn_on
       target:
         entity_id: script.incident_mode_clear
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.cannabis_security_posture
       data:
