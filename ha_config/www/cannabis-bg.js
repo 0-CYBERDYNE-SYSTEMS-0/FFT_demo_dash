@@ -1,7 +1,7 @@
 // Sets the html element background, with dynamic URL support via input_text.dashboard_background_url.
 // If the entity is empty or unset, falls back to the default cannabis cultivation photo.
 
-const DEFAULT_BG = 'https://images.unsplash.com/photo-1740776013253-77a97581acec?w=1920&q=60&auto=format&fit=crop';
+const DEFAULT_BG = 'https://images.unsplash.com/photo-1647893168444-9aae7d23810e?w=1920&q=60&auto=format&fit=crop';
 const BG_ENTITY = 'input_text.dashboard_background_url';
 const POLL_INTERVAL_MS = 5000;
 
