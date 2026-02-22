@@ -1,2 +1,0 @@
-[     258ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0
-[    2237ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8123/api/states/input_text.browser_mod_command:0

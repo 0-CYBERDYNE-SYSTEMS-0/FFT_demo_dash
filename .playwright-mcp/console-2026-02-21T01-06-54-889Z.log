@@ -1,2 +1,0 @@
-[      39ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[      40ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0

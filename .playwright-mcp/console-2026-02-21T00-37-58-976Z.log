@@ -1,9 +1,0 @@
-[      37ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[      37ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[-1065824ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[-1063290ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ https://embed.windy.com/v/41.1.0.emb.4d73/plugins/lightnings.js:0
-[  -12450ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[   -8424ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[    4315ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[   10128ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[   10128ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0

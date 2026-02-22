@@ -1,6 +1,0 @@
-[    2143ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[    9930ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[    9930ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[   10267ms] [ERROR] Permissions policy violation: Geolocation access has been blocked because of a permissions policy applied to the current document. See https://crbug.com/414348233 for more details. @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[   46931ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
-[   46931ms] [ERROR] http EventSource error event for url=/blitz/sse?version=2, options={} Event @ https://embed.windy.com/v/41.1.0.emb.4d73/embed2.js:0
