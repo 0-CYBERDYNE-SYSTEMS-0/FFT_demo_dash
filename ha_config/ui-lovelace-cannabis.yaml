@@ -10,6 +10,7 @@ views:
     dense_section_placement: true
     sections:
       - type: grid
+        column_span: 3
         cards:
           - type: custom:button-card
             entity: input_text.agent_commentary

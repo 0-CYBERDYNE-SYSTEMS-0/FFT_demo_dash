@@ -10,6 +10,7 @@ views:
     badges: []
     sections:
       - type: grid
+        column_span: 4
         cards:
           - type: custom:button-card
             entity: input_text.agent_commentary
