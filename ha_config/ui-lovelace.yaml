@@ -12,6 +12,25 @@ views:
       - type: grid
         cards:
           - type: markdown
+            content: >
+              **{{ states('input_text.agent_status') }}**
+
+              {{ states('input_text.agent_commentary') }}
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(8, 18, 32, 0.92);
+                  border: 1px solid rgba(46, 238, 192, 0.4);
+                  border-left: 3px solid #2eeec0;
+                  animation: agent-pulse 3s ease-in-out infinite;
+                }
+                @keyframes agent-pulse {
+                  0%, 100% { border-left-color: #2eeec0; }
+                  50% { border-left-color: #5db7ff; }
+                }
+      - type: grid
+        cards:
+          - type: markdown
             content: |
               # FFT NEXUS
               <span style="font-size:1.02rem;color:#9fd0ff;">High-density operational cockpit for instant control, trend clarity, and visual impact.</span>

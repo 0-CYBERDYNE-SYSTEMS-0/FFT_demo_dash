@@ -1128,6 +1128,24 @@ input_number:
     initial: 2
     step: 1
 
+  # === TIMELAPSE ===
+  timelapse_speed:
+    name: "Timelapse Speed"
+    min: 1
+    max: 1440
+    initial: 288
+    step: 1
+    unit_of_measurement: "x"
+
+  # === OUTDOOR TEMPERATURE (for weather blending) ===
+  outdoor_temp_north:
+    name: "Outdoor Temp North"
+    min: -20
+    max: 120
+    initial: 72
+    step: 0.1
+    unit_of_measurement: "°F"
+
 #############################################################
 # INPUT BOOLEANS - Binary Controls
 #############################################################
@@ -1460,6 +1478,11 @@ input_boolean:
     name: "Dispensary Low Inventory Alert"
     initial: off
 
+  # === DEMO CONTROL ===
+  timelapse_active:
+    name: "Timelapse Active"
+    initial: off
+
 #############################################################
 # INPUT TEXTS - Compliance Metadata
 #############################################################
@@ -1555,6 +1578,38 @@ input_text:
     name: "Agent Canvas Title"
     max: 100
     initial: "Agent Canvas"
+
+  # === AGENT PRESENCE ===
+  agent_status:
+    name: "Agent Status"
+    initial: "Monitoring"
+    max: 128
+  agent_commentary:
+    name: "Agent Commentary"
+    initial: ""
+    max: 512
+  agent_decision_log:
+    name: "Agent Decision Log"
+    initial: ""
+    max: 1024
+
+  # === DYNAMIC BACKGROUND ===
+  dashboard_background_url:
+    name: "Dashboard Background URL"
+    initial: ""
+    max: 512
+
+  # === WEATHER TIME TRAVEL ===
+  replay_date:
+    name: "Replay Date"
+    initial: ""
+    max: 20
+
+  # === BROWSER MOD COMMAND ===
+  browser_mod_command:
+    name: "Browser Mod Command"
+    initial: ""
+    max: 512
 
 #############################################################
 # INPUT SELECTS - Control Modes
@@ -1797,6 +1852,42 @@ input_select:
       - Fail
       - Quarantine
     initial: Pass
+
+  # Demo control selectors
+  demo_scene:
+    name: "Demo Scene"
+    options:
+      - "Auto (Weather-Driven)"
+      - "Golden Hour Harvest"
+      - "Morning Irrigation Pulse"
+      - "Midnight Ops"
+      - "IPM Zone Lockdown"
+      - "Cannabis Full Bloom"
+      - "Fertigation Drift Crisis"
+      - "Emergency Cascade"
+      - "Drone Surveillance Sweep"
+      - "VIP Tour"
+      - "Compliance Audit Crunch"
+    initial: "Auto (Weather-Driven)"
+
+  demo_sequence:
+    name: "Demo Sequence"
+    options:
+      - "None"
+      - "Full Day at Cedar Creek"
+      - "Cannabis Ops Showcase"
+      - "Emergency Response"
+    initial: "None"
+
+  demo_audience:
+    name: "Demo Audience"
+    options:
+      - "General"
+      - "Investor"
+      - "Head Grower"
+      - "Compliance Officer"
+      - "Security Director"
+    initial: "General"
 
 #############################################################
 # TEMPLATE SENSORS
@@ -2865,6 +2956,8 @@ lovelace:
     - url: /local/community/layout-card.js
       type: module
     - url: /local/community/kiosk-mode.js
+      type: module
+    - url: /local/community/browser_mod.js
       type: module
   dashboards:
     lovelace-cannabis:

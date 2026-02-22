@@ -1,2 +1,357 @@
-# Automations
-# Add your automations here
+# Automations: time-of-day theming, weather-reactive triggers, scene/sequence/audience selectors
+
+# ─── Time-of-Day Theming ────────────────────────────────────────────────────
+
+- id: theme_dawn
+  alias: "Theme: Dawn"
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "-00:30:00"
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: frontend.set_theme
+      data:
+        name: dawn
+
+- id: theme_midday
+  alias: "Theme: Midday"
+  trigger:
+    - platform: time
+      at: "08:00:00"
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: frontend.set_theme
+      data:
+        name: farm_ops_theater
+
+- id: theme_dusk
+  alias: "Theme: Dusk"
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-01:00:00"
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: frontend.set_theme
+      data:
+        name: dusk
+
+- id: theme_night
+  alias: "Theme: Night"
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "00:30:00"
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: frontend.set_theme
+      data:
+        name: night
+
+# ─── Weather-Reactive Automations ───────────────────────────────────────────
+
+- id: storm_auto_trigger
+  alias: "Weather: Auto-trigger storm mode (wind > 40 mph)"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.wind_speed
+      above: 40
+      for: "00:00:30"
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.incident_mode_storm
+
+- id: storm_auto_clear
+  alias: "Weather: Auto-clear storm mode (wind < 25 mph for 3 min)"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.wind_speed
+      below: 25
+      for: "00:03:00"
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Storm
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.incident_mode_clear
+
+- id: frost_auto_trigger
+  alias: "Weather: Frost protection (outdoor temp < 35°F)"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.outdoor_temp_north
+      below: 35
+  condition:
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: frontend.set_theme
+      data:
+        name: frost
+    - service: input_boolean.turn_on
+      target:
+        entity_id: switch.frost_protection
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.agent_status
+      data:
+        value: "Frost Protection Active"
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.agent_commentary
+      data:
+        value: "⚠ Outdoor temp below 35°F. Frost protection enabled. Monitoring greenhouse heaters."
+
+- id: harvest_mode_trigger
+  alias: "Weather: Harvest conditions (75-85°F, low wind, daytime)"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.outdoor_temp_north
+      above: 75
+  condition:
+    - condition: numeric_state
+      entity_id: input_number.outdoor_temp_north
+      below: 86
+    - condition: numeric_state
+      entity_id: input_number.wind_speed
+      below: 15
+    - condition: sun
+      after: sunrise
+      before: sunset
+    - condition: state
+      entity_id: input_select.incident_mode
+      state: Normal
+  action:
+    - service: frontend.set_theme
+      data:
+        name: harvest
+
+# ─── Scene Selector Automation ──────────────────────────────────────────────
+
+- id: scene_selector
+  alias: "Demo: Scene selector automation"
+  trigger:
+    - platform: state
+      entity_id: input_select.demo_scene
+  action:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Golden Hour Harvest"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_golden_hour_harvest
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Morning Irrigation Pulse"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_morning_irrigation_pulse
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Midnight Ops"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_midnight_ops
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "IPM Zone Lockdown"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_ipm_zone_lockdown
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Cannabis Full Bloom"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_cannabis_full_bloom
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Fertigation Drift Crisis"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_fertigation_drift_crisis
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Emergency Cascade"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_emergency_cascade
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Drone Surveillance Sweep"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_drone_surveillance_sweep
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "VIP Tour"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_vip_tour
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_scene
+              state: "Compliance Audit Crunch"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.scene_compliance_audit_crunch
+
+# ─── Demo Sequence Selector ─────────────────────────────────────────────────
+
+- id: demo_sequence_selector
+  alias: "Demo: Sequence selector"
+  trigger:
+    - platform: state
+      entity_id: input_select.demo_sequence
+  action:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_sequence
+              state: "Full Day at Cedar Creek"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.demo_sequence_full_day
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_sequence
+              state: "Cannabis Ops Showcase"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.demo_sequence_cannabis_ops
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_sequence
+              state: "Emergency Response"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.demo_sequence_emergency_response
+
+# ─── Audience Preset Selector ────────────────────────────────────────────────
+
+- id: audience_preset_selector
+  alias: "Demo: Audience preset selector"
+  trigger:
+    - platform: state
+      entity_id: input_select.demo_audience
+  action:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_audience
+              state: "Investor"
+          sequence:
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_status
+              data:
+                value: "Investor Mode — Financial KPIs"
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_commentary
+              data:
+                value: "Welcome. Presenting Cedar Creek Farm investment portfolio: energy ROI, yield projections, and compliance readiness for Q2 review."
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_audience
+              state: "Head Grower"
+          sequence:
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_status
+              data:
+                value: "Cultivation Mode — Grow Room Detail"
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_commentary
+              data:
+                value: "All four rooms in active grow cycle. Room B approaching flush. PPFD 920 μmol, DLI 48. IPM pressure nominal."
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_audience
+              state: "Compliance Officer"
+          sequence:
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_status
+              data:
+                value: "Compliance Mode — Audit Dashboard"
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_commentary
+              data:
+                value: "METRC sync at 95%. Transfer queue clear. Audit completeness 93%. Chain-of-custody intact. No active holds."
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_audience
+              state: "Security Director"
+          sequence:
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_status
+              data:
+                value: "Security Mode — Threat Assessment"
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_commentary
+              data:
+                value: "Perimeter secure. Drone on standby. Camera health 96%. Guard coverage 100%. No access anomalies in past hour."
+        - conditions:
+            - condition: state
+              entity_id: input_select.demo_audience
+              state: "General"
+          sequence:
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_status
+              data:
+                value: "Monitoring — Farm Nexus Overview"
+            - service: input_text.set_value
+              target:
+                entity_id: input_text.agent_commentary
+              data:
+                value: "Good morning. All farm systems nominal. Weather: clear, 78°F. Solar at 62% capacity. Ready for tour."

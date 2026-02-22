@@ -8,6 +8,7 @@
 
 import fs from 'node:fs';
 import { createHomeAssistantAdapter, FarmStatus } from '../src/integrations/home-assistant.js';
+import { fetchWeather, fetchForecast, fetchHistorical, LiveWeather } from './weather-provider.js';
 
 const MOISTURE_INCREASE_RATE = 0.3;
 const MOISTURE_DECREASE_RATE = 0.05;
@@ -19,6 +20,8 @@ const WIND_VARIATION = 1;
 const DEFAULT_TICK_INTERVAL_MS = 15000;
 const MIN_TICK_INTERVAL_MS = 1000;
 const MAX_TICK_INTERVAL_MS = 300000;
+const MANUAL_CHANGE_GRACE_PERIOD_MS = 45000;
+const SIMULATOR_WRITE_MATCH_WINDOW_MS = 1500;
 const PROFILE_SWITCH_EVERY_DEFAULT = 0;
 
 type FarmProfile = 'mixed' | 'drought' | 'storm' | 'greenhouse' | 'high_yield';
@@ -748,34 +751,47 @@ async function updateState(
   state: FarmState,
   profile: FarmProfile,
   manualChanges?: Map<string, number>,
-  isEntityRecentlyManuallyChanged?: (entityId: string, gracePeriodMs?: number) => Promise<boolean>
+  isEntityRecentlyManuallyChanged?: (entityId: string, gracePeriodMs?: number) => Promise<boolean>,
+  liveWeather?: LiveWeather | null
 ): Promise<void> {
   const clamp = (val: number, min: number, max: number) => Math.min(max, Math.max(min, val));
   const states = await ha.getAllStates();
+
+  const writeEntity = async (
+    entityId: string,
+    value: boolean | number | string
+  ): Promise<void> => {
+    // Skip entities currently being mirrored from external locations
+    const mirroredAt = mirroredEntities.get(entityId);
+    if (mirroredAt !== undefined && Date.now() - mirroredAt < MIRROR_GRACE_MS) return;
+
+    if (typeof value === 'boolean') {
+      await ha.setInputBoolean(entityId, value);
+    } else if (typeof value === 'number') {
+      await ha.setInputNumber(entityId, value);
+    } else {
+      await ha.setInputSelect(entityId, value);
+    }
+    manualChanges?.set(entityId, Date.now());
+  };
 
   // Helper: Skip write if entity was manually changed (agent control takes precedence)
   const setIfNotManuallyChanged = async (
     entityId: string,
     value: boolean | number | string
   ): Promise<void> => {
+    const mirroredAt = mirroredEntities.get(entityId);
+    if (mirroredAt !== undefined && Date.now() - mirroredAt < MIRROR_GRACE_MS) return;
+
     if (!isEntityRecentlyManuallyChanged) {
-      // No check function provided, write normally
-      if (typeof value === 'boolean') return ha.setInputBoolean(entityId, value);
-      if (typeof value === 'number') return ha.setInputNumber(entityId, value);
-      if (typeof value === 'string') return ha.setInputSelect(entityId, value);
+      await writeEntity(entityId, value);
       return;
     }
 
-    const isManual = await isEntityRecentlyManuallyChanged(entityId, 5000); // 5s grace period
-    if (isManual) {
-      // Entity was manually changed, skip simulator write
-      return;
-    }
+    const isManual = await isEntityRecentlyManuallyChanged(entityId, MANUAL_CHANGE_GRACE_PERIOD_MS);
+    if (isManual) return;
 
-    // Not manually changed, write normally
-    if (typeof value === 'boolean') return ha.setInputBoolean(entityId, value);
-    if (typeof value === 'number') return ha.setInputNumber(entityId, value);
-    if (typeof value === 'string') return ha.setInputSelect(entityId, value);
+    await writeEntity(entityId, value);
   };
   const incidentMode = normalizeIncidentMode(
     states.find((e) => e.entity_id === 'input_select.incident_mode')?.state
@@ -783,9 +799,27 @@ async function updateState(
   const effectiveProfile = profileForIncident(incidentMode, profile);
   const bias = PROFILE_BIASES[effectiveProfile];
 
-  state.windSpeed = clamp(state.windSpeed + bias.windBias + (Math.random() - 0.5) * WIND_VARIATION * 2, 0, 100);
-  state.windDirection = (state.windDirection + (Math.random() - 0.5) * 10 + 360) % 360;
-  state.barometricPressure = clamp(state.barometricPressure + (Math.random() - 0.5) * 0.02, 28, 32);
+  // Live weather blending: target-seek toward real NWS conditions if available
+  const WEATHER_BLEND = 0.15;
+  if (liveWeather && incidentMode === 'normal') {
+    state.windSpeed = clamp(
+      state.windSpeed + (liveWeather.windSpeedMph - state.windSpeed) * WEATHER_BLEND + bias.windBias + (Math.random() - 0.5) * WIND_VARIATION,
+      0, 100
+    );
+    // Angular lerp for wind direction
+    let dirDiff = liveWeather.windDirectionDeg - state.windDirection;
+    if (dirDiff > 180) dirDiff -= 360;
+    if (dirDiff < -180) dirDiff += 360;
+    state.windDirection = (state.windDirection + dirDiff * WEATHER_BLEND + (Math.random() - 0.5) * 5 + 360) % 360;
+    state.barometricPressure = clamp(
+      state.barometricPressure + (liveWeather.pressureInHg - state.barometricPressure) * WEATHER_BLEND,
+      28, 32
+    );
+  } else {
+    state.windSpeed = clamp(state.windSpeed + bias.windBias + (Math.random() - 0.5) * WIND_VARIATION * 2, 0, 100);
+    state.windDirection = (state.windDirection + (Math.random() - 0.5) * 10 + 360) % 360;
+    state.barometricPressure = clamp(state.barometricPressure + (Math.random() - 0.5) * 0.02, 28, 32);
+  }
 
   if (Math.random() < bias.rainfallChance) {
     state.rainfallToday += 0.1;
@@ -889,7 +923,10 @@ async function updateState(
 
   const hour = new Date().getHours();
   const solarBase = hour >= 6 && hour <= 18 ? Math.sin((hour - 6) * Math.PI / 12) * 100 : 0;
-  state.solarGeneration = clamp((solarBase + (Math.random() - 0.5) * 20) * bias.solarMultiplier, 0, 500);
+  const cloudFactor = liveWeather && incidentMode === 'normal'
+    ? 1 - (liveWeather.cloudCoverPct / 100) * 0.7
+    : 1;
+  state.solarGeneration = clamp((solarBase + (Math.random() - 0.5) * 20) * bias.solarMultiplier * cloudFactor, 0, 500);
   state.gridConsumption = clamp(45 + bias.loadBias + (Math.random() - 0.5) * 8, 10, 120);
 
   if (state.solarGeneration > state.gridConsumption) {
@@ -898,14 +935,20 @@ async function updateState(
     state.batteryLevel = clamp(state.batteryLevel - 0.05, 0, 100);
   }
 
-  state.greenhouseTempA = clamp(state.greenhouseTempA + bias.temperatureBias * 0.15, 55, 92);
-  state.greenhouseTempB = clamp(state.greenhouseTempB + bias.temperatureBias * 0.15, 55, 92);
-  state.greenhouseTempC = clamp(state.greenhouseTempC + bias.temperatureBias * 0.15, 55, 92);
-  state.greenhouseHumidityA = clamp(state.greenhouseHumidityA + bias.humidityBias * 0.2, 35, 78);
-  state.greenhouseHumidityB = clamp(state.greenhouseHumidityB + bias.humidityBias * 0.2, 35, 78);
-  state.greenhouseHumidityC = clamp(state.greenhouseHumidityC + bias.humidityBias * 0.2, 35, 78);
-  state.barnTemp = clamp(state.barnTemp + bias.temperatureBias * 0.1 + (Math.random() - 0.5) * TEMP_VARIATION, 32, 80);
-  state.barnHumidity = clamp(state.barnHumidity + bias.humidityBias * 0.2 + (Math.random() - 0.5) * 2, 30, 90);
+  // Blend outdoor temp into greenhouse (attenuated 0.3x for indoor buffer) and barn
+  const outdoorTempTarget = liveWeather && incidentMode === 'normal' ? liveWeather.tempF : null;
+  const outdoorHumTarget = liveWeather && incidentMode === 'normal' ? liveWeather.humidity * 0.3 : null;
+  const tempBlendA = outdoorTempTarget !== null ? (outdoorTempTarget - state.greenhouseTempA) * WEATHER_BLEND * 0.3 : 0;
+  const humBlendA = outdoorHumTarget !== null ? (outdoorHumTarget - state.greenhouseHumidityA) * WEATHER_BLEND : 0;
+  state.greenhouseTempA = clamp(state.greenhouseTempA + bias.temperatureBias * 0.15 + tempBlendA, 55, 92);
+  state.greenhouseTempB = clamp(state.greenhouseTempB + bias.temperatureBias * 0.15 + tempBlendA, 55, 92);
+  state.greenhouseTempC = clamp(state.greenhouseTempC + bias.temperatureBias * 0.15 + tempBlendA, 55, 92);
+  state.greenhouseHumidityA = clamp(state.greenhouseHumidityA + bias.humidityBias * 0.2 + humBlendA, 35, 78);
+  state.greenhouseHumidityB = clamp(state.greenhouseHumidityB + bias.humidityBias * 0.2 + humBlendA, 35, 78);
+  state.greenhouseHumidityC = clamp(state.greenhouseHumidityC + bias.humidityBias * 0.2 + humBlendA, 35, 78);
+  const barnTempBlend = outdoorTempTarget !== null ? (outdoorTempTarget - state.barnTemp) * WEATHER_BLEND * 0.4 : 0;
+  state.barnTemp = clamp(state.barnTemp + bias.temperatureBias * 0.1 + barnTempBlend + (Math.random() - 0.5) * TEMP_VARIATION, 32, 80);
+  state.barnHumidity = clamp(state.barnHumidity + bias.humidityBias * 0.2 + humBlendA * 0.5 + (Math.random() - 0.5) * 2, 30, 90);
   state.chickenCoopTemp = state.barnTemp + 5;
 
   const irrigationDemand =
@@ -1867,15 +1910,47 @@ async function updateState(
   }
 }
 
+// Entities being mirrored from external locations (mirror-environment.ts writes to these).
+// Simulator skips writing these for MIRROR_GRACE_MS after they were last mirrored.
+const MIRROR_GRACE_MS = 6 * 60 * 1000; // 6 minutes (longer than NWS poll interval)
+export const mirroredEntities = new Map<string, number>(); // entity_id -> timestamp of last mirror write
+
+function weatherAutoProfile(weather: LiveWeather, configured: FarmProfile): FarmProfile {
+  if (weather.windSpeedMph > 35 || weather.precipLastHourIn > 0.5) return 'storm';
+  if (weather.tempF > 95 && weather.humidity < 30) return 'drought';
+  return configured;
+}
+
 async function runSimulation() {
   loadDotEnv();
   const tickIntervalMs = getTickIntervalMs();
   const profileSwitchEveryTicks = getProfileSwitchEveryTicks();
-  let activeProfile = normalizeProfile(process.env.SIM_FARM_PROFILE);
+  const configuredProfile = normalizeProfile(process.env.SIM_FARM_PROFILE);
+  let activeProfile = configuredProfile;
+  const liveWeatherEnabled = process.env.SIM_LIVE_WEATHER === 'true';
+  const simLat = parseFloat(process.env.SIM_LAT ?? '30.08');
+  const simLon = parseFloat(process.env.SIM_LON ?? '-97.49');
+
+  // Timelapse mode
+  const timelapseEnabled = process.env.SIM_TIMELAPSE === 'true';
+  const timelapseSpeed = parseFloat(process.env.SIM_TIMELAPSE_SPEED ?? '288');
+
+  // Replay mode: --replay YYYY-MM-DD
+  const replayDateArg = process.argv.find((a) => a.startsWith('--replay='))?.split('=')[1]
+    ?? (process.argv.indexOf('--replay') >= 0 ? process.argv[process.argv.indexOf('--replay') + 1] : undefined);
+  let replayObservations: LiveWeather[] = [];
+  let replayIndex = 0;
 
   console.log('🌿 Starting Full-Spectrum Cannabis Ops Telemetry + Agent Action Simulation...');
   console.log(`   Tick interval: ${tickIntervalMs}ms`);
   console.log(`   Profile: ${activeProfile}`);
+  console.log(`   Live weather: ${liveWeatherEnabled ? `enabled (${simLat}, ${simLon})` : 'disabled'}`);
+  if (timelapseEnabled) {
+    console.log(`   Timelapse: ${timelapseSpeed}x speed`);
+  }
+  if (replayDateArg) {
+    console.log(`   Replay mode: ${replayDateArg}`);
+  }
   if (profileSwitchEveryTicks > 0) {
     console.log(`   Profile rotation: every ${profileSwitchEveryTicks} ticks`);
   }
@@ -1891,13 +1966,46 @@ async function runSimulation() {
     process.exit(1);
   }
 
+  // Live weather state: fetched every 5 min (20 ticks @ 15s), passed into updateState each tick
+  let liveWeather: LiveWeather | null = null;
+  const WEATHER_REFRESH_TICKS = Math.max(1, Math.round(5 * 60 * 1000 / tickIntervalMs));
+
+  if (replayDateArg) {
+    const replayDate = new Date(replayDateArg);
+    replayObservations = await fetchHistorical(simLat, simLon, replayDate);
+    console.log(`📅 Replay: loaded ${replayObservations.length} observations for ${replayDateArg}`);
+    if (replayObservations.length > 0) {
+      liveWeather = replayObservations[0] ?? null;
+    }
+  } else if (liveWeatherEnabled) {
+    // Initial fetch
+    try {
+      liveWeather = await fetchWeather(simLat, simLon);
+      console.log(`🌤 Live weather: ${liveWeather.tempF.toFixed(1)}°F, ${liveWeather.condition} (${liveWeather.source})`);
+      if (liveWeather.source === 'nws') {
+        activeProfile = weatherAutoProfile(liveWeather, configuredProfile);
+        console.log(`   Auto-profile from weather: ${activeProfile}`);
+      }
+    } catch (err) {
+      console.warn('[weather] Initial fetch failed, using synthetic');
+    }
+  }
+
+  // Timelapse: pre-fetch 7-day hourly forecast
+  let forecastPeriods: Array<{ time: Date; weather: Partial<LiveWeather> }> = [];
+  let forecastIndex = 0;
+  if (timelapseEnabled) {
+    forecastPeriods = await fetchForecast(simLat, simLon);
+    console.log(`⏩ Timelapse: loaded ${forecastPeriods.length} forecast periods`);
+  }
+
   let iteration = 0;
   // Track entities that were manually changed to prevent simulator override during demos
   const manualChanges = new Map<string, number>(); // entity_id -> timestamp of last manual change
 
   const isEntityRecentlyManuallyChanged = async (
     entityId: string,
-    gracePeriodMs: number = 5000
+    gracePeriodMs: number = MANUAL_CHANGE_GRACE_PERIOD_MS
   ): Promise<boolean> => {
     try {
       const response = await fetch(
@@ -1916,8 +2024,16 @@ async function runSimulation() {
 
       const lastChangedTime = new Date(data.last_changed).getTime();
       const timeSinceChange = Date.now() - lastChangedTime;
+      const simulatorLastWrite = manualChanges.get(entityId);
 
-      // If changed recently and not by the simulator, it's a manual change
+      if (simulatorLastWrite !== undefined) {
+        const matchesSimulatorWrite = Math.abs(lastChangedTime - simulatorLastWrite) <= SIMULATOR_WRITE_MATCH_WINDOW_MS;
+        if (matchesSimulatorWrite) {
+          return false;
+        }
+      }
+
+      // Recent state changes that do not line up with simulator writes are manual changes.
       return timeSinceChange < gracePeriodMs;
     } catch {
       return false;
@@ -1926,23 +2042,61 @@ async function runSimulation() {
 
   const tick = async () => {
     try {
-      const currentState = await getCurrentState(ha);
-      if (profileSwitchEveryTicks > 0 && iteration > 0 && iteration % profileSwitchEveryTicks === 0) {
-        activeProfile = pickNextProfile(activeProfile);
-        console.log(`[${new Date().toISOString()}] Switched simulation profile -> ${activeProfile}`);
+      // Refresh live weather periodically
+      if (liveWeatherEnabled && !replayDateArg && iteration % WEATHER_REFRESH_TICKS === 0 && iteration > 0) {
+        try {
+          liveWeather = await fetchWeather(simLat, simLon);
+          activeProfile = weatherAutoProfile(liveWeather, configuredProfile);
+        } catch {
+          // Keep last known weather
+        }
       }
 
-      await updateState(ha, currentState, activeProfile, manualChanges, isEntityRecentlyManuallyChanged);
+      // Timelapse: step through forecast periods
+      if (timelapseEnabled && forecastPeriods.length > 0) {
+        const forecastTick = Math.floor(iteration / Math.max(1, timelapseSpeed));
+        if (forecastTick !== forecastIndex && forecastTick < forecastPeriods.length) {
+          forecastIndex = forecastTick;
+          const period = forecastPeriods[forecastIndex];
+          if (period) {
+            liveWeather = { ...liveWeather, ...period.weather } as LiveWeather;
+            console.log(`[timelapse] ${period.time.toLocaleTimeString()} - ${period.weather.condition ?? ''} ${period.weather.tempF?.toFixed(1) ?? ''}°F`);
+          }
+        }
+      }
+
+      // Replay: step through historical observations
+      if (replayDateArg && replayObservations.length > 0) {
+        const replayTick = Math.floor(iteration / Math.max(1, Math.round(3600000 / tickIntervalMs)));
+        if (replayTick !== replayIndex && replayTick < replayObservations.length) {
+          replayIndex = replayTick;
+          liveWeather = replayObservations[replayIndex] ?? liveWeather;
+          if (liveWeather) {
+            console.log(`[replay] ${liveWeather.fetchedAt.toLocaleTimeString()} - ${liveWeather.condition} ${liveWeather.tempF.toFixed(1)}°F`);
+          }
+        }
+      }
+
+      const currentState = await getCurrentState(ha);
+      if (profileSwitchEveryTicks > 0 && iteration > 0 && iteration % profileSwitchEveryTicks === 0) {
+        if (!liveWeatherEnabled) {
+          activeProfile = pickNextProfile(activeProfile);
+          console.log(`[${new Date().toISOString()}] Switched simulation profile -> ${activeProfile}`);
+        }
+      }
+
+      await updateState(ha, currentState, activeProfile, manualChanges, isEntityRecentlyManuallyChanged, liveWeather);
 
       iteration++;
       if (iteration % 12 === 0) {
+        const weatherTag = liveWeather ? ` | ${liveWeather.condition} ${liveWeather.tempF.toFixed(1)}°F` : '';
         console.log(
           `[${new Date().toISOString()}] Ops Update:`,
           `Profile: ${activeProfile}`,
           `Temp: ${currentState.greenhouseTempA.toFixed(1)}°F`,
           `Moisture: N:${currentState.soilMoistureNorth.toFixed(1)}% S:${currentState.soilMoistureSouth.toFixed(1)}%`,
           `Water: ${(currentState.tankLevelMain / 1000).toFixed(1)}k gal`,
-          `Solar: ${currentState.solarGeneration.toFixed(0)}kW`
+          `Solar: ${currentState.solarGeneration.toFixed(0)}kW${weatherTag}`
         );
       }
     } catch (error) {

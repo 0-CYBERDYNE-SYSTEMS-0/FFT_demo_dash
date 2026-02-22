@@ -16,7 +16,12 @@
     "qa:cannabis-clone": "node scripts/qa-cannabis-clone.mjs",
     "typecheck": "tsc --noEmit",
     "build": "tsc",
-    "qa:cannabis-taxonomy": "node scripts/qa-cannabis-taxonomy.mjs"
+    "qa:cannabis-taxonomy": "node scripts/qa-cannabis-taxonomy.mjs",
+    "demo:weather": "tsx scripts/weather-provider.ts",
+    "demo:mirror": "tsx scripts/mirror-environment.ts",
+    "demo:set-location": "tsx scripts/set-demo-location.ts",
+    "simulate:timelapse": "SIM_TIMELAPSE=true tsx scripts/simulate-farm-telemetry.ts",
+    "simulate:replay": "tsx scripts/simulate-farm-telemetry.ts --replay"
   },
   "dependencies": {
     "zod": "^3.23.0"
