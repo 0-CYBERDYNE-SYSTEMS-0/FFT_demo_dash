@@ -10,33 +10,41 @@ views:
     badges: []
     sections:
       - type: grid
-        columns: 1
         cards:
-          - type: conditional
-            conditions:
-              - condition: state
-                entity: input_text.agent_commentary
-                state_not: ""
-            card:
-              type: markdown
-              content: >
-                ## {{ states('input_text.agent_status') }}
-
-                {{ states('input_text.agent_commentary') }}
-              card_mod:
-                style: |
-                  ha-card {
-                    background: rgba(4, 10, 20, 0.97);
-                    border: 1px solid rgba(46, 238, 192, 0.3);
-                    border-left: 4px solid #2eeec0;
-                    border-radius: 12px;
-                    box-shadow: 0 0 36px rgba(46, 238, 192, 0.14);
-                    animation: agent-pulse 2.5s ease-in-out infinite;
-                  }
-                  @keyframes agent-pulse {
-                    0%, 100% { border-left-color: #2eeec0; box-shadow: 0 0 36px rgba(46,238,192,0.14); }
-                    50% { border-left-color: #5db7ff; box-shadow: 0 0 36px rgba(93,183,255,0.20); }
-                  }
+          - type: custom:button-card
+            entity: input_text.agent_commentary
+            show_name: false
+            show_icon: false
+            show_label: true
+            label: |
+              [[[
+                const commentary = entity.state;
+                const status = states['input_text.agent_status']?.state ?? 'Monitoring';
+                if (!commentary) return '';
+                return `<div style="text-align:left;line-height:1.5"><strong style="font-size:1.05rem;color:#f1f7ff">${status}</strong><br><span style="color:#c2d2eb;font-size:0.97rem">${commentary}</span></div>`;
+              ]]]
+            styles:
+              card:
+                - display: "[[[ return entity.state ? 'block' : 'none'; ]]]"
+                - height: "[[[ return entity.state ? 'auto' : '0px'; ]]]"
+                - min-height: "0 !important"
+                - padding: "[[[ return entity.state ? '16px 20px' : '0'; ]]]"
+                - overflow: hidden
+                - background: rgba(4, 10, 20, 0.97)
+                - border: "[[[ return entity.state ? '1px solid rgba(46,238,192,0.3)' : 'none'; ]]]"
+                - border-left: "[[[ return entity.state ? '4px solid #2eeec0' : 'none'; ]]]"
+                - border-radius: 12px
+                - box-shadow: "[[[ return entity.state ? '0 0 36px rgba(46,238,192,0.14)' : 'none'; ]]]"
+                - animation: "[[[ return entity.state ? 'agent-pulse 2.5s ease-in-out infinite' : 'none'; ]]]"
+              label:
+                - padding: "0"
+                - white-space: normal
+                - text-align: left
+            extra_styles: |
+              @keyframes agent-pulse {
+                0%, 100% { border-left-color: #2eeec0; box-shadow: 0 0 36px rgba(46,238,192,0.14); }
+                50% { border-left-color: #5db7ff; box-shadow: 0 0 36px rgba(93,183,255,0.20); }
+              }
       - type: grid
         cards:
           - type: markdown
