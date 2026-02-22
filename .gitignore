@@ -13,3 +13,4 @@ ha_config/.ha_run.lock
 mosquitto/data/
 mosquitto/log/
 .worktrees
+.playwright-mcp/
