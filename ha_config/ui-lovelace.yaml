@@ -1,5 +1,262 @@
 title: FFT Agent Monitoring
 views:
+  - title: Primary Command Center
+    path: primary-command-center
+    icon: mdi:view-dashboard-variant
+    type: sections
+    max_columns: 3
+    sections:
+
+      # ── COLUMN 1 ── System Status + Greenhouse Environment ─────────────────
+      - type: grid
+        cards:
+          - type: markdown
+            title: "🌿 FFT Primary Command Center"
+            content: |
+              ## Farm Operations — Live Status
+              **Irrigation Active:** {{ states('binary_sensor.irrigation_active') | upper }}  |  **Pumps Running:** {{ states('binary_sensor.pumps_running') | upper }}
+              **Last Update:** {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+              *All toggles reflect live device state. Changes are immediate.*
+
+      # ── COLUMN 2 ── Greenhouse Environmental Conditions ────────────────────
+      - type: grid
+        cards:
+          - type: glance
+            title: "🌡️ Greenhouse Environmental Conditions"
+            columns: 3
+            entities:
+              - entity: sensor.greenhouse_temp_a
+                name: "GH-A Temp"
+              - entity: sensor.greenhouse_temp_b
+                name: "GH-B Temp"
+              - entity: sensor.greenhouse_temp_c
+                name: "GH-C Temp"
+              - entity: input_number.greenhouse_humidity_a
+                name: "GH-A Humidity"
+              - entity: input_number.greenhouse_humidity_b
+                name: "GH-B Humidity"
+              - entity: input_number.greenhouse_humidity_c
+                name: "GH-C Humidity"
+              - entity: input_number.greenhouse_light_level_a
+                name: "GH-A Light"
+              - entity: input_number.greenhouse_light_level_b
+                name: "GH-B Light"
+              - entity: input_number.greenhouse_light_level_c
+                name: "GH-C Light"
+
+      # ── COLUMN 3 ── Farm-Wide Metrics + Active Alerts ──────────────────────
+      - type: grid
+        cards:
+          - type: glance
+            title: "📊 Farm-Wide Key Metrics"
+            columns: 3
+            entities:
+              - entity: sensor.outdoor_temp_avg
+                name: "Outdoor Temp"
+              - entity: sensor.wind_speed_mph
+                name: "Wind Speed"
+              - entity: sensor.battery_level
+                name: "Battery"
+              - entity: sensor.solar_power
+                name: "Solar kW"
+              - entity: sensor.power_consumption
+                name: "Grid kW"
+              - entity: sensor.water_tank_total
+                name: "Water Total"
+              - entity: sensor.cattle_count
+                name: "Cattle"
+              - entity: sensor.chicken_count
+                name: "Chickens"
+              - entity: sensor.grain_yield
+                name: "Grain Yield"
+          - type: entity-filter
+            title: "⚠️ Active Alerts"
+            show_empty: false
+            state_filter:
+              - 'on'
+            entities:
+              - binary_sensor.frost_risk
+              - binary_sensor.heat_warning
+              - binary_sensor.high_wind_alert
+              - binary_sensor.storm_alert
+              - binary_sensor.greenhouse_too_hot
+              - binary_sensor.greenhouse_too_cold
+              - binary_sensor.low_water_storage
+              - binary_sensor.low_soil_moisture_north
+              - binary_sensor.low_soil_moisture_south
+              - binary_sensor.barn_too_cold
+              - binary_sensor.motion_detected_barn
+              - binary_sensor.motion_detected_equipment
+
+      # ── GREENHOUSE A — Climate Controls ────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "🌿 Greenhouse A — Climate Controls"
+            entities:
+              - entity: switch.greenhouse_heater_a
+                name: "Heater — Greenhouse A"
+              - entity: switch.greenhouse_cooling_a
+                name: "Cooling — Greenhouse A"
+              - entity: switch.greenhouse_vent_a
+                name: "Ventilation — Greenhouse A"
+              - entity: input_boolean.greenhouse_shade_a
+                name: "Shade Screen — Greenhouse A"
+              - entity: input_boolean.greenhouse_humidifier_a
+                name: "Humidifier — Greenhouse A"
+              - entity: input_boolean.greenhouse_lights_a
+                name: "Grow Lights — Greenhouse A"
+
+      # ── GREENHOUSE B — Climate Controls ────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "🌿 Greenhouse B — Climate Controls"
+            entities:
+              - entity: input_boolean.greenhouse_heater_b
+                name: "Heater — Greenhouse B"
+              - entity: input_boolean.greenhouse_cooling_b
+                name: "Cooling — Greenhouse B"
+              - entity: input_boolean.greenhouse_vent_b
+                name: "Ventilation — Greenhouse B"
+              - entity: input_boolean.greenhouse_shade_b
+                name: "Shade Screen — Greenhouse B"
+              - entity: input_boolean.greenhouse_humidifier_b
+                name: "Humidifier — Greenhouse B"
+              - entity: input_boolean.greenhouse_lights_b
+                name: "Grow Lights — Greenhouse B"
+
+      # ── GREENHOUSE C — Climate Controls ────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "🌿 Greenhouse C — Climate Controls"
+            entities:
+              - entity: input_boolean.greenhouse_heater_c
+                name: "Heater — Greenhouse C"
+              - entity: input_boolean.greenhouse_cooling_c
+                name: "Cooling — Greenhouse C"
+              - entity: input_boolean.greenhouse_vent_c
+                name: "Ventilation — Greenhouse C"
+              - entity: input_boolean.greenhouse_shade_c
+                name: "Shade Screen — Greenhouse C"
+              - entity: input_boolean.greenhouse_fog_system
+                name: "Fog System — All Greenhouses"
+              - entity: input_boolean.greenhouse_lights_c
+                name: "Grow Lights — Greenhouse C"
+
+      # ── IRRIGATION ZONE CONTROLS ────────────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "💧 Irrigation Zone Controls"
+            entities:
+              - entity: switch.irrigation_north
+                name: "Irrigation — North Field"
+              - entity: switch.irrigation_south
+                name: "Irrigation — South Field"
+              - entity: switch.irrigation_west_pasture
+                name: "Irrigation — West Pasture"
+              - entity: switch.irrigation_east_orchard
+                name: "Irrigation — East Orchard"
+              - entity: switch.irrigation_vegetable
+                name: "Irrigation — Vegetable Field"
+              - entity: switch.irrigation_nursery
+                name: "Irrigation — Nursery"
+
+      # ── IRRIGATION EXTENDED + MISTING ───────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "💧 Irrigation Extended & Misting"
+            entities:
+              - entity: input_boolean.irrigation_grain_silo_a
+                name: "Irrigation — Grain Silo A"
+              - entity: input_boolean.irrigation_grain_silo_b
+                name: "Irrigation — Grain Silo B"
+              - entity: input_boolean.irrigation_drip_main
+                name: "Drip System — Main Line"
+              - entity: input_boolean.irrigation_misting_system
+                name: "Misting System — All Zones"
+              - entity: input_boolean.pump_fertilizer_injection
+                name: "Fertilizer Injection Pump"
+              - entity: input_boolean.pump_rainwater
+                name: "Rainwater Pump"
+
+      # ── WATER PUMP CONTROLS ─────────────────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "🔧 Water Pump Controls"
+            entities:
+              - entity: switch.pump_well_1
+                name: "Pump — Well 1"
+              - entity: switch.pump_well_2
+                name: "Pump — Well 2"
+              - entity: switch.pump_main
+                name: "Pump — Main Reservoir"
+              - entity: input_boolean.pump_secondary_tank
+                name: "Pump — Secondary Tank"
+              - entity: input_boolean.pump_pond_circulation
+                name: "Pump — Pond Circulation"
+
+      # ── POWER SYSTEM CONTROLS ───────────────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "⚡ Power System Controls"
+            entities:
+              - entity: switch.backup_generator
+                name: "Backup Generator — Engage"
+              - entity: switch.rain_sensors
+                name: "Rain Sensor Override"
+              - entity: switch.frost_protection
+                name: "Frost Protection Override"
+              - entity: input_boolean.tractor_charger
+                name: "Tractor — Battery Charger"
+              - entity: input_boolean.storm_shutters
+                name: "Storm Shutters — Deploy"
+
+      # ── SECURITY CONTROLS ───────────────────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "🔒 Security Controls"
+            entities:
+              - entity: switch.perimeter_alarm
+                name: "Perimeter Alarm — Armed"
+              - entity: switch.security_lights
+                name: "Security Lights — Perimeter"
+              - entity: input_boolean.gate_lock_main
+                name: "Gate Lock — Main Entry"
+              - entity: input_boolean.gate_lock_secondary
+                name: "Gate Lock — Secondary Entry"
+              - entity: input_boolean.outdoor_flood_lights
+                name: "Outdoor Flood Lights"
+              - entity: input_boolean.barn_lights
+                name: "Barn Lights"
+
+      # ── LIVESTOCK & BARN CONTROLS ───────────────────────────────────────────
+      - type: grid
+        cards:
+          - type: entities
+            title: "🐄 Livestock & Barn Controls"
+            entities:
+              - entity: switch.barn_heater
+                name: "Heater — Barn"
+              - entity: switch.barn_fan
+                name: "Fan — Barn Ventilation"
+              - entity: input_boolean.automatic_feeder_1
+                name: "Automatic Feeder — Station 1"
+              - entity: input_boolean.automatic_feeder_2
+                name: "Automatic Feeder — Station 2"
+              - entity: input_boolean.livestock_water_heater
+                name: "Water Heater — Livestock"
+              - entity: input_boolean.chicken_coop_heater
+                name: "Heater — Chicken Coop"
+              - entity: input_boolean.chicken_coop_fan
+                name: "Fan — Chicken Coop"
+
   - title: Agent Command Center
     path: command-center
     icon: mdi:robot
